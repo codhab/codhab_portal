@@ -17,6 +17,7 @@ gem 'haml-rails'
 gem 'shareable'
 gem 'chartkick'
 gem 'rqrcode'
+gem 'rubyzip', '~> 1.2.1'
 
 gem 'friendly_id'
 gem 'has_scope'

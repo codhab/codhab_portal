@@ -18,9 +18,9 @@ end
 =end
 
 if ENV["STAGE"] == "dev"
-  set :deploy_to, '/var/www/development/apps/portal'
+  set :deploy_to, '/var/www/development/apps/codhab_portal'
 else
-  set :deploy_to, '/var/www/production/apps/portal'
+  set :deploy_to, '/var/www/production/apps/codhab_portal'
 end
 
 set  :repository, 'https://github.com/codhab/portal.git'
