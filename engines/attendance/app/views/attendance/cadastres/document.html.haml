@@ -1,0 +1,30 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b
+                Documentos
+        .row
+          .col-md-12
+            - if @documents.present?
+              - @documents.order(created_at: :desc).each do |document|
+                %table.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th Nº
+                      %th Tipo de Documento
+                      %th Assunto
+                      %th Data do Documento
+                  %tbody
+                    %tr
+                      %td= document.document_number rescue nil
+                      %td= document.document_type.name rescue nil
+                      %td= document.subject.name rescue nil
+                      %td= document.created_at.strftime('%d/%m/%Y')
+
+
+            - else
+              %i Nenhum documento encontrado.

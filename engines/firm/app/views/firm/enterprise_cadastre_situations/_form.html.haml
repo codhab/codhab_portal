@@ -1,0 +1,51 @@
+.row
+  .col-md-12
+    = simple_form_for @enterprise_situation, url: enterprise_cadastre_situations_path, html: {multipart: true}, remote: true do |f|
+      = token_tag form_authenticity_token
+      = f.input :enterprise_cadastre_id, as: :hidden, input_html:{value: @enterprise_cadastre.id}
+      .row
+        .col-md-6
+          = f.label "Ação"
+          = f.input :type_action, as: 'select', collection: Core::Candidate::EnterpriseCadastreSituation.type_actions.keys, label: false, prompt: "Selecione..."
+        .col-md-6
+          = f.label "Tipo de ação"
+          = f.input :enterprise_situation_action_id, as: 'select', collection: Core::Candidate::EnterpriseSituationAction.where(status: true), label: false, prompt: "Selecione..."
+      .row
+        .col-md-6
+          %label Sucesso na ação?
+          = f.input :success, label: false
+        .col-md-6
+          = f.label "Situação"
+          = f.input :enterprise_cadastre_status_id, as: 'select', collection: (params[:type_action].present?) ? Core::Candidate::EnterpriseSituationStatus.where(situation_action_id: params[:type_action]) : {}, label: false, selected: params[:type_action], input_html: { name: 'enterprise_cadastre_status_id'}, prompt: 'selecione...'
+      .row
+        .col-md-12
+          = f.label "Observação"
+          ~ f.input :observation, label: false, input_html: { placeholder: 'Digite um Obervação'}
+      .row
+        .col-md-12
+          = f.label "Arquivo", as: 'file'
+          = f.input :file_path, as: 'file', label: false, input_html: { placeholder: 'Insira uma imagem'}
+          = image_tag @enterprise_situation.file_path_url, width: '150' if @enterprise_situation.file_path?
+      %hr
+      .row
+        .col-md-12
+          = f.button :submit, "Salvar", class: 'btn btn-success', data: {  disable_with: "Aguarde..."}
+:javascript
+  $(document).ready(function() {
+    $("#candidate_enterprise_cadastre_situation_type_action").on('change', function(){
+
+      type_action = $(this).val();
+
+      $.getJSON("#{enterprise_cadastre_situations_path}.json?type_action=" +  type_action, function(data) {
+        var items = [];
+
+        items.push("<option value>selecione...</option>")
+
+        $.each(data.situation, function(key, val) {
+          items.push( "<option value='" + val.id + "'>" + val.name + "</option>");
+        });
+
+        $("#candidate_enterprise_cadastre_situation_enterprise_cadastre_status_id").html(items.join(" "))
+      });
+    })
+  })

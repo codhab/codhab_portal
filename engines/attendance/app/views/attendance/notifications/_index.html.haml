@@ -1,0 +1,4 @@
+- current_cadastre.notifications.order('created_at DESC').each do |notification|
+  %tr{style: "background-color: #{notification.read ? '#fbfbfb' : '#fffdeb'}"} 
+    %td.collapsing= notification.created_at.strftime("%d/%m/%Y - %H:%M")
+    %td= link_to notification.title, notification_path(notification), remote: true

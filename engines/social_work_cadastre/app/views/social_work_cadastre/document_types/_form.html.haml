@@ -1,0 +1,13 @@
+.col-md-8.col-md-offset-2
+  = simple_form_for @document_type do |f|
+    .row
+      .col-md-6
+        = f.input :name, label: "Tipo", input_html: {placeholder: 'Tipo de documento'}
+      .col-md-6
+        = f.input :description, label: "Descrição", input_html: { placeholder: 'Descrição'}
+    .row
+      .col-md-6
+        = f.input :status,  include_blank: false
+      .col-md-6
+        = f.button :submit, "Salvar", class: 'btn btn-success'
+        = link_to 'Cancelar', social_work_cadastre.document_types_path, class: 'btn btn-danger '

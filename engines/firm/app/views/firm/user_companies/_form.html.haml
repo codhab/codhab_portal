@@ -1,0 +1,21 @@
+= simple_form_for @user_company, remote: true do |f|
+  .row
+    .col-md-12
+      = f.input :name,label: 'Nome', as: :string, input_html: { placeholder: "Digite o nome do usuário"}
+  .row
+    .col-md-12
+      = f.input :email,label: 'E-mail', as: :string, input_html: { placeholder: "Informe um e-mail válido"}
+  .row
+    .col-md-4
+      = f.input :login_user,label: 'Login', as: :string, input_html: { placeholder: "Informe um Login"}
+  .row
+    .col-md-4
+      = f.input :password, label: 'Senha', input_html: { placeholder: 'Informe uma senha'}
+    .col-md-4
+      = f.input :password_confirmation,label: 'Confirmação da senha', require: true, input_html: { placeholder: "Confirme a senha"}
+  .row
+    .col-md-12
+      = f.input :admin, as: :select, label: 'Administrador?', include_blank: false
+  .row
+    .col-md-12
+      = f.submit "Gravar", class: 'btn btn-success btn-sm'

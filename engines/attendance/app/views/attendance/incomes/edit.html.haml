@@ -1,0 +1,20 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Atualização de dados básicos
+            %h4= link_to "Retonar para página anterior", :back
+        .row
+          .col-md-12
+            = simple_form_for @mirror, url: ticket_income_path(@ticket, @mirror, dependent: @dependent) do |f|
+              .row
+                .col-md-3
+                  - if f.object.respond_to?(:main_income)
+                    = f.input :main_income, as: :string, input_html: { class: 'money'}
+                  - else
+                    = f.input :income, as: :string, input_html: { class: 'money'}
+
+              = f.submit "Atualizar renda", class: 'btn btn-success'

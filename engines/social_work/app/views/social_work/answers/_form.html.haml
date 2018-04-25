@@ -1,0 +1,25 @@
+.row
+  .col-md-12
+    = simple_form_for @answer, url: candidate_answers_path do |f|
+      = f.input :type, as: :hidden, input_html: {value: params[:type]}
+      - @questions.order(:id).each_with_index do |q,index|
+        %table.table.table-striped.table-bordered
+          %tr
+            %td{colspan: 2}
+              %b
+                = index+1
+                = '-'
+                = q.name
+          - if q.question_multiples.present?
+            - q.question_multiples.each do |multi|
+              %tr
+                %td
+                  = check_box_tag "multiple_ids[]", multi.id
+                  = multi.name
+          - else
+            %tr
+              %td
+                = f.input :answer, label: false
+      .row
+        .col-md-12
+          = f.button :submit, 'Salvar', class: 'btn btn-success',data: {disable_with: "carregando..."}

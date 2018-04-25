@@ -1,0 +1,14 @@
+- @categories.each do |category|
+  %tr
+    %td= category.name
+    %td= category.description
+    %td= category.status ? 'Sim' : "Não"
+    %td= number_to_currency category.default_value
+    %td.collapsing
+      .ui.icon.top.left.pointing.dropdown.button.yellow.mini
+        %i.wrench.icon
+        .menu
+          = link_to "Editar", edit_category_path(category), remote: true, class: 'item'
+          = link_to "Excluir", category_path(category), method: :delete, remote: true, data: { confirm: t(:confirm)}, class: 'item'
+
+

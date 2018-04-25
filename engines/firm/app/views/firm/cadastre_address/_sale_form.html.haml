@@ -1,0 +1,36 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Atualizar Situação do Imóvel
+.modal-body
+  - if @candidateAddress.present?
+    .row
+      .col-md-12
+        .row
+          .col-md-12
+            %b
+              CPF:
+            = @candidateAddress.cadastre.cpf
+        .row
+          .col-md-12
+            %b
+              Reservado para:
+            = @candidateAddress.cadastre.name
+        .row
+          .col-md-12
+            %b
+              Endereço
+            = @candidateAddress.unit.complete_address
+        %br/
+        = simple_form_for @candidateAddress, url: enterprise_unit_sell_path do |f|
+          = f.input :cadastre_id, as: :hidden, input_html:{value: @candidateAddress.cadastre_id}
+          = f.input :unit_id, as: :hidden, input_html:{value:@candidateAddress.unit_id}
+          .row
+            .col-md-12
+              = f.label "Observação"
+              = f.input :observation, label: false, input_html: { placeholder: 'Digite uma observação'}
+          %hr/
+          .row
+            .col-md-12
+              = f.button :submit, 'Vender', class: 'btn btn-success'
+              = link_to 'Liberar Imóvel', enterprise_unit_refund_path(@candidateAddress.unit_id), method: 'post', class: 'btn btn-warning'

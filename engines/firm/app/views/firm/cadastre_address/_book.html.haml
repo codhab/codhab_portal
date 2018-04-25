@@ -1,0 +1,13 @@
+.row
+ .col-md-12
+  = simple_form_for  @enterprise_status, url: enterprise_unit_book_path  do |f|
+   = f.input :cadastre_id, as: :hidden,  input_html:{ value: @candidate.id}
+   = f.input :enterprise_cadastre_id, as: :hidden, input_html:{value: @candidate_firm.enterprise_id}
+   .row
+    .col-md-5
+     = f.label :file_path, as: 'file'
+     = f.input :file_path, as: 'file', label: false, input_html: { placeholder: 'Insira uma imagem'}
+     = image_tag @enterprise_status.file_path_url, width: '150' if @enterprise_status.file_path?
+   .row
+    .col-md-12
+     = f.submit 'Reservar', class:  'btn btn-success'

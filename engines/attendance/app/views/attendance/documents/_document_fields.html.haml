@@ -1,0 +1,12 @@
+%fieldset{style: 'border: 1px solid #dbdbdb  !important; padding: 10px; margin-bottom: 5px !important'}
+  - if f.object.document_url.to_s.present?
+    %small
+      %p
+        %b= link_to "Toque para visualizar o documento", f.object.document_url.to_s, target: '_blank'
+  - else
+    = f.input :document, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: "inline", data: { destroy: f.object.disable_destroy }}
+    = f.input :target_id, as: :hidden
+    = f.input :target_model, as: :hidden
+    = f.hidden_field :_destroy
+    = link_to "Remover arquivo".html_safe, '#', class: "btn btn-danger btn-xs remove_fields #{f.object.disable_destroy ? 'disabled' : ''}"
+.divider

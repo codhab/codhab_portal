@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      'core/social_work/document_upload': 'upload'
+    attributes:
+      'core/social_work/document_upload':
+        document_category_id: "Tipo de Documento"
+        document: "Documento"
+        description: "Descrição"

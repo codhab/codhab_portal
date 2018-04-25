@@ -1,0 +1,20 @@
+= render 'top'
+
+- if !mobile_device?
+  .row
+    .col-md-3
+      = render 'sidebar'
+    .col-md-9
+      .row
+        .col-md-12
+          .row
+            .col-md-12
+              .panel.panel-default
+                .panel-body
+                  .row
+                    .col-md-12
+                      - if !@cadastre.removed?
+                        = render 'candidate/cadastres/show'
+                     
+- else
+  = render 'sidebar_mobile'

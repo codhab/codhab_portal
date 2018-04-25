@@ -1,0 +1,11 @@
+.col-md-8.col-md-offset-2
+  = simple_form_for :password_reset, url: password_resets_path, remote: true do |f|
+    .row
+      .col-md-10
+        = f.input :email, input_html: {placeholder: 'Digite seu email'}
+    .row
+      .col-md-10
+        = f.input :cnpj, input_html: {placeholder: 'Digite seu email'}
+    .row
+      .col-md-6
+        = f.submit "Enviar", class: 'btn btn-success'

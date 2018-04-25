@@ -1,0 +1,159 @@
+<<<<<<< HEAD
+- if @allotment.present? && @allotment.data_prints.where(status: true).present?
+  - @allotment.data_prints.where(status: true).each do |allotment|
+    - @doc = allotment
+    - @doc = Core::Document::DataPrintPresenter.new(@doc)
+    %page{:size => "A4"}
+      .container{style: "font-size: 9pt"}
+        .lateral-margins.spacing{style: 'text-align: justify; font-size: 8pt; important!'}
+          %label
+            %b
+              = @allotment.template.title.html_safe rescue "Preencher dados"
+          %br
+          %br
+          .data-candidate
+            = @doc.write_document(@allotment.template.header).html_safe
+        .content.lateral-margins.spacing
+          = @doc.write_document(@allotment.template.page_one).html_safe rescue "Preencher dados"
+      %div{:style => "page-break-after:always"}
+    %page{:size => "A4"}
+      .container{style: "font-size: 9pt"}
+        .content.lateral-margins.spacing
+          = @doc.write_document(@allotment.template.page_two).html_safe rescue "Preencher dados"
+          %br
+          .div-center
+            %b
+              = "Brasília, #{@allotment.data_document.day} de #{I18n.t("date.month_names")[@allotment.data_document.month]} de #{@allotment.data_document.year}"
+          %br
+          .content
+            %br/
+            %br/
+            %br/
+            %div{style: 'text-align: center'}
+              _________________________________________________
+              %br
+              =@allotment.template.main_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+              %br
+              =@allotment.template.main_complement rescue "<span>COMPLETAR DADOS</span>".html_safe
+          %br
+          .div-center
+            _________________________________________________
+            %br
+            = @doc.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            %br
+            Donatário(a)
+          - if @doc.spouse_cpf.present?
+            .div-center
+              _________________________________________________
+              %br
+              = @doc.spouse_name rescue "<span>COMPLETAR DADOS</span>".html_safe
+              %br
+              Donatário(a)
+          - if @allotment.template.first_signature.present? || @allotment.template.second_signature.present?
+            .div-center
+              %h4 Testemunhas:
+            .content.lateral-margins.spacing
+              %table{border: 0, style: "width: 550px; margin: 0 auto"}
+                %tr
+                  %td
+                    %br/
+                    %br/
+                    %br/
+                    %center
+                      __________________________________________
+                      %br
+                      = @allotment.template.first_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+                      %br
+                      = @allotment.template.first_complement rescue "<span>COMPLETAR DADOS</span>".html_safe
+                  - if @allotment.template.second_signature.present?
+                    %td
+                      %br/
+                      %br/
+                      %br/
+                      %center
+                        ___________________________________________
+                        %br
+                        = @allotment.template.second_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+                        %br
+                        = @allotment.template.second_complement rescue "<span>COMPLETAR DADOS</span>".html_safe
+          .div-center
+            = image_tag ::PrintingQrcodeService.generate!("http://www.codhab.df.gov.br/documento/print_two?id=#{@doc.id}")
+            %br
+            %a{style: "font-size: 9px"}= Digest::MD5.hexdigest @doc.id.to_s
+      %div{:style => "page-break-after:always"}
+- if @doc.present?
+  - @doc = Core::Document::DataPrintPresenter.new(@doc)
+  %page{:size => "A4"}
+    .container{style: "font-size: 9pt"}
+      .lateral-margins.spacing{style: 'text-align: justify; font-size: 8pt; important!'}
+        - if @doc.cancelled == true
+          = image_tag('/portal/images/cancelled.png', width: '500', style: 'position: absolute; top: 200px; margin-left: 150px; opacity: 0.8' )
+        %label
+          %b
+            = @allotment.template.title.html_safe rescue "Preencher dados"
+        %br
+        %br
+        .data-candidate
+          = @doc.write_document(@allotment.template.header).html_safe
+      .content.lateral-margins.spacing
+        = @doc.write_document(@allotment.template.page_one).html_safe rescue "Preencher dados"
+    %div{:style => "page-break-after:always"}
+  %page{:size => "A4"}
+    .container{style: "font-size: 9pt"}
+      .content.lateral-margins.spacing
+        - if @doc.cancelled == true
+          = image_tag('/portal/images/cancelled.png', width: '500', style: 'position: absolute; top: 1300px; margin-left: 150px; opacity: 0.8' )
+        = @doc.write_document(@allotment.template.page_two).html_safe rescue "Preencher dados"
+        %br
+        .div-center
+          %b
+            = "Brasília, #{@allotment.data_document.day} de #{I18n.t("date.month_names")[@allotment.data_document.month]} de #{@allotment.data_document.year}"
+        %br
+        .content
+          %div{style: 'text-align: center'}
+            _________________________________________________
+            %br
+            =@allotment.template.main_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+            %br
+            =@allotment.template.main_complement rescue "<span>COMPLETAR DADOS</span>".html_safe
+        %br
+        .div-center
+          _________________________________________________
+          %br
+          = @doc.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+          %br
+          Donatário(a)
+        - if @doc.spouse_cpf.present?
+          .div-center
+            _________________________________________________
+            %br
+            = @doc.spouse_name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            %br
+            Donatário(a)
+        - if @allotment.template.first_signature.present? || @allotment.template.second_signature.present?
+          .div-center
+            %h4 Testemunhas:
+          .content.lateral-margins.spacing
+            %table{border: 0, style: "width: 550px; margin: 0 auto"}
+              %tr
+                %td
+                  %center
+                    __________________________________________
+                    %br
+                    = @allotment.template.first_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+                    %br
+                    = @allotment.template.first_complement rescue "<span>COMPLETAR DADOS</span>".html_safe
+                - if @allotment.template.second_signature.present?
+                  %td
+                    %center
+                      ___________________________________________
+                      %br
+                      = @allotment.template.second_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+                      %br
+                      = @allotment.template.second_complement rescue "<span>COMPLETAR DADOS</span>".html_safe
+        .div-center
+          = image_tag ::PrintingQrcodeService.generate!("http://www.codhab.df.gov.br/documento/print_two?id=#{@doc.id}")
+          %br
+          %a{style: "font-size: 9px"}= Digest::MD5.hexdigest @doc.id.to_s
+    %div{:style => "page-break-after:always"}
+>>>>>>> 4f06670ec20d30af4d9852030d8e1470f56a0bb5

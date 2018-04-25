@@ -1,0 +1,8 @@
+.row
+  .col-md-6.col-md-offset-4
+    = simple_form_for @password, url: remember_passwords_path, remote: true do |f|
+      .row
+        .col-md-5
+          = f.input :cpf, label: mobile_device? ? "Informe seu CPF(somente números)" : "Informe seu CPF", input_html: { class: mobile_device? ? '' : 'cpf'}
+        .col-md-4
+          = f.submit "Prosseguir", class: 'btn btn-success filter-button', data: { disable_with: t(:disable_with)}

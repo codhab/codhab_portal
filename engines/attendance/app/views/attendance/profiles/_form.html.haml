@@ -1,0 +1,23 @@
+= simple_form_for @profile, url: profile_path(@profile), method: :put do |f|
+  %br/
+  .row
+    .col-md-4
+      %div{style: 'text-align: center'}
+        - if @profile.avatar?
+          = image_tag @profile.avatar_url, class: 'img-circle', size: '160x160', style: 'border: 5px solid #158cba' 
+        - else
+          = image_tag 'http://www.codhab.df.gov.br/sample/avatar.jpg', class: 'img-circle', size: '160x160', style: 'border: 5px solid #158cba' 
+      %br/    
+      = f.input :avatar, label: "Foto do perfil"
+  %br/    
+  .row
+    .col-md-4
+      = f.input :password, label: "Senha", placeholder: '*******'
+      = f.hint "Deixe em branco, caso não queira trocar a senha"
+    .col-md-4
+      = f.input :password_confirmation, label: "Confirmação da senha", placeholder: '*******'
+      = f.hint "Deixe em branco, caso não queira trocar a senha"
+  .mini-margin
+  .row
+    .col-md-6
+      = f.submit "Salvar dados", class: 'btn btn-success', data: { disable_with: t(:disable_with)}

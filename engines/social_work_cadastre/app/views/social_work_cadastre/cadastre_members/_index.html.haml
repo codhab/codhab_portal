@@ -1,0 +1,44 @@
+.ui.grid
+  .row.mini-margin
+    .col-md-12.box
+      .panel.panel-default
+        .panel-heading
+          .row
+            .col-md-12
+              %h1
+                %b Sistema de Indicação por Empresas
+                %br/
+                %small  Listagem de Candidatos Indicados
+                %br/
+                = link_to '+Adicionar Candidato', new_cadastre_cadastre_member_path, remote: true, class: 'btn btn-success '# if policy(:control_notice_situation, namespace: Cpl).create?
+        %hr/
+        .panel-body
+          .row
+            .col-md-12.input-big
+              %table.ui.table.striped.celled
+                %thead
+                  %tr
+                    %th Nome
+                    %th Formação
+                    %th Rg
+                    %th Cpf
+                    %th Telefone
+                    %th Celular
+                    %th Atividade
+                    %th Registro no Crea
+                %tbody
+                  - if @cadastre_members.present?
+                    - @cadastre_members.each do |member|
+                      %tr
+                        %td= member.name
+                        %td= member.formation
+                        %td= member.rg
+                        %td= member.cpf
+                        %td= member.telephone
+                        %td= member.celphone
+                        %td= member.activite
+                        %td= member.registration_crea
+                  - else
+                    %tr
+                      %td{colspan: 2}
+                        %i Nenhuma empresa cadastrada.

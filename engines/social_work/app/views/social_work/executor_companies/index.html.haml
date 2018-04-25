@@ -1,0 +1,29 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Listagem de Candidatos
+        .row
+          .col-md-12
+            - if @projects.present?
+              %h4 DOCUMENTAÇÃO TÉCNICA
+              %table.table.table-striped.table-bordered
+                - @projects.order(:created_at).each do |proj|
+                  %thead
+                    %tr
+                      %th= "Projeto Família nº #{proj.id}"
+                      %th Planilha Orçamentária
+                  %tbody
+                    %tr
+                      %td
+                        = link_to "Visualizar", proj.candidate_project.document_uploads.where(document_category_id: 28).last.document_url, target: '_blank' rescue "Nenhum arquivo"
+                      %td
+                        = link_to "Visualizar", proj.candidate_project.document_uploads.where(document_category_id: 17).last.document_url, target: '_blank' rescue "Nenhum arquivo"
+              %h4 POSICIONAMENTO DA EMPRESA
+              = render 'new'
+            - else
+              %h3
+                %i Nenhum projeto encaminhado

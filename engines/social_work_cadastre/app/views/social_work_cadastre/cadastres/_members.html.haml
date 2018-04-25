@@ -1,0 +1,31 @@
+.row
+  .col-md-12
+    %h4
+      %b Titulares
+      %br/
+      %br/
+      = link_to '+Adicionar Titulares', new_cadastre_cadastre_titular_path(@cadastre), remote: true, class: 'btn btn-primary btn-sm'
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Nome
+          %th Formação
+          %th Rg
+          %th Cpf
+          %th Ações
+      %tbody
+        - if @cadastre_titulars.present?
+          - @cadastre_titulars.each do |titular|
+            %tr
+              %td= titular.name
+              %td= titular.formation
+              %td= titular.rg
+              %td= titular.cpf
+              %td
+                .menu
+                  = link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_cadastre_titular_path(titular.cadastre_id,titular),title: "Editar", class: 'btn btn-warning btn-sm',  remote: true # if policy(:type_control, namespace: Cpl).update?
+                  = link_to "<i class='glyphicon glyphicon-remove'></i>".html_safe, cadastre_cadastre_titular_path(titular.cadastre_id,titular), title: "Excluir", class: 'btn btn-warning btn-sm', method: :delete, data: {confirm: "#{t(:confirm_delete)}"} #if policy(:type_control, namespace: Cpl).destroy?
+        - else
+          %tr
+            %td{colspan: 4}
+              %i Nenhum registro cadastrado.

@@ -1,0 +1,16 @@
+/ conteudo da pagina
+-# .container.box.box_internal
+-#   .row
+-#     .col-md-12
+-#       %h1
+-#         %b Relatórios Externos
+-#   %hr/
+-#   .row
+-#   - @reports.each do |report|
+-#     .row
+-#       .col-md-12
+-#         .panel.panel-default{style:'border-width: 1px !important;'}
+-#           .panel-body
+-#             %h4= link_to report.name, report, target: '_blank'
+-#             %small
+-#               %b= report.created_at.strftime('%d/%m/%Y')

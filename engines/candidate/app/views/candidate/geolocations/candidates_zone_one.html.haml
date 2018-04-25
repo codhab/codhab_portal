@@ -1,0 +1,144 @@
+%link{:href => "https://unpkg.com/leaflet@1.0.1/dist/leaflet.css", :rel => "stylesheet"}/
+%script{:src => "https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"}
+
+.row.mini-margin
+  .col-md-12
+    .panel.panel.default
+      .panel-body
+        %table.table
+          %thead
+            %tr
+              %th Vunerabilidade 
+              %th Idoso
+              %th Possuí condição especial
+              %th RII
+              %th RIE
+          %tbody
+            %tr
+              %td.col-md-2
+                .label.label-success 
+                  Verde 
+                .label.label-default
+                  Total: 80
+              %td.col-md-2
+                .label.label-danger 
+                  Vermelho
+                .label.label-default
+                  Total: 70
+              %td.col-md-2
+                .label.label-info 
+                  Azul  
+                .label.label-default
+                  Total: 50
+              %td.col-md-2
+                .label.label-warning{style: 'background-color: #cb8429 !important'}
+                  Laranja  
+                .label.label-default
+                  Total: 400
+              %td.col-md-2
+                .label.label-warning{style: 'background-color: #ccc42e !important'}
+                  Amarelo  
+                .label.label-default
+                  Total: 400
+        %br/
+.row
+  .col-md-12
+    .panel.panel.default
+      .panel-body
+        #map{style: 'width: 100%; height: 100%'}
+
+:javascript
+  
+  var map = L.map('map').setView([-15.883723, -47.782861], 10);
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+  var greenIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+  
+  var blueIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  var yellowIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  var redIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  var OrangeIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  function get_icon(data) {
+    return blueIcon
+  }
+
+  function get_status(data) {
+    var program = ""
+    if(data.program == 1) {
+      program = "RII"
+    } else if(program == 2) {
+      program = "RIE"
+    } else  {
+      program = "Outro"
+    }
+
+    if(data.special_condition_id == 2) {
+      return program +" DEFICIENTE"
+    } else if(data.older == true) {
+      return program +" IDOSO"
+    } else if(data.program == 4) {
+      return "VULNERÁVEL"
+    } else {
+      return program
+    } 
+  }
+  $.getJSON("#{url_for}", function(data) {
+    for(var i = 0; i < data.data.length; i++) {
+      var marker = L.marker([data.data[i].lat, data.data[i].lng], {
+        icon: get_icon(data.data[i])
+      }).addTo(map);
+      
+      content = "<h6><b>Nome</b><br/>"+data.data[i].name+"</h6>"+
+                "<h6><b>Situação</b><br/>"+data.data[i].situation_name+"</h6>"+
+                "<h6><b>Pontuação</b><br/>"+data.data[i].total+"</h6>"+
+                "<h6><b>Indicado para empreendimento</b><br/>"+data.data[i].project_name+"</h6>"+
+                "<h6><b>Possui cônjuge</b><br/>"+data.data[i].spouse+"</h6>"+
+                "<h6><b>Qtd de dependentes:</b><br/>"+ data.data[i].count_dependent +" </h6>"+
+                "<h6><b>Qtd de PCD:</b><br/>"+ data.data[i].special_dependent_count +"</h6>"+
+                "<h6><b>Endereço:</b><br/>"+ data.data[i].address +"</h6>"+
+                "<h6><b>Renda:</b><br/>"+ data.data[i].income +" </h6>"+
+                "<h6><b>Última atualização cadastral:</b><br/>"+ data.data[i].interaction +" </h6>"
+
+      marker.bindPopup(content)
+    }
+  });
+

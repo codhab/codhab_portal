@@ -1,0 +1,54 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-md-12
+          = link_to "Finalizar Sessão", destroy_authorization_path, method: :delete, class: 'btn btn-warning pull-right'
+      .row
+        .col-md-12
+          %h3
+            %b= "Consultas do Projeto -  #{@user.project.title rescue nil}"
+            %br/
+            %small
+      %hr
+      .row
+        .col-md-12
+          = simple_form_for  url_for, method: 'get' do |f|
+            .row
+              .col-md-2
+                = f.label 'Data'
+                = f.input :by_date, label: false, input_html: { name: 'by_date', value: params[:by_date], class: 'date'}, include_blank: 'Todos'
+              .col-md-3
+                = f.label 'Respondido?'
+                = f.input :by_responded, as: :select, collection: [["Sim", true],["Não", false]], label: false, selected: params[:by_responded],  input_html: {:"data-toggle" => 'toggle', name: 'by_responded'},include_blank: 'Todos'
+              .col-md-4
+                %br
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary', data: {  disable_with: "Pesquisando aguarde..."}
+                = link_to 'Limpar Pesquisa', external_consults_path, class:  'btn btn-default', data: {  disable_with: "Pesquisando aguarde..."}
+      .row
+        .col-md-12
+          %b= "Total de Registros: #{@consults.count}"
+          %br
+          %table#data-table-command.table.table-striped.table-vmiddle.datatable
+            %thead
+              %tr
+                %th Nº
+                %th Data
+                %th Respondido?
+                %th
+            %tbody
+              - if @consults.present?
+                - @consults.order(created_at: :desc).each do |consult|
+                  %tr
+                    %td= consult.id
+                    %td= consult.created_at.strftime('%d/%m/%Y')
+                    %td= consult.responded == true ? "Sim" : "Não"
+                    %td= link_to "Visualizar", external_consult_path(consult), remote: true
+              - else
+                %tr
+                  %td{colspan: 4}
+                    %i  Nenhum resultado para está consulta.
+            .row
+              .col-md-12.col-md-offset-3
+                .container
+                  = will_paginate @consults, renderer: BootstrapPagination::Rails

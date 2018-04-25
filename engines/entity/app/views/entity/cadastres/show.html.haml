@@ -1,0 +1,224 @@
+- if !mobile_device?
+  .row.mini-margin
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-md-12
+              %h1
+                %b Detalhamento de entidade
+                %br/
+              %small= link_to "Voltar para listagem", cadastres_path, data: { disable_with: t(:disable_with)}
+          %hr/
+          %br/
+          %h4
+            %b Dados da entidade
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th CNPJ
+                    %th Nome
+                    %th Sigla
+                    %th Situação
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.cnpj.format_cnpj
+                    %td= @cadastre.name.to_s.mb_chars.upcase
+                    %td.col-md-2= @cadastre.fantasy_name.to_s.mb_chars.upcase
+                    %td.col-md-2= @cadastre.current_situation
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Telefone
+                    %th Telefone secundário
+                    %th E-mail
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.telephone
+                    %td.col-md-2= @cadastre.telephone_optional
+                    %td= @cadastre.email
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Endereço
+                    %th Complemento
+                    %th Cidade
+                    %th CEP
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.address.to_s.mb_chars.upcase
+                    %td.col-md-2= @cadastre.complement.to_s.mb_chars.upcase
+                    %td.col-md-2= @cadastre.city.name.to_s.mb_chars.upcase
+                    %td.col-md-2= @cadastre.cep
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Nome do presidente
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.current_president_name.to_s.mb_chars.upcase
+              %hr/
+              %h4
+                %b Projeto vínculado
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Nome
+                    %th Endereços
+                    %th Grupo
+                %tbody
+                  - if Entity::Enterprise.where(entity_id: @cadastre.id).present?
+                    - Entity::Enterprise.where(entity_id: @cadastre.id).each do |entity|
+                      %tr
+                        %td= entity.name
+                        %td= entity.complete_address
+                        %td= entity.group_name
+                  - else
+                    %tr
+                      %td{colspan: 3} Nenhum projeto vínculado.
+              -# %hr/
+              -# %h4
+              -#   %b Associados - Total listado: #{@candidates['candidates'].count}
+              -# %table.table.table-striped.table-bordered
+              -#   %thead
+              -#     %tr
+              -#       %th Nome
+              -#       %th CPF
+              -#       %th Pontuação
+              -#       %th Situação
+              -#       %th Indicação
+              -#   %tbody
+              -#     - if @candidates['candidates'].present?
+              -#       - @candidates['candidates'].each do |candidate|
+              -#         - if !candidate['name'].to_s.empty?
+              -#           %tr
+              -#             %td= link_to candidate['name'], "/candidato/cadastro/#{candidate['id']}", target: "_blank"
+              -#             %td= candidate['cpf']
+              -#             %td= candidate['pontuation']
+              -#             %td= candidate['situation']
+              -#             %td= candidate['current_indication_status']
+              -#     - else
+              -#       %tr
+              -#         %td{colspan: 5}
+              -#           %i Nenhum candidato associado.
+-else
+  .mini-margin
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-md-12
+              %h1
+                %b Detalhamento de entidade
+                %br/
+              %small= link_to "Voltar para listagem", cadastres_path, data: { disable_with: t(:disable_with)}
+          %hr/
+          %br/
+          %h4
+            %b Dados da entidade
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th CNPJ
+                    %th Nome
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.cnpj.format_cnpj
+                    %td= @cadastre.name.to_s.mb_chars.upcase
+            .col-md-12
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Sigla
+                    %th Situação
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.fantasy_name.to_s.mb_chars.upcase
+                    %td.col-md-2= @cadastre.current_situation
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Telefone
+                    %th Telefone secundário
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.telephone
+                    %td.col-md-2= @cadastre.telephone_optional
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th E-mail
+                %tbody
+                  %tr
+                    %td= @cadastre.email
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Endereço
+                    %th Complemento
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.address.to_s.mb_chars.upcase
+                    %td.col-md-2= @cadastre.complement.to_s.mb_chars.upcase
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Cidade
+                    %th CEP
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.city.name.to_s.mb_chars.upcase
+                    %td.col-md-2= @cadastre.cep
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Nome do presidente
+                %tbody
+                  %tr
+                    %td.col-md-2= @cadastre.current_president_name.to_s.mb_chars.upcase
+              %hr/
+              %h4
+                %b Projeto vínculado
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Nome
+                    %th Endereços
+                    %th Grupo
+                %tbody
+                  - Entity::Enterprise.where(entity_id: @cadastre.id).each do |entity|
+                    %tr
+                      %td= entity.name
+                      %td= entity.complete_address
+                      %td= entity.group_name
+
+              -# %hr/
+              -# %h4
+              -#   %b Associados - Total listado: #{@candidates['candidates'].count}
+              -# %table.table.table-striped.table-bordered
+              -#   %thead
+              -#     %tr
+              -#       %th Nome
+              -#       -# %th CPF
+              -#       -# %th Pontuação
+              -#       %th Situação
+              -#       %th Indicação
+              -#   %tbody
+              -#     - if @candidates['candidates'].present?
+              -#       - @candidates['candidates'].each do |candidate|
+              -#         - if !candidate['name'].to_s.empty?
+              -#           %tr
+              -#             %td= link_to candidate['name'], "/candidato/cadastro/#{candidate['id']}", target: "_blank"
+              -#             -# %td= candidate['cpf']
+              -#             -# %td= candidate['pontuation']
+              -#             %td= candidate['situation']
+              -#             %td= candidate['current_indication_status']
+              -#
+              -#     - else
+              -#       %tr
+              -#         %td{colspan: 5}
+              -#           %i Nenhum candidato associado.

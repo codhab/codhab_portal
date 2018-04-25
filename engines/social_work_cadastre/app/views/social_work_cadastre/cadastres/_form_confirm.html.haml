@@ -1,0 +1,10 @@
+= simple_form_for @cadastre,url: cadastre_path, remote: true do |f|
+  .row
+    .col-md-12
+      %br/
+      = f.input :confirm, include_blank: false, input_html: { disabled: @cadastre.confirm ? true : false}
+  %br/
+  %br/
+  .row
+    .col-md-6
+      = link_to 'Confirmo todas as Declarações', update_confirm_path(id: @cadastre.id), class: 'btn btn-success btn-xs', remote: true

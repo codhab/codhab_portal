@@ -1,0 +1,41 @@
+= render 'candidate/restrict_area/dashboard/top'
+- if !mobile_device?
+  .row
+    .col-md-3
+      = render 'candidate/restrict_area/dashboard/sidebar'
+    .col-md-9
+      .row
+        .col-md-12
+          .panel.panel-default
+            .panel-body
+              %h2
+                %b Portas abertas
+                %p
+                  %small Manifestação de interesse
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th
+                      Empreendimento
+                      %i (Clique para abrir a página de detalhamento do empreendimento)
+                    %th Ação
+                %tbody.index-each
+                  = render 'index'
+- else      
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body{style: 'text-align: center'}
+          %h4
+            %b Portas abertas
+            %p
+              %small Manifestação de interesse
+          %table.table.table-striped.table-bordered{style: 'font-size: 12px'}
+            %thead
+              %tr
+                %th{colspan: 2}
+                  Empreendimento
+                  %i (Clique para abrir a página de detalhamento do empreendimento)
+            %tbody.index-each
+              = render 'index'
+

@@ -1,0 +1,240 @@
+:javascript
+  google.load('visualization', '1', {'packages':['corechart'], 'language': 'pt-BR'});
+
+.row
+  .col-md-12
+    %h4
+      %b Informações básicas
+    %table.table
+      %thead
+        %tr
+          %th{colspan: 2} Nome
+          %th CPF
+          %th Sexo
+          %th Estado Civil
+      %tbody
+        %tr
+          %td{colspan: 2}= @cadastre_view['basic_information']['name']
+          %td= @cadastre_view['basic_information']['cpf_obfuscator']
+          %td= @cadastre_view['basic_information']['gender']
+          %td= @cadastre_view['basic_information']['civil_state']
+        %tr
+          %th Chegada ao DF
+          %th Naturalidade
+          %th Condição Especial
+          %th CID
+          %th NIS
+        %tr
+          %td= @cadastre_view['basic_information']['arrival_df']
+          %td= @cadastre_view['basic_information']['naturality']
+          %td= @cadastre_view['basic_information']['special_condition']
+          %td= @cadastre_view['basic_information']['cid']
+          %td= @cadastre_view['basic_information']['nis']
+        %tr
+          %th Data inscrição
+          %th Qtd. de dependentes
+          %th{colspan: 3} Qtd. de dependentes com condição especial
+        %tr
+          %td= @cadastre_view['basic_information']['created_at_format']
+          %td= @cadastre_view['dependent_quantity']
+          %td{colspan: 3}= @cadastre_view['dependent_special_quantity']
+        - if @cadastre_view['basic_information']['spouse'].present?
+          %tr
+            %th{colspan: 3} Nome cônjuge
+            %th{colspan: 2} CPF  cônjuge
+          %tr
+            %td{colspan: 3}= @cadastre_view['basic_information']['spouse_name']
+            %td{colspan: 2}= @cadastre_view['basic_information']['spouse_cpf']
+.row
+  .col-md-12
+    %h4
+      %b Situação do candidato
+    %table.table.table-bordered
+      %thead
+        %th Lista
+        %th Faixa
+        %th Posição
+        %th Situação
+        %th Pontuação
+      %tbody
+        - if @cadastre_view['lists'].present?
+          - @cadastre_view['lists'].each do |list|
+            %tr
+              %td= list['name']
+              %td= list['zone']
+              %td= list['position']
+              %td= @cadastre_view['basic_information']['situation']
+              %td= @cadastre_view['basic_information']['pontuation']
+        - else
+          %tr
+            %td
+              %i Nenhum registro disponível
+
+%h4
+  %b Indicado ao empreendimento
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th{colspan: 2} Empreendimento
+          %th Data de encaminhamento
+          %th Inativação
+      %tbody
+        - if @cadastre_view['enterprise_cadastre'].present?
+          - @cadastre_view['enterprise_cadastre'].each do |enterprise_cadastre|
+            %tr
+              %td{colspan: 2}= enterprise_cadastre['enterprise_name']
+              %td= enterprise_cadastre['created_at_format']
+              %td= enterprise_cadastre['situation']
+        - else
+          %tr
+            %td{colspan: 3}
+              %i Nenhum registro de indicação.
+        - if  @cadastre_view['enterprise_cadastre_deadline'].present?
+          %tfoot
+            %tr
+              %td
+                %b Quantidade de recusas:
+                = @cadastre_view['enterprise_cadastre_deadline']['count']
+              %td
+                %b Primeira recusa:
+                = @cadastre_view['enterprise_cadastre_deadline']['first']
+              %td
+                %b Prazo final:
+                = @cadastre_view['enterprise_cadastre_deadline']['end']
+              %td
+                %i= @cadastre_view['enterprise_cadastre_deadline']['result']
+
+%h4
+  %b Dados de contemplação
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th Cidade
+          %th Quadra
+          %th Conjunto
+          %th Situação
+          %th Data
+      %tbody
+        - if @cadastre_view['cadastre_address'].present?
+          - @cadastre_view['cadastre_address'].each do |cadastre_address|
+            %tr
+              %td= cadastre_address['city']
+              %td= cadastre_address['group']
+              %td= cadastre_address['block']
+              %td= cadastre_address['situation']
+              %td= cadastre_address['created_at']
+        - else
+          %tr
+            %td{colspan: 5}
+              %i Nenhum registro de contemplação.
+
+%h4
+  %b Histórico de Posição
+  .row
+    .col-md-12
+      = line_chart(@cadastre.positions.positions_to_chart, library: { xtitle: "Data", ytitle: "Posição", legend: "top"} )
+
+- if @cadastre_view['pontuations'].present?
+  %h4
+    %b Histórico de Pontuação
+  .row
+    .col-md-12
+      - @hash = {}
+      - @cadastre_view['pontuations'].map { |key| @hash[key['created_at_usa']] = key['total'] }
+      = area_chart(@hash)
+  .row
+    .col-md-12
+      %table.table
+        %thead
+          %tr
+            %th Ano
+            %th Data
+            %th Tempo de Brasília
+            %th Tempo de lista
+            %th Condição de especial
+            %th Dependentes
+            %th Renda familiar
+            %th Total
+        %tbody
+          - @cadastre_view['pontuations'].each do |pontuation|
+            %tr
+              %td= pontuation["created_at_year"]
+              %td= pontuation["created_at_format"]
+              %td= pontuation["bsb"]
+              %td= pontuation["timelist"]
+              %td= pontuation["special_condition"]
+              %td= pontuation["dependent"]
+              %td= pontuation["income"]
+              %td= pontuation["total"]
+
+
+%h4
+  %b Histórico de Atendimento
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th Cod.
+          %th Posto
+          %th Data
+          %th Situação
+      %tbody
+        - if @cadastre_view['attendances'].present?
+          - @cadastre_view['attendances'].each do |attendance|
+            %tr
+              %td= attendance['id']
+              %td= attendance['service_station']
+              %td= attendance['created_at_format']
+              %td= attendance['situation']
+        - else
+          %tr
+            %td{colspan: 4}
+              %i Nenhum atendimento realizado.
+
+
+%h4
+  %b Histórico de Agendamento
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th Agenda
+          %th Data
+          %th Hora
+      %tbody
+        - if @cadastre_view['schedules'].present?
+          - @cadastre_view['schedules'].each do |schedule|
+            %tr
+              %td= schedule['agenda']
+              %td= schedule['date']
+              %td= schedule['hour']
+        - else
+          %tr
+            %td{colspan: 3}
+              %i Nenhum agendamento realizado.
+
+%h4
+  %b Histórico de Atividades
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th Atividade
+          %th Data/Hora
+      %tbody
+        - if @cadastre_view['activities'].present?
+          - @cadastre_view['activities'].each do |activity|
+            %tr
+              %td= activity['name']
+              %td.col-md-2= activity['created_at_format']
+        - else
+          %tr
+            %td{colspan: 3}
+              %i Nenhum registro encontrado.

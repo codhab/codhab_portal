@@ -1,0 +1,154 @@
+.row
+  .col-md-8
+    = f.label :name
+    = f.input :name, label: false, input_html: { placeholder: 'Digite o nome do candidato' }
+  .col-md-4
+    = f.label :cpf
+    = f.input :cpf, label: false, input_html: { class: 'cpf'}
+.row
+  .col-md-4
+    = f.input :born, as: :string, input_html: { class: 'date', placeholder: '00/00/0000', value: (@candidate.born) ? localize(f.object.born) : nil }
+  .col-md-4
+    = f.label :email
+    = f.input :email, label: false, input_html: { placeholder: 'Digite o email do candidato' }
+  .col-md-4
+    = f.association :civil_state, prompt: 'Selecione...'
+.row
+  .col-md-3
+    = f.label :rg
+    = f.input :rg, label: false, input_html: { placeholder: 'Digite o RG do candidato' }
+  .col-md-3
+    = f.label :rg_org
+    = f.input :rg_org, label: false, input_html: { placeholder: 'Ex: SSP/DF' }
+  .col-md-3
+    = f.label :rg_date
+    = f.input :rg_date, as: 'string', input_html: { class: 'date', placeholder: '00/00/0000', value: (@candidate.rg_date) ? localize(f.object.rg_date) : nil}
+  .col-md-3
+    = f.label :gender
+    = f.input :gender, as: :select, label: false,collection: Core::SocialWork::Candidate.genders.keys.map { |k| [k.humanize, k]}, include_blank: false
+.row
+  .col-md-4
+    = f.label :place_birth
+    = f.input :place_birth, label: false, input_html: { placeholder: 'Local do nascimento' }
+  .col-md-4
+    = f.label :education
+    = f.association :education, label: false, prompt: 'Selecione...'
+  .col-md-4
+    = f.label :family_special
+    = f.input :family_special, label: false
+.row
+  .col-md-6
+    = f.label :mother_name
+    = f.input :mother_name, label: false, input_html: { placeholder: 'Mãe do candidato' }
+  .col-md-6
+    = f.label :father_name
+    = f.input :father_name, label: false, input_html: { placeholder: 'Pai do candidato' }
+.row
+  .col-md-6
+    = f.association :city, collection: Address::City.federal_district, prompt: 'Selecione'
+.row
+  .col-md-8
+    = f.label :address
+    = f.input :address, label: false, input_html: { placeholder: 'Endereço' }
+  .col-md-4
+    = f.label :complement_address
+    = f.input :complement_address, label: false, input_html: { placeholder: 'Complemento de Endereço' }
+.row
+  .col-md-6
+    = f.label :telephone
+    = f.input :telephone, label: false, input_html: { placeholder: 'Telefone' }
+  .col-md-6
+    = f.label :celphone
+    = f.input :celphone, label: false, input_html: { placeholder: 'Celular' }
+.row
+  .col-md-2
+    = f.label :work
+    = f.input :work, as: :select, label: false, include_blank: false
+  .col-md-4
+    .work{style:'display:none'}
+      = f.label :work_ocupation
+      = f.input :work_ocupation, label: false, input_html: { placeholder: 'Ocupação' }
+  .col-md-4
+    .work{style:'display:none'}
+      = f.label :work_phone
+      = f.input :work_phone, label: false, input_html: { placeholder: 'Telefone' }
+  .col-md-2
+    = f.label :income
+    = f.input :income, label: false, input_html: { placeholder: 'Renda' }
+.row
+  .col-md-4
+    = f.label 'Recebe algum tipo de Pensão?'
+    = f.input :pension_flag, label: false, as: :select, include_blank: false
+  .col-md-4
+    #pension{style:'display:none'}
+      = f.association :pension, label: false, prompt: 'Selecione...', input_html: {class: 'filter'}
+  .col-md-4
+    = f.label :nis
+    = f.input :nis, label: false, input_html: {placeholder: 'Nis'}
+.row
+  .col-md-4
+    = f.label 'Recebe algum tipo de Benefício?'
+    = f.input :benefit_flag, label: false, as: :select, include_blank: false
+  .col-md-4
+    #benefit{style:'display:none'}
+      = f.association :benefit, label: false, prompt: 'Selecione...', input_html: {class: 'filter'}
+.row
+  .col-md-4
+    = f.label :technical_course_interest
+    = f.input :technical_course_interest,  label: false, as: :select, include_blank: false
+  .col-md-8
+    #technical_course_name{style:'display:none'}
+      = f.label :technical_course_name
+      = f.input :technical_course_name, label: false, input_html: { placeholder: 'Nome do Curso' }
+%hr
+.row
+  .col-md-12
+    = f.button :submit, 'Salvar', class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+    = link_to "Voltar a listagem", candidate_schedules_path, class: 'btn btn-default'
+
+:javascript
+  $(document).ready(function(){
+
+    $('#social_work_candidate_pension_flag').each(function(){
+        $('#pension').css('display','block')
+    })
+    $('#social_work_candidate_benefit_flag').each(function(){
+      $('#benefit').css('display','block')
+    })
+    $('#social_work_candidate_technical_course_interest').each(function() {
+      $('#technical_course_name').css('display','block')
+    })
+    $('#social_work_candidate_work').each(function(){
+      $('.work').css('display','block')
+    })
+
+
+   $('#social_work_candidate_pension_flag').change(function() {
+      if($(this).val() == 'true'){
+       $('#pension').css('display','block')
+      }else{
+        $('#pension').css('display','none')
+      }
+    });
+   $('#social_work_candidate_benefit_flag').change(function() {
+      if($(this).val() == 'true'){
+        $('#benefit').css('display','block')
+      }else{
+        $('#benefit').css('display','none')
+      }
+    });
+   $('#social_work_candidate_technical_course_interest').change(function() {
+      if($(this).val() == 'true'){
+        $('#technical_course_name').css('display','block')
+      }else{
+        $('#technical_course_name').css('display','none')
+      }
+    });
+   $('#social_work_candidate_work').change(function() {
+      if($(this).val() == 'true'){
+        $('.work').css('display','block')
+      }else{
+        $('.work').css('display','none')
+      }
+    });
+  });

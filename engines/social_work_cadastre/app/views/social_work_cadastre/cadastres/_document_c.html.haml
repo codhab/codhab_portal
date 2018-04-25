@@ -1,0 +1,17 @@
+.col-md-12
+  - Core::SocialWorkCadastre::DocumentType.where(description: 'c').order(:order).each_with_index do |doc,i|
+    %table.table.table-striped
+      %tr
+        %td{colspan: 3}
+          -if @cadastre.sicaf == true
+            %b= "#{i+11}.#{doc.name}"
+          -else
+            %b= "#{i+16}.#{doc.name}"
+      %tr
+        %td
+          = link_to "Enviar Arquivo",new_cadastre_upload_document_path(@cadastre, document: doc.id), remote: true, class: 'btn btn-success btn-sm' if @cadastre.steps.where(step: 2).present? == false
+        %td
+          - @upload_documents.where(document_type_id: doc.id).each do |upload|
+            = link_to "Visualizar Arquivo", upload.file_path_url, target: '_blank', class: 'btn btn-default' if @cadastre.upload_documents.where(document_type_id: doc.id).present?
+        %td
+          = link_to 'Excluir Arquivo', cadastre_upload_document_path(@cadastre, @cadastre.upload_documents.where(document_type_id: doc.id).last.id), method: :delete, class: 'btn btn-danger btn-sm' if @cadastre.upload_documents.where(document_type_id: doc.id).present? && @cadastre.steps.where(step: 2).present? == false

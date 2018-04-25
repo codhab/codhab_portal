@@ -1,0 +1,4 @@
+- if @indication.errors.any?
+  alert("Não foi possível realizar a manifestação.")
+- else
+  $(".index-each").html("#{escape_javascript(render 'index')}")

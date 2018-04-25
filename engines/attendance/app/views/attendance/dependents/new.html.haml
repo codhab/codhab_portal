@@ -1,0 +1,19 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .h4
+          %b Adicionar de dependente
+        .sub-title Formulário de criação de dependente
+        .row
+          .col-md-12
+            - if @ticket.closed?(@action)
+              .text-center
+                %p
+                  %h2 Dados #{@action.situation.name.pluralize}
+                %p
+                  %i.icon.checkmark.huge.green
+        .mini-margin
+        .row
+          .col-md-12
+            = render 'form'

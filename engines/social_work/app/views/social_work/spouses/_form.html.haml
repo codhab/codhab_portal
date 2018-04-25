@@ -1,0 +1,69 @@
+= f.input :kinship_id, as: :hidden, input_html: {value: 6}
+.row
+  .col-md-8
+    = f.label :name
+    = f.input :name, label: false, input_html: { placeholder: 'Digite o nome do dependente' }
+  .col-md-4
+    = f.label :cpf
+    = f.input :cpf, label: false, input_html: {  class: 'cpf' }
+.row
+  .col-md-4
+    = f.label :civil_state
+    = f.association :civil_state, label: false, prompt: 'Selecione'
+  .col-md-4
+    = f.label :born
+    = f.input :born, as: :string, input_html: { class: 'date', placeholder: '00/00/0000', value: (@dependent.born) ? localize(f.object.born) : nil}
+  .col-md-4
+    = f.label :education
+    = f.association :education, label: false, prompt: 'Selecione...'
+.row
+  .col-md-4
+    = f.label :rg
+    = f.input :rg, label: false, input_html: { placeholder: 'Digite o RG do dependente' }
+  .col-md-4
+    = f.label :rg_org
+    = f.input :rg_org, label: false, input_html: { placeholder: 'Ex: SSP/DF' }
+  .col-md-4
+    = f.label :rg_date
+    = f.input :rg_date, as: 'string', input_html: { class: 'date', placeholder: '00/00/0000', value: (@dependent.rg_date) ? localize(f.object.rg_date) : nil}
+.row
+  .col-md-6
+    = f.label :mother_name
+    = f.input :mother_name, label: false, input_html: { placeholder: 'Mãe do dependente' }
+  .col-md-6
+    = f.label :father_name
+    = f.input :father_name, label: false, input_html: { placeholder: 'Pai do dependente' }
+.row
+  .col-md-9
+    = f.label :work_ocupation
+    = f.input :work_ocupation, label: false, input_html: { placeholder: 'Ocupação caso exista.' }
+  .col-md-3
+    = f.label :income
+    = f.input :income, label: false, input_html: { placeholder: 'Renda do dependente' }
+.row
+  .col-md-3
+    = f.label :technical_course_interest
+    = f.input :technical_course_interest, as: :select,  label: false, include_blank: false
+  .col-md-9
+    #technical_course_name{style:'display:none'}
+      = f.label :technical_course_name
+      = f.input :technical_course_name, label: false, input_html: { placeholder: 'Nome do Curso' }
+%hr
+.row
+  .col-md-12
+    = f.button :submit, 'Salvar', class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+:javascript
+  $(document).ready(function(){
+
+    $('#social_work_dependent_technical_course_interest').each(function() {
+      $('#technical_course_name').css('display','block')
+    })
+
+   $('#social_work_dependent_technical_course_interest').change(function() {
+      if($(this).val() == 'true'){
+        $('#technical_course_name').css('display','block')
+      }else{
+        $('#technical_course_name').css('display','none')
+      }
+    });
+  });

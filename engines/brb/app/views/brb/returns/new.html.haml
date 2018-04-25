@@ -1,0 +1,11 @@
+.ui.grid
+  .row
+    .column
+      %h1.ui.header
+        Gestão Financeira
+        .sub.header
+          Subir Retorno BRB - Boleto
+      = link_to 'Voltar para listagem', invoices_path(@params), class: 'ui button yellow'
+  .row
+    .column
+      = render 'form'

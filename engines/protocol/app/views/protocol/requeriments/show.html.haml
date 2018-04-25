@@ -1,0 +1,15 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Requerimento
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %tbody
+                %tr
+                  %td
+                    = "<b>#{@requeriment.recipient}</b>, seu requerimento nº: <b>#{@requeriment.document_number}</b>, foi enviado para CODHAB.".html_safe

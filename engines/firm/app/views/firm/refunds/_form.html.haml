@@ -1,0 +1,44 @@
+.row
+  .col-md-6
+    %h3
+      %b Liberar de Candidato
+    %h4
+      %p
+        CPF:
+        = @enterprise_unit.current_cadastre_address.cadastre.cpf.format_cpf
+    %h4
+      %p
+        Nome:
+        = @enterprise_unit.current_cadastre_address.cadastre.name.upcase
+    %h4
+      %p
+        Endereço:
+        = @enterprise_unit.complete_address
+    .row
+      .col-md-12
+        = simple_form_for @refund do |f|
+          = f.input :unit_id, as: :hidden,  input_html:{ :value =>  @enterprise_unit.id }
+          .row
+            .col-md-12
+              = f.input :cpf, as: :hidden, input_html: { readonly: true, value: @enterprise_unit.current_cadastre_address.cadastre.cpf}
+          .row
+            .col-md-12
+              = f.label "Observação"
+              = f.input :observation, as: :text, label: false
+          .row
+            .col-md-12
+              = f.label "Arquivo"
+              = f.input :file_path, as: :file, label: false
+          %hr
+          .row
+            .col-md-12
+              = f.button :submit, "Liberar", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+  .col-md-6
+    %h2
+      %b Atenção
+    %p
+      Atente-se ao Endereço selecionado.
+    %p
+      Verifique se o CPF informado está correto e esta vínculado ao candidato destino desta operação.
+
+    %p Esta operação é irreversível.

@@ -1,0 +1,21 @@
+.row
+  .col-md-12
+    %h1{style: "text-align: center !important"}
+      %b= "Alteração de senha - Empresa: #{@user.social_reason}"
+      %br/
+      %small Credenciamento 01-2018
+      %br/
+      %br/
+    = simple_form_for @user, url: password_reset_path(params[:id]), method: :put do |f|
+      .row
+        .col-md-10
+          = f.input :email, as: :hidden, input_html: {value: @user.email}
+      .row
+        .col-md-6
+          = f.input :password
+      .row
+        .col-md-6
+          = f.input :password_confirmation
+      .row
+        .col-md-10
+          = f.submit "Enviar", class: 'btn btn-success'

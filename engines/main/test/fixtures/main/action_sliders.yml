@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  thumbnail: MyString
+  title: MyString
+  status: false
+  order: 1
+
+two:
+  thumbnail: MyString
+  title: MyString
+  status: false
+  order: 1

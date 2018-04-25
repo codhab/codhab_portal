@@ -1,0 +1,26 @@
+%p
+  %b Dados atualizados
+  %table.table.table-striped.table-bordered.mini-font
+    %thead
+      %tr
+        %th Nome  
+        %th Data de nascimento    
+        %th CPF
+    %tbody  
+      - @ticket.cadastre_mirror.dependent_mirrors.each do |mirror|
+        %tr
+          %td= mirror.name.mb_chars.upcase
+          %td= mirror.born.strftime("%d/%m/%Y") rescue nil
+          %td= mirror.cpf ||= "Sem informação"
+%p
+  %b Arquivos
+
+- if action.uploads.present?
+  %table.table.table-bordered
+    %tbody
+      - action.uploads.each do |upload|
+        %tr 
+          %td= upload.category.name   
+- else
+  %p 
+    %i Nenhum arquivo enviado.

@@ -1,0 +1,38 @@
+- if !@tickets_closed.present?
+  = simple_form_for @question, url: restrict_area_questions_path do |f|
+    .row
+      .col-md-12
+        %h2
+          %b
+            Nome:
+            = @cadastre.name
+            %br
+            CPF:
+            = @cadastre.cpf
+    %hr/
+    .row
+      .col-md-12
+        = f.association :subject, as: :select, label: "Assunto", prompt: 'Selecione...'
+    .row
+      .col-md-12
+        = f.input :message, label: "Mensagem"
+    .row
+      .col-md-12
+        = f.input :attachment, as: :file, label: "Anexo"
+
+
+    %hr/
+    .row
+      .col-md-4
+        = f.submit "Abrir Questionamento", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+        = link_to "Voltar",restrict_area_tickets_path, class: 'btn btn-default'
+- else
+  %h1
+    %b
+      Só é permitido um questionamento ativo.
+  %h4
+    Por favor espere a resposta do questionamento anterior.
+  %hr/
+  .row
+    .col-md-4
+      = link_to "Voltar",restrict_area_tickets_path, class: 'btn btn-default'

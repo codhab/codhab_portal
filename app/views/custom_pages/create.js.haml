@@ -1,0 +1,5 @@
+- if @cadastre.valid?
+  $("#geral").html("")
+- else
+  $("#modal .modal-content").html("#{escape_javascript(render 'error')}")
+  $('#modal').modal('show')

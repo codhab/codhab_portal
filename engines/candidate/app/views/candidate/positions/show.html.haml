@@ -1,0 +1,58 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h2
+              %b Histórico de posição
+              %p
+                %small Listagens de posição do candidato
+            = link_to "Retornar para o detalhamento", cadastre_path(@cadastre)
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead 
+                %tr 
+                  %th Nome
+                  %th CPF
+              %tbody 
+                %tr 
+                  %td= @cadastre.name.mb_chars.upcase rescue I18n.t(:no_information)
+                  %td= @cadastre.cpf.format_obfuscator_cpf rescue I18n.t(:no_information)
+        %hr/
+        .row
+          .col-md-12
+            %h4 Histórico de posição
+            %ul.nav.nav-tabs
+              - @cadastre.positions.select(:program_id).group(:program_id).order(:program_id).each do |program|
+                %li{class: program.program_id.to_s == params[:by_program] ? 'active' : nil}
+                  =link_to ::Candidate::Program.find(program.program_id).name, params.merge(by_program: program.program_id)
+        %br/
+        %br/
+        %br/
+        .row
+          .col-md-12
+            = line_chart(@positions.positions_to_chart, library: { xtitle: "Data", ytitle: "Posição", legend: "top"} )
+            %table.table.table-striped.table-bordered
+              %thead 
+                %tr 
+                  %th Data
+                  %th Programa
+                  %th Faixa
+                  %th Posição
+                  %th Ocorrências do dia
+              %tbody 
+                - if @positions.present?
+                  - @positions.order('created_at DESC').each do |position|
+                    %tr
+                      %td.col-md-1= position.created_at.strftime("%d/%m/%Y")
+                      %td.col-md-1= position.program.name
+                      %td.col-md-1= position.formated_zone
+                      %td.col-md-1= position.formated_position
+                      %td.col-md-1= link_to "Visualizar", position_event_path(position), remote: true, data: { disable_with: t(:disable_with) }
+                - else
+                  %tr 
+                    %td
+                      %i Nenhuma posição registrada.

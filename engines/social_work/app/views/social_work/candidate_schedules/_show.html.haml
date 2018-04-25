@@ -1,0 +1,59 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Detalhes do Agendamento
+.modal-body
+  .row
+    .col-md-12
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Nome
+            %th CPF
+            %th Email
+            %th Situação
+        %tbody
+          %tr
+            %td= @candidate_schedule.name
+            %td= @candidate_schedule.cpf.format_cpf rescue nil
+            %td= @candidate_schedule.email
+            %td= @candidate_schedule.schedule_status.name rescue nil
+        %thead
+          %tr
+            %th CEP
+            %th Cidade
+            %th Endereço
+            %th Complemento
+        %tbody
+          %tr
+            %td= @candidate_schedule.cep
+            %td= @candidate_schedule.city.name rescue nil
+            %td= @candidate_schedule.address
+            %td= @candidate_schedule.complement_address
+        %thead
+          %tr
+            %th Observação
+            %th Telefone
+            %th Data
+            %th Hora
+        %tbody
+          %tr
+            %td= @candidate_schedule.observation
+            %td= @candidate_schedule.telphone
+            %td= @candidate_schedule.date.strftime('%d/%m/%Y') rescue nil
+            %td= @candidate_schedule.hour.strftime('%H:%M') rescue nil
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Interação
+            %th Data
+        %tbody
+          - if @candidate_schedule.schedule_interactions.present?
+            - @candidate_schedule.schedule_interactions.each  do |interaction|
+              %tr
+                %td= interaction.description
+                %td= interaction.created_at.strftime('%H:%M') rescue nil
+          - else
+            %tr
+              %td
+                %i Nenhum interação para este agendamento.

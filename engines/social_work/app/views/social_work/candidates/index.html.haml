@@ -1,0 +1,52 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Listagem de Candidatos
+        %hr
+        .row
+          .col-md-12
+            = simple_form_for url_for, method: :get do |f|
+              .row
+                .col-md-8
+                  = f.input :by_name, label: "Nome", input_html: { name: 'by_name', value: params[:by_name]}
+                .col-md-4
+                  = f.submit t(:filter_button), name: nil, class: 'btn btn-warning filter'
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Nº
+                  %th Nome
+                  %th CPF
+                  %th Data
+              %tbody
+                - @candidates.order('id DESC').each_with_index do |candidate, i|
+                  %tr
+                    %td= candidate.id
+                    %td
+                      = link_to candidate.name, candidate_path(candidate)
+                    %td= candidate.cpf.format_cpf rescue nil
+                    %td= candidate.created_at.strftime('%d/%m/%Y')
+                    %td{style: 'width: 1%'}
+                      .btn-group
+                        %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                          Ações
+                          %span.caret
+                        %ul.dropdown-menu
+                          %li
+                            = link_to 'Dependentes', candidate_dependents_path(candidate)
+                          %li
+                            = link_to 'Questionário', new_candidate_answer_path(candidate)
+                          %li
+                            = link_to 'Arquivos', candidate_document_uploads_path(candidate)
+                          %li
+                            = link_to 'Visualizar', candidate_path(candidate)
+                          %li
+                            = link_to 'Editar', edit_candidate_path(candidate)
+                          %li
+                            = link_to 'Excluir', candidate_path(candidate), :method => :delete, :data => { :confirm => t(:confirm) }

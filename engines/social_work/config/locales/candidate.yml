@@ -1,0 +1,36 @@
+pt-BR:
+  activerecord:
+    models:
+      'core/social_work/candidate': 'Candidato'
+    attributes:
+      'core/social_work/candidate':
+        name: "Nome"
+        cpf: "CPF"
+        born: "Data de Nascimento"
+        email: "E-mail"
+        gender: "Sexo"
+        telephone: "Telefone"
+        telephone_optional: "Telefone secundário"
+        celphone: "Celular"
+        cep: "CEP"
+        city: "Cidade"
+        rg: "RG"
+        rg_org: "Expeditor"
+        rg_date: "Data de emissão"
+        civil_state: "Estado Civil"
+        address: "Endereço/Logradouro"
+        complement_address: "Complemento"
+        observation: "Observação"
+        mother_name: "Nome da Mãe"
+        father_name: "Nome do Pai"
+        place_birth: "Local de nascimento"
+        work: "Trabalha?"
+        work_phone: "Telefone Trabalho"
+        work_ocupation: "Ocupação"
+        income: "Renda"
+        pension: "Pensão"
+        benefit: "Benefício"
+        education: "Grau de Instrução"
+        family_special: "Condição Especial"
+        technical_course_name: "Nome do Curso"
+        technical_course_interest: "Interesse em Cursos"

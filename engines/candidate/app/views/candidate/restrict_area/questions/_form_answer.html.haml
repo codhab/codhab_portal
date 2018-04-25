@@ -1,0 +1,31 @@
+.row
+  .col-md-12
+    - @questions.each do |q|
+      .questions_box
+        .question_single{:class => q.question_type === 0 ? 'question_user' : 'question_codhab'}
+          %span
+            %b.question_answer
+              = q.question_type === 0 ? 'Você disse :' : 'A CODHAB respondeu :'
+            %b.question_date
+              Criado em:
+              = q.created_at.strftime('%d/%m/%Y')
+          %p
+            = q.message
+          - if q.attachment_url
+            %p
+              Arquivo em anexo:
+              = link_to "Clique aqui para visualizar", q.attachment_url , target: '_blank', style:"color:white"
+= simple_form_for @question, url: question_create_restrict_area_questions_path(ticket_id: @ticket.id) do |f|
+  .row
+    .col-md-12
+      = f.input :message, label: "Mensagem"
+  .row
+    .col-md-12
+      = f.input :attachment, as: :file, label: "Anexo"
+
+
+  %hr/
+  .row
+    .col-md-4
+      = f.submit "Enviar", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+      = link_to "Voltar",restrict_area_tickets_path, class: 'btn btn-default'

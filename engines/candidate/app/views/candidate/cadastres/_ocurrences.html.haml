@@ -1,0 +1,20 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Pendências
+.modal-body
+  .row
+    .col-md-12
+      %table.table
+        %thead
+          %tr
+            %th Pendência
+            %th Data
+            %th Tipo de pendência
+        %tbody
+          - if @occurrences.present?
+            - @occurrences.order(:created_at).each do |o|
+              %tr
+                %td= o.validation.description rescue nil
+                %td= o.created_at.strftime('%d/%m/%Y')
+                %td= o.validation.occurrence_type.humanize rescue nil

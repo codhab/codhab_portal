@@ -1,0 +1,14 @@
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+/uploads/barcodes*
+/lib/files/*
+/config/env.yml
+/fontes
+/uploads
+/portal
+/img
+.byebug_history

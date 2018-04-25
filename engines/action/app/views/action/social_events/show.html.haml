@@ -1,0 +1,44 @@
+
+.container
+  .row.margint50
+    .col-md-12.bloco_amarelo.texto-gigante
+      .col-md-8
+        %span.texto-bold
+          = @event.name
+        %br
+        %span
+          = @event.city.name
+          = @event.district
+        %br
+        %span.texto-bold
+          = @event.date.strftime('%d.%m ///')
+          = @event.hour
+      .col-md-4
+        -if @event.situation == 0
+          = link_to 'Álbum da Ação', "http://www.codhab.df.gov.br/acoesurbanas/galeria?#item_#{@event.numacao}",target:"_blank", class:"action_button_concluida"
+        -else
+          = link_to 'Inscreva-se','http://www.portaldovoluntariado.df.gov.br/main/visualizar_projeto.xhtml?projeto=1744' ,class:"action_button action_button_galeria2"
+  -if @event.situation == 0 && @event.report.present?
+    .row.margint50
+      .col-md-12.no_padding.bloco_verde.texto-gigante{style:'margin-top:0px'}
+        .col-md-6
+          %span.texto-bold{style:'margin-top:25px;display:block;font-size:35px;'}
+            Confira os resultados da ação!
+        .col-md-6
+          = link_to 'Relatório da Ação', @event.report, target:'_blank', class:"action_button action_button_relatorio"
+  -# .row
+  -#   .col-md-12.container
+  -#     = render 'partials/slider'
+  .row.margint50
+    .col-md-6.no_padding
+      .imagem-pagina-interna
+        = image_tag(@event.photo)
+    .col-md-6.bloco_rosa.paddingbottom20.bloco_texto_acao_interna
+      %p.texto_branco.texto_inscrever
+        .font_custom
+          = @event.description.html_safe
+
+
+
+  = render 'partials/contato'
+  = render 'partials/home_admin'

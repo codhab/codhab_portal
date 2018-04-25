@@ -1,0 +1,31 @@
+= simple_form_for @invoice, remote: true do |f|
+  .field
+    = f.association :category, label_method: :name_with_value, include_blank: 'selecione...', selected: params[:category_id].present? ? params[:category_id] : ''  
+  .fields
+    .four.wide.field
+      = f.input :due, as: :string, input_html: { class: 'date', value: f.object.due? ? localize(f.object.due) : '' }
+    .four.wide.field
+      = f.input :value, as: :string, input_html: { class: 'coin', value: f.object.value? ? number_with_precision(f.object.value, precision: 2) : 0}
+    .four.wide.field
+      = f.input :invoice_type, as: :select, collection: Brb::Invoice.invoice_types.keys.map { |k,v| [k.humanize,k]}, include_blank: false
+  .fields
+    .four.wide.field
+      = f.input :cpf, input_html: { class: 'cpf'}
+    .twelve.wide.field
+      = f.input :name, placeholder: "Digite um nome"
+  .fields
+    .four.wide.field
+      = f.input :cep, input_html: { class: 'cep'}
+    .three.wide.field
+      = f.association :state,  include_blank: false, input_html:{ id: 'state_id'}
+    .four.wide.field
+      = f.input :city
+    .five.wide.field
+      = f.input :address  
+  
+  .field
+    = f.input :message
+  .ui.divider
+  .field
+    = f.button :submit, class: 'ui button green'
+

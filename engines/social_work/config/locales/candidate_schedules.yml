@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      'core/social_work/candidate_schedule': 'Agendamentos'
+    attributes:
+      'core/social_work/candidate_schedule':
+        name: "Nome"
+        cpf: "CPF"
+        email: "E-mail"
+        telphone: "Telefone"
+        cep: "CEP"
+        city: "Cidade"
+        hour: "Hora"
+        date: "Data"
+        schedule_status: "Situação"
+        address: "Endereço/Logradouro"
+        complement_address: "Complemento"
+        observation: "Observação"
+        restrict: "Restrito"
+        restrict_sql: "Consulta"
+        attendance_station: "Posto de Atendimento"

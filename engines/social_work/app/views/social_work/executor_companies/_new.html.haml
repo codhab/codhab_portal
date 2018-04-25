@@ -1,0 +1,12 @@
+= simple_form_for @situation, url: executor_companies_path do |f|
+  = f.input :allotment_id, as: :hidden, input_html: {value: @projects.first.allotment_id}
+  .row
+    .col-md-12
+      = f.input :agree, label: 'Aceita?', as: :radio_buttons
+  .row
+    .col-md-12
+      = f.input :observation, label: 'Observação', input_html: {rows: 2}
+  %hr
+  .row
+    .col-md-12
+      = f.button :submit, 'Salvar', class: 'btn btn-success', data: {disable_with: t(:disable_with)}

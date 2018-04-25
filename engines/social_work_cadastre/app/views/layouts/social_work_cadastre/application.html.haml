@@ -1,0 +1,68 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Portal Codhab
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application', media: 'all'
+    = csrf_meta_tags
+    :css
+      .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+        z-index: 2;
+        color: #FFFFFF !important;
+        background-color: #5A5A5A !important;
+        font-weight: bold !important;
+      }
+
+      .panel-warning>.panel-heading {
+        color: #010101;
+        background-color: #FDD000;
+        border-color: #FDD000;
+      }
+
+      body {
+        background-color: white;
+      }
+
+      .panel, .list-group-item {
+        border: none !important;
+      }
+
+      .box_internal {
+        box-shadow: none !important;
+      }
+
+
+  %body
+    = render 'layouts/portal/top_nav'
+    = render 'layouts/portal/header'
+    %div{class: 'container main'}
+      .container
+        .row
+          .col-md-12
+        .row
+          .col-md-12.box
+            .box_internal
+              .row
+                .col-md-12
+        %img{width: '1095',
+             src: "http://www.codhab.df.gov.br/uploads/archive/files/a9533e25ade121eb912cafe0962ed18b.jpg"}
+        .row
+          .col-md-2
+            .list-group
+              = link_to 'Apresentação', presentation_path, class: "list-group-item"
+              = link_to 'Documentos e Anexos', attach_path, class: "list-group-item"
+              = link_to 'Inscrição', sessions_path, class: "list-group-item"
+              = link_to 'Informes', inform_path, class: "list-group-item"
+          .col-md-10
+            .panel
+              .panel-default
+                .panel-body
+                  - flash.each do |key, value|
+                    .alert{class: "alert-#{key}"}
+                      = value
+                  = yield
+    = render 'layouts/portal/footer'
+    #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content

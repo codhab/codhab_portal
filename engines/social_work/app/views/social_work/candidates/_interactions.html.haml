@@ -1,0 +1,21 @@
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Título
+      %th Observação
+      %th Documento
+      %th Documento
+      %th Data
+  %tbody
+  - if @interactions.present?
+    - @interactions.order(:date).each do |interaction|
+      %tr
+        %td= interaction.title
+        %td= interaction.description
+        %td= link_to "Visualizar", interaction.document_one_url, target: '_blank' if interaction.document_one.present?
+        %td= link_to "Visualizar", interaction.document_two_url, target: '_blank' if interaction.document_two.present?
+        %td= interaction.date.strftime('%d/%m/%Y') rescue nil
+  - else
+    %tr
+      %td{colspan: 3}
+        %i Nenhum registro encontrado.

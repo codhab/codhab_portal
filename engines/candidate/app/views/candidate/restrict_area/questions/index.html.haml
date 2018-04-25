@@ -1,0 +1,47 @@
+= render 'candidate/restrict_area/dashboard/sidebar'
+- if !mobile_device?
+  .row
+    .col-md-3
+      %ul.list-group
+        %li.list-group-item= link_to "Página inicial", restrict_area_root_path
+        %li.list-group-item= link_to "Atualizar meus dados de contato", edit_restrict_area_cadastre_path(@cadastre)
+        -# %li.list-group-item= link_to "Abrir Questionamento", restrict_area_tickets_path
+        %li.list-group-item= link_to "Finalizar acesso", logout_restrict_area_sessions_path, method: :delete
+    .col-md-9
+      .row
+        .col-md-12
+          .panel.panel-default
+            .panel-body
+              .row
+                .col-md-12
+                  %h2
+                    %b Meus Questionamentos
+                  %hr
+                    %table.table.table-hover
+                      %thead
+                        %tr
+                          %th #
+                          %th Data
+                          %th Assunto
+                          %th Status
+                          %th Ação
+                      %tbody
+                        - @questions.each_with_index do |question, index|
+                          %tr
+                            %th{:scope => "row"}
+                              = index
+                            %td
+                              = question.created_at.strftime('%d/%m/%Y')
+                            %td
+                              = question.subject.name rescue nil
+                            %td
+                              = question.status
+                            %td
+
+- else
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-md-12

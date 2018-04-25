@@ -1,0 +1,17 @@
+- @invoices.each do |invoice|
+  %tr
+    %td= invoice.id
+    %td= invoice.invoice_type.humanize
+    %td= invoice.category.name.upcase rescue I18n.t(:no_information)
+    %td= invoice.cpf
+    %td= number_to_currency invoice.value
+    %td= invoice.created_at.strftime('%d/%m/%Y')
+    %td= invoice.due.strftime('%d/%m/%Y')
+    %td= invoice.payment.strftime('%d/%m/%Y') if invoice.payment.present?
+    %td= invoice.status
+    %td.collapsing
+      .ui.icon.top.left.pointing.dropdown.button.yellow.mini
+        %i.wrench.icon
+        .menu
+          = link_to "Imprimir",  invoice_path(invoice), target: "_blank", class: 'item'
+          = link_to "Editar", edit_invoice_path(invoice), remote: true, class: 'item'

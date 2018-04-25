@@ -1,0 +1,32 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4 Listagem de Documento
+            = link_to '+Adicionar Novo Documento', new_candidate_document_upload_path(@candidate.id), class: 'btn btn-primary'
+            = link_to 'Voltar pra candidato', candidates_path, class: 'btn btn-default'
+        .row
+          .col-md-12
+            %table.ui.celled.striped.table.yellow
+              %thead
+                %tr
+                  %th Nº
+                  %th Arquivo
+                  %th Data
+                  %th Ações
+              %tbody
+                - @document_uploads.order('id DESC').each_with_index do |document_upload, i|
+                  %tr
+                    %td= document_upload.document_category.name rescue t(:no_information)
+                    %td= link_to "Visualizar", document_upload.document_url, target: '_blank' rescue "Nenhum arquivo"
+                    %td= document_upload.created_at.strftime('%d/%m/%Y')
+                    %td
+                      .btn-group
+                        %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                          Ações
+                          %span.caret
+                        %ul.dropdown-menu
+                          %li
+                            = link_to 'Excluir', candidate_document_upload_path(candidate_id: @candidate.id, id: document_upload.id), :method => :delete, :data => { :confirm => t(:confirm) }

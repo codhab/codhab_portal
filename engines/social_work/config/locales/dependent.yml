@@ -1,0 +1,26 @@
+pt-BR:
+  activerecord:
+    models:
+      'core/social_work/dependent': 'Dependente'
+    attributes:
+      'core/social_work/dependent':
+        name: "Nome"
+        cpf: "CPF"
+        email: "E-mail"
+        telephone: "Telefone"
+        telephone_optional: "Telefone secundário"
+        celphone: "Celular"
+        rg: "RG"
+        rg_org: "Expeditor/UF"
+        rg_date: "Data de emissão"
+        civil_state: "Estado Civil"
+        kinship: "Parentesco"
+        education: "Grau de Instrução"
+        observation: "Observação"
+        mother_name: "Nome da Mãe"
+        income: "Renda"
+        father_name: "Nome do Pai"
+        born: "Data de Nascimento"
+        work_ocupation: "Ocupação"
+        technical_course_name: "Nome do Curso"
+        technical_course_interest: "Interesse em Cursos"

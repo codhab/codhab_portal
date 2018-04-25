@@ -1,0 +1,23 @@
+= simple_form_for [:restrict_area, @cadastre_update], url: restrict_area_cadastre_path(@cadastre_update) do |f|
+  .row
+    .col-md-12
+      = f.input :email
+  .row
+    .col-md-3
+      = f.input :telephone, label: "Telefone"
+    .col-md-3
+      = f.input :telephone_optional, label: "Telefone secundário"
+    .col-md-3
+      = f.input :celphone, label: "Celular"
+  .row
+    .col-md-6
+      = f.input :address, label: "Endereço/Logradouro"
+    .col-md-3
+      = f.input :city_id, label: "Cidade", as: :select, collection:  Address::City.federal_district, include_blank: false
+    .col-md-3
+      = f.input :cep, label: "CEP", input_html: { class: 'cep'}
+  %hr/
+  .row
+    .col-md-4
+      = f.submit "Salvar dados", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+      = link_to "Retornar para o início", restrict_area_root_path, class: 'btn btn-default'

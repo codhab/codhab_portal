@@ -1,0 +1,26 @@
+= render 'candidate/restrict_area/dashboard/sidebar'
+- if !mobile_device?
+  .row
+    .col-md-3
+      %ul.list-group
+        %li.list-group-item= link_to "Página inicial", restrict_area_root_path
+        %li.list-group-item= link_to "Atualizar meus dados de contato", edit_restrict_area_cadastre_path(@cadastre)
+        - if @tickets_ref.present?
+          %li.list-group-item= link_to "Abrir Questionamento", restrict_area_tickets_path
+        %li.list-group-item= link_to "Finalizar acesso", logout_restrict_area_sessions_path, method: :delete
+    .col-md-9
+      .row
+        .col-md-12
+          .panel.panel-default
+            .panel-body
+              .row
+                .col-md-12
+                  = render 'form'
+- else
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-md-12
+              = render 'form'

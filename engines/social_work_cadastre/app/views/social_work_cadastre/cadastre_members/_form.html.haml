@@ -1,0 +1,24 @@
+.col-md-8.col-md-offset-2
+  .row
+    .col-md-6
+      = f.input :name, label: "Nome", input_html: { placeholder: 'Nome'}
+    .col-md-6
+      = f.input :formation, label: "Formação", input_html: { placeholder: 'Formação' }
+  .row
+    .col-md-6
+      = f.input :rg, label: 'Rg', input_html: { placeholder: 'Rg' }
+    .col-md-6
+      = f.input :telephone, label: "Telefone", input_html: { placeholder: 'Telefone'}
+  .row
+    .col-md-6
+      = f.input :celphone, label: "Celular", input_html: { placeholder: 'Opcional'}
+    .col-md-6
+      = f.input :cpf, label: "Cpf", input_html: {class: 'cpf', placeholder: 'Cpf'}
+  .row
+    .col-md-6
+      = f.input :activite, label: "Atividade", input_html: { placeholder: 'Atividade'}
+    .col-md-6
+      = f.input :registration_crea, label: "Registro no CAU/CREA", input_html: { placeholder: 'Registro no Crea'}
+  .row
+    .col-md-6
+      = f.button :submit, "Cadastrar membro", class: 'btn btn-success'

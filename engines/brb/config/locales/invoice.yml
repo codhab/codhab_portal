@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    modules:
+      'brb/invoice': "Cobrança"
+    attributes:
+      'brb/invoice':
+        category: "Categoria"
+        due: "Vencimento"
+        cpf: "CPF"
+        name: "Nome"
+        cep: "CEP"
+        state: "Estado"
+        city: "Cidade"
+        address: "Endereço"
+        message: "Mensagem"
+        value: "R$ Valor"
+        invoice_type: "Tipo"

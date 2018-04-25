@@ -1,0 +1,330 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4 Dados do candidato
+            = link_to "Voltar para listagem", candidate_schedules_path, class: 'btn btn-default'
+        .row
+          .col-md-12
+            .box-circ
+              %a{href: new_candidate_interaction_path(candidate_id: @candidate.id, type: 7), class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Visita Social
+                #c_1{class: @steps.joins(:step).where('social_work_steps.acron=?','c_1').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    1º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_1').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+            .box-circ
+              %a{href: edit_candidate_path(@candidate), class:'circ-link'}
+                .circ-text
+                  Dados Títular
+                #c_2{class: @steps.joins(:step).where('social_work_steps.acron=?','c_2').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    2º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_2').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+            .box-circ
+              - if [2,7].include? @candidate.civil_state_id
+                - link3 = new_candidate_spouse_path(@candidate)
+              - else
+                - link3 = "#"
+              %a{href:link3, class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Dados Cônjuge
+                #c_3{class: @steps.joins(:step).where('social_work_steps.acron=?','c_3').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    3º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_3').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+            .box-circ
+              %a{href: new_candidate_dependent_path(@candidate), class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Composição Familiar
+                #c_4{class: @steps.joins(:step).where('social_work_steps.acron=?','c_4').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    4º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_4').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+                  = link_to 'Finalizar?', finalize_dependent_path(candidate_id: @candidate), style: 'margin-left: 10px;'
+            .box-circ
+              %a{href: new_candidate_answer_path(@candidate, type: 0), class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Situação Habitacional
+                #c_5{class: @steps.joins(:step).where('social_work_steps.acron=?','c_5').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    5º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_5').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+            .box-circ
+              %a{href: new_candidate_answer_path(@candidate, type: 1), class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Infra. Residêncial
+                #c_6{class: @steps.joins(:step).where('social_work_steps.acron=?','c_6').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    6º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_6').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+            .box-circ
+              - if @steps.map(&:step_id).include? 6
+                - link6 = new_candidate_document_upload_path(candidate_id: @candidate.id)
+              - else
+                - link6 = "#"
+              %a{href: link6,  class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Arquivos
+                #c_7{class: @steps.joins(:step).where('social_work_steps.acron=?','c_7').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    7º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_7').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+                  = link_to 'Finalizar?', finalize_document_path(candidate_id: @candidate), style: 'margin-left: 10px;' #if @candidate.document_uploads.count > 14
+            .box-circ
+              - if 1 == 1 #@steps.order(:step_id).last.step_id.to_i == 7
+                - link7 = new_candidate_interaction_path(candidate_id: @candidate.id, type: 1)
+              - else
+                - link7 = "#"
+              %a{href: link7,  class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Requisitos Sociais
+                #c_8{class: @steps.joins(:step).where('social_work_steps.acron=?','c_8').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    8º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_8').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+            .box-circ
+              - if 1 == 1 #@steps.order(:step_id).last.step_id.to_i == 8
+                - link8 = new_candidate_interaction_path(candidate_id: @candidate.id, type: 2)
+              - else
+                - link8 = "#"
+              %a{href: link8,  class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Visita Técnica
+                #c_9{class: @steps.joins(:step).where('social_work_steps.acron=?','c_9').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    9º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_9').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+            .box-circ
+              - if 1 == 1 #@steps.order(:step_id).last.step_id.to_i == 9
+                - link9 = new_candidate_interaction_path(candidate_id: @candidate.id, type: 3)
+              - else
+                - link9 = "#"
+              %a{href: link9,  class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Requisitos Técnicos
+                #c_10{class: @steps.joins(:step).where('social_work_steps.acron=?','c_10').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    10º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_10').last.present?
+                %a{href:'http://www.codhab.df.gov.br', class:'circ-end'}
+            .box-circ
+              %a{href:'#', class:'circ-link'}
+                .circ-text
+                  Habilitado
+                #c_11{class: @steps.joins(:step).where('social_work_steps.acron=?','c_11').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    11º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_11').last.present?
+                %a{href:'#', class:'circ-end'}
+            .box-circ
+              - if 1 == 1 #@steps.order(:step_id).last.step_id.to_i == 11
+                - link11 = new_candidate_interaction_path(candidate_id: @candidate.id, type: 4)
+              - else
+                - link11 = "#"
+              %a{href: link11,  class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Estudo Preliminar
+                #c_12{class: @steps.joins(:step).where('social_work_steps.acron=?','c_12').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    12º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_12').last.present?
+                %a{href:'#', class:'circ-end'}
+            .box-circ
+              - if 1 == 1 #@steps.order(:step_id).last.step_id.to_i == 12
+                - link12 = new_candidate_interaction_path(candidate_id: @candidate.id, type: 5)
+              - else
+                - link12 = "#"
+              %a{href: link12,  class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Aprovação Morador
+                #c_13{class: @steps.joins(:step).where('social_work_steps.acron=?','c_13').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    13º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_13').last.present?
+                %a{href:'#', class:'circ-end'}
+            .box-circ
+              - if 1 == 1 #@steps.order(:step_id).last.step_id.to_i == 13
+                - link13 = new_candidate_document_upload_path(candidate_id: @candidate.id, type: 1)
+              - else
+                - link13 = "#"
+              %a{href: link13,  class:'circ-link', data:{remote:true}}
+                .circ-text
+                  Projeto Executivo
+                #c_14{class: @steps.joins(:step).where('social_work_steps.acron=?','c_14').last.present? ? 'circ-custom circ-active' : 'circ-custom'}
+                  .circ-int
+                    14º
+              - if !@steps.joins(:step).where('social_work_steps.acron=?','c_14').last.present?
+                %a{href:'#', class:'circ-end'}
+        %hr
+        #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+          .panel.panel-default
+            #headingOne.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne", :role => "button"}
+                  Identificação do titular
+            #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+              .panel-body
+                .row
+                  .col-md-12
+                    %table.table.table-striped.table-bordered
+                      %thead
+                        %tr
+                          %th Nome
+                          %th CPF
+                          %th Email
+                      %tbody
+                        %tr
+                          %td= @candidate.name rescue nil
+                          %td= @candidate.cpf.format_cpf rescue nil
+                          %td= @candidate.email rescue nil
+                      %thead
+                        %tr
+                          %th Estado Civil
+                          %th Data de Nascimento
+                          %th Grau de Instrução
+                      %tbody
+                        %tr
+                          %td= @candidate.civil_state.name rescue nil
+                          %td= @candidate.born.strftime('%d/%m/%Y') rescue nil
+                          %td= @candidate.education.name rescue nil
+                      %thead
+                        %tr
+                          %th RG
+                          %th Orgão Emissor
+                          %th Data de Emissão
+                      %tbody
+                        %tr
+                          %td= @candidate.rg rescue nil
+                          %td= @candidate.rg_org rescue nil
+                          %td= @candidate.rg_date.strftime("%d/%m/%Y") rescue nil
+                      %thead
+                        %tr
+                          %th Nome da Mãe
+                          %th Nome do Pai
+                          %th Local de Nascimento
+                      %tbody
+                        %tr
+                          %td= @candidate.mother_name rescue nil
+                          %td= @candidate.father_name rescue nil
+                          %td= @candidate.place_birth rescue nil
+                      %thead
+                        %tr
+                          %th Cidade
+                          %th Endereço
+                          %th Complemento
+                      %tbody
+                        %tr
+                          %td= @candidate.city.name rescue nil
+                          %td= @candidate.address rescue nil
+                          %td= @candidate.complement_addresss rescue nil
+                      %thead
+                        %tr
+                          %th Telefone
+                          %th Celular
+                          %th Trabalha?
+                      %tbody
+                        %tr
+                          %td= @candidate.telephone rescue nil
+                          %td= @candidate.celphone rescue nil
+                          %td= @candidate.work ? "Sim" : "Não"
+                      %thead
+                        %tr
+                          %th Ocupação
+                          %th Telefone
+                          %th Renda
+                      %tbody
+                        %tr
+                          %td= @candidate.work_ocupation rescue nil
+                          %td= @candidate.work_phone rescue nil
+                          %td= @candidate.income rescue nil
+                      %thead
+                        %tr
+                          %th Recebe Pensão?
+                          %th Recebe Benefício?
+                          %th Família com especial?
+                      %tbody
+                        %tr
+                          %td= @candidate.pension ? "Sim" : "Não"
+                          %td= @candidate.benefit ? "Sim" : "Não"
+                          %td= @candidate.family_special ? "Sim" : "Não"
+                      %thead
+                        %tr
+                          %th Interesse em cursos?
+                          %th{colspan: 2} Nome do curso
+                      %tbody
+                        %tr
+                          %td= @candidate.technical_course_interest ? "Sim" : "Não"
+                          %td{colspan: 2}= @candidate.technical_course_name
+          .panel.panel-default
+            #headingFive.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseFive", :role => "button"}
+                  Cônjuge
+            #collapseFive.panel-collapse.collapse{"aria-labelledby" => "headingFive", :role => "tabpanel"}
+              .panel-body
+                .row
+                  .col-md-12
+                    = render 'spouse'
+          .panel.panel-default
+            #headingTwo.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo", :role => "button"}
+                  Composição Familiar
+            #collapseTwo.panel-collapse.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+              .panel-body
+                .row
+                  .col-md-12
+                    = render 'dependent'
+          .panel.panel-default
+            #headingThree.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a.collapsed{"aria-controls" => "collapseThree", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseThree", :role => "button"}
+                  Situação Habitacional
+            #collapseThree.panel-collapse.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
+              .panel-body
+                .row
+                  .col-md-12
+                    = render 'answer'
+          .panel.panel-default
+            #headingSix.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a.collapsed{"aria-controls" => "collapseSix", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseSix", :role => "button"}
+                  Infraestrura da Residência
+            #collapseSix.panel-collapse.collapse{"aria-labelledby" => "headingSix", :role => "tabpanel"}
+              .panel-body
+                .row
+                  .col-md-12
+                    = render 'questions'
+          .panel.panel-default
+            #headingFour.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a.collapsed{"aria-controls" => "collapseFour", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseFour", :role => "button"}
+                  Documentos técnicos
+            #collapseFour.panel-collapse.collapse{"aria-labelledby" => "headingFour", :role => "tabpanel"}
+              .panel-body
+                .row
+                  .col-md-12
+                    = render 'documents'
+          .panel.panel-default
+            #headingSeven.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a.collapsed{"aria-controls" => "collapseSeven", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseSeven", :role => "button"}
+                  Interações
+            #collapseSeven.panel-collapse.collapse{"aria-labelledby" => "headingSeven", :role => "tabpanel"}
+              .panel-body
+                .row
+                  .col-md-12
+                    = render 'interactions'

@@ -1,0 +1,30 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-6.col-md-offset-3
+            %h1{:style => "text-align: center !important"}
+              %b Certidão Positiva
+              %br/
+              %small
+                Validação de Certidão Positiva
+        .row
+          .col-md-8.col-md-offset-3
+            = simple_form_for @document, url: validate_show_path, method: 'post' do |f|
+              .row
+                .col-md-4
+                  = f.label "CPF"
+                  = f.input :cpf, label: false, input_html: { class: 'cpf'}
+              .row
+                .col-md-4
+                  = f.label "Número da certidão"
+                  = f.input :certificate_number, label: false, input_html: { placeholder: 'Somente números' }
+              .row
+                .col-md-4
+                  = f.label "Número de autenticação"
+                  = f.input :authenticate, label: false, input_html: { placeholder: 'Somente números' }
+              %hr
+              .row
+                .col-md-12
+                  = f.button :submit, "Pesquisar", class: 'btn btn-success', data: {  disable_with: "Aguarde..."}

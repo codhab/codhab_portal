@@ -1,0 +1,70 @@
+%hr/
+.row
+  .col-md-12
+    -if @cadastre.locations.present?
+      - unless @cadastre.steps.where(step: 3).present?
+        = simple_form_for [@cadastre, @step], url: cadastre_cadastre_steps_path(@cadastre), remote: true do |f|
+          = f.input :step, as: :hidden, input_html: {value: 3}
+          = f.button :submit, "Finalizar Etapa", class: 'btn btn-info btn-sm'
+      -else
+        -if @cadastre.situation != "Habilitado" 
+          = link_to 'Editar Localidades', cadastre_cadastre_step_path(@cadastre, @cadastre.steps.where(step: 3).last.id), remote: true, method: :delete, class: 'btn btn-danger btn-sm'
+    %p
+      = link_to 'Mapa das Poligonais', 'http://www.codhab.df.gov.br/uploads/archive/files/126978a31a899a3ac0351f0e3f923b7c.pdf', target: '_blank'
+      \/
+      = link_to 'Mapa das Localidades','http://www.codhab.df.gov.br/uploads/archive/files/65dbe341cdec89202ddd54de81c6bba6.jpeg', target: '_blank'
+    %br/
+    %br/
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        - Core::SocialWorkCadastre::Location.order(:city_id).all.each do |local|
+          %tr
+            %td= local.city.name rescue nil
+            %td= local.name
+            -if @cadastre.steps.where(step: 3).present? == false
+              - unless @cadastre.locations.where(location_id: local.id).present?
+                %td= link_to "Incluir Localidade", locales_path(id: @cadastre, local: local.id), class: 'btn btn-info btn-sm'
+              - else
+                %td= link_to "Excluir Localidade", cadastre_cadastre_location_path(@cadastre, @cadastre.locations.where(location: local).last.id), class: 'btn btn-danger btn-sm', remote: true, method: :delete
+            -else
+              -if @cadastre.locations.where(location_id: local.id).present?
+                %th Local Selecionado
+              -else
+                %th Local Não selecionado
+%hr/
+.row
+  .col-md-12
+    .row
+      .col-md-12{style: 'text-align: center !important;'}
+        %h3.title  Declaração de Solicitação de Credenciamento
+    %p
+      À CODHAB/DF,
+    %p
+      1.
+      %b
+        = @cadastre.social_reason.to_s.upcase rescue nil
+      , localizada (ou morador) à
+      = @cadastre.address rescue nil
+      , CNPJ (ou CPF) nº
+      = @cadastre.cnpj rescue nil
+      , vem
+      solicitar seu credenciamento junto à CODHAB/DF para realizar os serviços técnicos
+      profissionais para melhorias habitacionais, nas seguintes RAs:
+      -if @cadastre.locations.present?
+        - @cadastre.locations.each do |local|
+          %tr
+            %td
+              %b
+                = "#{local.location.name}; "
+    %p
+      2. Declaramos conhecer os termos contidos no Edital 01/2017 e nos comprometemos
+      a respeitar, sem restrições, todas as condições estipuladas nos documentos acima
+      referidos.
+    %p
+      3. Toda a documentação requerida em Edital foi apresentada anexo apresentamos toda a documentação solicitada no Edital de
+      Credenciamento para Prestação dos serviços.
+    %p
+      -if @cadastre.confirm == false
+        = link_to 'Confirmar Declarações', update_confirm_path(id: @cadastre.id), class: 'btn btn-success btn-xs', remote: true
+      -else
+        = link_to "Declaraçoes Confirmadas", "#", class: 'btn btn-default btn-xs'

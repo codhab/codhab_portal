@@ -1,0 +1,92 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Atualização cadastral - Protocolo #{@ticket.protocol}
+        .row
+          .col-md-12
+            - if !@ticket.on_attendance?
+              .alert.alert-warning
+                %h1{style: 'color: white'}
+                  %b Atenção
+                - @ticket.comments.order('created_at DESC').each do |comment|
+                  %br/
+                  %p
+                    %b #{comment.created_at.strftime("%d/%m/%Y")} -
+                    #{comment.message}
+
+        .row
+          .col-md-12
+            %table.ui.celled.table
+              %tbody.black
+                - if @ticket.action_allow?
+                  %tr{class: @ticket.situation_by_action_context(1) == 'Em processo de atualização' ? '' : nil}
+                    %td{style: 'width: 1%; text-align: center'}
+                      %i{style: 'font-size: 35px', class: @ticket.icon_by_action_context(1)}
+                    %td
+                      .content
+                        %b= link_to "Atualização de dados básicos", ticket_update_cadastre_path(@ticket)
+                        .sub.header
+                          #{@ticket.situation_by_action_context(1)}
+                - if @ticket.action_allow?
+                  %tr{class: @ticket.situation_by_action_context(2) == 'Em processo de atualização' ? '' : nil}
+                    %td{style: 'width: 1%; text-align: center'}
+                      %i{style: 'font-size: 35px', class: @ticket.icon_by_action_context(2)}
+                    %td
+                      .content
+                        %b= link_to "Atualização de dependentes", ticket_update_dependent_path(@ticket)
+                        .sub.header
+                          #{@ticket.situation_by_action_context(2)}
+                - if @ticket.action_allow?
+                  %tr{class: @ticket.situation_by_action_context(3) == 'Em processo de atualização' ? '' : nil}
+                    %td{style: 'width: 1%; text-align: center'}
+                      %i{style: 'font-size: 35px', class: @ticket.icon_by_action_context(3)}
+                    %td
+                      .content
+                        %b= link_to "Atualização de renda", ticket_update_income_path(@ticket)
+                        .sub.header
+                          #{@ticket.situation_by_action_context(3)}
+                %tr{class: @ticket.situation_by_action_context(4) == 'Em processo de atualização' ? '' : nil}
+                  %td{style: 'width: 1%; text-align: center'}
+                    %i{style: 'font-size: 35px', class: @ticket.icon_by_action_context(4)}
+                  %td
+                    .content
+                      %b= link_to "Atualização de dados de contato", ticket_update_contact_path(@ticket)
+                      .sub.header
+                        #{@ticket.situation_by_action_context(4)}
+
+        - if !@ticket.on_attendance?
+          .row
+            .col-md-12
+              %a.ui.red.ribbon.label.bold Importante
+              %span
+                %br/
+                .text-justify
+                  = @ticket.confirmation_text
+              .divider
+              - if @ticket.allow_close?
+                = link_to @ticket.close_text, ticket_close_path(@ticket), class: "btn btn-success ", data: { disable_with:  t(:disable_with)}
+              - else
+                = link_to @ticket.close_text, "#", class: "btn btn-success disabled", data: { disable_with:  t(:disable_with)}
+        - else
+          .row
+            .col-md-12
+              %a.ui.blue.ribbon.label.bold Interações (#{@ticket.comments.count})
+              %span
+                .text-justify
+                - if @ticket.comments.present?
+                  - @ticket.comments.each do |comment|
+                    .divider
+                    %span
+                      %a.ui.orange.right.ribbon.label= comment.created_at.strftime("%d/%m/%Y %H:%M")
+                    %span
+                      .divider
+                      %p= comment.message
+                - else
+                  .divider
+                    .text-center
+                      %p
+                        %i Nenhuma mensagem registrada.

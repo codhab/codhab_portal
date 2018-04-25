@@ -1,0 +1,27 @@
+%p
+  %b Dados atualizados
+  %table.table.table-striped.table-bordered.mini-font
+    %thead
+      %tr
+        %th Nome  
+        %th Renda    
+    %tbody  
+      %tr
+        %td= @ticket.cadastre_mirror.name
+        %td= number_to_currency @ticket.cadastre_mirror.income
+      - @ticket.cadastre_mirror.dependent_mirrors.each do |mirror|
+        %tr
+          %td= mirror.name.mb_chars.upcase
+          %td= number_to_currency mirror.income
+%p
+  %b Arquivos
+
+- if action.uploads.present?
+  %table.table.table-bordered.mini-font
+    %tbody
+      - action.uploads.each do |upload|
+        %tr 
+          %td= upload.category.name   
+- else
+  %p 
+    %i Nenhum arquivo enviado.

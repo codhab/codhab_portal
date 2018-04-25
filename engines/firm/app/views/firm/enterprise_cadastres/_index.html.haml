@@ -1,0 +1,34 @@
+- @enterprise_cadastres.each do |cand|
+  - if cand.cadastre.present?
+    %tr
+      %td= cand.cadastre.name
+      %td= cand.cadastre.cpf.format_cpf rescue nil
+      %td= cand.cadastre.program.name rescue nil
+      %td= cand.cadastre.special_condition.name rescue nil
+      %td
+        - if cand.enterprise_cadastre_situations.present?
+          = cand.enterprise_cadastre_situations.first.enterprise_situation_status.name rescue nil
+        - else
+          Não Contactado
+      %td= cand.cadastre.pontuations.first.total rescue nil
+      %td
+        - if cand.inactive == true
+          %span.label.label-danger Inativa
+        - else
+          %span.label.label-primary Ativa
+      %td= cand.created_at.strftime("%d/%m/%Y")
+      %td= cand.inactive_date.strftime("%d/%m/%Y") rescue nil
+      %td
+        .btn-group
+          %button.btn.btn-warning.dropdown-toggle{ type: 'button', :"data-toggle" => 'dropdown', :"aria-expanded" => 'false', :"aria-haspopup" => 'true'}
+            ações
+            %span.caret
+          %ul.dropdown-menu
+            - if cand.inactive != true
+              - if cand.enterprise_cadastre_situations.present?
+                - status = cand.enterprise_cadastre_situations.first
+                -if status.enterprise_cadastre_status_id == 9 || status.enterprise_cadastre_status_id == 10 || status.enterprise_cadastre_status_id == 12 || status.enterprise_cadastre_status_id == 14
+                  %li= link_to "Alterar Status", new_enterprise_cadastre_situation_path(enterprise_cadastre_id: cand.id), remote: true
+              -else
+                %li= link_to "Alterar Status", new_enterprise_cadastre_situation_path(enterprise_cadastre_id: cand.id), remote: true
+            %li= link_to "Visualizar Dados", enterprise_cadastre_path(id: cand.id,cadastre_id: cand.cadastre_id)

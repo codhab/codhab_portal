@@ -1,0 +1,42 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/firm/tabs'
+      .row
+        .col-md-12
+          %h3
+            %b Usuários
+            %br/
+            %small Listagem de usuários cadastrados
+            %br/
+            %br/
+            %small
+            = link_to "+ Adicionar novo usuário", new_user_company_path, remote: true, class: 'btn btn-success'
+      %br/
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Token de acesso (WebService)
+                %th Expira em
+                %th.col-md-1
+            %tbody
+              %tr
+                %td= @firm.company.token ||= "Nenhum token gerado"
+                %td= @firm.company.token_expires_in.strftime("%d/%m/%Y %H:%M") rescue "Nenhuma token gerado"
+                %td.col-md-1= link_to "<i class='glyphicon glyphicon-refresh'></i>".html_safe, refresh_token_user_companies_path, class: 'btn btn-success btn-sm', data: { disable_with: t(:disable_with)}
+
+      %br/
+      .row
+        .col-md-12
+          %table.table.table-condensed.table-bordered.table-hover.table-striped
+            %thead
+              %tr
+                %th Nome
+                %th Email
+                %th Login
+                %th{style: 'width: 1% !important'}
+            %tbody.index-company
+              - if @user_companies.present?
+                = render 'index'

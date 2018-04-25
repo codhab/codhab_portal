@@ -1,0 +1,15 @@
+%table.table.table-striped.table-bordered
+  - if @answers.present?
+    %thead
+      %tr
+        %th Pergunta
+        %th Resposta
+    %tbody
+    - @answers.by_type(0).each do |answer|
+      %tr
+        %td= answer.question_multiple.question.name rescue nil
+        %td= answer.question_multiple.name rescue nil
+  - else
+    %tr
+      %td
+        %i Nenhuma resposta cadastrada

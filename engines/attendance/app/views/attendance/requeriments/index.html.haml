@@ -1,0 +1,30 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Meus requerimentos (#{current_cadastre.assessments.count})
+        .row
+          .col-md-12
+            = link_to "+ criar requerimento", new_requeriment_path, class: 'btn btn-primary btn-sm'
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Protocolo
+                  %th Data
+                  %th Descrição
+                  %th Respondido?
+                  %th Data de resposta
+              %tbody.tbody-index
+                - current_cadastre.assessments.order('created_at DESC').each do |assessment|
+                  %tr
+                    %td= link_to assessment.document_number, requeriment_path(assessment)
+                    %td= assessment.created_at.strftime("%d/%m/%Y - %H:%M") rescue nil
+                    %td= assessment.description_subject
+                    %td= assessment.responded ? "Sim" : "Em análise"
+                    %td= assessment.responded_date.strftime("%d/%m/%Y") rescue "Sem informção"

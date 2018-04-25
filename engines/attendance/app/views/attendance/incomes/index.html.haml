@@ -1,0 +1,50 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .h3
+          %b Atualização de renda
+        %h4= link_to "Retonar para página anterior", :back
+        .row
+          .col-md-12
+            - if @ticket.closed?(@action)
+              .text-center
+                %p
+                  %h2 
+                    %b 
+                      Dados #{@action.situation.name.pluralize}!
+                      
+
+        .row
+          .col-md-12
+            %table.ui.celled.table
+              %tbody
+                %tr
+                  %td
+                    %b= @ticket.cadastre_mirror.name
+                    %p= number_to_currency @ticket.cadastre_mirror.main_income
+                    %p
+                      = link_to "Editar renda", edit_ticket_income_path(@ticket,  @ticket.cadastre_mirror), class: 'btn btn-primary btn-xs' if !@ticket.input_disabled?(@action)
+                      = link_to "Enviar documentação", new_ticket_action_document_path(@ticket, @action), class: 'btn btn-success btn-xs' if !@ticket.input_disabled?(@action)
+
+                - @ticket.cadastre_mirror.dependent_mirrors.each do |mirror|
+                  %tr
+                    %td
+                      %b= mirror.name
+                      %p= number_to_currency mirror.income
+                      %p
+                        = link_to "Editar renda", edit_ticket_income_path(@ticket, mirror, dependent: true), class: 'btn btn-primary btn-xs'  if !@ticket.input_disabled?(@action)
+                        = link_to "Enviar documentação", new_ticket_action_document_path(@ticket, @action, dependent_id: mirror.id), class: 'btn btn-success btn-xs' if !@ticket.input_disabled?(@action)
+
+        .row
+          .col-md-12
+            - if @ticket.confirmation_required?(@action)
+              .row
+                .col-md-3
+                  = link_to "Meus dados estão corretos", ticket_confirm_path(@ticket, @action), class: 'btn btn-success'
+                .col-md-3
+                  = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'btn btn-primary'
+            - elsif @ticket.open?(@action)
+              = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'btn btn-success'
+            - else
+              = link_to "Corrigir minha atualização", ticket_open_path(@ticket, @action), class: 'btn btn-warning'

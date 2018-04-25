@@ -1,0 +1,28 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'schedule/agenda_schedule':
+          attributes:
+            born:
+              invalid_date: "data inválida"
+            date:
+              invalid_date: "data inválida"
+    models:
+      'schedule/agenda_schedule': 'Agendamento'
+    attributes:
+      'schedule/agenda_schedule':
+        cpf: "CPF"
+        name: "Nome"
+        telephone: "Telefone"
+        telephone_optional: "Telefone Opcional"
+        celphone: "Celular"
+        email: "E-mail"
+        city: "Cidade"
+        date: "Data"
+        hour: "Hora do agendamento"
+        born: "Data de Nascimento"
+        city_agenda_id: "Cidade"
+        address_agenda: "Endereço de atendimento"
+        block: "Quadra"
+        document_number: "Nº de Processo"

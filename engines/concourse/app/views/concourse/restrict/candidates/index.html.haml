@@ -1,0 +1,165 @@
+.row
+  .col-md-12
+    %h2
+      %b Minha inscrição
+      %br/
+      %small
+        = link_to "Finalizar sessão", logout_project_restrict_candidates_path(@project)
+        |
+        = link_to "Trocar minha senha", edit_project_restrict_password_path(project_id: @project, id: @candidate)
+        |
+        = link_to "Editar minha inscrição", edit_project_restrict_candidate_path(project_id: @project, id: @candidate.id), disabled: (@candidate.homologado? || @candidate.indeferido?)
+    %hr/
+    %span
+      - if (@project.start_participation <= Date.current && @project.end_participation >= Date.current)
+        - if @candidate.homologado?
+          - if @candidate.candidate_participation.present?
+            = link_to "VISUALIZAR MEU PROJETO ENVIADO", project_restrict_participations_path(project_id: @project), class: 'btn btn-success btn-lg'
+          - else
+            = link_to "ENVIAR MEU PROJETO", project_restrict_participations_path(project_id: @project), class: 'btn btn-primary btn-lg'
+        - else
+          - if @candidate.candidate_participation.present?
+            = link_to "VISUALIZAR MEU PROJETO (PROVISÓRIO)", project_restrict_participations_path(project_id: @project), class: 'btn btn-success btn-lg'
+          - else
+            = link_to "ENVIAR MEU PROJETO (PROVISÓRIO)", project_restrict_participations_path(project_id: @project), class: 'btn btn-primary btn-lg'
+
+        %hr/
+
+.row
+  .col-md-12
+    .row
+      .col-md-12
+        %h4 Dados Gerais
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Número de inscrição
+              %th Tipo de inscrição
+              %th Data de inscrição
+
+          %tbody
+            %tr
+              %td.col-md-2= @candidate.id
+              %td.col-md-2= @candidate.subscribe.title
+              %td.col-md-2= @candidate.created_at.strftime("%d/%m/%Y às %H:%M")
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Situação de Inscrição
+              %th Pagamento da Inscrição
+              %th Boleto
+          %tbody
+            %tr
+              %td.col-md-4= @candidate.status
+              %td.col-md-4= @candidate.invoice_paid ? 'Boleto Pago' : 'Boleto não pago'
+              %td.col-md-4= link_to "Baixar boleto", bank_slip_project_restrict_candidates_path(@project), target: '_blank'
+    %hr/
+    .row
+      .col-md-12
+        %h4 Observações
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Data da observação
+              %th Conteúdo
+          %tbody
+            - if @candidate.observations.present?
+              - @candidate.observations.order('created_at DESC').each do |obs|
+                %tr
+                  %td.col-md-3= obs.created_at.strftime("%d/%m/%Y às %H:%M")
+                  %td.col-md-9= obs.content
+            - else
+              %tr
+                %td{colspan: 2} Não existem observações
+
+    %hr/
+    .row
+      .col-md-12
+        %h4 Informações do candidato
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Data de Nascimento
+              %th Sexo
+          %tbody
+            %tr
+              %td= @candidate.name.upcase
+              %td= @candidate.cpf.format_cpf
+              %td= @candidate.born.strftime('%d/%m/%Y') if @candidate.born.present?
+              %td= @candidate.gender
+
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Telefone
+              %th Celular
+              %th E-mail
+          %tbody
+            %tr
+              %td= @candidate.telephone.upcase
+              %td= @candidate.celphone
+              %td= @candidate.email
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Estado
+              %th Cidade
+              %th Endereço
+              %th CEP
+          %tbody
+            %tr
+              %td= @candidate.state.name if @candidate.state.present?
+              %td= @candidate.city
+              %td= @candidate.address
+              %td= @candidate.cep
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Nome fantasia
+              %th Razão social
+              %th CNPJ
+          %tbody
+            %tr
+              %td= @candidate.fantasy_name
+              %td= @candidate.social_reason
+              %td= @candidate.cnpj.format_cnpj
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th Tipo de profissional
+          %tbody
+            %tr
+              %td= @candidate.professional_type.humanize if @candidate.professional_type.present?
+    - if @candidate.subscribe_id != 11
+      .row
+        .col-md-12
+          %table.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Grupo(s) selecionado(s)
+            %tbody
+              %tr
+                %td
+                  %b= @candidate.group.join('<br/>').html_safe
+    .row
+      .col-md-12
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              - @candidate.subscribe.fields.each do |field|
+                %th= field.label.humanize
+          %tbody
+            %tr
+              - @candidate.subscribe.fields.each do |field|
+                - if field.file?
+                  %td= link_to "Baixar Arquivo", "/uploads/concourse/candidate/files/#{@candidate.properties[field.label]}", target: '_blank'
+                - else
+                  %td= @candidate.properties[field.label].humanize

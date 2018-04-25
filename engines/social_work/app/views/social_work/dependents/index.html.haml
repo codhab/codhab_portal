@@ -1,0 +1,37 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Listagem de Dependente
+            = link_to '+Adicionar Novo Dependente', new_candidate_dependent_path, class: 'btn btn-primary'
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Nº
+                  %th Nome
+                  %th Data
+                  %th Ações
+              %tbody
+                - @dependents.order('id DESC').each_with_index do |dependent, i|
+                  %tr
+                    %td= dependent.id
+                    %td= dependent.name
+                    %td= dependent.created_at.strftime('%d/%m/%Y')
+                    %td
+                      .btn-group
+                        %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                          Ações
+                          %span.caret
+                        %ul.dropdown-menu
+                          %li
+                            = link_to 'Visualizar', candidate_dependent_path(candidate_id: dependent.candidate_id, id: dependent.id), class: 'item'
+                          %li
+                            = link_to 'Editar', edit_candidate_dependent_path(candidate_id: dependent.candidate_id, id: dependent.id), class: 'item'
+                          %li
+                            = link_to 'Excluir', candidate_dependent_path(candidate_id: dependent.candidate_id, id: dependent.id), :method => :delete, :data => { :confirm => t(:confirm) }, class: 'item'

@@ -1,0 +1,10 @@
+.col-md-8.col-md-offset-2
+  = simple_form_for @authorization, url: create_authorization_path,method: :post do |f|
+    .row
+      .col-md-6
+        = f.input :username, label: 'Usuário',  input_html: {class: 'login'}
+      .col-md-6
+        = f.input :password, label: 'Senha',  input_html: {placeholder: 'Digite sua senha'}
+    .row
+      .col-md-6
+        = f.submit "Realizar acesso", class: 'btn btn-success'

@@ -1,0 +1,66 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Minhas Conversas
+        .row
+          .col-md-12
+            - unless @chat.chat_comments.present?
+              %br
+              %br
+              = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'btn btn-primary btn-sm'
+            - else
+              - if @chat.allow_comment?
+                %br
+                %br
+                = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'btn btn-primary btn-sm'
+        .row
+          .col-md-12
+            %table.ui.celled.table
+            %tbody
+              %tr
+                %td
+                  %p
+                    %b
+                      = "Conversa Nº:  #{@chat.id}/#{@chat.created_at.year}"
+                    %br
+                    = @chat.chat_category.name rescue nil
+                    = @chat.created_at.strftime("%d/%m/%Y - %H:%M")
+              - if @chat.closed
+                %tr
+                  %td
+                    %span.label.label-danger
+                      Conversa encerrada
+                    %p
+                      %br
+                      = @chat.close_comment
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th
+                  %th Data
+                  %th Documentos
+                  %th Conversa
+              %tbody
+                - @chat.chat_comments.order('created_at DESC').each do |comment|
+                  %tr
+                    %td
+                      - if comment.staff_id.present?
+                        %span.label.label-warning
+                          CODHAB
+                      - else
+                        %span.label.label-success
+                          Eu
+                    %td= comment.created_at.strftime("%d/%m/%Y - %H:%M")
+                    %td
+                      -if comment.chat_uploads.present?
+                        %p
+                        - comment.chat_uploads.each do |arq|
+                          %i
+                            = link_to '<span class="glyphicon glyphicon-paperclip"></i>'.html_safe , arq.document_url, target: '_blank'
+                    %td= comment.content

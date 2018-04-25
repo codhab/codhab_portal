@@ -1,0 +1,45 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Dados do Imóvel
+.modal-body
+  .row
+    .col-md-6
+      %label
+        Endereço Completo
+      %br
+      = @enterprise_unit.complete_address
+    .col-md-6
+      %label
+        CEP
+      %br
+      = @enterprise_unit.cep_unit
+  .row
+    .col-md-6
+      %label
+        Área
+      %br
+      = @enterprise_unit.area
+    .col-md-6
+      %label
+        IPTU
+      %br
+      = @enterprise_unit.registration_iptu
+  %hr
+  .row
+    .col-md-12
+      %h4
+        Dados do Candidato
+      %br
+  .row
+    .col-md-12
+      %label
+        Nome
+      %br
+      = @enterprise_unit.cadastre_address.last.cadastre.name if @enterprise_unit.cadastre_address.present?
+  .row
+    .col-md-6
+      %label
+        CPF
+      %br
+      = @enterprise_unit.cadastre_address.last.cadastre.cpf if @enterprise_unit.cadastre_address.present?

@@ -1,0 +1,189 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h1
+              %b Lista de entidades
+              %br/
+              %small Listagem do cadastro e situação de entidades
+        %hr/
+        .row
+          .col-md-12
+            .row
+              = simple_form_for url_for, method: :get do |f|
+                .col-md-2
+                  = f.input :by_cnpj, label: "CNPJ", input_html: { class: 'cnpj', name: :by_cnpj, value: params[:by_cnpj] }
+                .col-md-3
+                  = f.input :by_name, label: "Nome", input_html: { name: :by_name, placeholder: "Digite o nome da entidade", value: params[:by_name]}
+                .col-md-3
+                  = f.input :by_acron, label: "Sigla", input_html: { name: :by_acron, placeholder: "Digite a sigla da entidade", value: params[:by_acron]}
+                .col-md-2
+                  = f.input :by_situation, as: :select, selected: params[:by_situation], collection: ::Entity::SituationStatus.all.order(:name), include_blank: 'Todos', label: "Situação", input_html: {name: :by_situation}
+
+                .col-md-2
+                  = f.submit "Filtrar lista", name: nil, class: 'btn btn-success filter-button ', data: { disable_with: t(:disable_with)}
+
+        - if @cadastre.model_name == "Entity::Cadastre"
+          %hr/
+          .row
+            .col-md-3
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th{colspan: 2} Região 1
+                %tbody
+                  - @total = 0
+                  - @region_1.each do |region|
+                    %tr
+                      %td= link_to region.name, params.permit(:by_region).merge(by_region: region.id)
+                      - count  = @cadastre.where(city_id: region.cities).count
+                      - @total += count 
+                      %td= count
+                  %tr
+                    %th Total:
+                    %th #{@total} 
+            .col-md-2
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th{colspan: 2} Região 2
+                %tbody
+                  - @total = 0
+                  - @region_2.each do |region|
+                    %tr
+                      %td= link_to region.name, params.permit(:by_region).merge(by_region: region.id)
+                      - count  = @cadastre.where(city_id: region.cities).count
+                      - @total += count 
+                      %td= count
+                  %tr
+                    %th Total:
+                    %th #{@total}
+            .col-md-2
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th{colspan: 2} Região 3
+                %tbody
+                  - @total = 0
+                  - @region_3.each do |region|
+                    %tr
+                      %td= link_to region.name, params.permit(:by_region).merge(by_region: region.id)
+                      - count  = @cadastre.where(city_id: region.cities).count
+                      - @total += count 
+                      %td= count
+                  %tr
+                    %th Total:
+                    %th #{@total}
+            .col-md-2
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th{colspan: 2} Região 4
+                %tbody
+                  - @total = 0
+                  - @region_4.each do |region|
+                    %tr
+                      %td= link_to region.name, params.permit(:by_region).merge(by_region: region.id)
+                      - count  = @cadastre.where(city_id: region.cities).count
+                      - @total += count 
+                      %td= count
+                  %td
+                    %br/
+                  %td
+                    %br/
+                    %br/
+                  %tr
+                    %th Total:
+                    %th #{@total}
+            .col-md-3
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th{colspan: 2} Região 5
+                %tbody
+                  - @total = 0
+                  - @region_5.each do |region|
+                    %tr
+                      %td= link_to region.name, params.permit(:by_region).merge(by_region: region.id)
+                      - count  = @cadastre.where(city_id: region.cities).count
+                      - @total += count 
+                      %td= count
+                  %tr
+                    %th Total:
+                    %th #{@total}
+            .col-md-1
+
+          %hr/
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Total listado: #{@cadastres.count}
+            
+          %hr/
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th CNPJ/Sigla/Nome
+                    %th Projeto Vínculado
+                    %th Cidade
+                    %th Presidente
+                    %th Situação
+                %tbody
+                  - @cadastres.each do |cadastre|
+                    %tr
+                      %td.col-md-4
+                        %p
+                          %b= cadastre.fantasy_name.mb_chars.upcase
+                        %p= link_to cadastre.cnpj.format_cnpj, cadastre_path(cadastre, by_type: params[:by_type]), data: { disable_with: t(:disable_with)}
+                        %i= cadastre.name.mb_chars.upcase
+                      %td.col-md-4
+                        - if Entity::Enterprise.where(entity_id: cadastre.id).present?
+                          - Entity::Enterprise.where(entity_id: cadastre.id).each do |entity|
+                            = entity.name
+                            = entity.complete_address
+                            = entity.group_name
+                        - else
+                          %i Nenhum vínculo
+                      %td.col-md-2= cadastre.city.name.mb_chars.upcase rescue I18n.t(:no_information)
+                      %td.col-md-2= cadastre.current_president_name.mb_chars.upcase rescue I18n.t(:no_information)
+                      %td.col-md-2= cadastre.current_situation
+
+
+        - else
+          %hr/
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Total listado: #{@cadastres.count}
+            
+          %hr/
+          .row
+            .col-md-12
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th CNPJ/Sigla/Nome
+                    %th Projeto Vínculado
+                    %th Cidade
+                    %th Presidente
+                    %th Situação
+                %tbody
+                  - @cadastres.each do |cadastre|
+                    %tr
+                      %td.col-md-4
+                        %p
+                          %b= cadastre.fantasy_name.mb_chars.upcase
+                        %p= cadastre.cnpj.format_cnpj
+                        %i= cadastre.name.mb_chars.upcase
+                      %td.col-md-4
+                      %td.col-md-2= cadastre.city.name.mb_chars.upcase rescue I18n.t(:no_information)
+                      %td.col-md-2= cadastre.president_name.mb_chars.upcase rescue I18n.t(:no_information)
+                      %td.col-md-2 Cadastro antigo

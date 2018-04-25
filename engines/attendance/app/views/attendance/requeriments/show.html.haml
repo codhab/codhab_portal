@@ -1,0 +1,32 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Criação de requerimento
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Nº do Processo
+                  %th Solicitação
+                  %th Anexos
+                  %th Parecer da CODHAB
+                  %th Data da resposta
+              %tbody
+                %tr
+                  %td= @requeriment.document_number ||= "Sem informação de Nº"
+                  %td= @requeriment.description_subject
+                  %td
+                    - if @requeriment.digital_documents.present?
+                      - @requeriment.digital_document_forms.each do |req|
+                        %i
+                          = link_to '<span class="glyphicon glyphicon-paperclip"></i>'.html_safe , req.doc_path_url, target: '_blank'
+
+                    - else
+                      %i Nenhum arquivo enviado
+                  %td= @requeriment.observation
+                  %td= @requeriment.finalized_date.strftime('%d/%m/%Y - %H:%M') rescue nil

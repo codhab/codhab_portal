@@ -1,0 +1,6 @@
+.list-group
+  - ::Concourse::Nav.where(project_id: @project).order(:order).each do |nav|
+    - if nav.url?
+      = link_to "#{nav.label}", nav.url, target: "#{nav.target}", class: "list-group-item" if nav.present?
+    - if nav.página?
+      = link_to "#{nav.label}", concourse.project_page_path(project_id: @project, id: nav.page), target: "#{nav.target}",class: "list-group-item #{(@page.present? && nav.page.present? && @page.id == nav.page.id) ? 'active' : ''}" if nav.page.present?

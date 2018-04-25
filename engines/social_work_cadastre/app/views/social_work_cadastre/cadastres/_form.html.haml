@@ -1,0 +1,56 @@
+.col-md-8.col-md-offset-2
+  .row
+    .col-md-6
+      = f.input :social_reason, label: "Razão social", input_html: { placeholder: 'Razão social'}
+    .col-md-6
+      = f.input :crea, label: "CAU/CREA", input_html: { placeholder: 'CAU/CREA' }
+  .row
+    .col-md-6
+      = f.input :cnpj, label: "Cnpj", input_html: { class: 'cnpj', placeholder: 'Cnpj'}
+    .col-md-6
+      = f.input :email, label: "E-mail", input_html: { placeholder: 'E-mail'}
+  .row
+    .col-md-6
+      = f.input :telephone, label: "Telefone", input_html: { placeholder: 'Telefone'}
+    .col-md-6
+      = f.input :celphone, label: "Celular", input_html: { placeholder: 'Opcional'}
+  .row
+    .col-md-6
+      = f.input :cep, label: "CEP", input_html: { placeholder: 'cep', class: 'cep'}
+    .col-md-6
+      = f.input :address, label: "Endereço", input_html: { placeholder: 'Endereço da Empresa'}
+  .row
+    .col-md-6
+      = f.input :uf, label: "UF", as: :select, collection: Address::State.all, label_method: :acronym,  include_blank: "Selecione..."
+    .col-md-6
+      = f.input :city_id, label: "Cidade", as: :select, collection: [], include_blank: false, include_blank: "Selecione..."
+  .row
+    .col-md-6
+      = f.input :district, label: "Bairro", input_html: { placeholder: 'Bairro'}
+    .col-md-6
+      = f.input :password, label: "Senha (Min 6 digítos)", input_html: { placeholder: 'Senha'}
+  .row
+    .col-md-12
+      = f.input :technological_resources, label: "Quanto aos recursos tecnológicos para a realização dos trabalhos, declaramos que possuímos condições de cumprir as exigências mínimas para realização dos serviços a serem prestados.", include_blank: false
+  %br/
+  %br/
+  .row
+    .col-md-3
+      = f.button :submit, "Realizar cadastro", class: 'btn btn-success', data: { disable_with: "Carregando..."}
+    .col-md-6
+      = link_to "Ir para tela de acesso", social_work_cadastre.new_session_path, class: 'btn btn-default', data: { disable_with: "Carregando..."}
+:javascript
+  $(document).ready(function(){
+    $("#social_work_cadastre_cadastre_uf").on('change', function(){
+        id = $(this).val();
+        $.getJSON("#{cities_by_state_path}?id=" +  id, function(data) {
+          var options = "<option value>selecione...</option>";
+
+          $.each(data, function(key, val) {
+            options += "<option value='" + val.id + "'>" + val.name + "</option>";
+          });
+
+          $("#social_work_cadastre_cadastre_city_id").html(options);
+       });
+     });
+   });

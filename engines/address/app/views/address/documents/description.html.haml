@@ -1,0 +1,35 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-6.col-md-offset-3
+            %h1{:style => "text-align: center !important"}
+              %b Ficha Descritiva
+              %br/
+              %small
+                Ficha Descritiva Válida
+        %hr/
+        .row
+          .col-md-6.col-md-offset-3{:style => "text-align: center !important"}
+            .row
+              .col-md-12
+                %h4
+                  %b Documento gerado para
+                %p
+                  = @candidate.name
+                %h4
+                  %b CPF
+                %p
+                  = @candidate.cpf.format_cpf
+                %h4
+                  %b Referente ao imóvel
+                %p
+                  - if @candidate.cadastre_address.present?
+                    - units = @candidate.cadastre_address.select(:unit_id).distinct
+                    - if units.present?
+                      - units.each do |addr|
+                        - unit = ::Address::Unit.find(addr.unit_id)
+                        - cadastre_address = unit.current_cadastre_address
+                        - if cadastre_address.present? && %w(reserva distribuído sobrestado).include?(cadastre_address.situation_id.to_s) && cadastre_address.cadastre_id == @candidate.id
+                          = "#{addr.unit.complete_address.mb_chars.upcase} - #{cadastre_address.unit.city.name.mb_chars.upcase rescue I18n.t(:no_information)}"

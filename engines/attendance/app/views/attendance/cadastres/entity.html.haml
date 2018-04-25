@@ -1,0 +1,35 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b
+                Minha Entidade
+        .row
+          .col-md-12
+            - if @entity.present? && current_cadastre.program_id == 2
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Sigla
+                    %th Nome
+                    %th CNPJ
+                %tbody
+                  %tr
+                    %td= @entity.old.fantasy_name
+                    %td= @entity.old.name
+                    %td= @entity.old.cnpj
+                %thead
+                  %tr
+                    %th Presidente da Entidade
+                    %th Cidade
+                    %th Endereço
+                %tbody
+                  %tr
+                    %td= @entity.old.president_name
+                    %td= @entity.old.city
+                    %td= @entity.old.address
+            - else
+              %i Candidato não tem vínculo com entidade

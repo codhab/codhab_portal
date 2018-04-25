@@ -1,0 +1,23 @@
+= simple_form_for @requeriment, url: requeriments_path do |f|
+  = f.input :recipient, label: "Nome"
+  = f.input :cpf, label: "CPF", input_html: { class: 'cpf'}
+  = f.input :email, input_html: { class: 'email'}
+  = f.input :address, label: "Endereço"
+  = f.input :description_subject, label: "Assunto", input_html: {rows: 3}
+  .row
+    .col-md-6
+      = f.input :telephone, label: "Telefone", input_html: {placeholder: '(00) 00000-0000'}
+    .col-md-6
+      = f.input :celphone, label: "Celular", input_html: {placeholder: '(00) 00000-0000'}
+  = f.simple_fields_for :digital_document_forms do |builder|
+    = render 'digital_document_form_fields', f: builder
+  = link_to_add_fields "Adicionar arquivo", f, :digital_document_forms
+  %hr
+  - if @msn.present?
+    .label.label-danger
+      = @msn
+    %br
+    %br
+  = show_simple_captcha
+  %hr
+  = f.submit "Enviar requerimento", class: 'btn btn-success', data: { disable_with: t(:disable_with)}

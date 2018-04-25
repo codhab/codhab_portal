@@ -1,0 +1,91 @@
+%script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDpDIJwtupJF8GC_tLCLcnIrJVhNYf_O0I&amp;callback=initialize()"}
+
+:css
+
+  #map {
+    width: 100%;
+    height: 600px;
+  }
+
+
+%p
+  %h1 
+    %b Geolocalização Entidades
+.row    
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          = simple_form_for url_for, method: :get do |f|
+            .col-md-2
+              = f.input :by_situation, as: :select, label: "Situação", collection: ::Entity::SituationStatus.all,include_blank: "Todas", input_html: { name: :by_situation}, selected: params[:by_situation]
+            .col-md-3
+              = f.input :by_region, as: :select, label: "Região Administrativa", input_html: { name: :by_region}, selected: params[:by_region], collection: ::Address::Region.all, include_blank: "Todas"
+            .col-md-3
+              = f.input :by_city, as: :select, label: "Cidade", collection: ::Address::City.federal_district, include_blank: "Todas", input_html: { name: :by_city}, selected: params[:by_city]
+            .col-md-2
+              = f.submit "Filtrar resultado", name: nil, class: 'btn btn-success btn-sm filter-button', data: { disable_with: t(:disable_with)}
+
+%br/
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        %h3
+          %b Total listado: #{@entities.count}
+        #map
+
+:javascript 
+  $(document).ready(function(){
+    initialize(); 
+  })
+
+  var map; 
+
+
+  function initialize() {
+    var latlng = new google.maps.LatLng(-15.8091397,-47.8781489);
+    var myOptions = {
+      zoom: 10,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    
+    $.getJSON("#{url_for(params)}", function(data) {
+      for(var i = 0; i < data.data.length; i++) {
+        codeAddress(data.data[i].cep, data.data[i])
+      }
+    });
+
+  }
+
+  function codeAddress(zipCode, data) {
+    var Latlng = new google.maps.LatLng(parseFloat(data.lat),parseFloat(data.lng));
+    
+    var marker = new google.maps.Marker({
+        position: Latlng,
+        map: map,
+        draggable: true
+    });
+
+    var contentString = "" 
+    + "<p><h3><b>"+data.fantasy_name+"</b></h3><p/>"
+    + "<p>"+data.name+"</p>"
+    + "<hr/>"
+    + "<p><b>CNPJ:</b><br/><a href='/entidades/cadastros/"+data.id+"' target='_blank'>"+data.cnpj+"</a></p>"
+    + "<p><b>Presidente:</b><br/> "+ data.president +"</p>"
+    + "<p><b>Situação:</b><br/> "+ data.situation +"</p>"
+    + "<hr />"
+    + "<p><b>Endereço:</b><br/> "+data.address+" / "+ data.city +"</p>"
+    + "<p><b>CEP:</b><br/> "+data.cep+"</p>"
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+
+  }

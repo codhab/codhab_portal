@@ -1,0 +1,75 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      = render 'layouts/firm/tabs'
+      .row
+        .col-md-12
+          %h3
+            %b Candidatos
+            %br/
+            %small
+      .row
+        .col-md-12
+          = simple_form_for  url_for, method: 'get' do |f|
+            .row
+              .col-md-5
+                = f.label 'Nome'
+                = f.input :by_name, label: false, input_html: { name: 'by_name', value: params[:by_name]}
+              .col-md-2
+                = f.label 'CPF'
+                = f.input :by_cpf, label: false, input_html: { name: 'by_cpf', class: 'cpf', value: params[:by_cpf]}
+              .col-md-3
+                = f.label 'Situação do Candidato'
+                = f.input :by_situation, label: false,  collection: Firm::EnterpriseSituationStatus.all, selected: params[:by_situation], input_html: { name: 'by_situation'},include_blank: 'Todos'
+              .col-md-2
+                = f.label 'Data de indicação'
+                = f.input :by_date, label: false, collection: Firm::EnterpriseCadastre.select('created_at::date').where(enterprise_id: @enterprises).group('created_at::date').order('created_at::date desc'), label_method: lambda {|d| "#{(d.created_at + 1.day).strftime('%d/%m/%Y')}" }, value_method: lambda {|d| "#{(d.created_at + 1.day).strftime('%d-%m-%Y')}" } ,selected: params[:by_date], input_html: { name: 'by_date' } ,include_blank: 'Todos'
+            .row
+              .col-md-3
+                = f.label 'Empreendimento'
+                = f.input :by_enterprise, label: false,  collection: Firm::Enterprise.where(id: @enterprises, status: true), selected: params[:by_enterprise], input_html: { name: 'by_enterprise'},include_blank: 'Todos'
+              .col-md-2
+                = f.label 'Não tratados'
+                = f.input :by_new, as: :select, collection: [["Sim", true],["Não", false]], label: false, selected: params[:by_new],  input_html: {:"data-toggle" => 'toggle', name: 'by_new'},include_blank: 'Todos'
+              .col-md-2
+                = f.label 'Indicação Inativa?'
+                = f.input :by_inactive, as: :select, collection: [["Sim", true],["Não", false]], label: false, selected: params[:by_inactive],  input_html: {:"data-toggle" => 'toggle', name: 'by_inactive'},include_blank: 'Todos'
+              .col-md-2
+                = f.label 'Tipo de Lista'
+                = f.input :by_list, label: false,  collection: ::Candidate::Program.all, selected: params[:by_list], input_html: { name: 'by_list'},include_blank: 'Todos'
+              .col-md-4
+                %br
+                = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary', data: {  disable_with: "Pesquisando aguarde..."}
+                = link_to 'Limpar Pesquisa', enterprise_cadastres_path, class:  'btn btn-default', data: {  disable_with: "Pesquisando aguarde..."}
+
+
+      - if @enterprise_cadastres.present?
+        .row
+          .col-md-12
+            %h5
+              Total de candidatos:
+              = @enterprise_cadastres.count
+        .row
+          .col-md-12
+            = link_to 'Exportar Excel',  params.permit(:by_name,:by_cpf,:by_situation,:by_date,:by_enterprise, :by_new, :by_inactive,:by_list).merge(format: :xlsx), class:  'btn btn-success', data: {  disable_with: "Aguarde..."}
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Nome
+                  %th CPF
+                  %th Lista
+                  %th Condição
+                  %th Status
+                  %th Pontuação
+                  %th Status da Indicação
+                  %th Data da Indicação
+                  %th Data de Devolução
+                  %th
+              %tbody.index-enterprise-cadastre
+                = render 'index'
+        .row
+          .col-md-6.col-md-offset-3
+            .container
+              = will_paginate @enterprise_cadastres, renderer: BootstrapPagination::Rails

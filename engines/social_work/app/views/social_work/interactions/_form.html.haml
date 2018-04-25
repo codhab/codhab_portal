@@ -1,0 +1,35 @@
+= f.input :type, as: :hidden, input_html: {value: params[:type]}
+- unless [2,6,7].include? params[:type].to_i
+  .row
+    .col-md-6
+      - case params[:type].to_i
+      - when 1
+        Preenche requisitos sociais?
+      - when 3
+        Preenche requisitos técnicos?
+      - when 3,4,5,6
+        Aprovado
+      = f.input :positive, as: :radio_buttons, label: false
+  %hr
+.row
+  .col-md-6
+    = f.label 'Data'
+    = f.input :date, as: :string, label: false, input_html: { class: 'date', placeholder: '00/00/0000', value: (@interaction.date) ? localize(f.object.date) : nil }
+  .col-md-6
+    = f.label 'Hora'
+    = f.input :hour, as: :string, label: false, input_html:  { class: 'hour' }
+.row
+  .col-md-6
+    = f.label params[:type].to_i == 1 ? 'Parecer técnico social' : 'Documento'
+    = f.input :document_one, as: :file, label: false
+  .col-md-6
+    = f.label 'Documento'
+    = f.input :document_two, as: :file, label: false
+.row
+  .col-md-12
+    = f.label :description
+    = f.input :description, label: false, input_html: { rows: 3}
+%hr
+.row
+  .col-md-12
+    = f.button :submit, 'Salvar', class: 'btn btn-success', data: {disable_with: t(:disable_with)}

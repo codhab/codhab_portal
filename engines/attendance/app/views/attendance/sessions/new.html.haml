@@ -1,0 +1,36 @@
+- if Date.current >= Date.parse('2017-05-02') || !params[:open].nil?
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          .row.text-center
+            %h2
+              %b Acesso Restrito
+              %br/
+              %small Área do candidato
+          .mini-margin
+          .row
+            .col-sm-10.col-sm-offset-2
+              = simple_form_for @session do |f|
+                .row
+                  .col-md-3
+                    = f.input :cpf, label: "CPF", input_html: { class: 'cpf'}
+                  .col-md-3
+                    = f.input :password, label: "Senha"
+                  .col-md-6
+                    = f.submit "Validar acesso", class: 'btn btn-success filter', data: { disable_with: "Validando"}
+                    = link_to "Esqueci minha senha", '/candidato/lembrar-senha/new', class: 'btn btn-default filter'
+          %br/
+          %br/
+          .row.text-center
+            .col-md-12
+              %h2
+                %a{:href => "http://www.codhab.df.gov.br/recuperacao_senha"} PASSO A PASSO RECUPERAÇÃO DE SENHA
+              %h2
+                %a{:href => "http://www.codhab.df.gov.br/passoapasso"} PASSO A PASSO ATUALIZAÇÃO CADASTRAL
+
+- else
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body

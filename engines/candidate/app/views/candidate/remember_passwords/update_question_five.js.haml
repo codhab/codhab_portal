@@ -1,0 +1,4 @@
+- if @password.check_response!
+  $('.form').html("#{escape_javascript(render 'edit')}")
+- else 
+  $('.form').html("#{escape_javascript(render 'fail_password')}")

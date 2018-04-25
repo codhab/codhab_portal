@@ -1,0 +1,38 @@
+.ui.grid
+  .row.mini-margin
+    .col-md-12.box
+      .panel.panel-default
+        .panel-heading
+          .row
+            .col-md-12
+              %h1
+                %b Tipos de documentos
+                %br/
+                %small  Listagem de Tipos de documentos
+                %br/
+                = link_to 'Novo tipo de documento', new_document_type_path, class: 'btn btn-success '# if policy(:control_notice_situation, namespace: Cpl).create?
+        %hr/
+        .panel-body
+          .row
+            .col-md-12.input-mini
+              %table.ui.table.striped.celled
+                %thead
+                  %tr
+                    %th Tipo
+                    %th Descrição
+                    %th Status
+                %tbody
+                  - if @document_types.present?
+                    - @document_types.each do |document|
+                      %tr
+                        %td= document.name
+                        %td= document.description
+                        %td
+                          - if document.status = true
+                            = 'ativo'
+                          - else
+                            = 'inativo'
+                  - else
+                    %tr
+                      %td{colspan: 2}
+                        %i Nenhuma tipo de Documento

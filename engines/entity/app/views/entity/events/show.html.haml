@@ -1,0 +1,22 @@
+.container{:style => "background: #ffffff"}
+  .row{:style => "margin-top:10px;"}
+    -# .col-md-12
+      .firula2
+        = link_to 'Mobilização Social', "http://www.codhab.df.gov.br/mobilizacao_social"
+        -# = link_to 'Voltar', "http://www.codhab.df.gov.br/mobilizacao_social"
+  .row
+    .col-md-12{:style => "margin-top:10px;"}
+      -# .firula
+      -# .home_mobi
+        -# = link_to 'Voltar', "http://www.codhab.df.gov.br/mobilizacao_social"
+  .row
+    .col-md-12
+      .h3.title_projetos
+        = @event.name
+      .entity_description.margint50
+        = @event.description.html_safe
+  .row.margint50{:style => "padding-bottom:30px;"}
+    .col-md-6
+      = image_tag "/uploads/archive/images/"+@event.photo, class: "imagem_interna_eventos"
+    .col-md-6
+      = @event.content.html_safe if @event.content.present?

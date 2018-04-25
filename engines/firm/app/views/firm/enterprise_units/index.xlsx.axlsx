@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "enterprise_units_excel") do |sheet|
+  sheet.add_row ["Nome", "CPF", "Endereço", "CEP", "IPTU", "Área", "Situação" ]
+  @enterprise_units_excel.each do |a|
+    sheet.add_row [a.cadastre_address.last.cadastre.name,a.cadastre_address.last.cadastre.cpf,a.complete_address, a.cep_unit, a.registration_iptu, a.area, a.situation_unit.description]
+  end
+end

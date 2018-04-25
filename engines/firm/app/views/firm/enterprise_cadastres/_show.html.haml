@@ -1,0 +1,134 @@
+.row
+  .col-md-12
+    %h3
+      %b Dados do Candidato
+    %br
+    Consulta feita em:
+    = Time.now.strftime('%d/%m/%Y - %H:%M')
+    %br
+    %br
+    = link_to "Voltar para listagem", enterprise_cadastres_path, class: "btn btn-default no-print"
+    %br
+    %br
+.row
+  .col-md-12
+    .row
+      .col-md-5
+        %label Nome:
+        = @cadastre.name
+      .col-md-5
+        %label CPF:
+        = @cadastre.cpf.format_cpf rescue t(:no_information)
+    .row
+      .col-md-5
+        %label Data de Nascimento:
+        = @cadastre.born.strftime("%d/%m/%Y") rescue t(:no_information)
+      .col-md-5
+        %label Sexo:
+        = @cadastre.gender == 1 ? "Masculino" : "Feminino"
+    .row
+      .col-md-5
+        %label  Condição Especial:
+        = @cadastre.special_condition.name rescue t(:no_information)
+      .col-md-5
+        %label Renda Familiar:
+        = number_to_currency(@cadastre.income) rescue t(:no_information)
+    .row
+      .col-md-5
+        %label  Tipo de Lista:
+        = @cadastre.program.name rescue t(:no_information)
+      .col-md-5
+        %label  Estado Civil:
+        = @cadastre.civil_state.name rescue t(:no_information)
+    .row
+      .col-md-5
+        %label Cidade:
+        = @cadastre.city.name rescue t(:no_information)
+      .col-md-5
+        %label Endereço:
+        = @cadastre.address
+    .row
+      .col-md-5
+        %label Telefone:
+        = @cadastre.telephone rescue t(:no_information)
+      .col-md-5
+        %label Celular:
+        = @cadastre.celphone rescue t(:no_information)
+    .row
+      .col-md-5
+        %label Email:
+        = @cadastre.email rescue t(:no_information)
+      .col-md-5
+        %label Telefone Opcional:
+        = @cadastre.telephone_optional rescue t(:no_information)
+    .row
+      .col-md-5
+        %label Situação de cadastro:
+        = @cadastre.current_situation_name rescue t(:no_information)
+      .col-md-5
+        %label Situação de processo:
+        = @cadastre.current_procedural.procedural_status.name rescue t(:no_information)
+    .row
+      .col-md-5
+        %label Situação da indicação:
+        = @enterprise_cadastre.inactive == true ? "Inativa" : "Ativo"
+      - if @enterprise_cadastre.inactive_date.present?
+        .col-md-5
+          %label Data da inativação:
+          = @enterprise_cadastre.inactive_date.strftime('%d/%m/%Y')
+    .row
+      .col-md-12
+        %label Empreendimento
+        = @enterprise_cadastre.enterprise.name rescue nil
+-if @cadastre.dependents.present?
+  .row
+    .col-md-12
+      %h3
+        %b Dependentes
+  .row
+    .col-md-12
+      %table#data-table-command.table.table-striped.table-vmiddle.datatable
+        %thead
+          %tr
+            %th Nome
+            %th CPF
+            %th Renda
+            %th Data da Nascimento
+            %th Parentesco
+            %th Condição especial
+        %tbody
+          - @cadastre.dependents.each do |e|
+            %tr
+              %td= e.name
+              %td= e.cpf.format_cpf rescue t(:no_information)
+              %td= e.income
+              %td= e.born.strftime("%d/%m/%Y") rescue t(:no_information)
+              %td= e.kinship.name  rescue t(:no_information)
+              %td= e.special_condition.name rescue t(:no_information)
+-if @enterprise_cadastre_situation.present?
+  .row
+    .col-md-12
+      %h3
+        %b Histórico na empresa
+  .row
+    .col-md-12
+      %table#data-table-command.table.table-striped.table-vmiddle.datatable
+        %thead
+          %tr
+            %th Ação
+            %th Tipo de ação
+            %th Sucesso na ação?
+            %th Situação
+            %th Observação
+            %th Arquivo
+            %th Data da Situação
+        %tbody
+          - @enterprise_cadastre_situation.order('created_at desc').each do |e|
+            %tr
+              %td= e.type_action rescue t(:no_information)
+              %td= e.enterprise_situation_action.name rescue t(:no_information)
+              %td= e.success == true ? "Sim" : "Não"
+              %td= e.enterprise_situation_status.name rescue t(:no_information)
+              %td= e.observation
+              %td= link_to "Ver anexo", e.file_path_url, target: '_blank' if e.file_path.present?
+              %td= e.created_at.strftime("%d/%m/%Y - %H:%M:%S")

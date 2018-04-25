@@ -1,0 +1,25 @@
+.col-md-8.col-md-offset-2
+  = simple_form_for @cadastre do |f|
+    .row
+      .col-md-6
+        = f.input :name, label: "Nome", input_html: { placeholder: 'Nome'}
+      .col-md-6
+        = f.input :cpf, label: "Cpf", input_html: { class:'cpf', placeholder: 'Nome' }
+    .row
+      .col-md-6
+        = f.input :rg, label: "Rg", input_html: { placeholder: 'Rg' }
+      .col-md-6
+        = f.input :telephone, label: "Telefone", input_html: { placeholder: 'Telefone'}
+    .row
+      .col-md-6
+        = f.input :celphone, label: "Celular", input_html: { placeholder: 'Opcional'}
+      .col-md-6
+        = f.input :address, label: "Endereço", input_html: { placeholder: 'Endereço do candidato'}
+    .row
+      .col-md-6
+        = f.input :city_id, label: "Cidade", as: :select, collection:  Address::City.federal_district, include_blank: false
+      .col-md-6
+        = f.input :observation, label: "Observação", input_html: { placeholder: 'Observação'}
+    .row
+      .col-md-6
+        = f.button :submit, "Salvar", class: 'btn btn-success'

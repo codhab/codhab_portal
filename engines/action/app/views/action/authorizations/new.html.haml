@@ -1,0 +1,28 @@
+= render 'partials/shared/portal/top_nav'
+= render 'partials/shared/portal/header'
+.row
+  .col-md-12.box
+    .panel.panel-default
+      .panel-heading
+        .row
+          .col-md-6.col-md-offset-3
+            %h1{style: "text-align: center !important"}
+              %b.font-orange Área restrita
+              %br/
+              %small
+                Informe suas credenciais para realizar o acesso
+      .panel-body
+        %hr/
+        .row
+          .col-md-12
+            %br/
+            %br/
+            = render 'form'
+      .panel-body
+        %hr/
+        .row
+          .col-md-12
+            %br/
+            %br/
+            %h1
+              = link_to 'Não possui cadastro? clique aqui', action_portal.cadastres_url.to_s + '/new', style:'    display: block;text-align: center;width: 100%;'

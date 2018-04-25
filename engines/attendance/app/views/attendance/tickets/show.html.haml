@@ -1,0 +1,36 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Atualização cadastral
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Protocolo
+                  %th Data
+                  %th Contexto
+                  %th Situação
+              %tbody.tbody-index
+                %tr 
+                  %td= @ticket.protocol
+                  %td= @ticket.created_at.strftime("%d/%m/%Y %H:%M")
+                  %td= @ticket.context.name rescue "Sem informação"
+                  %td= @ticket.situation.name rescue "Sem informação"
+
+        .row
+          .col-md-12
+            %h4
+              %b Atualizações
+            - @ticket.actions.each do |action|
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr 
+                    %th= action.context.name rescue nil
+              
+              = render "context_#{action.context_id}", action: action
+              %hr/

@@ -1,0 +1,41 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h2 
+              %b Emitir guia de pagamento
+              %br/
+              %small Emissão de guia de pagamento simples para abertura de processo.
+        %br/
+        %hr/
+        .row
+          .col-md-12
+            = simple_form_for @billet, url: billets_path do |f|
+              .row
+                .col-md-3
+                  = f.input :cpf, label: "Informe seu CPF", input_html: { class: 'cpf'}
+                .col-md-4
+                  = f.submit "Gerar guia de pagamento", class: 'btn btn-success filter-button'
+        - if @billet.billet.present?
+          %br/
+          %hr/
+          .row
+            .col-md-12
+              %h4 Guia de pagamento gerada.
+              %table.table.bordered
+                %thead 
+                  %tr 
+                    %th Nome
+                    %th CPF
+                    %th Valor
+                    %th Vencimento
+                    %th Ação
+                %tbody
+                  %tr 
+                    %td= @billet.billet.name
+                    %td= @billet.billet.cpf
+                    %td= number_to_currency @billet.billet.value
+                    %td= @billet.billet.due.strftime("%d/%m/%Y")
+                    %td= link_to "Imprimir", "http://extranet.codhab.df.gov.br/brb/boletos/#{@billet.billet.id}?token=eed6a8780692be1675b1bd0f386ca8b0", target: "_blank"

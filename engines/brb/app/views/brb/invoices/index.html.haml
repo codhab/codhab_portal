@@ -1,0 +1,67 @@
+.ui.grid
+  .row
+    .column
+      %h1.ui.header
+        Cobrança
+        .sub.header
+          Gestão de cobrança
+      = link_to '+ Gerar Nova Cobrança', new_invoice_path, remote: true, class: 'ui button yellow'
+      = link_to 'Gerar remessa (@EDI)', remittances_path(date: Date.today.strftime("%Y-%m-%d")), class: 'ui button blue', target: "_blank"
+      = link_to 'Subir retorno (Guia Simples)', new_return_path(type: 1), class: 'ui button green', target: "_blank"
+      = link_to 'Subir retorno (@EDI)', new_return_path, class: 'ui button blue'
+  .row
+    .column
+      .ui.segment.yellow
+        = simple_form_for  url_for, method: 'get' do |f|
+          .field
+            .three.fields
+              .field
+                = f.label 'Nome'
+                = f.input :by_name, label: false, input_html: { name: 'by_name', value: params[:by_name]}
+              .field
+                = f.label 'CPF'
+                = f.input :by_cpf, label: false,input_html: { name: 'by_cpf', value: params[:by_cpf], class: 'cpf'}
+              .field
+                = f.label 'Tipo'
+                = f.input :by_type, as: :select, collection: Brb::Invoice.invoice_types.keys, selected: params[:by_type] , label: false, prompt: 'Selecione', input_html: { name: 'by_type'}
+          .field
+            .three.fields
+              .field
+                = f.label 'Categoria'
+                = f.input :by_category, as: :select, collection: Brb::Category.all, selected: params[:by_category] ,label: false, prompt: 'Selecione', input_html: { name: 'by_category'}
+              .field
+                = f.label 'Data inicial'
+                = f.input :by_date_start, label: false, input_html: { name: 'by_date_start', value: params[:by_date_start], class: 'date'}
+              .field
+                = f.label 'Data final'
+                = f.input :by_date_end, label: false, input_html: { name: 'by_date_end', value: params[:by_date_end], class: 'date'}
+          .field
+            .two.fields
+              .field
+                = f.label 'Status'
+                = f.input :by_status, as: :select, collection: Brb::Invoice.statuses.keys, selected: params[:by_status], label: false, prompt: 'Selecione', input_html: { name: 'by_status', value: params[:by_status]}
+              .field
+                = f.submit 'Pesquisar', name: nil, class:  'ui button yellow filter', data: {disable_with: t(:disable_with)}
+                = link_to "Limpar pesquisa",  invoices_path, class: 'ui button filter'
+  .row
+    .column
+      %table.ui.celled.striped.table.yellow.mini-font
+        %thead
+          %tr
+            %th Código
+            %th Tipo
+            %th Categoria
+            %th CPF
+            %th Valor
+            %th Emitido em
+            %th Vencimento
+            %th Liquidação
+            %th Status
+            %th Ações
+        %tbody.index-invoice
+          = render 'index'
+  %tfoot
+    %tr
+      %th{colspan: 7}
+        .text-center
+          = will_paginate @invoices, renderer: WillPaginateSemanticUi::ActionView::Renderer

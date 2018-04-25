@@ -1,0 +1,38 @@
+.ui.grid
+  .row.mini-margin
+    .col-md-12.box
+      .panel.panel-default
+        .panel-heading
+          .row
+            .col-md-12
+              %h1
+                %b Localidades
+                %br/
+                %small  Listagem de Localidades
+                %br/
+                = link_to 'Nova ARIS', new_location_path, class: 'btn btn-success ', remote: true# if policy(:control_notice_situation, namespace: Cpl).create?
+        %hr/
+        .panel-body
+          .row
+            .col-md-12.input-mini
+              %table.ui.table.striped.celled
+                %thead
+                  %tr
+                    %th Nome
+                    %th Cidade
+                    %th Status
+                %tbody
+                  - if @locations.present?
+                    - @locations.each do |locations|
+                      %tr
+                        %td= locations.name
+                        %td= locations.city.name
+                        %td
+                          - if locations.status = true
+                            = 'ativo'
+                          - else
+                            = 'inativo'
+                  - else
+                    %tr
+                      %td{colspan: 2}
+                        %i Nenhuma tipo de Documento

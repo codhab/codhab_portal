@@ -1,0 +1,76 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Meu cadastro
+          
+        %hr
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th{colspan: 3}
+                    %center
+                      = current_cadastre.name.mb_chars.upcase
+                %tr
+                  %th{colspan: 3}
+                    %center
+                      = current_cadastre.presenter.current_situation_name
+              %thead
+                %tr
+                  %th Lista
+                  %th Faixa de Renda
+                  %th Posição
+              %tbody
+                - current_cadastre.presenter.list.each do |list|
+                  %tr
+                    %td= I18n.t(list[0])
+                    %td= list[1][0]
+                    %td= list[2].present? ? list[2] : "Sem informação"
+            %hr
+            %table.table.table-striped.table-bordered
+              %tbody
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-user
+                  %td= link_to "Meu cadastro", detail_cadastres_path
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-users
+                  %td= link_to " Meus dependentes", dependent_cadastres_path
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-mail-forward
+                  %td= link_to "Minhas Indicações", indication_cadastres_path
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-area-chart
+                  %td= link_to "Pontuações", pontuation_cadastres_path
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-warning
+                  %td= link_to "Ocorrências de IPTU", occurrence_cadastres_path
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-building
+                  %td= link_to " Minha entidade", entity_cadastres_path
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-list
+                  %td= link_to "Minhas situações", situation_cadastres_path
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-key
+                  %td= link_to "Endereço vínculado", address_cadastres_path
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-file-text
+                  %td= link_to "Processos / Documentos", document_cadastres_path
+                %tr
+                  %td.col-md-1
+                    %span.fa.fa-calendar
+                  %td= link_to "Agendamentos", schedule_cadastres_path

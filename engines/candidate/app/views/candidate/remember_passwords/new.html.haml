@@ -1,0 +1,37 @@
+- if !mobile_device?
+  .row.mini-margin
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-md-6.col-md-offset-3
+              %h1{style: "text-align: center !important"}
+                %b Área restrita do candidato
+                %br/
+                Recuperar Senha
+                %br/
+                %br/
+                %small
+                  Confirme seus dados para recuperar sua senha.
+                %br/
+                %small
+                  %h5= link_to "Retornar para tela de acesso", attendance.root_path if mobile_device?
+          %hr/
+          .row
+            .col-md-12.form
+              = render 'form'
+- else
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-md-6.col-md-offset-3
+              %h1{style: "text-align: center !important"}
+                %b Recuperar Senha
+                %small
+                  Confirme seus dados para recuperar sua senha.
+          %hr/
+          .row
+            .col-md-12.form
+              = render 'form'

@@ -1,0 +1,16 @@
+- if @enterprises.present?
+  - @enterprises.each do |enterprise|
+    %tr
+      %td= link_to enterprise.name.mb_chars.upcase, enterprise.reference_link.to_s, target: '_blank'
+      %td
+        - if @cadastre.manifestation_enterprise_present?(enterprise.id)
+          = link_to "Cancelar participação", restrict_area_manifestation_path(@cadastre, enterprise_id: enterprise.id), class: 'btn btn-danger btn-sm', remote: true, data: { disable_with: t(:disable_with)}, method: :delete
+        - elsif @cadastre.manifestation_present? || @cadastre.indication_present?
+          %i 
+            %small Manifestação ou indicação já ativa.
+        - else
+          = link_to "Realizar participação", new_restrict_area_manifestation_path(@cadastre, enterprise_id: enterprise.id), class: 'btn btn-success btn-sm', remote: true, data: { disable_with: t(:disable_with)}
+- else
+  %tr
+    %td{colspan: 2}
+      %i Nenhum empreendimento disponível.

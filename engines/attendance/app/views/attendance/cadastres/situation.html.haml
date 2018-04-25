@@ -1,0 +1,22 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b
+                Minhas Situações
+        .row
+          .col-md-12
+            - if @situations.present?
+              %table.table.table-striped.table-bordered
+                - @situations.order('created_at desc').each do |situation|
+                  %thead
+                    %tr
+                      %th Situação
+                      %th Data
+                  %tbody
+                    %tr
+                      %td= situation.situation_status.name
+                      %td= situation.created_at.strftime('%d/%m/%Y') rescue nil

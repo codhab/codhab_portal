@@ -1,0 +1,10 @@
+pt-BR:
+  activemodel:
+    models:
+      'regularization/address'
+    attributes:
+      'regularization/address':
+        city: 'Cidade'
+        block: 'Bloco'
+        group: 'Quadra'
+        unit: 'Lote'

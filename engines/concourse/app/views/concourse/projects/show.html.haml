@@ -1,0 +1,26 @@
+.row
+  .col-md-12
+    %h4
+      %strong apresentação
+%hr/
+.row
+  .col-md-12
+    = @project.apresentation.html_safe
+
+- if @project.popup_publish
+  #notify.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h3 Atenção
+        .modal-body
+          %p
+            %b= @project.popup_title 
+          = @project.popup_content.html_safe
+        .modal-footer
+          %button{type: 'button', class: 'btn btn-success', data: { dismiss: 'modal'}} Fechar
+
+  :javascript
+    $(document).ready(function() {
+      $('#notify').modal('show')
+    });

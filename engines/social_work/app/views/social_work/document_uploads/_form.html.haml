@@ -1,0 +1,38 @@
+.row
+  - unless params[:type] == "1"
+    .col-md-6
+      = f.label "tipo"
+      = f.input :type_doc, as: :select, collection: Core::SocialWork::DocumentCategory.type_documents.delete_if {|key, value| value == 4 }, label: false, include_blank: false
+  .col-md-6
+    = f.label :document_category_id
+    - if params[:type] == "1"
+      = f.input :document_category_id, label: false, as: :select,collection: Core::SocialWork::DocumentCategory.where(type_document: 4), include_blank: 'selecione...'
+    - else
+      = f.input :document_category_id, label: false, as: :select,collection: (params[:by_type].present?) ? Core::SocialWork::DocumentCategory.where(type_document: params[:by_type]) : {}, include_blank: 'selecione...'
+.row
+  .col-md-6
+    = f.label :document
+    = f.input :document, as: :file, label: false
+%hr
+.row
+  .col-md-12
+    = f.button :submit, 'Salvar', class: 'btn btn-success', data: {disable_with: t(:disable_with)}
+:javascript
+  $(document).ready(function() {
+    $("#social_work_document_upload_type_doc").on('change', function(){
+
+      id = $(this).val();
+
+      $.getJSON("#{candidate_document_uploads_path}.json?candidate_id=#{@candidate.id}&by_type=" +  id, function(data) {
+        var items = [];
+
+        items.push("<option value>selecione...</option>")
+
+        $.each(data.docs, function(key, val) {
+          items.push( "<option value='" + val.id + "'>" + val.name + "</option>");
+        });
+
+        $("#social_work_document_upload_document_category_id").html(items.join(" "))
+      });
+    })
+  })

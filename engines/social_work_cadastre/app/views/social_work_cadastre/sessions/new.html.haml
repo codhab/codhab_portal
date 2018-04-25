@@ -1,0 +1,19 @@
+.row
+  .col-md-12
+    %h1{style: "text-align: center !important"}
+      %b Credenciamento de Empresas
+      %br/
+      %small Acesso restrito a empresas
+      %br/
+      %br/
+    = simple_form_for @session, url: sessions_path do |f|
+      .row
+        .col-md-6
+          = f.input :cnpj, label: 'CNPJ', input_html: {class: 'cnpj'}
+        .col-md-6
+          = f.input :password, label: 'Senha', input_html: {placeholder: 'Digite sua senha'}
+      .row
+        .col-md-6
+          = f.submit "Realizar acesso", class: 'btn btn-success'        
+        .col-md-6
+          = link_to "Esqueci minha senha", new_password_reset_path, remote: true

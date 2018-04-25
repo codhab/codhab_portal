@@ -1,0 +1,178 @@
+%nav.navbar.navbar-default.navbar-codhab
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#{main.root_path(recadastre: false)}"}
+        %img{:alt => "CODHAB", :height => "71", :src => "http://www.codhab.df.gov.br/portal/images/codhab.png"}/
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.dropdown.item_menu.habitacao
+          %a#link_habitacao.dropdown-toggle.item_menu{:href => "#/habitacao","aria-expanded" => "false", "data-toggle" => "dropdown"}
+            Habitação
+            %span.sr-only (current)
+          %ul#habitacao.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Participe
+              %ul
+                - link_each('Participe - Habitacao') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Acompanhe
+              %ul
+                - link_each('Acompanhe - Habitacao') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Entidades
+              %ul
+                - link_each('Entidades - Habitacao') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+        %li.dropdown.item_menu.regularizacao
+          %a#link_regularizacao.dropdown-toggle.item_menu{:href => "#/regularizacao","aria-expanded" => "false", "data-toggle" => "dropdown"}
+            Regularização
+            %span.sr-only (current)
+          %ul#regularizacao.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Participe
+              %ul
+                - link_each('Participe - Regularizacao') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Acompanhe
+              %ul
+                - link_each('Acompanhe - Regularizacao') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+        %li.dropdown.item_menu.assistencia
+          %a#link_assistencia.dropdown-toggle.item_menu{:href => "#/entidades","aria-expanded" => "false", "data-toggle" => "dropdown"}
+            Assistência Técnica
+            %span.sr-only (current)
+          %ul#assistencia.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Imersão Comunitária
+              %ul
+                - link_each('Imersao - Assistencia') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Programas
+              %ul
+                - link_each('Programas - Assistencia') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+        %li.dropdown.item_menu.servicos
+          %a#link_servicos.dropdown-toggle.item_menu{:href => "#/servicos","aria-expanded" => "false", "data-toggle" => "dropdown"}
+            Serviços
+            %span.sr-only (current)
+          %ul#servicos.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Responsabilidade Social
+              %ul
+                - link_each('Responsabilidade Social - Servicos') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Ferramentas
+              %ul
+                - link_each('Ferramentas - Servicos') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+              %li.menu-insider-li
+                %span.submenu_title Produtos
+                %ul
+                  - link_each('Produtos - Servicos') do |l|
+                    %li.link_submenu
+                      = link_to_nav l
+        %li.dropdown.item_menu.mobilizacao
+          %a#link_mobilizacao.dropdown-toggle.item_menu{:href => "/mobilizacao_social"}
+            Mobilização Social
+          -#   %span.sr-only (current)
+          -# %ul#mobilizacao.dropdown-menu-mod.dropdown-menu
+          -#   %li.menu-insider-li
+          -#     %span.submenu_title Participe
+          -#     %ul
+          -#       - link_each('Participe - Entidades') do |l|
+          -#         %li.link_submenu
+          -#           = link_to_nav l
+          -#   %li.menu-insider-li
+          -#     %span.submenu_title Acompanhe
+          -#     %ul
+          -#       - link_each('Acompanhe - Entidades') do |l|
+          -#         %li.link_submenu
+          -#           = link_to_nav l
+
+        %li.dropdown.item_menu.editais
+          %a#link_editais.dropdown-toggle.item_menu{:href => "#/editais","aria-expanded" => "false", "data-toggle" => "dropdown"}
+            Editais
+            %span.sr-only (current)
+          %ul#editais.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %span.submenu_title Entidades
+              %ul
+                - link_each('Entidades - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Empresas
+              %ul
+                - link_each('Empresas - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Pregões
+              %ul
+                - link_each('Pregoes - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Convite
+              %ul
+                - link_each('Convite - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Concorrência
+              %ul
+                - link_each('Concorrencia - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Cotação Eletrônica
+              %ul
+                - link_each('Cotação Eletrônica - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Concursos
+              %ul
+                - link_each('Concursos - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+
+        %li.dropdown.item_menu.concursos
+          %a#link_concursos.dropdown-toggle.item_menu{:href => "#","aria-expanded" => "false", "data-toggle" => "dropdown"}
+            Agendamentos
+            %span.sr-only (current)
+          %ul#concursos.dropdown-menu-mod.dropdown-menu
+            %li.menu-insider-li
+              %ul
+                - link_each('Agendamentos') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
+        -# %li.dropdown.item_menu.concursos
+        -#   %a#link_concursos.dropdown-toggle.item_menu{:href => "#/concursos","aria-expanded" => "false", "data-toggle" => "dropdown"}
+        -#     Concursos
+        -#     %span.sr-only (current)
+        -#   %ul#concursos.dropdown-menu-mod.dropdown-menu
+        -#     %li.menu-insider-li
+        -#       %ul
+        -#         - link_each('Concursos') do |l|
+        -#           %li.link_submenu
+        -#             = link_to_nav l

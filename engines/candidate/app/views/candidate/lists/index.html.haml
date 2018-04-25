@@ -1,0 +1,24 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h2
+              %b Listas CODHAB
+              %p
+                %small Todas as listagens de candidatos cadastrados na CODHAB
+        .row
+          .col-md-12
+            %table.table
+              %thead
+                %tr
+                  %td Cod.
+                  %td Nome
+                  %td url
+              %tbody
+                - @lists.each do |list|
+                  %tr
+                    %td= list.id
+                    %td= link_to list.title, candidate.list_path(list.slug)
+                    %td= list.slug

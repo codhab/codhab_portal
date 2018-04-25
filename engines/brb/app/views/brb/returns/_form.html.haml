@@ -1,0 +1,12 @@
+.ui.segment.yellow
+  = simple_form_for @return do |f|
+    = f.input :type, as: :hidden, input_html:{value: @type}
+    .field
+      .fields
+        .twelve.wide.field
+          = f.input :file, as: :file
+    .ui.divider
+    .field
+      .fields
+        .twelve.wide.field
+          = f.submit "Subir retorno", class: 'ui green button', data: { disable_with: t(:disabled_button)}

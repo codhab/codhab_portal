@@ -1,0 +1,32 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Minhas conversas (#{@chats.count})
+        .row
+          .col-md-12
+            - unless @chats.present?
+              = link_to "+ Iniciar nova conversa", new_chat_path, class: 'btn btn-primary btn-sm'
+            - else
+              = link_to "+ Iniciar nova conversa", new_chat_path, class: 'btn btn-primary btn-sm' if @chats.chat_closed?
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Protocolo
+                  %th Data
+                  %th Categoria
+                  %th Interações
+                  %th Situação
+              %tbody.tbody-index
+                - @chats.order('closed ASC').each do |chat|
+                  %tr
+                    %td= link_to chat.presenter.protocol, chat_path(chat)
+                    %td= chat.created_at.strftime("%d/%m/%Y - %H:%M")
+                    %td= chat.chat_category.name rescue "Sem informação"
+                    %td= chat.chat_comments.count rescue "Sem informação"
+                    %td= chat.closed ? "Finalizado" : "Aberto"

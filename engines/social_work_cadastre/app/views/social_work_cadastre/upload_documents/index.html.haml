@@ -1,0 +1,35 @@
+.ui.grid
+  .row.mini-margin
+    .col-md-12.box
+      .panel.panel-default
+        .panel-heading
+          .row
+            .col-md-12
+              %h1
+                %b Documentos Emviados
+                %br/
+                %small  Listagem de Documentos
+                %br/
+                = link_to 'Enviar documento', new_cadastre_upload_document_path, class: 'btn btn-success '# if policy(:control_notice_situation, namespace: Cpl).create?
+                = link_to 'Voltar', social_work_cadastre.show_path, class: 'btn btn-danger '
+        %hr/
+        .panel-body
+          .row
+            .col-md-12.input-mini
+              %table.ui.table.striped.celled
+                %thead
+                  %tr
+                    %th Tipo de documento
+                    %th Observação
+                    %th Documento
+                %tbody
+                  - if @upload_documents.present?
+                    - @upload_documents.each do |upload|
+                      %tr
+                        %td= upload.document_type.name
+                        %td= upload.observation
+                        %td= link_to "Ver Documento", upload.file_path_url, target: '_blank' if upload.file_path.present?
+                  - else
+                    %tr
+                      %td{colspan: 2}
+                        %i Nenhum Documento enviado

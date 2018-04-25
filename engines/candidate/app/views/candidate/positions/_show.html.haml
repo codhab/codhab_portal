@@ -1,0 +1,26 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Ocorrências do dia
+.modal-body
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Ocorrência
+        %th Qtd.
+    %tbody
+      %tr
+        %td Candidatos que atualizaram cadastro
+        %td= ::Candidate::CadastreMirror.where('program_id <> 3 and created_at::date = ?', @position.created_at.strftime("%Y-%m-%d")).count
+      %tr
+        %td Candidatos habilitados
+        %td= ::Candidate::CadastreSituation.where('situation_status_id = 4 and created_at::date = ?', @position.created_at.strftime("%Y-%m-%d")).count
+      %tr
+        %td Candidatos contemplados
+        %td= ::Candidate::CadastreSituation.where('situation_status_id = 7 and created_at::date = ?', @position.created_at.strftime("%Y-%m-%d")).count
+      %tr
+        %td Candidatos indeferidos ou desistentes
+        %td= ::Candidate::CadastreSituation.where('situation_status_id in (50, 51) and created_at::date = ?', @position.created_at.strftime("%Y-%m-%d")).count
+      %tr
+        %td Entrou para lista de idosos
+        %td= ::Candidate::Cadastre.olders.where('born::date = ?', @position.created_at.strftime("%Y-%m-%d")).count

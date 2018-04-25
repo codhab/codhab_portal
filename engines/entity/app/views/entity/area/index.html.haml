@@ -1,0 +1,19 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h1
+              %b Área da Entidade
+
+            .row
+              .col-md-12
+                .row
+                  .col-md-12{style: 'margin-bottom: 20px;'}
+                    = "Seja bem vindo a sua área #{@entity.name}"
+                - if @entity.allow_interested?
+                  .row
+                    .col-md-4
+                      - if Time.now < Time.new(2017,7,31,18,00)
+                        = link_to "Manifestação de Interesse", interests_path, class: 'btn btn-primary'

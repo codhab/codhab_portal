@@ -1,0 +1,17 @@
+.row
+  .col-md-12.box
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-8.col-md-offset-2
+            %h1{style: "text-align: center !important"}
+              %b Acesso da Empresa
+            = simple_form_for @session do |f|
+              .row
+                .col-md-6
+                  = f.input :email, label: 'E-mail', input_html: {class: 'Email'}
+                .col-md-6
+                  = f.input :password, label: 'Senha', input_html: {placeholder: 'Digite sua senha'}
+              .row
+                .col-md-6
+                  = f.submit "Realizar acesso", class: 'btn btn-success'

@@ -1,0 +1,35 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b
+                Pontuações
+        .row
+          .col-md-12
+            - if @pontuations.present?
+              - @pontuations.each do |pontuation|
+                %table.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th{colspan: 6}= "Pontuação em: #{pontuation.created_at.strftime('%d/%m/%Y') rescue nil}"
+                  %thead
+                    %tr
+                      %th Total de Pontos
+                      %th Tempo de Brasília
+                      %th Tempo de Lista
+                      %th Dependentes
+                      %th Renda
+                      %th Membro Especial
+                  %tbody
+                    %tr
+                      %td= pontuation.total
+                      %td= pontuation.bsb
+                      %td= pontuation.timelist
+                      %td= pontuation.dependent
+                      %td= pontuation.income
+                      %td= pontuation.special_condition
+            - else
+              %i Candidato sem pontuação

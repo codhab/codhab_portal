@@ -1,0 +1,8 @@
+- if @category.errors.any?
+  $('.ui.modal').html("#{escape_javascript(render 'new')}")
+- else
+  $('.index-category').html("#{escape_javascript(render 'index')}")
+
+  js_update();
+
+  $('.ui.modal').modal('hide')

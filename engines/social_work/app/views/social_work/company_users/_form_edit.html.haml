@@ -1,0 +1,4 @@
+.row
+  .col-md-12
+    = simple_form_for @company_user, url: company_user_path, remote: true do |f|
+      = render 'form',  f: f

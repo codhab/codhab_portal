@@ -1,0 +1,13 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title 
+    %b Resultado da verificação
+.modal-body{style: 'text-align: center'}
+  - @cadastre.errors.full_messages.each do |message|
+    %h3= message.mb_chars
+  %br/
+  %br/
+  %br/
+  = link_to "Ir para o portal", main_app.root_path(recadastre: false), class: 'btn btn-success' if @cadastre.success
+  = link_to "Realizar acesso na área restrita", "http://www.codhab.df.gov.br/atendimento/sessions/new", class: 'btn btn-success btn-lg'  if @cadastre.start

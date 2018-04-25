@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %title Extranet
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    = stylesheet_link_tag 'document', media: 'all'
+    %link{:href => "http://fonts.googleapis.com/css?family=Roboto", :media => "all", :rel => "stylesheet"}/
+    = csrf_meta_tags
+  %body
+    = yield

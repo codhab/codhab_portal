@@ -1,0 +1,36 @@
+.ui.grid
+  .row.mini-margin
+    .col-md-12.box
+      .panel.panel-default
+        .panel-heading
+          .row
+            .col-md-12
+              %h1
+                %b Sistema de Indicação por Empresas
+                %br/
+                %small  Listagem de Candidatos Indicados
+                %br/
+                = link_to '+Adicionar Candidato', new_cadastre_cadastre_titular_path, class: 'btn btn-success '# if policy(:control_notice_situation, namespace: Cpl).create?
+        %hr/
+        .panel-body
+          .row
+            .col-md-12.input-big
+              %table.ui.table.striped.celled
+                %thead
+                  %tr
+                    %th Nome
+                    %th Formação
+                    %th Rg
+                    %th Cpf
+                %tbody
+                  - if @cadastre_titulars.present?
+                    - @cadastre_titulars.each do |titular|
+                      %tr
+                        %td= titular.name
+                        %td= titular.formation
+                        %td= titular.rg
+                        %td= titular.cpf
+                  - else
+                    %tr
+                      %td{colspan: 2}
+                        %i Nenhuma empresa cadastrada.

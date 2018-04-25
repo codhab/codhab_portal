@@ -1,0 +1,229 @@
+:css
+  @media print {
+    .print-margin-gilson {
+       margin-left: 34% !important;
+    }
+  }
+
+  .no-print-margin-gilson {
+    margin-left: 15%;
+  }
+
+- @unit = @allot.unit
+- if @unit.present?
+  - if @candidate.present? && @candidate.cpf == @allot.cpf
+    %page{:size => "A4"}
+      .container{style: "font-size: 10pt"}
+        .lateral-margins.spacing{style: 'text-align: justify; important!'}
+          - if @allot.cancelled == true
+            = image_tag('/portal/images/cancelled.png', width: '500', style: 'position: absolute; top: 200px; margin-left: 150px; opacity: 0.8' )
+          %label
+            %b
+              ESCRITURA PARTICULAR DE RECONHECIMENTO DE OCUPAÇÃO E CONCESSÃO DE USO SOBRE LOTE URBANO DO DISTRITO FEDERAL,
+              COM CLÁUSULA DE VEDAÇÃO DE COMERCIALIZAÇÃO, VEDAÇÃO DE CESSÃO, VEDAÇÃO DE PERMUTA, VEDAÇÃO DE LOCAÇÃO E VEDAÇÃO DE
+              QUALQUER OPERAÇÃO IMOBILIÁRIA SOBRE A OCUPAÇÃO OBJETO DO PRESENTE INSTRUMENTO
+          %br
+          %br
+          .data-candidate
+            %b CPF do Concessionário(a) Ocupante:
+            %label= @candidate.cpf.format_cpf
+            %br
+            %b Nome do Concessionário(a) Ocupante:
+            %label= @candidate.name
+            %br
+            %b Cidade:
+            %label= @unit.city.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            %br
+            %b Endereço:
+            %label= @unit.complete_address rescue "<span>COMPLETAR DADOS</span>".html_safe
+        %br
+        .content.lateral-margins.spacing
+          %p
+            Pelo presente contrato de Reconhecimento de Ocupação e Concessão de Uso, de um lado, como CONCEDENTE, o
+            %b
+            DISTRITO FEDERAL
+            , pessoa jurídica de direito público interno, inscrito no CNPJ/MF sob o nº 00.394.601/0001-26, neste ato representado
+            pela Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, pessoa jurídica de direito privado,
+            constituída sob a forma de sociedade anônima, inscrita no CNPJ sob o nº 09.335.575/0001-30, estabelecida à SCS, Quara 06,
+            Bloco A, Lotes 13/14, Brasília/DF, representada por seu Diretor-Presidente
+            %b
+              = @presi.responsible.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @presi.responsible.introduce.present? ?  @presi.responsible.introduce : "<span>COMPLETAR DADOS</span>".html_safe
+            , portador da CI nº
+            = "#{@presi.responsible.rg}-#{@presi.responsible.rg_org}" rescue "<span>COMPLETAR DADOS</span>".html_safe
+            e inscrito no CPF/MF sob o nº
+            = @presi.responsible.cpf.format_cpf
+            , residente e domiciliado na cidade de Brasília, Distrito Federal, nos termos do art. 12 da Lei nº. 3.877, do
+            parágrafo 7º., do art. 7º., da Lei nº. 4.020/2007, da alínea “f”, do inciso I, do artigo 17, da Lei nº. 8.666/1993,
+            alínea j, do artigo 16, do Estatuto Social da CODHAB, Lei nº 6.404/1976 (Lei das Sociedades Anônimas), na Lei Distrital
+            nº. 5.197/2013 e do art. 4º. do Decreto distrital nº. 31.698/2010 e nomeação conforme Decreto de 08/01/2015, publicado
+            no DODF nº. 09, página 12, de 12/01/2015, e de outro lado, como CONCESSIONÁRIO,
+            %b
+              = @candidate.name
+            ,
+            = @candidate.nationality.present? ? @candidate.nationality : "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            =@candidate.employment.present? ? @candidate.employment : "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            =@candidate.civil_state.present? ? @candidate.civil_state.name : "<span>COMPLETAR DADOS</span>".html_safe
+            , inscrito no CPF nº
+            = @candidate.cpf.format_cpf
+            , e portador da CI nº
+            = "#{@candidate.rg} - #{@candidate.rg_org}/#{@candidate.rg_uf}"
+            , residente(s) e domiciliado(a)(os) no imóvel objeto deste reconhecimento e concessão, desde
+            = @unit.current_cadastre_address.created_at.strftime('%d/%m/%Y')
+            ,
+            a título de
+            = @unit.ownership_type_id.present? ? @unit.ownership_type.name : "<span>COMPLETAR DADOS</span>".html_safe
+            sito à
+            = @unit.complete_address rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @unit.city.name  rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @unit.city.state.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            , resolvem firmar e ajustar a presente concessão a título gratuito na forma que se segue:
+            %b PRIMEIRO:
+            o CONCEDENTE é senhor e legítimo possuidor, a justo título e boa fé
+            em mansa e pacífica posse, livre e desembaraçado de todos e quaisquer ônus reais, judiciais ou extrajudiciais, arresto
+            , sequestro, foro ou pensão, inclusive hipotecas, mesmo legais, do imóvel constituído pela área situado na:
+            = @unit.complete_address rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @unit.city.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @unit.city.state.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            , assim descrito e caracterizado, com área total de
+            = @unit.area
+            m2, medindo:
+            = @unit.front_area.present? ? @unit.front_area : "xxxxxx"
+            m pela frente,
+            = @unit.back_area.present? ? @unit.back_area : "xxxxxx"
+            m pelo fundo,
+            = @unit.right_area.present? ? @unit.right_area : "xxxxxx"
+            m pela lateral direita e
+            = @unit.left_area.present? ?  @unit.left_area :  "xxxxxx"
+            m pela lateral esquerda, limitando-se pela frente com
+            = @unit.limit_front.present? ? @unit.limit_front : "xxxxxx"
+            , pelo fundo com o
+            = @unit.limit_back.present? ?  @unit.limit_back :  "xxxxxx"
+            , pela lateral direita com
+            = @unit.limit_right.present? ?  @unit.limit_right : "xxxxxx"
+            , e pela lateral esquerda com
+            = @unit.limit_left.present? ?  @unit.limit_left : "xxxxxx"
+            , conforme Projeto Urbanístico
+            = @unit.urbanistic_project.present? ?  @unit.urbanistic_project : "xxxxxx"
+            , inserido no processo administrativo nº:
+            = @candidate.current_procedural.present? && @candidate.current_procedural.assessment.present? ? "#{@candidate.current_procedural.assessment.document_number}." : "<span>COMPLETAR DADOS</span>".html_safe
+            ,inscrito junto a Secretaria de Fazenda do Distrito Federal sob o nº
+            = "#{@candidate.current_cadastre_address.unit.registration_iptu}." rescue "xxxxxx"
+            %b SEGUNDO:
+            Cumpridas as exigências formais, e visando à regularização fundiária nas cidades consolidadas, oriundas de programas de assentamento promovidos pelo Distrito
+            Federal, bem como à regularização fundiária de imóveis do Distrito Federal de até duzentos e cinquenta metros quadrados aos atuais ocupantes de parcelamentos
+            informais consolidados, previstos na Estratégia de Regularização Fundiária de Interesse Social do Plano Diretor de Ordenamento Territorial, o CONCEDENTE declara
+            que reconhece o lote de terreno acima identificado, como efetivamente ocupado e concede o uso ao(s) CONCESSIONÁRIO(S) acima referido(a)(s).
+            %b TERCEIRO:
+            o presente reconhecimento de ocupação e concessão de uso se dá em caráter provisório, considerada a
+            necessidade de o Poder Público, durante o processamento da Regularização Fundiária Urbana, garantir ao(s)
+            CONCESSIONÁRIO(S) dos núcleos urbanos informais situados em áreas passiveis de regularização a permanência
+            em suas respectivas unidades imobiliárias já existentes, e verificado o cumprimento do contido no
+            artigo 4º, incisos I a V e artigo 8º, inciso II, da Lei Distrital nº 3.877, de 26 de junho de 2006; artigo 3º,
+            incisos I a V da Lei Distrital nº 4.996, de 19 de dezembro de 2012; artigo 1º, inciso I, artigo 2º, incisos I a IV
+            e artigo 5º todos do Decreto Distrital nº 23.592, de 10 de fevereiro de 2003; artigo 313 e inciso III do artigo 329, da Lei
+            Orgânica do Distrito Federal e; § 7º, artigo 28, da Medida Provisória 759, de 22 de dezembro de 2016.
+            %b QUARTO:
+            o presente reconhecimento de ocupação e concessão de uso será automaticamente revogado:
+            %b a)
+            por critérios de conveniência e oportunidade administrativas;
+            %b b)
+            por necessidade pública;
+            %b c)
+            em casos de desapropriação e interdição;
+            %b d)
+            quando o(a)(s) CONCESSIONÁRIO(S) criar(em) embaraços à fiscalização administrativa;
+            %b e)
+            quando o(a)(s) CONCESSIONÁRIO(S) prestar(em) declarações inverídicas ou utilizar(em) documentos falsos para se habilitar(em) ao reconhecimento de ocupação;
+            %b f)
+            quando o(a)(s) CONCESSIONÁRIO(S) infringir(em) qualquer cláusula do presente termo.
+            %b QUINTO:
+            o(s) CONCESSIONÁRIO(S) está(ão) ciente(s) de que é(são) de sua inteira responsabilidade a ocupação, guarda, manutenção e conservação
+            do imóvel, bem como o pagamento de taxas e tributos a ele inerentes. Ademais, declara(m) ciência de que, enquanto não houver transferência
+            definitiva do domínio pelo Poder Público para o(a)(s) CONCESSIONÁRIO(S), é vedada a comercialização, cessão, permuta, locação ou qualquer outra
+            operação imobiliária sobre a posse do bem objeto do presente RECONHECIMENTO DE OCUPAÇÃO E CONCESSÃO DE USO a terceiros, sob qualquer título,
+            salvo se, previamente, autorizado o(a)(s) CONCESSIONÁRIO(S) pelo DISTRITO FEDERAL.
+      %div{:style => "page-break-after:always"}
+    %page{:size => "A4"}
+      .container{style: "font-size: 10pt"}
+        .content.lateral-margins.spacing
+          - if @allot.cancelled == true
+            = image_tag('/portal/images/cancelled.png', width: '500', style: 'position: absolute; top: 1300px; margin-left: 150px; opacity: 0.8' )
+          %b SEXTO:
+          uma vez revogado o presente RECONHECIMENTO DE OCUPAÇÃO E CONCESSÃO DE USO, obrigam(m)-se o(a)(s) CONCESSIONÁRIO(S) a restituir o imóvel ao DISTRITO
+          FEDERAL, no prazo máximo de 30 (trinta) dias contados da data de revogação, sem que o(a)(s) CONCESSIONÁRIO(S) possa(m) reclamar por qualquer indenização,
+          de qualquer natureza, inclusive por benfeitorias ou acessões,  ou exercer direito de retenção por benfeitorias eventualmente realizadas, nada mais tendo a
+          reclamar, a qualquer título e ou qualquer natureza, no pressente ou futuro. Após o referido prazo, a permanência do(a)(s) CONCESSIONÁRIO(S) no imóvel
+          ensejará a adoção das medidas necessárias à retomada do imóvel, independentemente de interpelação judicial. O presente RECONHECIMENTO DE OCUPAÇÃO E CONCESSÃO
+          DE USO poderá ser transmitido aos sucessores ou herdeiros devidamente habilitados em arrolamento ou inventário.
+          %b SÉTIMO:
+          o presente instrumento não é passível de registro imobiliário; todavia, se e quando o imóvel, cuja ocupação e concessão de uso ora se reconhecem, for
+          incluído em Projeto de Regularização Fundiária Urbana de Interesse Social devidamente aprovado pelo Governo do Distrito Federal e levado a registro
+          imobiliário, com o endereçamento claro e preciso, o presente contrato poderá ser utilizado como título de posse, ocasião em que o DISTRITO FEDERAL
+          reconhece a posse de imóvel objeto de regularização fundiária urbana de interesse social, com a identificação do ocupante e do tempo e natureza da
+          posse, ficando o órgão responsável pelo desenvolvimento da política habitacional do Distrito Federal autorizado a conceder o direito de propriedade
+          aos ocupantes do núcleo urbano informal regularizado.
+          %b OITAVO:
+          o foro competente para dirimir quaisquer dúvidas oriundas do presente instrumento de RECONHECIMENTO DE OCUPAÇÃO E CONCESSÃO
+          DE USO será o das Varas de Fazenda Pública do Distrito Federal ou dos Juizados Especiais de Fazenda Pública do Distrito Federal.
+          Assim, por se acharem justos e contratados, após lido e relido este instrumento particular, com a permissão do art. 108 da Lei nº
+          10.406, de 10/01/2002 (Código Civil Brasileiro), passado em 03 (três) vias, contendo 02 (duas) laudas, achado no conforme, aceitam-no, outorgam-no e o
+          assinam, dando-o por bom, firme e valioso, valendo para as partes e seus sucessores, com as testemunhas ao final indicadas, presentes a tudo.
+          %br
+          %br
+          .div-center
+            %b= "Brasília, #{allotment.date_doc.day} de #{I18n.t("date.month_names")[allotment.date_doc.month]} de #{allotment.date_doc.year}"
+          %br
+            %br
+            .div-center
+              _________________________________________________
+              %br
+              =allotment.print_type.main_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+              %br
+              =allotment.print_type.main_cpf rescue "<span>COMPLETAR DADOS</span>".html_safe
+            %br
+            %br
+            .div-center
+              _________________________________________________
+              %br
+              = @candidate.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+              %br
+              Donatário(a)
+            - if @dependent.present?
+              .div-center
+                _________________________________________________
+                %br
+                = @dependent.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+                %br
+                Donatário(a)
+            .div-center
+              %h4 Testemunhas:
+            .content.lateral-margins.spacing
+              %table{border: 0, style: "width: 550px; margin: 0 auto"}
+                %tr
+                  %td
+                    %center
+                      __________________________________________
+                      %br
+                      = @allotment.print_type.first_attestant_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+                      %br
+                      = "CPF/MF nº #{@allotment.print_type.first_attestant_cpf}" rescue "<span>COMPLETAR DADOS</span>".html_safe
+                  %td
+                    %center
+                      ___________________________________________
+                      %br
+                      = @allotment.print_type.second_attestant_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+                      %br
+                      = "CPF/MF nº #{@allotment.print_type.second_attestant_cpf}" rescue "<span>COMPLETAR DADOS</span>".html_safe
+          .div-center
+            = image_tag ::PrintingQrcodeService.generate!("http://www.codhab.df.gov.br/enderecos/occupation?id=#{@unit.id}")
+            %br
+            %a{style: "font-size: 9px"}= Digest::MD5.hexdigest @unit.id.to_s
+      %div{:style => "page-break-after:always"}

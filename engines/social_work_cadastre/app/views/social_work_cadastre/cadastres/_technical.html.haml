@@ -1,0 +1,40 @@
+.row.index-members
+  .col-md-12
+    %h4
+      %b Quadro Técnico
+      %br/
+      %br/
+      = link_to '+Adicionar Quadro Técnico', new_cadastre_cadastre_member_path(@cadastre), remote: true, class: 'btn btn-primary btn-sm '# if policy(:control_notice_situation, namespace: Cpl).create?
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Nome
+          %th Formação
+          %th Rg
+          %th Cpf
+          %th Telefone
+          %th Celular
+          %th Atividade
+          %th Registro no Crea
+          %th Ações
+      %tbody
+        - if @cadastre_members.present?
+          - @cadastre_members.each do |member|
+            %tr
+              %td= member.name
+              %td= member.formation
+              %td= member.rg
+              %td= member.cpf
+              %td= member.telephone
+              %td= member.celphone
+              %td= member.activite
+              %td= member.registration_crea
+              %td
+                .menu
+                  = link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_cadastre_member_path(member.cadastre_id,member), title: 'Editar', class: 'btn btn-warning btn-sm',  remote: true
+                  = link_to "<i class='glyphicon glyphicon-remove'></i>".html_safe, cadastre_cadastre_member_path(member.cadastre_id,member), title: "Excluir", class: 'btn btn-warning btn-sm', method: :delete, data: {confirm: "#{t(:confirm_delete)}"}
+
+        - else
+          %tr
+            %td{colspan: 8}
+              %i Nenhum registro cadastrado.

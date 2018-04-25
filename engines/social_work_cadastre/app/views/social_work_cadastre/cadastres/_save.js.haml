@@ -1,0 +1,5 @@
+- if @cadastre.errors.any?
+  $('#modal .modal-content').html("#{escape_javascript(render 'edit')}")
+- else
+  $('#modal').modal('hide')
+  location.reload();

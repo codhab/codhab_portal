@@ -1,0 +1,26 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b
+                Indicação ao Empreendimento
+        .row
+          .col-md-12
+            - if @indications.present?
+              - @indications.order(created_at: :desc).each_with_index do |indication, i|
+                %table.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th Empreeendimento
+                      %th Data da Indicação
+                      %th Situação da Indicação
+                      %th Data da Inativação
+                  %tbody
+                    %tr
+                      %td= indication.enterprise.name rescue "Sem informação"
+                      %td= indication.created_at.strftime('%d/%m/%Y')
+                      %td= indication.inactive == true ? "Indicação Inativa" : "Indicação Ativa"
+                      %td= indication.inactive_date.strftime('%d/%m/%Y') rescue "Sem informação"

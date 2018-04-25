@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h2
+              %b Detalhamento de geolocalização
+        %br/
+        .row
+          .col-md-12
+            %h3 Total listado: #{@geolocations.count}
+            = link_to "Voltar para mapa", geolocation.cadastres_path(params)
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr 
+                  %th Nome
+                  %th Pontuação
+                  %th Programa
+              %tbody
+                - @geolocations.each do |item|
+                  %tr
+                    %td= item.cadastre.name
+                    %td= item.general.total
+                    %td= item.cadastre.program.name

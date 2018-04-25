@@ -1,0 +1,12 @@
+%p
+  %b Arquivos
+
+- if action.uploads.present?
+  %table.table.table-bordered
+    %tbody
+      - action.uploads.each do |upload|
+        %tr 
+          %td= upload.category.name   
+- else
+  %p 
+    %i Nenhum arquivo enviado.

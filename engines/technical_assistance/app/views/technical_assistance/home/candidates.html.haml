@@ -1,0 +1,33 @@
+.container{:style => "background: #ffffff"}
+  .row
+    .col-md-12
+      %h1
+        %b
+          = @station.name
+          -# = @station.city_id
+  .row
+    .column
+      .col-md-12
+        %table.ui.celled.table.yellow
+          %thead
+            %tr
+              %th Nome
+              %th CPF
+              %th Nº de processo
+              %th Localidade
+              %th Empresa
+              %th Valor da Obra
+          %tbody
+            - @candidates.each do | candidate |
+              %tr
+                %td= candidate.name
+                %td= candidate.cpf
+                %td= candidate.process_number
+                %td= candidate.station.name rescue t(:no_information)
+                %td= candidate.company.name rescue t(:no_information)
+                %td= number_to_currency candidate.project_value
+          %tfoot
+            %tr{style: 'background-color: #F2F2F2'}
+              %td{colspan: 5}
+                %b= "Total de Registros: #{@candidates.count}"
+              %td.collapsing= number_to_currency @candidates.sum(:project_value)

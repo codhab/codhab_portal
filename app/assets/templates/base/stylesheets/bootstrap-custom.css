@@ -1,0 +1,2338 @@
+footer{
+  background: white;
+  overflow: hidden;
+}
+p a:hover{
+  color: #0297C2;
+    text-decoration: underline;
+}
+.navbar-codhab{
+  background-color: #fff;
+  margin-bottom: 0;
+}
+.logo_nav{
+text-align: left;
+
+}
+.logo_nav img{
+  width: 175px;
+
+}
+.navbar-brand{
+  height: 75px;
+  padding-top: 0px;
+  font-family: roboto;
+}
+.navbar-toggle{
+  margin-top: 25px;
+}
+.submenu_title{
+  display: block;
+  margin-left: 39px;
+  margin-bottom: 20px;
+  line-height: 40px;
+  font-weight: bold;
+}
+/** menu superior*/
+.item-menu-top:hover>ul{
+  display: block!important;
+}
+.linkmenus{
+  color:#fff;
+  text-decoration: none;
+}
+.linkmenus:hover, .linkmenus:focus{
+  color:#fff;
+}
+.dropdown-menu-top{
+  position: absolute;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.item-submenu-top{
+  width: 201px;
+  padding-right: 0!important;
+}
+.submenu_title_top{
+  display: block;
+  margin-left: 35px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #303236 !important;
+  padding: 8px 0px 15px 0;
+  font-size: 16px;
+  margin-bottom: -10px;
+}
+.link_submenu_top{
+
+  vertical-align: top;
+  margin: 20px;
+  font-size: 13px;
+  /*border-bottom: 1px dotted rgba(15, 15, 15, 0.8);*/
+  padding-bottom: 5px;
+  margin-bottom: 7px;
+  line-height: 1.2;
+  margin-left: 0;
+  color: #303236!important;
+  margin-top: 0px;
+}
+.submenu_title_top_fone{
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+}
+.dropdown-menu-top ul li{
+  color: #000!important;
+
+}
+
+/* page single*/
+
+
+.box {
+margin-top: 0;
+}
+
+.title_green{
+  text-align: center;
+  display: block;
+  color: #333;
+  font-size: 17px;
+  color: #012942;
+  font-weight: 600;
+}
+.link_title_green{
+  color: #333;
+  list-style: none;
+  padding-left: 0;
+}
+.link-submenu-sidebar{
+  color: #55585e;
+  font-size: 13px;
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+    list-style: none;
+}
+.link-submenu-sidebar a{
+  background: url('/images/sidebararrow.png') no-repeat 0% 55%;
+  padding-left:25px;
+  color: #55585e;
+}
+.link-submenu-sidebar a:hover{
+  color: #55585e;
+  text-decoration: none;
+}
+.link-submenu-sidebar:hover {
+  background-color: #fff;
+
+}
+
+.box_internal_notices{
+  border-radius: 4px;
+  background: #fff;
+  padding-bottom: 20px;
+}
+.title_box_internal_notices{
+    padding: 25px;
+
+
+}
+.search_box_internal_notices{
+  border-radius: 4px;
+  box-shadow: 0 0 3px #C9CACA;
+  padding: 6px;
+}
+.post_notices{
+  color: #989898;
+}
+
+
+.box_internal{
+border-radius: 4px;
+box-shadow: 0 0 3px #C9CACA;
+background: #fff;
+padding-bottom: 20px;
+}
+.post{
+  padding: 0 2px 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  overflow: hidden;
+}
+.post_title{
+  font-weight: 600;
+  font-size: 36px;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+.post-post{
+  font-size: 13px;
+  line-height: 25px;
+  text-align: justify;
+}
+.post_meta{
+  border-bottom: 1px solid #eee;
+  text-align: right;
+  padding: 10px 10px 4px;
+      min-height: 40px;
+}
+.imagem_post{max-height: 375px;overflow: hidden;}
+.imagem_post img{
+  width: 100%;
+}
+.post_semnome{
+  padding: 0 2px 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+}
+.post_date {
+  padding: 0 35px 0 0;
+  line-height: 35px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  margin-right: 23px;
+  color: #8397a3;
+  text-decoration: none;
+}
+.button_back {
+  color: #fff;
+font-weight: bold;
+text-transform: uppercase;
+font-size: 13px;
+text-decoration: none;
+border-radius: 2px;
+padding: 12px 20px;
+display: block;
+background: #004a77;
+float: right;
+}
+.button_back:hover,.button_back:visited{
+  color: white;
+  text-decoration: none;
+}
+.content_post{
+  padding:20px;
+}
+/*
+.content_post img{
+  width: 100%;
+  height: 100% !important;
+}
+*/
+/*fim da pagina single*/
+
+
+/*cores do menu*/
+
+#link_habitacao{
+  color: #289728;
+}
+#link_regularizacao{
+  color: #feaa15;
+}
+#link_entidades{
+  color: #f4400a;
+}
+#link_assistencia{
+  color: #c9155c;
+}
+#link_mobilizacao{
+  color: #BB1630;
+}
+#link_servicos{
+  color: #147EA1;
+}
+#link_editais{
+  color: #7c3961
+}
+
+#link_concursos{
+  color: #83847b;
+}
+#link_producao{
+  color: #c9155c;
+}
+#link_acessoainformacao{
+  color: #fff;
+}
+.menu-insider-li{
+  display: block;
+  font-size:14px;
+}
+.submenu_title{
+  display: block;
+  margin-left: 39px;
+  margin-bottom: 20px;
+  line-height: 40px;
+  font-weight: bold;
+}
+
+.link_submenu {
+  display: block;
+  /* vertical-align: top; */
+  margin: 20px;
+  font-size: 13px;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.4);
+  padding-bottom: 5px;
+  margin-bottom: 7px;
+  line-height: 1.2;
+  margin-left: 0;
+}
+
+.navbar-default .navbar-nav>li>a{
+  font-weight: 600;
+  font-size: 17px;
+  }
+
+.navbar-default .navbar-nav>.habitacao>a:focus, .navbar-default .navbar-nav>.habitacao>a:hover{
+background-color:#289728!important;
+color: #fff!important;
+}
+.habitacao:hover, .habitacao:focus>li>a, .habitacao:active{
+  background-color: #289728!important;
+  color:#fff!important;
+}
+
+.item_menu:hover>ul, .item-menu:focus>ul{
+  display: block!important;
+}
+.item_menu:focus>a, .link_submenu a, .menu-insider-li span, .item_menu:hover>a {
+  color:#fff!important;
+}
+
+#habitacao{
+  background-color:#289728;
+  width: 900px;
+}
+.menu-insider-li{
+  float: left;
+  display: block;
+}
+.dropdown-menu-mod{
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  padding: 20px 0;
+}
+
+
+.navbar-default .navbar-nav>.regularizacao>a:focus, .navbar-default .navbar-nav>.regularizacao>a:hover{
+background-color:#feaa15!important;
+color: #fff!important;
+}
+.regularizacao:hover,  .regularizacao:focus>li>a, .regularizacao:active{
+  background-color: #feaa15!important;
+  color:#fff;
+}
+
+#regularizacao{
+  background-color:#feaa15;
+  width: 500px;
+}
+.menu-insider-li{
+  float: left;
+  display:block;
+}
+.dropdown-menu-mod{
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.navbar-default .navbar-nav>.entidades>a:focus, .navbar-default .navbar-nav>.entidades>
+a:hover{
+background-color:#f4400a!important;
+color: #fff!important;
+}
+.entidades:hover,
+.entidades:focus>li>a,
+.entidades:active{
+  background-color: #f4400a!important;
+  color:#fff!important;
+}
+#entidades{
+  background-color:#f4400a;
+  width: 500px;
+}
+.navbar-default .navbar-nav>.assistencia>a:focus, .navbar-default .navbar-nav>.assistencia>
+a:hover{
+background-color:#c9155c !important;
+color: #fff!important;
+}
+.assistencia:hover,
+.assistencia:focus>li>a,
+.assistencia:active{
+  background-color: #c9155c !important;
+  color:#fff!important;
+}
+#assistencia{
+  background-color:#c9155c;
+  width: 500px;
+}
+.navbar-default .navbar-nav>.mobilizacao>a:focus, .navbar-default .navbar-nav>.mobilizacao>
+a:hover{
+background-color:#BB1630 !important;
+color: #fff!important;
+}
+.mobilizacao:hover,
+.mobilizacao:focus>li>a,
+.mobilizacao:active{
+  background-color: #BB1630 !important;
+  color:#fff!important;
+}
+#mobilizacao{
+  background-color:#BB1630;
+  width: 500px;
+}
+.menu-insider-li{
+  float: left;
+  display:block;
+}
+.dropdown-menu-mod{
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.navbar-default .navbar-nav>.servicos>a:focus, .navbar-default .navbar-nav>.servicos>
+a:hover{
+background-color:#147EA1!important;
+color:#fff!important;
+}
+.servicos:hover{
+  background-color: #147EA1;
+  color:#fff!important;
+}
+#servicos{
+  background-color:#147EA1;
+  width: 640px;
+}
+ .navbar-default .navbar-nav>.editais>a:focus, .navbar-default .navbar-nav>.editais>
+a:hover{
+background-color:#7c3961!important;
+color: #fff!important;
+}
+.editais:hover{
+  background-color: #7c3961;
+  color:#fff!important;
+}
+#editais{
+  background-color:#7c3961;
+  width:1150px;
+  margin-left: -680px;
+}
+.navbar-default .navbar-nav>.concursos>a:focus, .navbar-default .navbar-nav>.concursos>
+a:hover{
+background-color:#83847b!important;
+color:#fff!important;
+}
+.navbar-default .navbar-nav>.acessoainformacao>a:focus, .navbar-default .navbar-nav>.acessoainformacao>
+a:hover{
+color:#012942!important;
+}
+.navbar-default .navbar-nav>.producao>a:focus, .navbar-default .navbar-nav>.producao>
+a:hover{
+background-color:#c9155c!important;
+color: #fff!important;
+}
+.concursos:hover{
+  background-color: #83847b;
+}
+.producao:hover{
+  background-color: #c9155c;
+  color:#fff!important;
+}
+#concursos{
+  background-color:#83847b;
+  width: 230px;
+}
+#acessoainformacao{
+  background-color:#012942;
+}
+#producao{
+  background-color:#c9155c;
+  width: 230px;
+}
+
+  /*fim das cores do menu*/
+.navbar-superior{
+  height: 35px;
+  background-color: #012942;
+  font-size: 13px;
+  font-weight: normal;
+}
+.navbar-superior li{
+  float: left;
+  color: #fff;
+  list-style: none;
+  padding: 8px 30px 8px 0px;
+}
+.navbar-nav>li>a{
+  padding-top: 25px;
+}
+.item_menu{
+  height: 75px;
+}
+
+.sliderlindo {
+  height: 440px;
+  background-color: #ccc;
+
+}
+
+.sliderinferior {
+  height: 46px;
+  background-color: #595151;
+}
+.thumbnail {
+  background-color: #fff;
+}
+.thumbnail-img{
+  width: 100%;
+margin: 0 auto;
+  height: 155px;
+  overflow: hidden;
+}
+.thumbnail-img img{
+  width: 100%;
+height: auto;
+}
+.caption_notice{
+  border-bottom: 1px dotted #cdcdcd;
+    padding-top: 13px!important;
+    height: 46px;
+}
+.link_caption {
+  margin-left: 10px;
+  font-family:Arial;
+  color:#012942;
+  text-transform:uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.link_caption_date{
+  color: #8397A3;
+  float: right;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 35px;
+  margin-right: 20px;
+  margin-top: -8px;
+
+  text-transform: uppercase;
+  width: 90px;
+}
+.link_caption_text a, .council{
+  color:#818285;
+}
+.title_notice {
+  font-family: Arial;
+  color: #818285;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+
+}
+.link_caption_text {
+padding: 0px 15px 15px 4px;
+}
+.title-caption-text{
+  color: #333;
+  font-size: 22px;
+  font-weight: 600;
+
+}
+.title-caption-text:hover{
+  color:#333 ;
+  text-decoration: none;
+  border-bottom: 1px dotted #000;
+}
+.results{
+  background-image: url('../img/estadio.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center top;
+  background-attachment: fixed;
+  width: 100%;
+  height: 790px;
+}
+.title_video {
+  font-family: Arial;
+  color: #004A77;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+}
+.video_codhab_foco{
+  height: 540px;
+  background-color: #ccc;
+}
+.border_footer{
+  border-top: 1px dotted #cdcdcd;
+}
+.block_footer{
+  height: 290px;
+  margin-top: 80px;
+}
+.logo_footer {
+  text-align: center;
+}
+
+.logo_footer img{
+padding-top: 80px;
+width:80%;
+}
+
+.box_footer{
+    width:300px;
+    padding: 5px;
+    margin: auto;
+    border-bottom: 1px dotted #cdcdcd;
+}
+
+  .title_notice_footer {
+    font-family: Arial;
+    color:#292728;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px 30px 15px;
+    width: 400px;
+    margin: auto;
+    border-bottom: 1px dotted #cdcdcd;
+    text-align: center;
+  }
+  .link_notices_footer {
+    font-family: arial;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #333;
+    font-size: 12px;
+    text-align: left;
+    text-align: center;
+  }
+
+.date_link_notices{
+  font-family: arial;
+  margin-bottom: 5px!important;
+  font-size: 13px;
+  text-align: left;
+  text-align: center;
+}
+
+.title_contact_footer {
+  font-family: Arial;
+  color:#292728;
+  font-size: 16px;
+  font-weight: bold;
+  /*padding: 5px 30px 15px;*/
+  border-bottom: 1px dotted #cdcdcd;
+  text-align: center;
+  width:100%;
+  margin: auto;
+  border-bottom: 1px dotted #cdcdcd;
+}
+.contact_box{
+  padding:5px;
+
+}
+.contact_box_4{
+  margin-top: 34px;
+}
+.contact {
+  font-family: arial;
+  cursor: pointer;
+  color: #333;
+  font-size: 13px;
+  text-align: center;
+}
+.btn-primary-mod {
+    color: #fff;
+    background-color: #012942;
+    border-color: #012942;
+}
+.btn-primary-mod:hover{
+  color: white;
+  text-decoration: none;
+}
+body{
+  background-color: #EBECF0;
+}
+/*carta*/
+.totalresult{
+  margin-top: 40px;
+}
+.carta{
+  top: 0px!important;
+  margin-left: 30px!important;
+  background-image: url('/images/carta_site.png');
+  background-repeat: no-repeat;
+  padding: 0px!important;
+  padding-top: 0px!important;
+  width: 61px;
+  height: 72px;
+}
+.carta2{
+  top: 40px!important;
+  margin-left: 10px!important;
+  background-image: url('/images/sinj_df.png');
+  background-repeat: no-repeat;
+  padding: 0px!important;
+  padding-top: 0px!important;
+  width: 66px;
+  height: 67px;
+}
+.mes_corrente_result{
+  display: none;
+}
+/* Portrait and Landscape iphone4*/
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .fundo_resultados{
+      height: 665px;
+    }
+    .totalresult{
+      margin-top: 10px;
+    }
+    .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+      display: none;
+    }
+    .bloco_responsivo, .mes_corrente_result{
+      display: block!important;
+    }
+    .image_bloco_responsivo{
+      display: none;
+    }
+    .menu-insider-li{
+      clear: both;
+      width: 100%;
+      padding: 0 20px;
+    }
+    .menu-insider-li span, .menu-insider-li ul{
+      margin-left: 0;
+      padding-left: 0;
+    }
+    #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+      width: 100%!important;
+      margin:0px;
+    }
+    .dropdown-menu {
+      position: absolute!important;
+    }
+    /*INICIO responsivo acoes urbanas*/
+    .action_title_home{
+    padding-left: 0!important;
+    height: 361px;
+    }
+    .action_button{
+      padding: 7px 26px!important;
+      width: 260px!important;
+    }
+    .action_button.action_button_dl{
+      width: 240px!important;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .action_button.action_button_galeria{
+      padding: 7px 26px!important;
+      width: 190px!important;
+      text-align: center;
+    }
+    .col-md-12.no_padding.action_inscription_button_2.texto-gigante{
+    padding-left: 0!important;
+    height: 361px;
+    }
+    .about_action_title{
+      font-size: 45px;
+      font-weight: bold;
+      color: #fff;
+      display: block;
+      margin-top: 105px;
+      transform: rotate(0deg)!important;
+      /* Safari */
+      -webkit-transform: rotate(0deg)!important;
+
+      /* Firefox */
+      -moz-transform: rotate(0deg)!important;
+
+      /* IE */
+      -ms-transform: rotate(0deg)!important;
+
+      /* Opera */
+      -o-transform: rotate(0deg)!important;
+
+      /* Internet Explorer */
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    }
+    .col-md-2.about_action{
+      height: 80px;
+    }
+    .about_action_title{
+      text-align: center;
+      font-size: 50px;
+      margin-top: 0!important;
+    }
+    .col-md-10.about_action_text{
+      overflow: hidden;
+      height: initial;
+    }
+    .col-md-12.no_padding.slider.margint50{
+      display: none;
+    }
+    .row.no_{
+      padding-top: 20px;
+    }
+    .slider_retardado{
+      display: none!important;
+    }
+    .title_projetos{
+      font-size: 25px!important;
+    }
+    .slider_mongol>.bx-wrapper>.bx-viewport{
+    	height: 616px!important;
+    }
+
+}
+/* Landscape iphone 4*/
+/* Portrait */
+@media only screen
+  and (device-width: 320px)
+  and (device-height: 480px)
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .fundo_resultados{
+      height: 665px;
+    }
+    .bxslide2 li img{
+      display: none!important;
+    }
+    .bxslide2 .new-caption{
+      width: 100%;
+    }
+      .navbar-superior,.blocovid,.bx-controls{
+      display: none;
+    }
+    .bloco_responsivo, .mes_corrente_result{
+      display: block!important;
+    }
+    .image_bloco_responsivo{
+      display: none;
+    }
+    .publicity{
+      margin: 0 0 25px 0;
+    }
+    .publicity2{
+      margin: 0;
+    }
+    #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+      width: 100%!important;
+    }
+    .tab-fundo img{
+      width: 100%;
+    }
+    .tab-mes{
+      height: 150px;
+    }
+    .tab-mes span{
+      display: block;
+      float: left;
+      margin-top: 20px;
+    }
+    .homeVideoWrapper{
+      display: none;
+    }
+    .item_menu{
+      height: 55px;
+    }
+    #editais{
+      margin:0px;
+    }
+    .topSlider_action{
+      display: none;
+    }
+    .action_thumb{
+      background-repeat: no-repeat;
+      width: 100%;
+    }
+    /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+    .slider_retardado{
+      display: none!important;
+    }
+    .title_projetos{
+      font-size: 25px!important;
+    }
+    .slider_mongol>.bx-wrapper>.bx-viewport{
+    	height: 616px!important;
+    }
+    /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+    .fundo_video{
+      display:none;
+    }
+    .fundo_resultados{
+      height: 630px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .dados_slider{
+      font-size: 30px;
+      width: 378%;
+    }
+    #slider_meses{
+      display:none!important;
+    }
+    .span_dados{
+      font-size: 27px;
+    }
+    .col-md-3.botoes1{
+      margin-left: 25px;
+    }
+    .col-md-3.botoes2{
+      margin-left: 14px;
+    }
+    .col-md-3.botoes3{
+      margin-left: 27px;
+    }
+    .col-md-3.botoes4{
+      margin-bottom: 13px;
+      width: 213px;
+      margin-left: 13px;
+    }
+    .blocobotoes{
+      margin-left: 10px;
+    }
+
+}
+/* Landscape iphone 4*/
+@media only screen
+  and (device-width: 480px)
+  and (device-height: 320px)
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: landscape)  {
+    .fundo_resultados{
+      height: 665px;
+    }
+    .bxslide2 li img{
+      display: none!important;
+    }
+    .bxslide2 .new-caption{
+      width: 100%;
+    }
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+      display: none;
+    }
+    .bloco_responsivo, .mes_corrente_result{
+      display: block!important;
+    }
+    .image_bloco_responsivo{
+      display: none;
+    }
+    .publicity{
+      margin: 0 0 20px 0!important;
+    }
+    .publicity2{
+      margin: 0;
+    }
+    #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+      width: 100%!important;
+    }
+
+    .tab-fundo img{
+      width: 100%;
+    }
+    .tab-mes{
+      height: 150px;
+    }
+    .tab-mes span{
+      display: block;
+      float: left;
+      margin-top: 20px;
+    }
+    .item_menu{
+      height: 55px;
+    }
+    #editais{
+      margin:0px;
+    }
+    .topSlider_action{
+      display: none;
+    }
+    .about_action_title{
+      font-size: 100px!important;
+      text-align: center;
+      transform: rotate(0deg)!important;
+    /* Safari */
+    -webkit-transform: rotate(0deg)!important;
+
+    /* Firefox */
+    -moz-transform: rotate(0deg)!important;
+
+    /* IE */
+    -ms-transform: rotate(0deg)!important;
+
+    /* Opera */
+    -o-transform: rotate(0deg)!important;
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    }
+    .about_action{
+      height: auto!important;
+    }
+    .action_thumb{
+      background-repeat: no-repeat;
+      width: 100%;
+    }
+    /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+    .slider_retardado{
+      display: none!important;
+    }
+    .title_projetos{
+      font-size: 25px!important;
+    }
+    .slider_mongol>.bx-wrapper>.bx-viewport{
+    	height: 616px!important;
+    }
+    /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+    .fundo_video{
+      display:none;
+    }
+    .fundo_resultados{
+      height: 630px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .dados_slider{
+      font-size: 30px;
+      width: 378%;
+    }
+    #slider_meses{
+      display:none!important;
+    }
+    .span_dados{
+      font-size: 27px;
+    }
+  }
+
+/* Landscape iphone 5*/
+@media only screen
+  and (device-width: 568px)
+  and (device-height: 320px)
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    .fundo_resultados{
+      height: 665px;
+    }
+    .bxslide2 li img{
+      display: none!important;
+    }
+    .bxslide2 .new-caption{
+      width: 100%;
+    }
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+      display: none;
+    }
+    .bloco_responsivo, .mes_corrente_result{
+      display: block!important;
+    }
+    .image_bloco_responsivo{
+      display: none;
+    }
+      .dropdown-menu {
+        position: absolute!important;
+      }
+      #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+        width: 100%!important;
+      }
+
+      .tab-fundo img{
+        width: 100%;
+      }
+      .tab-mes{
+        height: 150px;
+      }
+      .tab-mes span{
+        display: block;
+        float: left;
+        margin-top: 20px;
+      }
+      .item_menu{
+        height: 55px;
+      }
+      #editais{
+        margin:0px;
+      }
+      .topSlider_action{
+        display: none;
+      }
+      .about_action_title{
+        font-size: 100px!important;
+        text-align: center;
+        transform: rotate(0deg)!important;
+      /* Safari */
+      -webkit-transform: rotate(0deg)!important;
+
+      /* Firefox */
+      -moz-transform: rotate(0deg)!important;
+
+      /* IE */
+      -ms-transform: rotate(0deg)!important;
+
+      /* Opera */
+      -o-transform: rotate(0deg)!important;
+
+      /* Internet Explorer */
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+      }
+      .about_action{
+        height: auto!important;
+      }
+      .action_thumb{
+        background-repeat: no-repeat;
+        width: 100%;
+      }
+      /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+      .slider_retardado{
+        display: none!important;
+      }
+      .title_projetos{
+        font-size: 25px!important;
+      }
+      .slider_mongol>.bx-wrapper>.bx-viewport{
+      	height: 616px!important;
+      }
+      /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+      .fundo_video{
+        display:none;
+      }
+      .fundo_resultados{
+        height: 630px;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .dados_slider{
+        font-size: 30px;
+        width: 378%;
+      }
+      #slider_meses{
+        display:none!important;
+      }
+      .span_dados{
+        font-size: 27px;
+      }
+    }
+    /*Portrait iphone 5*/
+    @media only screen
+      and (device-width: 320px)
+      and (device-height: 568px)
+      and (-webkit-device-pixel-ratio: 2)
+      and (orientation: portrait) {
+        .fundo_resultados{
+          height: 665px;
+        }
+        .bxslide2 li img{
+          display: none!important;
+        }
+        .bxslide2 .new-caption{
+          width: 100%;
+        }
+          .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+          display: none;
+        }
+        .bloco_responsivo, .mes_corrente_result{
+          display: block!important;
+        }
+        .image_bloco_responsivo{
+          display: none;
+        }
+          .dropdown-menu {
+            position: absolute!important;
+          }
+          .publicity{
+            margin: 0 0 25px 0;
+          }
+          .publicity2{
+            margin: 0;
+          }
+          #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+            width: 100%!important;
+          }
+
+          .tab-fundo img{
+            width: 100%;
+          }
+          .tab-mes{
+            height: 150px;
+          }
+          .tab-mes span{
+            display: block;
+            float: left;
+            margin-top: 20px;
+          }
+          .homeVideoWrapper{
+            display: none;
+          }
+          .item_menu{
+            height: 55px;
+          }
+          #editais{
+            margin: 0px;
+          }
+          .topSlider_action{
+            display: none;
+          }
+          .about_action_title{
+            font-size: 100px!important;
+            text-align: center;
+            transform: rotate(0deg)!important;
+
+          /* Safari */
+          -webkit-transform: rotate(0deg)!important;
+
+          /* Firefox */
+          -moz-transform: rotate(0deg)!important;
+
+          /* IE */
+          -ms-transform: rotate(0deg)!important;
+
+          /* Opera */
+          -o-transform: rotate(0deg)!important;
+
+          /* Internet Explorer */
+          filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+          }
+          .about_action{
+            height: auto!important;
+          }
+          .action_thumb{
+            background-repeat: no-repeat;
+            width: 100%;
+          }
+          /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+          .slider_retardado{
+            display: none!important;
+          }
+          .title_projetos{
+            font-size: 25px!important;
+          }
+          .slider_mongol>.bx-wrapper>.bx-viewport{
+          	height: 616px!important;
+          }
+          /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+          .fundo_video{
+            display:none;
+          }
+          .fundo_resultados{
+            height: 630px;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+          }
+          .dados_slider{
+            font-size: 30px;
+            width: 378%;
+          }
+          #slider_meses{
+            display:none!important;
+          }
+          .span_dados{
+            font-size: 27px;
+          }
+          .col-md-3.botoes1{
+            margin-left: 25px;
+          }
+          .col-md-3.botoes2{
+            margin-left: 14px;
+          }
+          .col-md-3.botoes3{
+            margin-left: 27px;
+          }
+          .col-md-3.botoes4{
+            margin-bottom: 13px;
+            width: 213px;
+            margin-left: 13px;
+          }
+          .blocobotoes{
+            margin-left: 10px;
+          }
+        }
+/* Landscape iphone6*/
+@media only screen
+  and (device-width: 667px)
+  and (device-height: 375px)
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    .fundo_resultados{
+      height: 665px;
+    }
+    .bxslide2 li img{
+      display: none!important;
+    }
+    .bxslide2 .new-caption{
+      width: 100%;
+    }
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult {
+      display: none;
+    }
+    .bloco_responsivo, .mes_corrente_result{
+      display: block!important;
+    }
+    .image_bloco_responsivo{
+      display: none;
+    }
+    #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+      width: 100%!important;
+    }
+    .tab-fundo img{
+      width: 90%;
+    }
+    .tab-mes{
+      height: 150px;
+    }
+    .tab-mes span{
+      display: block;
+      float: left;
+      margin-top: 20px;
+    }
+    .homeVideoWrapper{
+      display: none;
+    }
+    .item_menu{
+      height: 55px;
+    }
+    #editais{
+      margin:0px;
+    }
+    .topSlider_action{
+      display: none;
+    }
+    .about_action_title{
+      font-size: 100px!important;
+      text-align: center;
+      transform: rotate(0deg)!important;
+    /* Safari */
+    -webkit-transform: rotate(0deg)!important;
+
+    /* Firefox */
+    -moz-transform: rotate(0deg)!important;
+
+    /* IE */
+    -ms-transform: rotate(0deg)!important;
+
+    /* Opera */
+    -o-transform: rotate(0deg)!important;
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    }
+    .about_action{
+      height: auto!important;
+    }
+    .action_thumb{
+      background-repeat: no-repeat;
+      width: 100%;
+    }
+    /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+    .slider_retardado{
+      display: none!important;
+    }
+    .title_projetos{
+      font-size: 25px!important;
+    }
+    .slider_mongol>.bx-wrapper>.bx-viewport{
+    	height: 616px!important;
+    }
+    /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+    .fundo_video{
+      display:none;
+    }
+    .fundo_resultados{
+      height: 630px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .dados_slider{
+      font-size: 30px;
+      width: 378%;
+    }
+    #slider_meses{
+      display:none!important;
+    }
+    .span_dados{
+      font-size: 27px;
+    }
+  }
+  /* Portrait iphone6*/
+  @media only screen
+    and (device-width: 375px)
+    and (device-height: 667px)
+    and (-webkit-device-pixel-ratio: 2)
+    and (orientation: portrait) {
+      .fundo_resultados{
+        height: 665px;
+      }
+      .bxslide2 li img{
+        display: none!important;
+      }
+      .bxslide2 .new-caption{
+        width: 100%;
+      }
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+        display: none;
+      }
+      .bloco_responsivo, .mes_corrente_result{
+        display: block!important;
+      }
+      .image_bloco_responsivo{
+        display: none;
+      }
+      .publicity{
+        margin: 0 0 25px 0;
+      }
+      .publicity2{
+        margin: 0;
+      }
+      #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+        width: 100%!important;
+      }
+
+      .tab-fundo img{
+        width: 90%;
+      }
+      .tab-mes{
+        height: 150px;
+      }
+      .tab-mes span{
+        display: block;
+        float: left;
+        margin-top: 20px;
+      }
+      .homeVideoWrapper{
+        display: none;
+      }
+      .item_menu{
+        height: 55px;
+      }
+      #editais{
+        margin:0px;
+      }
+      .topSlider_action{
+        display: none;
+      }
+      .about_action_title{
+        font-size: 100px!important;
+        text-align: center;
+        transform: rotate(0deg)!important;
+      /* Safari */
+      -webkit-transform: rotate(0deg)!important;
+
+      /* Firefox */
+      -moz-transform: rotate(0deg)!important;
+
+      /* IE */
+      -ms-transform: rotate(0deg)!important;
+
+      /* Opera */
+      -o-transform: rotate(0deg)!important;
+
+      /* Internet Explorer */
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+      }
+      .about_action{
+        height: auto!important;
+      }
+      .action_thumb{
+        background-repeat: no-repeat;
+        width: 100%;
+      }
+      /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+      .slider_retardado{
+        display: none!important;
+      }
+      .title_projetos{
+        font-size: 25px!important;
+      }
+      .slider_mongol>.bx-wrapper>.bx-viewport{
+      	height: 616px!important;
+      }
+      /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+      .fundo_video{
+        display:none;
+      }
+      .fundo_resultados{
+        height: 630px;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .dados_slider{
+        font-size: 30px;
+        width: 378%;
+      }
+      #slider_meses{
+        display:none!important;
+      }
+      .span_dados{
+        font-size: 27px;
+      }
+      .col-md-3.botoes1{
+        margin-left: 25px;
+      }
+      .col-md-3.botoes2{
+        margin-left: 14px;
+      }
+      .col-md-3.botoes3{
+        margin-left: 27px;
+      }
+      .col-md-3.botoes4{
+        margin-bottom: 13px;
+        width: 213px;
+        margin-left: 13px;
+      }
+      .blocobotoes{
+        margin-left: 10px;
+      }
+    }
+    /* Portrait iphone 6 Plus*/
+    @media only screen
+      and (device-width: 414px)
+      and (device-height: 736px)
+      and (-webkit-device-pixel-ratio: 3)
+      and (orientation: portrait) {
+        .fundo_resultados{
+          height: 665px;
+        }
+        .bxslide2 li img{
+          display: none!important;
+        }
+        .bxslide2 .new-caption{
+          width: 100%;
+        }
+        .navbar-superior,.blocovid,.bx-controls,.graficoresult {
+          display: none;
+        }
+        .bloco_responsivo, .mes_corrente_result{
+          display: block!important;
+        }
+        .image_bloco_responsivo{
+          display: none;
+        }
+        .publicity{
+          margin: 0 0 25px 0;
+        }
+        .publicity2{
+          margin: 0;
+        }
+        #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acesso_informacao{
+          width: 100%!important;
+        }
+
+        .tab-fundo img{
+          width: 90%;
+        }
+        .tab-mes{
+          height: 150px;
+        }
+        .tab-mes span{
+          display: block;
+          float: left;
+          margin-top: 20px;
+        }
+        .homeVideoWrapper{
+          display: none;
+        }
+        .item_menu{
+          height: 55px;
+        }
+        #editais{
+          margin:0px;
+        }
+        .topSlider_action{
+          display: none;
+        }
+        .about_action_title{
+          font-size: 100px!important;
+          text-align: center;
+          transform: rotate(0deg)!important;
+
+        /* Safari */
+        -webkit-transform: rotate(0deg)!important;
+
+        /* Firefox */
+        -moz-transform: rotate(0deg)!important;
+
+        /* IE */
+        -ms-transform: rotate(0deg)!important;
+
+        /* Opera */
+        -o-transform: rotate(0deg)!important;
+
+        /* Internet Explorer */
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+        }
+        .about_action{
+          height: auto!important;
+        }
+        .action_thumb{
+          background-repeat: no-repeat;
+          width: 100%;
+        }
+        /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+        .slider_retardado{
+          display: none!important;
+        }
+        .title_projetos{
+          font-size: 25px!important;
+        }
+        .slider_mongol>.bx-wrapper>.bx-viewport{
+        	height: 616px!important;
+        }
+        /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+        .fundo_video{
+          display:none;
+        }
+        .fundo_resultados{
+          height: 630px;
+          width: 100%;
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .dados_slider{
+          font-size: 30px;
+          width: 378%;
+        }
+        #slider_meses{
+          display:none!important;
+        }
+        .span_dados{
+          font-size: 27px;
+        }
+        .col-md-3.botoes1{
+          margin-left: 25px;
+        }
+        .col-md-3.botoes2{
+          margin-left: 14px;
+        }
+        .col-md-3.botoes3{
+          margin-left: 27px;
+        }
+        .col-md-3.botoes4{
+          margin-bottom: 13px;
+          width: 213px;
+          margin-left: 13px;
+        }
+        .blocobotoes{
+          margin-left: 10px;
+        }
+      }
+      /* Landscape iphone 6 Plus*/
+      @media only screen
+        and (device-width: 736px)
+        and (-webkit-device-pixel-ratio: 3)
+        and (orientation: landscape) {
+          /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+          .slider_retardado{
+            display: none!important;
+          }
+          /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+          .fundo_resultados{
+            height: 665px;
+          }
+          .bxslide2 li img{
+            display: none!important;
+          }
+          .bxslide2 .new-caption{
+            width: 100%;
+          }
+        .navbar-superior,.blocovid,.bx-controls,.graficoresult {
+            display: none;
+          }
+          .bloco_responsivo, .mes_corrente_result{
+            display: block!important;
+          }
+          .image_bloco_responsivo{
+            display: none;
+          }
+          #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+            width: 100%!important;
+          }
+          .tab-fundo img{
+            width: 90%;
+          }
+          .tab-mes{
+            height: 150px;
+          }
+          .tab-mes span{
+            display: block;
+            float: left;
+            margin-top: 20px;
+          }
+          .homeVideoWrapper{
+            display: none;
+          }
+          .item_menu{
+            height: 55px;
+          }
+          #editais{
+            margin:0px;
+          }
+          .topSlider_action{
+            display: none;
+          }
+          .about_action_title{
+            font-size: 100px!important;
+            text-align: center;
+            transform: rotate(0deg)!important;
+          /* Safari */
+          -webkit-transform: rotate(0deg)!important;
+
+          /* Firefox */
+          -moz-transform: rotate(0deg)!important;
+
+          /* IE */
+          -ms-transform: rotate(0deg)!important;
+
+          /* Opera */
+          -o-transform: rotate(0deg)!important;
+
+          /* Internet Explorer */
+          filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+          }
+          .about_action{
+            height: auto!important;
+          }
+          .action_thumb{
+            background-repeat: no-repeat;
+            width: 100%;
+          }
+        }
+  /* Portrait Galaxy Note - S4 - S3*/
+  @media only screen
+    and (device-width: 360px)
+    and (-webkit-min-device-pixel-ratio: 2)
+    and (orientation: portrait) {
+      .fundo_resultados{
+        height: 665px;
+      }
+      .bxslide2 li img{
+        display: none!important;
+      }
+      .bxslide2 .new-caption{
+        width: 100%;
+      }
+        .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+        display: none;
+      }
+      .bloco_responsivo, .mes_corrente_result{
+        display: block!important;
+      }
+      .image_bloco_responsivo{
+        display: none;
+      }
+      .bloco_responsivo, .mes_corrente_result{
+        display: block!important;
+      }
+      .image_bloco_responsivo{
+        display: none;
+      }
+      .publicity{
+        margin: 0 0 25px 0;
+      }
+      .publicity2{
+        margin: 0;
+      }
+      #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+        width: 100%!important;
+      }
+      .tab-fundo img{
+        width: 100%;
+      }
+      .tab-mes{
+        height: 150px;
+      }
+      .tab-mes span{
+        display: block;
+        float: left;
+        margin-top: 20px;
+      }
+      .homeVideoWrapper{
+        display: none;
+      }
+      .item_menu{
+        height: 55px;
+      }
+      #editais{
+        margin:0px;
+      }
+      .topSlider_action{
+        display: none;
+      }
+      .about_action_title{
+        font-size: 100px!important;
+        text-align: center;
+        transform: rotate(0deg)!important;
+      /* Safari */
+      -webkit-transform: rotate(0deg)!important;
+
+      /* Firefox */
+      -moz-transform: rotate(0deg)!important;
+
+      /* IE */
+      -ms-transform: rotate(0deg)!important;
+
+      /* Opera */
+      -o-transform: rotate(0deg)!important;
+
+      /* Internet Explorer */
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+      }
+      .about_action{
+        height: auto!important;
+      }
+      .action_thumb{
+        background-repeat: no-repeat;
+        width: 100%;
+      }
+      /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+      .slider_retardado{
+        display: none!important;
+      }
+      .title_projetos{
+        font-size: 25px!important;
+      }
+      .slider_mongol>.bx-wrapper>.bx-viewport{
+      	height: 616px!important;
+      }
+      /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+      .fundo_video{
+        display:none;
+      }
+      .fundo_resultados{
+        height: 630px;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .dados_slider{
+        font-size: 30px;
+        width: 378%;
+      }
+      #slider_meses{
+        display:none!important;
+      }
+      .span_dados{
+        font-size: 27px;
+      }
+      .col-md-3.botoes1{
+        margin-left: 25px;
+      }
+      .col-md-3.botoes2{
+        margin-left: 14px;
+      }
+      .col-md-3.botoes3{
+        margin-left: 27px;
+      }
+      .col-md-3.botoes4{
+        margin-bottom: 13px;
+        width: 213px;
+        margin-left: 13px;
+      }
+      .blocobotoes{
+        margin-left: 10px;
+      }
+  }
+
+  @media screen
+  and (device-width: 640px)
+  and (device-height: 360px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: landscape) {
+    .fundo_resultados{
+      height: 665px;
+    }
+    .bxslide2 li img{
+      display: none!important;
+    }
+    .bxslide2 .new-caption{
+      width: 100%;
+    }
+      .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+      display: none;
+    }
+    .bloco_responsivo, .mes_corrente_result{
+      display: block!important;
+    }
+    .image_bloco_responsivo{
+      display: none;
+    }
+    #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+      width: 100%!important;
+    }
+
+    .tab-fundo img{
+      width: 100%;
+    }
+    .tab-mes{
+      height: 150px;
+    }
+    .tab-mes span{
+      display: block;
+      float: left;
+      margin-top: 20px;
+    }
+    .homeVideoWrapper{
+      display: none;
+    }
+    .item_menu{
+      height: 55px;
+    }
+    #editais{
+      margin:0px;
+    }
+    .topSlider_action{
+      display: none;
+    }
+    .about_action_title{
+      font-size: 100px!important;
+      text-align: center;
+      transform: rotate(0deg)!important;
+
+    /* Safari */
+    -webkit-transform: rotate(0deg)!important;
+
+    /* Firefox */
+    -moz-transform: rotate(0deg)!important;
+
+    /* IE */
+    -ms-transform: rotate(0deg)!important;
+
+    /* Opera */
+    -o-transform: rotate(0deg)!important;
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    }
+    .about_action{
+      height: auto!important;
+    }
+    .action_thumb{
+      background-repeat: no-repeat;
+      width: 100%;
+    }
+    /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+    .slider_retardado{
+      display: none!important;
+    }
+    .title_projetos{
+      font-size: 25px!important;
+    }
+    .slider_mongol>.bx-wrapper>.bx-viewport{
+    	height: 616px!important;
+    }
+    /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+    .fundo_video{
+      display:none;
+    }
+    .fundo_resultados{
+      height: 630px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .dados_slider{
+      font-size: 30px;
+      width: 378%;
+    }
+    #slider_meses{
+      display:none!important;
+    }
+    .span_dados{
+      font-size: 27px;
+    }
+}
+
+@media screen
+and (device-width: 640px)
+and (device-height: 360px)
+and (-webkit-device-pixel-ratio: 2)
+and (orientation: landscape) {
+  .fundo_resultados{
+    height: 665px;
+  }
+  .bxslide2 li img{
+    display: none!important;
+  }
+  .bxslide2 .new-caption{
+    width: 100%;
+  }
+    .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+    display: none;
+  }
+  .bloco_responsivo, .mes_corrente_result{
+    display: block!important;
+  }
+  .image_bloco_responsivo{
+    display: none;
+  }
+  #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+    width: 100%!important;
+  }
+
+  .tab-fundo img{
+    width: 100%;
+  }
+  .tab-mes{
+    height: 150px;
+  }
+  .tab-mes span{
+    display: block;
+    float: left;
+    margin-top: 20px;
+  }
+  .homeVideoWrapper{
+    display: none;
+  }
+  .item_menu{
+    height: 55px;
+  }
+  #editais{
+    margin:0px;
+  }
+  .topSlider_action{
+    display: none;
+  }
+  .about_action_title{
+    font-size: 100px!important;
+    text-align: center;
+    transform: rotate(0deg)!important;
+
+  /* Safari */
+  -webkit-transform: rotate(0deg)!important;
+
+  /* Firefox */
+  -moz-transform: rotate(0deg)!important;
+
+  /* IE */
+  -ms-transform: rotate(0deg)!important;
+
+  /* Opera */
+  -o-transform: rotate(0deg)!important;
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  }
+  .about_action{
+    height: auto!important;
+  }
+  .action_thumb{
+    background-repeat: no-repeat;
+    width: 100%;
+  }
+  /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+  .slider_retardado{
+    display: none!important;
+  }
+  .title_projetos{
+    font-size: 25px!important;
+  }
+  .slider_mongol>.bx-wrapper>.bx-viewport{
+    height: 616px!important;
+  }
+  /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+  .fundo_video{
+    display:none;
+  }
+  .fundo_resultados{
+    height: 630px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .dados_slider{
+    font-size: 30px;
+    width: 378%;
+  }
+  #slider_meses{
+    display:none!important;
+  }
+  .span_dados{
+    font-size: 27px;
+  }
+}
+
+@media screen
+and (device-width: 384px)
+and (-webkit-device-pixel-ratio: 2)
+and (orientation: portrait) {
+  .fundo_resultados{
+    height: 665px;
+  }
+  .bxslide2 li img{
+    display: none!important;
+  }
+  .bxslide2 .new-caption{
+    width: 100%;
+  }
+    .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+    display: none;
+  }
+  .bloco_responsivo, .mes_corrente_result{
+    display: block!important;
+  }
+  .image_bloco_responsivo{
+    display: none;
+  }
+  .publicity{
+    margin: 0 0 25px 0;
+  }
+  .publicity2{
+    margin: 0;
+  }
+  #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+    width: 100%!important;
+  }
+
+  .tab-fundo img{
+    width: 100%;
+  }
+  .tab-mes{
+    height: 150px;
+  }
+  .tab-mes span{
+    display: block;
+    float: left;
+    margin-top: 20px;
+  }
+  .homeVideoWrapper{
+    display: none;
+  }
+  .item_menu{
+    height: 55px;
+  }
+  #editais{
+    margin:0px;
+  }
+  .topSlider_action{
+    display: none;
+  }
+  .about_action_title{
+    font-size: 100px!important;
+    text-align: center;
+    transform: rotate(0deg)!important;
+
+  /* Safari */
+  -webkit-transform: rotate(0deg)!important;
+
+  /* Firefox */
+  -moz-transform: rotate(0deg)!important;
+
+  /* IE */
+  -ms-transform: rotate(0deg)!important;
+
+  /* Opera */
+  -o-transform: rotate(0deg)!important;
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  }
+  .about_action{
+    height: auto!important;
+  }
+  .action_thumb{
+    background-repeat: no-repeat;
+    width: 100%;
+  }
+  /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+  .slider_retardado{
+    display: none!important;
+  }
+  .title_projetos{
+    font-size: 25px!important;
+  }
+  .slider_mongol>.bx-wrapper>.bx-viewport{
+    height: 616px!important;
+  }
+  /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+  .fundo_video{
+    display:none;
+  }
+  .fundo_resultados{
+    height: 630px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .dados_slider{
+    font-size: 30px;
+    width: 378%;
+  }
+  #slider_meses{
+    display:none!important;
+  }
+  .span_dados{
+    font-size: 27px;
+  }
+  .col-md-3.botoes1{
+    margin-left: 25px;
+  }
+  .col-md-3.botoes2{
+    margin-left: 14px;
+  }
+  .col-md-3.botoes3{
+    margin-left: 27px;
+  }
+  .col-md-3.botoes4{
+    margin-bottom: 13px;
+    width: 213px;
+    margin-left: 13px;
+  }
+  .blocobotoes{
+    margin-left: 10px;
+  }
+}
+
+/*Portrait nexus 4* - 5x - 6p*/
+@media screen
+and (device-width: 384px)
+and (-webkit-device-pixel-ratio: 2)
+and (orientation: portrait) {
+  .fundo_resultados{
+    height: 665px;
+  }
+  .bxslide2 li img{
+    display: none!important;
+  }
+  .bxslide2 .new-caption{
+    width: 100%;
+  }
+  .navbar-superior,.blocovid,.bx-controls,.graficoresult{
+    display: none;
+  }
+  .bloco_responsivo, .mes_corrente_result{
+    display: block!important;
+  }
+  .image_bloco_responsivo{
+    display: none;
+  }
+  .publicity{
+    margin: 0 0 25px 0;
+  }
+  .publicity2{
+    margin: 0;
+  }
+  #habitacao, #regularizacao,#assistencia,#mobilizacao, #entidades, #servicos, #editais, #concursos, #producao, #acessoainformacao{
+    width: 100%!important;
+  }
+
+  .tab-fundo img{
+    width: 100%;
+  }
+  .tab-mes{
+    height: 150px;
+  }
+  .tab-mes span{
+    display: block;
+    float: left;
+    margin-top: 20px;
+  }
+  .homeVideoWrapper{
+    display: none;
+  }
+  .item_menu{
+    height: 55px;
+  }
+  #editais{
+    margin:0px;
+  }
+  .topSlider_action{
+    display: none;
+  }
+  .about_action_title{
+    font-size: 100px!important;
+    text-align: center;
+    transform: rotate(0deg)!important;
+
+  /* Safari */
+  -webkit-transform: rotate(0deg)!important;
+
+  /* Firefox */
+  -moz-transform: rotate(0deg)!important;
+
+  /* IE */
+  -ms-transform: rotate(0deg)!important;
+
+  /* Opera */
+  -o-transform: rotate(0deg)!important;
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  }
+  .about_action{
+    height: auto!important;
+  }
+  .action_thumb{
+    background-repeat: no-repeat;
+    width: 100%;
+  }
+  /*RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+  .slider_retardado{
+    display: none!important;
+  }
+  .title_projetos{
+    font-size: 25px!important;
+  }
+  .slider_mongol>.bx-wrapper>.bx-viewport{
+    height: 616px!important;
+  }
+  /*FIM RESPONSIVO MOBILIZAÇÃO SOCIAL*/
+  .fundo_video{
+    display:none;
+  }
+  .fundo_resultados{
+    height: 630px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .dados_slider{
+    font-size: 30px;
+    width: 378%;
+  }
+  #slider_meses{
+    display:none!important;
+  }
+  .span_dados{
+    font-size: 27px;
+  }
+
+}

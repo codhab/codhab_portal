@@ -1,0 +1,30 @@
+.row
+  .col-md-12
+    %h2 
+      %b Quero me inscrever
+      %span.pull-right
+        %b= link_to "Quero acessar minha inscrição", project_restrict_path(@project)
+%hr/
+
+.row
+  .col-md-12
+    %table.table.table-hover.table-striped.table-bordred.table-condensed
+      %thead
+        %tr
+          %th Nome
+          %th Valor
+          %th Início
+          %th Fim
+      %tbody
+        - @project.subscribes.each do |subscribe|
+          %tr
+            %td
+              - if subscribe.start > Date.today
+                não aberta
+              - elsif subscribe.end < Date.today
+                inscrições encerradas
+              - else
+                = link_to subscribe.title, concourse.new_project_subscribe_candidate_candidate_path(project_id: @project, subscribe_id: subscribe)
+            %td= number_to_currency(subscribe.type_guide.default_value)
+            %td= subscribe.start.strftime("%d/%m/%Y")
+            %td= subscribe.end.strftime("%d/%m/%Y")

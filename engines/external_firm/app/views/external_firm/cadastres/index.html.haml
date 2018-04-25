@@ -1,0 +1,46 @@
+.ui.grid
+  .row.mini-margin
+    .col-md-12.box
+      .panel.panel-default
+        .panel-heading
+          .row
+            .col-md-12
+              %h1
+                %b Sistema de Indicação por Empresas
+                %br/
+                %small  Listagem de Candidatos Indicados
+                %br/
+                = link_to '+Adicionar Candidato', new_cadastre_path, class: 'btn btn-success '# if policy(:control_notice_situation, namespace: Cpl).create?
+                = link_to 'Encerrar Sessão', logout_sessions_path, class: 'btn btn-danger ', data: { method: 'delete' }# if policy(:control_notice_situation, namespace: Cpl).create?
+
+        %hr/
+        .panel-body
+          .row
+            .col-md-12.input-big
+              %table.ui.table.striped.celled
+                %thead
+                  %tr
+                    %th Nome
+                    %th Cpf
+                    %th Rg
+                    %th Telefone
+                    %th Celular
+                    %th Cidade
+                    %th Endereço
+                    %th Observação
+                %tbody
+                  - if @cadastres.present?
+                    - @cadastres.each do |cadastre|
+                      %tr
+                        %td= cadastre.name
+                        %td= cadastre.cpf
+                        %td= cadastre.rg
+                        %td= cadastre.telephone
+                        %td= cadastre.celphone
+                        %td= cadastre.city.name rescue nil
+                        %td= cadastre.address
+                        %td= cadastre.observation
+                  - else
+                    %tr
+                      %td{colspan: 2}
+                        %i Nenhuma empresa cadastrada.

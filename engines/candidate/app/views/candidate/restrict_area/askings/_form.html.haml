@@ -1,0 +1,6 @@
+= simple_form_for @asking, url: restrict_area_askings_path do |f|
+  = f.input :dependent, label: "Quantos dependentes você possuí?"
+  = f.input :income, label: "Qual sua renda familiar?", input_html: {class: 'money'}
+  = f.input :special_condition, label: "Quantos dependentes com deficiência na família?"
+  = f.submit "Enviar respostas", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+  = link_to "Voltar", restrict_area_root_path, class: 'btn btn-default', data: { disable_with: t(:disable_with)}

@@ -1,0 +1,104 @@
+.container{:style => "background: #ffffff"}
+  .row
+    .col-md-12
+      .slider_retardado
+        .bxslide_action{:style => "margin-top:30px;"}
+          - @sliders.each do |slider|
+            %li.clone{"aria-hidden" => "true", :style => "height: 413px;"}
+              - if slider.photo.present?
+                = image_tag "/uploads/archive/images/"+slider.photo
+              - else
+                = image_tag '/portal/images/codhab.png'
+    .col-md-12.margint50
+      .h3.title_projetos_entidades
+        Entidades
+    .col-md-12.margint50
+      %p.title.mobilizacao
+        %span.caractere_entidade
+          >>
+        Conheça o Programa
+      .text_entity
+        As cooperativas habitacionais de trabalhadores terão prioridade na aquisição de áreas públicas urbanas destinadas à habitação.
+        Para participar de programa habitacional, a cooperativa ou associação habitacional deverá:
+        %br
+        .text_entity_reg{:style=> "margin-left:20px; margin-top:10px"}
+          %strong I – estar legalmente constituída há pelo menos um ano da data de publicação do edital de licitação;
+          %br
+          %strong II – ter registro de seu estatuto e ato de constituição na Junta Comercial do Distrito Federal ou no Cartório de Registro de Pessoas Jurídicas;
+          %br
+          %strong III – apresentar:
+          %br
+          %p{:style=> "margin-left:20px; margin-top:7px"}
+            a) estatuto e suas alterações, se houver, com os respectivos registros;
+            %br
+            b) ata de constituição e de eleição da diretoria em exercício, com a relação de seus membros e a qualificação dos diretores;
+            %br
+            c) registro no Cadastro Nacional de Pessoa Jurídica (CNPJ);
+            %br
+            d) certificado de regularidade perante a seguridade social e o Fundo de Garantia por Tempo de Serviço (FGTS);
+            %br
+            e) comprovante de regularidade fiscal;
+            %br
+            f) certidão negativa civil e criminal dos dirigentes junto à Justiça Federal e à Justiça do Distrito Federal e Territórios;
+            %br
+            g) relação dos cooperados ou associados, com perfil socioeconômico definido.
+            %br
+    .row
+      .col-md-12
+        .col-md-4.margint50
+          .button_entidades
+            .text_button
+              = link_to 'Manual das Entidades', "http://www.codhab.df.gov.br/uploads/archive/files/70d08865ac1d996f2b0f1077d703f0b4.pdf",target:'_blank'
+            .text_button_desc
+              V1.4 - 11/04/2016
+              %br
+              (OFICIAL)
+        .col-md-4.margint50
+          .button_entidades
+            .text_button
+              = link_to 'Lista/ Status Entidades Cadastradas', "http://www.codhab.df.gov.br/pagina/26",target:'_blank'
+            .text_button_desc
+              Entidades Cadastradas
+        .col-md-4.margint50
+          .button_entidades
+            .text_button
+              = link_to 'Reuniões ', "http://www.codhab.df.gov.br/pagina/45",target:'_blank'
+            .text_button_desc
+              Pontos de Controle
+        .col-md-4.margint50
+          .button_entidades
+            .text_button
+              = link_to 'Convênios e Projetos ', "http://www.codhab.df.gov.br/pagina/50",target:'_blank'
+            .text_button_desc
+              Específicos
+        .col-md-4.margint50
+          .button_entidades
+            .text_button
+              = link_to 'Agendar/Reagendar ', "http://www.codhab.df.gov.br/agendamento/entidade/new",target:'_blank'
+            .text_button_desc
+              Atendimento
+        .col-md-4.margint50
+          .button_entidades
+            .text_button
+              = link_to 'Área Restrita ', "http://www.codhab.df.gov.br/entidades/acesso",target:'_blank'
+            .text_button_desc
+              Acesse
+
+
+    .col-md-12.margint50
+      .h3.title_projetos_entidades
+        Eventos das Entidades
+  .row
+    .slider_mongol2
+      .bxslide.margint50
+        - @events.order('created_at ASC').each do |event|
+          .col-md-4{:style=>"height:300px"}
+            -# %img.action_thumb_mobi{:alt => "PROJETO1", :src => "/uploads/archive/images/#{event.photo}",  }/
+            - if event.photo?
+              = image_tag "/uploads/archive/images/"+event.photo, class:"altura_eventos1"
+            - else
+              = image_tag '/portal/images/codhab.png'
+            .span.title_action_thumb_mobi_entidade
+              = link_to event.name, event_path(event)
+            .span.descrption_action_thumb_mobi_entidade{:style => "margin-top:10px"}
+              = event.description.html_safe

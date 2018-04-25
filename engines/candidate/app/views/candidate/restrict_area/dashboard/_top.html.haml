@@ -1,0 +1,21 @@
+- if mobile_device?
+  .row.mini-margin
+    .col-md-12{style: 'text-align: center !important'}
+      %h1 
+        %b Área Restrita
+        %br/
+        %small{style: "color: gray !important"}
+          Área interna do candidato
+      %b= link_to "Retornar para o início", restrict_area_root_path if controller_name != 'dashboard'
+  %br/
+  %br/
+  %br/
+- else 
+  .row.mini-margin
+    .col-md-12
+      %h1 
+        %b Área Restrita - Candidato
+        %br/
+        %small{style: "color: gray !important"}
+          Área interna do candidato
+  %hr/

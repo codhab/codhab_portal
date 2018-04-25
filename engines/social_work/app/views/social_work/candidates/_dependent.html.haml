@@ -1,0 +1,40 @@
+%table.table.table-striped.table-bordered
+  - if @dependents.present? && @dependents.where.not(kinship_id: 6).present?
+    - @dependents.where.not(kinship_id: 6).each do |dep|
+      %thead
+        %tr
+          %th{colspan: 3}
+            %h4= dep.kinship.name rescue nil
+        %tr
+          %th Nome
+          %th cpf
+          %th Data de Nascimento
+      %tbody
+        %tr
+          %td= link_to dep.name, edit_candidate_dependent_path(@candidate, dep.id), remote: true, title: 'Editar'
+          %td= dep.cpf.format_cpf rescue nil
+          %td= dep.born.strftime('%d/%m/%Y') rescue nil
+      %thead
+        %tr
+          %th Sexo
+          %th Estado Civil
+          %th Grau de Instrução
+      %tbody
+        %tr
+          %td= dep.gender
+          %td= dep.civil_state.name rescue nil
+          %td= dep.education.name rescue nil
+      %thead
+        %tr
+          %th RG
+          %th Expeditor
+          %th Emissão
+      %tbody
+        %tr
+          %td= dep.rg
+          %td= dep.rg_org
+          %td= dep.rg_date
+  - else
+    %tr
+      %td
+        %i Nenhum dependente cadastrado

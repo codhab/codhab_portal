@@ -1,0 +1,17 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Conteúdo
+.modal-body
+  .row
+    .col-md-12
+      = @consult.content
+  %hr
+  .row
+    .col-md-12
+      %label
+        %b Data:
+        = @consult.created_at.strftime('%d/%m/%Y - %H:%M')
+  %hr
+  .row
+    .col-md-12

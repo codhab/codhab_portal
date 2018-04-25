@@ -1,0 +1,270 @@
+%a.back-to-tops{:href => "#"} voltar
+.container
+  .fundo_branco
+    .row
+      .col-md-12
+        %h2{:style => "text-align:center;margin-bottom:50px;font-weight:600;font-size:55px;"}
+          Resultados
+      - @results.each do |result|
+        .col-md-2.icon_home_habita
+          %img{:alt => "icone_morarbem", :src => "/portal/images/morarbem_w.png",:style =>"width:50%"}
+          %h2{:style => "font-weight:bolder;font-size:22px;"}
+            Morar Bem
+          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+            = result.result_1
+        .col-md-2.icon_home_habita
+          %img{:alt => "icone_lotelegal", :src => "/portal/images/lotelegal_w.png",:style =>"width:50%"}
+          %h2{:style => "font-weight:bolder;font-size:22px;"}
+            Lote Legal
+          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+            = result.result_2
+        .col-md-2.icon_home_habita
+          %img{:alt => "icone_escrituras", :src => "/portal/images/escrituras_w.png",:style =>"width:50%"}
+          %h2{:style => "font-weight:bolder;font-size:22px;"}
+            Escrituras
+          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+            = result.result_3
+        .col-md-2.icon_home_habita
+          %img{:alt => "icone_medida", :src => "/portal/images/medida_w.png",:style =>"width:50%"}
+          %h2{:style => "font-weight:bolder;font-size:22px;"}
+            Na medida
+          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+            = result.result_4
+        .col-md-2.icon_home_habita
+          %img{:alt => "icone_portasabertas", :src => "/portal/images/portasabertas_w.png",:style =>"width:50%"}
+          %h2{:style => "font-weight:bolder;font-size:22px;"}
+            Portas Abertas
+          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+            = result.result_5
+        .col-md-2.icon_home_habita
+          %img{:alt => "icone_aluguellegal", :src => "/portal/images/aluguellegal_w.png",:style =>"width:50%"}
+          %h2{:style => "font-weight:bolder;font-size:22px;"}
+            Aluguel Legal
+          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+            = result.result_6
+  .fundo_branco
+    .slidetop
+      %img{:alt => "slider", :src => "/portal/images/sliderhabita6.png", :class =>"widthimg"}/
+    .margint50
+      .col-md-3.icon_home_habita.image_bloco_responsivo
+        = link_to image_tag("/portal/images/habita-conheca.png"), "#conhecaoprograma"
+        %h3
+          Conheça o Programa
+        .texto-icon
+          Novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
+      .col-md-3.icon_home_habita.bloco_responsivo
+        = link_to image_tag("/portal/images/habita-conheca.png"), "#conhecaoprogramas"
+        %h3
+          Conheça o Programa
+        .texto-icon
+          Novo programa de habitação do Distrito Federal, com mais soluções para quem precisa de moradia.
+      .col-md-3.icon_home_habita
+        = link_to image_tag("/portal/images/habita-como-funciona.png"), "#quemparticipa"
+        %h3
+          Quem Participa
+          %br
+        .texto-icon
+          O Habita Brasília vai atender famílias já cadastradas na lista da CODHAB no programa Minha Casa Minha Vida.
+      .col-md-3.icon_home_habita.image_bloco_responsivo
+        = link_to image_tag("/portal/images/habita-5eixos.png"), "#5eixos"
+        %h3
+          5 Eixos
+        .texto-icon
+          Diversidade na oferta de habitação de interesse social,considerando o planejamento das cidades.
+      .col-md-3.icon_home_habita.bloco_responsivo
+        = link_to image_tag("/portal/images/habita-5eixos.png"), "#5eixoss"
+        %h3
+          5 Eixos
+        .texto-icon
+          Diversidade na oferta de habitação de interesse social, considerando o planejamento das cidades.
+      .col-md-3.icon_home_habita
+        = link_to image_tag("/portal/images/habita-perguntas.png"), "#perguntas"
+        %h3
+          Perguntas Frequentes
+        .texto-icon
+          Tire suas dúvidas e conheça mais sobre o programa Habita Brasília.
+
+    .margint50
+    .col-md-12.title1
+      %p.cartilha-baixar
+        %strong
+          = link_to "Maiores informações faça o download da Cartilha do Habita Brasília","#cartilha",:style => "color:#fff"
+
+    .col-md-12.image_bloco_responsivo#conhecaoprograma.no_padding
+      %img{:alt => "Conheça o Programa", :src => "/portal/images/blocoimagem2.png", :class =>"widthimg"}/
+    .col-md-12.bloco_responsivo#conhecaoprogramas
+      %h3.title_bloco_responsivo
+        Conheça o Programa
+      %p.texto_bloco_responsivo
+        O direito à moradia é um dos maiores desafios na gestão de uma cidade. Diferentes situações exigem soluções criativas e coragem para inovar. É nessa perspectiva que o Governo de Brasília apresenta o novo programa habitacional do Distrito Federal, o Habita Brasília. O programa está ancorado em três pilares fundamentais: o provimento habitacional, a regularização fundiária e o combate à grilagem. Além disso, o Habita Brasília tem o desenvolvimento comprometido com o meio ambiente, com a melhoria dos espaços públicos e com a dinamização da economia. Ao todo são cinco eixos de atuação: Lote Legal, Projetos na Medida, Morar Bem, Aluguel Legal e Portas Abertas.
+    .col-md-12
+      .h3.title_habita1#quemparticipa
+        Quem Participa
+    .margint50
+      .col-md-4.icon_funciona
+        %img{:alt => "icone familia", :src => "/portal/images/family.png", :style => "height: 170px; margin-top: 20px;"}/
+      .col-md-4.icon_funciona
+        %h3.text_funciona
+          O Habita Brasília vai atender as famílias já cadastradas na lista da CODHAB que tenham,
+          prioritariamente renda familiar de até três salários mínimos (R$2.640,00), podendo ser estendido até o valor de R$6.500,00 referente ao programa do Minha Casa Minha Vida.
+          Os habilitados serão convocados de acordo com a ordem de pontuação, da mesma forma como é feito atualmente.
+      .col-md-4.icon_funciona
+        %h3.text_funciona
+          Para ter acesso à lista, o candidato pode fazer uma pesquisa pelo próprio
+          = link_to "CPF", "http://www.codhab.df.gov.br/habitacao/pesquisa-cpf", :target => "_blank"
+          ou pela
+          = link_to "situação do candidato.", "http://www.codhab.df.gov.br/habitacao/pesquisa-cpf"
+          Basta acessar o
+          = link_to "portal", "http://www.codhab.df.gov.br", :target => "_blank"
+          da Companhia, na aba habitação.
+          %br
+          Para mais informações ligar no 156, opçao 5.
+    .margint50
+      .col-md-12.image_bloco_responsivo.no_padding#5eixos
+        %img{:alt => "5 Eixos", :src => "/portal/images/blocoimagem3.png", :class =>"widthimg image_bloco_responsivo"}/
+    .col-md-12.bloco_responsivo#5eixoss
+      %h3.title_bloco_responsivo
+        5 Eixos
+      %h3.title_responsivo
+        Lote Legal
+      %p.texto_bloco_responsivo
+        Modalidade que oferece lotes urbanizados e regularizados para pessoas físicas inscritas no cadastro da Companhia de
+        Desenvolvimento Habitacional do Distrito Federal (Codhab). Ou seja, terrenos com ruas pavimentadas e com infraestrutura de abastecimento
+        de água, e com esgotamento sanitário, energia e iluminação pública. Além disso, próximo aos centros de emprego e a serviços públicos,
+        como escolas e postos de saúde. Essa linha também vai disponibilizar para os contemplados projetos arquitetônicos para a construção das
+        moradias, além da supervisão dos profissionais da Codhab para garantir a segurança do local. As ações de regularização, com a entrega de
+        escrituras, também estão amparadas por essa ação de governo.
+    .col-md-12.bloco_responsivo
+      %h3.title_responsivo
+        Projeto na Medida
+      %p.texto_bloco_responsivo
+        Linha de ação que tem como objetivo garantir a qualidade das residências de interesse social. Por essa modalidade, os arquitetos da Codhab
+        realizam projetos de arquitetura para reformar as casas das famílias que vivem em situação precária. Atualmente, existem 10 postos de
+        assistência técnica da Codhab que realizam essa atividade e também são responsáveis pela mediação de conflitos em áreas de regularização.
+        Os postos ainda desenvolvem projetos de melhorias nas ruas, parques e em áreas públicas das comunidades onde estão instalados.
+    .col-md-12.bloco_responsivo
+      %h3.title_responsivo
+        Morar Bem (produção de unidades habitacionais)
+      %p.texto_bloco_responsivo
+        Modalidade que produz unidades imobiliárias em áreas urbanas, com recursos do Minha Casa Minha Vida, para inscritos na lista da Codhab.
+    .col-md-12.bloco_responsivo
+      %h3.title_responsivo
+        Aluguel Legal
+      %p.texto_bloco_responsivo
+        Destina-se às famílias de renda mais baixa, em especial as que moram de aluguel e gastam mais de 30% do rendimento, aos idosos e à população
+        vulnerável. Para eles, o governo oferecerá moradia, próximo dos empregos e de serviços públicos, com valores mais baixos que os praticados no
+        mercado de locação. Quem participa dessa linha do programa continua na lista de atendimento habitacional, aguardando ser contemplado em outra modalidade.
+    .col-md-12.bloco_responsivo
+      %h3.title_responsivo
+        Portas Abertas
+      %p.texto_bloco_responsivo
+        Incentivo do governo ao setor da construção civil para que sejam disponibilizadas unidades imobiliárias com valor compatível ao praticado no programa Minha Casa Minha Vida.
+        O público-alvo é a família que tem rendimentos de até R$ 6.500.00
+    .col-md-12
+      %h3.title_habita1#perguntas
+        Perguntas Frequentes
+    .col-md-12.perguntasfooter
+      .text_perguntas
+        %strong
+          Já sou habilitado na lista da CODHAB, vou perder meu cadastro?
+        %br
+        Não. O programa Habita Brasília contempla o cidadão que já está inscrito na lista da CODHAB, bem como segue a ordem de pontuação que consta no portal da Companhia, da mesma forma como é feito atualmente.
+        %br
+        %br
+        %strong
+          Quem pode participar?
+        %br
+        O Habita Brasília atende às pessoas que já estão habilitadas na lista da CODHAB e que tenham, prioritariamente, renda de até três salários mínimos (R$ 2.640,00), podendo ser estendida até o valor de R$ 6.500,00.
+        %br
+        %br
+        %strong
+          Como são feitas as inscrições?
+        %br
+        Para participar, o candidato precisa realizar o cadastro no portal da CODHAB. Neste momento não estão abertas novas inscrições.
+        %br
+        %br
+        %strong
+          Preciso aceitar o empreendimento que me for ofertado?
+        %br
+        Não. O candidato habilitado que optar por aguardar a oferta de empreendimentos habitacionais em localidades do seu interesse, poderá ficar com a mesma pontuação na fila por até quatro anos, a contar da data de sua primeira recusa. Após esse prazo, o habilitado passará à condição de declinado por prazo excedido.
+        %br
+        %br
+        %strong
+          Como denunciar um beneficiário que esteja vendendo ou alugando o imóvel?
+        %br
+        Para denunciar, o cidadão pode entrar em contato com a
+        = link_to "ouvidoria", "http://www.ouvidoria.df.gov.br/", :target => "_blank"
+        , pela central 162, pelo endereço eletrônico www.ouvidoria.df.gov.br ou comparecer ao núcleo de atendimento da CODHAB. É necessário informar o endereço completo do imóvel para que os fatos sejam apurados. Ao denunciar, a identidade da pessoa é preservada.
+        %br
+        %br
+        %strong
+          Caso o beneficiário tenha alguma dúvida sobre o programa, quem ele deve procurar?
+        %br
+        Para saber mais informações sobre o Habita Brasília, basta ligar para a central 156, opção 5.
+      .margint50
+        .col-md-12.image_bloco_responsivo.no_padding#cartilha
+          = link_to image_tag("/portal/images/blocoimagem4.png", :class =>"widthimg"), "http://www.codhab.df.gov.br/uploads/archive/files/9d9378fbb7dd6300b1833dc3366865b3.pdf", :target => "_blank"
+:javascript
+  $(window).scroll(function(){
+      var amountScrolled = 300;
+      var win = $(window).scrollTop();
+    	if (win > amountScrolled) {
+    		$('a.back-to-tops').fadeIn('slow');
+    	} else {
+    		$('a.back-to-tops').fadeOut('slow');
+    	}
+  });
+  $('a.back-to-tops').click(function() {
+  	$('html, body').animate({
+
+  		scrollTop: 0
+  	}, 700);
+  	return false;
+  });
+  $(document).ready(function (ev) {
+      $('#custom_carousel').on('slide.bs.carousel', function (evt) {
+          $('#custom_carousel .controls li.active').removeClass('active');
+          $('#custom_carousel .controls li:eq(' + $(evt.relatedTarget).index() + ')').addClass('active');
+      })
+  });
+  $('.carousel').carousel({
+    pause: "hover",
+    interval: 600000000
+  })
+:css
+
+  #custom_carousel .item {
+      color: #000;
+      background-color: #eee;
+      padding: 20px 0;
+  }
+
+  #custom_carousel .controls {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0;
+      margin: 0;
+      white-space: nowrap;
+      text-align: center;
+      position: relative;
+      background: #ddd
+  }
+
+  #custom_carousel .controls li {
+      display: table-cell;
+      width: 1%;
+      max-width: 90px
+  }
+
+  #custom_carousel .controls li.active {
+      background-color: #eee;
+      border-top: 3px solid orange;
+  }
+
+  #custom_carousel .controls a small {
+      overflow: hidden;
+      display: block;
+      font-size: 10px;
+      margin-top: 5px;
+      font-weight: bold
+  }

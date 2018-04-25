@@ -1,0 +1,36 @@
+.col-md-8.col-md-offset-2
+  = simple_form_for @cadastre, url: cadastre_path, remote: true do |f|
+    .row
+      .col-md-6
+        = f.input :social_reason, label: "Razão social", input_html: { placeholder: 'Razão social'}
+      .col-md-6
+        = f.input :crea, label: "CAU/CREA", input_html: { placeholder: 'CAU/CREA' }
+    .row
+      .col-md-6
+        = f.input :cnpj, label: "Cnpj", input_html: { class: 'cnpj', placeholder: 'Cnpj'}
+      .col-md-6
+        = f.input :email, label: "E-mail", input_html: { placeholder: 'E-mail'}
+    .row
+      .col-md-6
+        = f.input :telephone, label: "Telefone", input_html: { placeholder: 'Telefone'}
+      .col-md-6
+        = f.input :celphone, label: "Celular", input_html: { placeholder: 'Opcional'}
+    .row
+      .col-md-6
+        = f.input :cep, label: "CEP", input_html: { placeholder: 'cep', class: 'cep'}
+      .col-md-6
+        = f.input :address, label: "Endereço", input_html: { placeholder: 'Endereço da Empresa'}
+    .row
+      .col-md-6
+        = f.input :city_id, label: "Cidade", as: :select, collection:  Address::City.federal_district, include_blank: false, include_blank: "Selecione..."
+      .col-md-6
+        = f.input :uf, label: "UF", as: :select, collection: Address::State.all, label_method: :acronym, input_html: { placeholder: 'Uf'}, include_blank: "Selecione..."
+    .row
+      .col-md-6
+        = f.input :district, label: "Bairro", input_html: { placeholder: 'Bairro'}
+    .row
+      .col-md-12
+        = f.input :technological_resources, label: "Quanto aos recursos tecnológicos para a realização dos trabalhos, declaramos que possuímos condições de cumprir as exigências mínimas para realização dos serviços a serem prestados.", include_blank: false
+    .row
+      .col-md-6
+        = f.button :submit, "Atualizar cadastro", class: 'btn btn-success', data: { disable_with: "Carregando..."}

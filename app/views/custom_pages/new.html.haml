@@ -1,0 +1,72 @@
+:css
+  .help-block {
+    color: orange !important;
+    font-weight: bold !important;
+  }
+
+  .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error  .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label,   .has-error.radio-inline label, .has-error.checkbox-inline label, .has-error .form-control-feedback {
+    color: orange !important;
+  }
+
+  .has-error .form-control, .has-error .form-control:focus {
+    border: 1px solid orange !important;
+  }
+
+  .text-size {
+    font-size: 140px;
+  }
+  
+  .portal-link {
+    font-size: 30px; color: white
+  }
+  
+  @media only screen and (max-width: 500px) {
+      .text-size {
+        font-size: 80px;
+      }
+
+      .portal-link {
+        font-size: 15px; color: white
+      }
+  }
+
+
+.container
+  .row
+    .col-md-7
+      - if @counter_days == 0
+        %br/
+        %br/
+        %br/
+        %br/
+        %p{style: 'font-size: 130px'}
+          %b TERMINA
+        %p{style: 'font-size: 130px; color: #ffcb08'}
+          %b HOJE
+      - else
+        %span.text-size
+          %b FALTAM
+          %p
+            %b{style: 'color: #ffcb08;'}  
+              #{@counter_days}
+            %b DIAS
+    .col-md-5{style: 'padding-top: 40px'}
+
+      %p{style: 'font-size: 40px;'} 
+        %b{style: ' color: #ffcb08'} Atualização 
+        cadastral
+
+      %span{style: 'font-size: 30px'} 
+        %p
+          Até o dia 31 de julho.
+        %p{style: 'font-size: 20px'} 
+          Verifique abaixo a situação da sua atualização cadastral.
+    
+      .index-form
+        = render 'form'
+  .row
+    .col-md-12{style: 'text-align: center'}
+      %br/
+      %br/
+      %a{href: "#{main_app.root_path(recadastre: false)}", class: 'btn btn-primary portal-link'} 
+        %b Clique aqui para acessar o portal

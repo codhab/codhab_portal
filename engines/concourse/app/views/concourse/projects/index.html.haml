@@ -1,0 +1,77 @@
+
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h3
+              %b Em andamento
+            - if @projects.opens.present?
+              - @projects.opens.order(:id).each_with_index do |project, index|
+                .col-md-4
+                  .row
+                    .col-md-5
+                      = link_to image_tag(project.image_logo, width: 150), concourse.project_path(project)
+                    .col-md-6
+                      %h5
+                        %strong= link_to project.title.upcase, concourse.project_path(project), data: {'turbolinks'=> false}
+                        %h6
+                          %p= project.mini_description.html_safe
+                      %span
+                        %p
+                          %b Início - #{project.start.strftime('%d/%m/%Y')}
+                        %p
+                          %b Fim - #{project.end.strftime('%d/%m/%Y')}
+                      %h5
+                        %span.label.label-info
+                          = link_to project.step, concourse.project_path(project), data: {'turbolinks'=> false}
+            - else
+              %i Não existem concursos em andamento no momento.
+        %hr/
+        .row
+          .col-md-12
+            %h3
+              %b Previstos
+            - if @projects.waiting.present?
+              - @projects.waiting.each_with_index do |project, index|
+                .col-md-4
+                  .row
+                    .col-md-5
+                      = image_tag(project.image_logo, width: 150)
+                    .col-md-6
+                      %h5
+                        %strong= project.title.upcase
+                        %small
+                          %p= project.mini_description.html_safe
+                      %h5
+                        %span.label.label-info
+                          = project.step
+            - else
+              %i Não existem concursos previstos no momento.
+        %hr/
+        .row
+          .col-md-12
+            %h3
+              %b Finalizados
+            - if @projects.finisheds.present?
+              - @projects.finisheds.each_with_index do |project, index|
+                .col-md-4
+                  .row
+                    .col-md-5
+                      = link_to image_tag(project.image_logo, width: 150), concourse.project_path(project)
+                    .col-md-6
+                      %h5
+                        %strong= link_to project.title.upcase, concourse.project_path(project), data: {'turbolinks'=> false}
+                        %h6
+                          %p= link_to project.mini_description.html_safe, concourse.project_path(project), data: {'turbolinks'=> false}
+                      %span
+                        %p
+                          %b Início - #{project.start.strftime('%d/%m/%Y')}
+                        %p
+                          %b Fim - #{project.end.strftime('%d/%m/%Y')}
+                      %h5
+                        %span.label.label-info
+                          = link_to project.step, concourse.project_path(project), data: {'turbolinks'=> false}
+            - else
+              %i Não existem concursos finalizados no momento.

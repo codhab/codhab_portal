@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      'core/social_work/project_interaction': 'Interações'
+    attributes:
+      'core/social_work/project_interaction':
+        document_two: "Documento 2"
+        document_one: "Documento"
+        description: "Descrição"
+      

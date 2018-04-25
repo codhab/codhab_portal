@@ -1,0 +1,332 @@
+:javascript
+  google.load('visualization', '1', {'packages':['corechart'], 'language': 'pt-BR'});
+
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        .row
+          .col-md-12
+            %h2
+              %b Detalhamento de candidato
+            = link_to "Ver listas", '/pagina/43', data: { disable_with: t(:disable_with)}
+            |
+            = link_to "Pesquisar CPF", pesquisa_cpf_path, data: { disable_with: t(:disable_with)}
+        %hr/
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Informações básicas
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th{colspan: 2} Nome
+                  %th CPF
+                  %th Sexo
+                  %th Estado Civil
+              %tbody
+                %tr
+                  %td{colspan: 2}= @cadastre.name
+                  %td= @cadastre.cpf.format_obfuscator_cpf rescue t(:no_information)
+                  %td= @cadastre.gender
+                  %td= @cadastre.civil_state.name rescue t(:no_information)
+                %tr
+                  %th Chegada ao DF
+                  %th Naturalidade
+                  %th Condição Especial
+                  %th CID
+                  %th NIS
+                %tr
+                  %td= @cadastre.arrival_df.strftime('%d/%m/%Y') rescue t(:no_information)
+                  %td= @cadastre.born_uf.to_s.mb_chars.upcase rescue I18n.t(:no_information)
+                  %td= @cadastre.special_condition.name rescue t(:no_information)
+                  %td= @cadastre.cid
+                  %td= @cadastre.nis
+                %tr
+                  %th Data inscrição
+                  %th Qtd. de dependentes
+                  %th{colspan: 3} Qtd. de dependentes com condição especial
+                %tr
+                  %td= @cadastre.created_at.strftime("%d/%m/%Y")
+                  %td= @cadastre.dependents.count
+                  %td{colspan: 3}= @cadastre.dependents.where(special_condition_id: 2).count rescue I18n.t(:no_information)
+                - if @cadastre.dependents.where(kinship_id: 6).present?
+                  %tr
+                    %th{colspan: 3} Nome cônjuge
+                    %th{colspan: 2} CPF  cônjuge
+                  %tr
+                    %td{colspan: 3}= @cadastre.spouse.name rescue I18n.t(:no_information)
+                    %td{colspan: 2}= @cadastre.spouse.cpf.format_cpf rescue I18n.t(:no_information)
+        .row
+          .col-md-12
+            %h4
+              %b Situação do candidato
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %th Lista
+                %th Faixa
+                %th Posição
+                %th Situação cadastral
+                /%th Situação processual
+                %th Pontuação
+              %tbody
+                -# - if (@cadastre.general.present? && [4,54,67].include?(@cadastre.general.situation_status_id)) && @cadastre.general.is_older? && @cadastre.income.to_i >= 0 && @cadastre.income.to_i <= 1800
+                -#   %tr
+                -#     %td Aluguel Legal
+                -#     %td Faixa 1
+                -#     %td= @cadastre.current_situation_name rescue I18n.t(:no_information)
+                -#     %td= @cadastre.pontuations.first.total rescue I18n.t(:no_information)
+                - if @cadastre.list.present?
+                  - @cadastre.list.each do |list|
+                    %tr
+                      %td= I18n.t(list[0]) rescue I18n.t(:no_information)
+                      %td= list[1][0] rescue I18n.t(:no_information)
+                      %td= list[2].present? ? "#{list[2]} º" : I18n.t(:no_information)
+                      %td= @cadastre.current_situation_name rescue I18n.t(:no_information)
+                      /%td= @cadastre.current_procedural_name rescue I18n.t(:no_information)
+                      %td= @cadastre.pontuations.first.total rescue I18n.t(:no_information)
+                - else
+                  %tr
+                    %td
+                      %i Nenhum registro disponível
+
+        - if @cadastre.cadastre_situations.present?
+          .row
+            .col-md-12
+              %h4
+                %b Situação do cadastro
+              %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                %thead
+                  %th Situação
+                  %th Data
+                %tbody
+                  - @cadastre.cadastre_situations.order(created_at: :desc).each do |situation|
+                    %tr
+                      %td= situation.situation_status.name.mb_chars.upcase rescue I18n.t(:no_information)
+                      %td
+                        - unless %w(05/01/2016 15/01/2016 18/01/2016).include? situation.created_at.strftime("%d/%m/%Y")
+                          = situation.created_at.strftime("%d/%m/%Y")
+                        - else
+                          Sem informação
+        -# - if @cadastre.entity_candidates.present?
+        -#   .row
+        -#     .col-md-12
+        -#       %h4
+        -#         %b Informações da entidade
+        -#       %table#data-table-command.table.table-striped.table-vmiddle.datatable
+        -#         %thead
+        -#           %th CNPJ
+        -#           %th Nome
+        -#           %th Sigla
+        -#           %th Presidente
+        -#           %th Situação
+        -#         %tbody
+        -#           - @cadastre.entity_candidates.each do |entity|
+        -#             %tr
+        -#               %td= entity.cadastre.cnpj.format_cnpj rescue I18n.t(:no_information)
+        -#               %td= entity.cadastre.name.mb_chars.upcase rescue I18n.t(:no_information)
+        -#               %td= entity.cadastre.fantasy_name.mb_chars.upcase rescue I18n.t(:no_information)
+        -#               %td= entity.cadastre.president_name.mb_chars.upcase rescue I18n.t(:no_information)
+        -#               %td= entity.cadastre.current_situation rescue I18n.t(:no_information)
+
+        %h4
+          %b Indicado ao empreendimento
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th{colspan: 2} Empreendimento
+                  %th Data de encaminhamento
+                  %th Inativação
+              %tbody
+                - if @cadastre.enterprise_cadastres.present?
+                  - @cadastre.enterprise_cadastres.where(indication_situation_id: [1,4]).order('created_at desc').each do |enterprise_cadastre|
+                    %tr
+                      %td{colspan: 2}= link_to enterprise_cadastre.enterprise.name, "#"
+
+                      - if enterprise_cadastre.enterprise_id == 9 && (@indication_exception || (enterprise_cadastre.created_at >= Date.parse('2018-01-10')))
+                        %td
+                          = enterprise_cadastre.created_at.strftime("%d/%m/%Y") rescue I18n.t(:no_information)
+                          %br
+                          %small= link_to "clique para saber mais",indication_explanation_path(id: enterprise_cadastre.id), remote: true
+                      - else
+                        %td= enterprise_cadastre.created_at.strftime("%d/%m/%Y") rescue I18n.t(:no_information)
+
+                      %td= enterprise_cadastre.inactive.present? ? "Indicação inativa" : "Indicação ativa"
+                - else
+                  %tr
+                    %td{colspan: 4}
+                      %i Nenhum registro de indicação.
+                - if  @cadastre.deadline_indication.present?
+                  %tfoot
+                    %tr
+                      %td
+                        %b Quantidade de recusas:
+                        = @cadastre.deadline_indication[:count]
+                      %td
+                      %td
+                      %td
+
+
+        %h4
+          %b Dados de contemplação
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Cidade
+                  %th Endereço
+                  %th Situação
+                  %th Data
+              %tbody
+                - if @cadastre.cadastre_address.present?
+                  - units = @cadastre.cadastre_address.select(:unit_id).distinct
+                  - if units.present?
+                    - units.each do |addr|
+                      - unit = ::Address::Unit.find(addr.unit_id) rescue nil
+                      - if unit.present?
+                        - cadastre_address = unit.current_cadastre_address
+                        - if cadastre_address.present? && %w(reserva distribuído sobrestado).include?(cadastre_address.situation_id.to_s) && cadastre_address.cadastre_id == @cadastre.id
+                          %tr
+                            %td= cadastre_address.unit.city.name.mb_chars.upcase rescue I18n.t(:no_information)
+                            %td= addr.unit.complete_address
+                            %td= cadastre_address.unit.situation_unit.description.mb_chars.upcase rescue I18n.t(:no_information)
+                            %td= cadastre_address.created_at.strftime("%d/%m/%Y")
+                      - else
+                        %tr
+                          %td{colspan: 5}
+                            %i Nenhum registro de contemplação.            
+                - else
+                  %tr
+                    %td{colspan: 5}
+                      %i Nenhum registro de contemplação.
+
+        - if @cadastre.pontuations.present?
+          %h4
+            %b Histórico de Posição
+          = link_to "Visualizar detalhamento de posição", position_path(@cadastre_position), target: '_blank'
+          %br/
+          %br/
+          .row
+            .col-md-12
+              = line_chart(@cadastre.positions.positions_to_chart, library: { xtitle: "Data", ytitle: "Posição", legend: "top"} )
+          %br/
+          %br/
+          %br/
+          %h4
+            %b Histórico de Pontuação
+          .row
+            .col-md-12
+              - @hash = {}
+              - @cadastre.pontuations.map { |key| @hash[key['created_at']] = key['total'] }
+              = area_chart(@hash)
+          .row
+            .col-md-12
+              %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                %thead
+                  %tr
+                    %th Ano
+                    %th Data
+                    %th Tempo de Brasília
+                    %th Tempo de lista
+                    %th Condição de especial
+                    %th Dependentes
+                    %th Renda familiar
+                    %th Total
+                %tbody
+                  - @cadastre.pontuations.each do |pontuation|
+                    %tr
+                      %td= pontuation.created_at.strftime("%Y")
+                      %td= pontuation.created_at.strftime("%d/%m/%Y")
+                      %td= pontuation.bsb
+                      %td= pontuation.timelist
+                      %td= pontuation.special_condition
+                      %td= pontuation.dependent
+                      %td= pontuation.income
+                      %td= pontuation.total
+
+        %h4
+          %b Histórico de Atendimento
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Data
+                  %th Posto
+                  %th Situação
+              %tbody
+                - if @cadastre.attendances.present?
+                  - @cadastre.attendances.each do |attendance|
+                    %tr
+                      %td= attendance.created_at.strftime("%d/%m/%Y")
+                      %td= attendance.service_station.name rescue I18n.t(:no_information)
+                      %td= attendance.situation.mb_chars.upcase rescue I18n.t(:no_information)
+                - else
+                  %tr
+                    %td{colspan: 4}
+                      %i Nenhum atendimento realizado.
+
+
+        %h4
+          %b Histórico de Agendamento
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Data
+                  %th Hora
+                  %th Agenda
+              %tbody
+                - if @cadastre.schedules.present?
+                  - @cadastre.schedules.each do |schedule|
+                    %tr
+                      %td= schedule.date.strftime("%d/%m/%Y")
+                      %td= schedule.hour.strftime("%H:%M")
+                      %td= schedule.agenda.title rescue I18n.t(:no_information)
+                - else
+                  %tr
+                    %td{colspan: 3}
+                      %i Nenhum agendamento realizado.
+
+        %h4
+          %b Histórico de Atividades
+        .row
+          .col-md-12
+            %table#data-table-command.table.table-striped.table-vmiddle.datatable
+              %thead
+                %tr
+                  %th Data/Hora
+                  %th Atividade
+              %tbody
+                - if @cadastre.cadastre_activities.present?
+                  - @cadastre.cadastre_activities.each do |activity|
+                    %tr
+                      %td.col-md-2= activity.created_at.strftime("%d/%m/%Y - %H:%M") rescue I18n.t(:no_information)
+                      %td= activity.activity_status.title rescue I18n.t(:no_information)
+                - else
+                  %tr
+                    %td{colspan: 3}
+                      %i Nenhum registro encontrado.
+        - if @document.present?
+          %h4
+            %b Histórico de Documentos
+          .row
+            .col-md-12
+              %table.table
+                %thead
+                  %tr
+                    %th Documento
+                    %th Cidade
+                    %th Validação
+                    %th Data da Geração
+                %tbody
+                  %tr
+                    %td= @document.allotment.template.name rescue nil
+                    %td= @document.city.name rescue nil
+                    %td= Digest::MD5.hexdigest @document.id.to_s rescue nil
+                    %td= @document.created_at.strftime('%d/%m/%Y') rescue nil

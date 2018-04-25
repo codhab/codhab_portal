@@ -1,0 +1,15 @@
+- if current_social_user.present?
+  %ul.list-group
+  - if current_social_user.company.company_type == 'Empresa de Projetos'
+    %li.list-group-item
+      %i.fa.fa-calendar
+      = link_to "Agendados", social_work.candidate_schedules_path
+    %li.list-group-item
+      %i.fa.fa-users
+      = link_to "Candidatos", social_work.candidates_path
+  %li.list-group-item
+    %i.fa.fa-user
+    = link_to "Usuários", social_work.company_users_path
+  %li.list-group-item
+    %i.fa.fa-sign-out
+    = link_to "Sair", social_work.destroy_authorization_path, method: :delete

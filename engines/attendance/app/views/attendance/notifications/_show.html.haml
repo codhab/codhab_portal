@@ -1,0 +1,14 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title 
+    %b Detalhe de notificação
+.modal-body
+  .row
+    .col-md-12
+      %h5
+        %b #{@notification.title}, #{@notification.created_at.strftime("%d/%m/%Y - %H:%M")}
+  .row
+    .col-md-12
+      = @notification.message
+

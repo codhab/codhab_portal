@@ -1,0 +1,32 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b
+                Meus Agendamentos
+        .row
+          .col-md-12
+            - if @schedules.present?
+              - @schedules.order('created_at desc').each do |schedule|
+                %table.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th Data Agendada
+                      %th Agenda
+                  %tbody
+                    %tr
+                      %td= schedule.date.strftime('%d/%m/%Y') rescue nil
+                      %td= schedule.agenda.title rescue nil
+                  %thead
+                    %tr
+                      %th Hora
+                      %th Data do Agendamento
+                  %tbody
+                    %tr
+                      %td= schedule.hour.strftime('%H:%M') rescue nil
+                      %td= schedule.created_at.strftime('%d/%m/%Y') rescue nil
+            - else
+              %i Nenhum agendamento realizado.

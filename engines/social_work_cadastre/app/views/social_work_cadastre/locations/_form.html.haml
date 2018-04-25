@@ -1,0 +1,12 @@
+.col-md-8.col-md-offset-2
+  = simple_form_for @location do |f|
+    .row
+      .col-md-6
+        = f.input :name, label: "Nome", input_html: {placeholder: 'ARIS'}
+      .col-md-6
+        = f.input :city_id, label: "Cidade", as: :select, collection:  Address::City.federal_district, include_blank: false, include_blank: "Selecione..."
+    .row
+      .col-md-6
+        = f.input :status,  include_blank: false
+      .col-md-6
+        = f.button :submit, "Salvar", class: 'btn btn-success'

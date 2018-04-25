@@ -1,0 +1,240 @@
+- @unit = @allot.unit
+- if @unit.present?
+  - if @candidate.present? && @candidate.cpf == @allot.cpf
+    %page{:size => "A4"}
+      .container{style: "font-size: 9pt"}
+        .lateral-margins.spacing{style: 'text-align: justify; important!'}
+          - if @allot.cancelled == true
+            = image_tag('/portal/images/cancelled.png', width: '500', style: 'position: absolute; top: 200px; margin-left: 150px; opacity: 0.8' )
+          %label
+            %b
+              ESCRITURA PARTICULAR DE DOAÇÃO DE LOTE URBANO DO DISTRITO FEDERAL COM ENCARGO
+          %br
+          %br
+          .data-candidate
+            %b CPF do Titular:
+            %label= @candidate.cpf.format_cpf
+            %br
+            %b Nome do Titular:
+            %label= @candidate.name
+            %br
+            %b Cidade:
+            %label= @unit.city.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            %br
+            %b Endereço:
+            %label= @unit.complete_address rescue "<span>COMPLETAR DADOS</span>".html_safe
+        %br
+        .content.lateral-margins.spacing
+          %p
+            Pelo presente contrato de doação por instrumento particular, de um lado, como OUTORGANTE DOADOR, o
+            %b
+            DISTRITO FEDERAL
+            , pessoa jurídica de direito público interno, inscrito no CNPJ/MF sob o nº 00.394.601/0001-26, neste ato legalmente
+            representado pela Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, pessoa jurídica de direito
+            privado, constituída sob a forma de sociedade anônima, inscrita no CNPJ sob o nº 09.335.575/0001-30, estabelecida à SCS,
+            Quadra 06, Bloco A, Lotes 13/14, Brasília/DF, representada por seu Diretor-Presidente
+            %b
+              = @presi.responsible.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @presi.responsible.introduce.present? ?  @presi.responsible.introduce : "<span>COMPLETAR DADOS</span>".html_safe
+            , portador da CI nº
+            = "#{@presi.responsible.rg}-#{@presi.responsible.rg_org}" rescue "<span>COMPLETAR DADOS</span>".html_safe
+            e inscrito no CPF/MF sob o nº
+            = @presi.responsible.cpf.format_cpf
+            , residente e domiciliado na cidade de Brasília, Distrito Federal, nos termos do art. 12 da Lei nº. 3.877, do parágrafo 7º.,
+            do art. 7º., da Lei nº. 4.020/2007, da alínea “f”, do inciso I, do artigo 17, da Lei nº. 8.666/1993, alínea j, do artigo 16,
+            do Estatuto Social da CODHAB, Lei nº 6.404/1976 (Lei das Sociedades Anônimas), na Lei Distrital nº. 5.197/2013 e do art. 4º.
+            do Decreto distrital nº. 31.698/2010 e nomeação conforme Decreto de 08/01/2015, publicado no DODF nº. 09, página 12, de 12/01/2015,
+            e de outro lado, como OUTORGADO(A)(S) DONATÁRIO(A)(S),
+            %b
+              = @candidate.name
+            ,
+            = @candidate.nationality.present? ? @candidate.nationality : "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            =@candidate.employment.present? ? @candidate.employment : "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            =@candidate.civil_state.present? ? @candidate.civil_state.name : "<span>COMPLETAR DADOS</span>".html_safe
+            , inscrito no CPF nº
+            = @candidate.cpf.format_cpf
+            , e portador da CI nº
+            = "#{@candidate.rg} - #{@candidate.rg_org}/#{@candidate.rg_uf}"
+            - if @candidate.dependents.where(kinship_id: 6).count > 0
+              - @dependent = @candidate.dependents.where(kinship_id: 6).first
+              , e
+              %b
+                = @dependent.name
+              ,
+              = @dependent.nationality.present? ? @dependent.nationality : "<span>COMPLETAR DADOS</span>".html_safe
+              ,
+              =@dependent.employment.present? ? @dependent.employment : "<span>COMPLETAR DADOS</span>".html_safe
+              ,
+              =@dependent.civil_state.present? ? @dependent.civil_state.name : "<span>COMPLETAR DADOS</span>".html_safe
+              , inscrito no CPF nº
+              = @dependent.cpf.format_cpf
+              , e portador da CI nº
+              = "#{@dependent.rg} - #{@dependent.rg_org}"
+            , residente(s) e domiciliado(a)(os) no imóvel objeto deste reconhecimento e concessão, desde
+            = @unit.current_cadastre_address.created_at.strftime('%d/%m/%Y')
+            ,
+            a título de
+            = @unit.ownership_type_id.present? ? @unit.ownership_type.name : "<span>COMPLETAR DADOS</span>".html_safe
+            sito à
+            = @unit.complete_address rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @unit.city.name  rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @unit.city.state.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            , ajustam e contratam o que se segue:
+            %b PRIMEIRO:
+            o DOADOR é legítimo senhor e possuidor do imóvel abaixo, a justo título e boa fé, em mansa e pacífica posse, livre e desembaraçado
+            de quaisquer ônus reais, judiciais ou extrajudiciais do imóvel constituído pelo:
+            %b
+              = @unit.complete_address rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @unit.city.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            ,
+            = @unit.city.state.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            , assim descrito e caracterizado, com área total de
+            = "#{@unit.area}m²"
+            , demais características na matrícula:
+            = @unit.notary_office.present? ? "#{@unit.notary_office.unit_code}." : "<span>COMPLETAR DADOS</span>".html_safe
+            do
+            = @unit.notary_office.present? ? "#{@unit.notary_office.office}." : "<span>COMPLETAR DADOS</span>".html_safe
+            O imóvel está inscrito junto a Secretaria de Fazenda do Distrito Federal sob o nº
+            = @unit.registration_iptu.present? ? "#{@unit.registration_iptu}." : "<span>COMPLETAR DADOS</span>".html_safe
+            O imóvel foi havido pelo outorgante doador conforme R-1 da matrícula e registro supramencionados. Que cumpridas as
+            exigências formais, fica ajustado doar o lote de terreno acima identificado, como efetivamente doado tem, a(o)(s)
+            referido(a)(s), transmitindo toda posse, domínio,
+            direito e ação que tem sobre o terreno ora doado, imitindo-se na posse do mesmo, por bem desta escritura particular,
+            para que dele passe a usar e livremente dispor como sua que é e fica sendo doravante, obrigando-se a fazer esta escritura
+            particular sempre boa, firme e valiosa, por si e seus sucessores;
+            %b SEGUNDO:
+            o DOADOR, apoiado no Programa de Assentamento de População de Baixa Renda, criado pelo Decreto Distrital nº. 11.476, de 09
+            de março de 1989, que nasceu do relevante interesse público e da necessidade social de evitar a favelização de Brasília e de
+            dar condições de acesso à moradia às camadas mais sofridas da população, processo que foi deflagrado em anos anteriores e
+            que ora, no particular, alcança significativa fase com a doação feita, e, pela presente escritura particular e na melhor
+            forma do Direito, faz a doação do mesmo imóvel acima identificado, ao(à) outorgado(a) donatário(a), acima qualificado(a) a
+            quem transmite o domínio, posse, direito e ação, impondo-lhe, contudo, o encargo de construir sua casa própria, observados
+            os regulamentos administrativos, no lote que ora foi lhe doado, com o dever de apresentar a competente Carta de Habite-se ou
+            documento equivalente, no prazo de cinco anos, a partir da data desta escritura particular sob pena de reversão do imóvel ao
+            Distrito Federal. Para este fim, comprovar-se-á o cumprimento do encargo por meio da apresentação da Carta de Habite-se ao
+            Registro Público de Imóveis, dentro do prazo mencionado, sendo certo que a averbação da construção na matrícula do imóvel
+            extinguirá, automaticamente, o encargo mencionado. A concessão de Carta de Habite-se pelo Distrito Federal, por meio da
+            Administração Regional, onde localizado o imóvel, mesmo após o prazo mencionado, implicará, igualmente, a extinção do encargo,
+            desde que igualmente averbada no registro imobiliário. O presente encargo possui natureza reipersecutória, sendo exigível seu
+            cumprimento quer pelo(a) Donatário(a), quer por quem venha sucedê-lo(a), ainda que o(a) sucessor(a) tenha adquirido o imóvel a
+            título oneroso. A efetiva doação do imóvel ao(a) outorgado(a) donatário(a) foi realizada na data de 23/11/2004, sendo essa última
+            a data que deve ser considerada para fins de preenchimento dos requisitos para participação no Programa Habitacional de Interesse
+            Social do Distrito Federal, enumerados no art. 4º. da Lei nº. 3.877/2006;
+            %b TERCEIRO:
+            o DOADOR, na forma como vem representado, declara que a área e as confrontações do imóvel objeto desta doação poderão ser alteradas
+            pelo Distrito Federal mediante alteração do projeto urbanístico;
+            %b QUARTO:
+            a presente doação está fundada nas seguintes normas: Decreto do Distrito Federal nº. 11.476, de 09 de março de 1989; artigo 1º da
+            Lei do Distrito Federal nº. 770, de 28 de setembro de 1994; os artigos12 e 13 da Lei do Distrito Federal nº. 3.877, de 26 de junho
+            de 2006; Lei Distrital nº. 5.197/2013, Lei Distrital nº. 4.996, de 19 de dezembro de 2012, especialmente o contido no artigo 3º.
+            com a seguinte redação: “Art. 3º Fica autorizada a regularização, por meio da doação, de imóveis do Distrito Federal de até duzentos
+            e cinquenta metros quadrados aos atuais ocupantes de parcelamentos informais consolidados, previstos na Estratégia de Regularização
+            Fundiária de Interesse Social do Plano Diretor de Ordenamento Territorial, que cumpram, cumulativamente, os seguintes requisitos: I -
+            ter renda familiar de até cinco salários-mínimos; II - não ter sido beneficiados em programas habitacionais do Distrito Federal;
+            III - comprovar que residem no Distrito Federal nos últimos cinco anos, mesmo que não seja no endereço a ser regularizado;
+            IV - não ser e nem ter sido proprietários, promitentes compradores ou cessionários de imóvel residencial no Distrito Federal;
+            V - não ocupar área com restrição urbanística e ambiental nos termos da legislação vigente.”; artigo 17, I, “f”, da Lei Federal nº.
+            8.666, de 21 de junho de 1993; artigo 538 a 541 do Código Civil Brasileiro de 2002, artigo 213,§ 15 e 221,V, da Lei Federal nº.
+            6.015, de 31 de dezembro de 1973; artigo 31, I, do Provimento nº 44, de 18 de março de 2015, da Corregedoria Nacional de Justiça;
+            artigo 216, do Provimento-Geral da Corregedoria de Justiça do Distrito Federal Aplicado aos Serviços Notariais e de Registro;
+      %div{:style => "page-break-after:always"}
+    %page{:size => "A4"}
+      .container{style: "font-size: 9pt"}
+        .content.lateral-margins.spacing
+          - if @allot.cancelled == true
+            = image_tag('/portal/images/cancelled.png', width: '500', style: 'position: absolute; top: 200px; margin-left: 150px; opacity: 0.8' )
+          %b QUINTO:
+          o DONATÁRIO declara que concorda de forma irrevogável e irretratável que todas as qualidades essenciais por ele declaradas, são motivo determinante
+          desta doação e que, portanto, qualquer declaração falsa nesta escritura poderá ensejar anulação da doação por erro, nos termos dos artigos 138, 139 e
+          140 do Código Civil Brasileiro de 2002, e que aceita(m) a presente escritura particular de doação em todos os seus termos, em especial o encargo mencionado,
+          o qual se compromete a fielmente cumprir;
+          %b SEXTO:
+          foram apresentados os seguintes documentos para a lavratura deste instrumento particular:
+          %b a)
+          Isento da incidência do Imposto de Transmissão Causa Mortis e Doação de quaisquer Bens ou Direitos (ITCD), na forma da Lei Complementar Distrital nº. 353/2001,
+          regulamentada pelo Decreto nº. 21.972/2001, conforme Ato Declaratório DITRI/SUREC/S nº.
+          = @unit.notary_office.declaratory_act_number.present? ? @unit.notary_office.declaratory_act_number : "xxxxxx"
+          , publicado no DODF;
+          %b b)
+          Certidão Positiva de Débitos com Efeito de Negativa de Tributos Imobiliários emitida pela Secretaria de Estado de Fazenda do Distrito Federal sob o nº
+          = @unit.certificate_sefaz.present? ? @unit.certificate_sefaz : "xxxxxx"
+          , aos
+          = @unit.date_certificate_sefaz.present? ? @unit.date_certificate_sefaz.strftime('%d/%m/%Y') : "xxxxxx"
+          , válida até
+          = @unit.validate_certificate_sefaz.present? ? @unit.validate_certificate_sefaz.strftime('%d/%m/%Y') : "xxxxxx"
+          , inscrição do imóvel número:
+          = @unit.registration_iptu.present? ? @unit.registration_iptu : "xxxxxx"
+          %b c)
+          Certidão de ônus reais, expedida pelo Cartório de Registro Imobiliário competente, negativa de registro de ações reais, pessoais reipersecutórias. Por fim, o(a)(s) donatário(a)(s)
+          por sua conta e risco dispensa(m) a apresentação das certidões de situação fiscal em relação aos débitos do Distrito Federal, em nome do Outorgando Doador, conforme artigo 45 do Provimento
+          Geral da Corregedoria do Distrito Federal aplicado aos Serviços Notariais e de Registro.
+          %b SÉTIMO:
+          Na hipótese de falecimento do beneficiário no curso do processo de regularização do imóvel, o direito à doação será transmitido ao legítimo sucessor que esteja residindo no imóvel, à data da
+          abertura da sucessão.
+          %b OITAVO:
+          A CODHAB, órgão executor da Política de Desenvolvimento Habitacional do Distrito Federal, responsável pelo cadastramento e habilitação dos beneficiários dos programas de regularização
+          fundiária de interesse social do Distrito Federal, declara que o DONATÁRIO preenche os requisitos exigidos na Lei do Distrito Federal nº 4.996/2012 para se beneficiar da presente doação,
+          bem assim que o imóvel objeto da presente doação está avaliado em R$ 5.000,00 pela CODHAB;
+          %b NONO:
+          o DONATÁRIO, na presença das testemunhas abaixo arroladas, aceita a doação, nos termos em que está redigido este instrumento, imitindo-se, desde já, na posse do imóvel. Assim, por se
+          acharem justos e contratados, após lido e relido este instrumento particular, com a permissão do art. 108 da Lei nº 10.406, de 10/01/2002 (Código Civil Brasileiro), passado em 03 (três)
+          vias, contendo 03 (três) laudas, achando no conforme, aceitam-no, outorgam-no e o assinam, dando-o por bom firme e valioso, valendo para as partes e seus sucessores, com as testemunhas ao
+          final indicadas, presentes a tudo.
+          %br
+          %br
+          .div-center
+            %b
+              = "Brasília, #{@allot.date_doc.day} de #{I18n.t("date.month_names")[@allot.date_doc.month]} de #{@allot.date_doc.year}"
+          %br
+          %br
+          .div-center
+            _________________________________________________
+            %br
+            =@allot.print_allotment.print_type.main_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+            %br
+            =@allot.print_allotment.print_type.main_cpf rescue "<span>COMPLETAR DADOS</span>".html_safe
+          %br
+          %br
+          .div-center
+            _________________________________________________
+            %br
+            = @candidate.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+            %br
+            Donatário(a)
+          - if @dependent.present?
+            .div-center
+              _________________________________________________
+              %br
+              = @dependent.name rescue "<span>COMPLETAR DADOS</span>".html_safe
+              %br
+              Donatário(a)
+          .div-center
+            %h4 Testemunhas:
+          .content.lateral-margins.spacing
+            %table{border: 0, style: "width: 550px; margin: 0 auto"}
+              %tr
+                %td
+                  %center
+                    __________________________________________
+                    %br
+                    = @allot.print_allotment.print_type.first_attestant_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+                    %br
+                    = "CPF/MF nº #{@allot.print_allotment.print_type.first_attestant_cpf}" rescue "<span>COMPLETAR DADOS</span>".html_safe
+                %td
+                  %center
+                    ___________________________________________
+                    %br
+                    = @allot.print_allotment.print_type.second_attestant_signature rescue "<span>COMPLETAR DADOS</span>".html_safe
+                    %br
+                    = "CPF/MF nº #{@allot.print_allotment.print_type.second_attestant_cpf}" rescue "<span>COMPLETAR DADOS</span>".html_safe
+          .div-center
+            = image_tag ::PrintingQrcodeService.generate!("http://www.codhab.df.gov.br/enderecos/donate_unit?id=#{@unit.id}")
+            %br
+            %a{style: "font-size: 9px"}= Digest::MD5.hexdigest @unit.id.to_s
+      %div{:style => "page-break-after:always"}

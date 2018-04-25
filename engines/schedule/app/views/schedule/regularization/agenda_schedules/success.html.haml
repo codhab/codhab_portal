@@ -1,0 +1,40 @@
+.row
+  .col-md-12.box
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12{style: 'text-align: center !important;'}
+            = image_tag '/portal/images/codhab.png'
+            %h2
+              %b Agendamento realizado com sucesso!
+              %br/
+              %small
+                Para cancelar ou alterar um agendamento, #{link_to 'clique aqui'}
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-bordered.table-striped.table-hover.table-condensed
+              %thead
+                %tr
+                  %th Protocolo
+                  %th Local
+              %tbody
+                %tr
+                  %td.col-md-2= @schedule.protocol
+                  %td.col-md-2= @schedule.agenda.local
+              %thead
+                %tr
+                  %th Nome
+                  %th CPF
+              %tbody
+                %tr
+                  %td.col-md-4= @schedule.name.to_s.upcase
+                  %td.col-md-4= @schedule.cpf.to_s.upcase
+              %thead
+                %tr
+                  %th Data
+                  %th Hora
+              %tbody
+                %tr
+                  %td.col-md-1= @schedule.date.strftime('%d/%m/%Y')
+                  %td.col-md-1= @schedule.hour.strftime('%H:%M')

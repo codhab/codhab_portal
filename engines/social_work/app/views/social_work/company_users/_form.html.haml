@@ -1,0 +1,16 @@
+.row
+  .col-md-6
+    = f.input :name, input_html: {placeholder: 'Digite um nome'}
+  .col-md-3
+    = f.input :username, input_html: {placeholder: 'Digite um login'}
+  .col-md-2
+    = f.input :status, as: :select, include_blank: false
+.row
+  .col-md-6
+    = f.input :password, input_html: {placeholder: 'Digite uma senha', value: f.object.password.present? ? f.object.password : ''}
+  .col-md-6
+    = f.input :password_confirmation, input_html: {placeholder: 'Digite uma senha', value: f.object.password.present? ? f.object.password : ''}
+%hr
+.row
+  .col-md-12
+    = f.button :submit, "Salvar", class: 'btn btn-success', data: {  disable_with: "Aguarde..."}

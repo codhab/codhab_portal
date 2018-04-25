@@ -1,0 +1,7 @@
+.row
+  .col-md-6.col-md-offset-4
+    = simple_form_for @password, url: update_question_one_remember_passwords_path, remote: true do |f|
+      = f.input :response_one, label: "Selecione seu nome", as: :radio_buttons,
+        collection: f.object.questions_one_formated, wrapper: :vertical_radio_and_checkboxes
+
+      = f.submit "Prosseguir", class: 'btn btn-success', data: { disable_with: t(:disable_with)}

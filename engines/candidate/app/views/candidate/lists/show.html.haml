@@ -1,0 +1,110 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h2
+              %b= @list.title
+            %p= @list.description.html_safe
+        %hr/
+        .row
+          .col-md-12
+            = simple_form_for url_for, method: :get do |f|
+              .row
+                .col-md-2
+                  = f.input :by_cpf, label: "Por CPF", input_html: { class: 'cpf', name: 'by_cpf', value: params[:by_cpf]}
+                .col-md-4
+                  = f.input :by_name, label: "Por Nome", input_html: { placeholder: "Digite o nome completo ou parte do mesmo", name: 'by_name', value: params[:by_name]}
+                .col-md-6
+                  = f.submit "Pesquisar", name: nil, class: 'btn btn-success filter-button', data: { disable_with: t(:disable_with)}
+                  = link_to "Limpar pesquisa", url_for, class: 'btn btn-default filter-button', data: { disable_with: t(:disable_with_spin)}
+        %hr/
+        .row
+          .col-md-9
+            = render 'counter_page'
+          .col-md-3
+            %h3
+              %b Total listado:
+              = number_with_precision @candidates.count, precision: 0
+        .row
+          .col-md-12
+            %table.table
+              %thead
+                %tr
+                  %th
+                  %th Nome
+                  - if @list.program_id.include? 2
+                    %th Sigla
+                  - if @list.slug != 'habilitados-aluguel-legal'
+                    %th Pontuação
+                  %th Situação
+                  - if @list.slug == 'habilitados-aluguel-legal'
+                    %th Idade
+                  %th Indicação
+                  %th Recusas
+                  %th Pendências
+              %tbody
+                - if @list.slug != 'habilitados-aluguel-legal'
+                  - order = 'total desc'
+                - else
+                  - order = 'age desc'
+
+                - @candidates.order(order).each_with_index do |candidate, index|
+                  %tr{class: (params[:by_cpf].to_s.gsub('.','').gsub('-', '')[7..13] == candidate.cpf.to_s[7..13]) ? 'info' : ''}
+                    - if @list.slug != 'habilitados-aluguel-legal'
+                      %td= "#{@general_index.find_index(candidate.id) + 1}º"
+                    - else
+                      %td
+                        - params[:page] ||= 1 
+                        = "#{(index + 1) + ((params[:page].to_i - 1)* 50)}º"
+                    %td
+                      = link_to candidate.name, cadastre_path(candidate.id), target: '_blank'
+                      %br
+                      %span{style: 'font-size: 14px'}= candidate.cpf.format_obfuscator_cpf rescue nil
+                    - if @list.program_id.include? 2
+                      %td= candidate.cadastre.olds.first.fantasy_name
+                    - if @list.slug != 'habilitados-aluguel-legal'
+                      %td= candidate.total
+
+                    %td
+                      - if candidate.situation_status.id == 4
+                        .label.label-success
+                          = candidate.situation_status.name.mb_chars.upcase rescue nil
+                      - else
+                        .label.label-danger
+                          = candidate.situation_status.name.mb_chars.upcase rescue nil
+                    - if @list.slug == 'habilitados-aluguel-legal'
+                      %td
+                        - if candidate.age.to_i < 60
+                          #{candidate.age.to_i} - Possui dependente idoso
+                        - else
+                          = candidate.age.to_i
+                    %td
+                      - if @list.slug == 'habilitados-aluguel-legal'
+                        .label.label-default
+                          Aluguel Legal
+
+                      - else
+                        - if candidate.cadastre.current_indication.present?
+                          .label.label-default
+                            = candidate.cadastre.current_indication
+                    %td{style: 'text-align: center'}
+                      .label.label-default
+                        - if candidate.cadastre.count_denial.present?
+                          = candidate.cadastre.count_denial rescue nil
+                        - else
+                          0
+
+                    %td
+                      - if candidate.cadastre.ocurrences.present?
+                        .label.label-danger
+                          = link_to "Pendência", ocurrences_path(id: candidate.id), style: 'color: white', remote: true
+                      - if [4,54].include?(candidate.situation_status_id)
+                        - if candidate.cadastre.tickets.where(context_id: 1, situation_id: 1).present? && !candidate.cadastre.tickets.where(context_id: 1, situation_id: 1).first.comments.present?
+                          .label.label-danger
+                            = link_to "Atualização cadastral", cadastre_path(id: candidate.id, anchor: 'pendencias') , style: 'color: white'
+
+        .row
+          .col-md-12
+            = render 'counter_page'

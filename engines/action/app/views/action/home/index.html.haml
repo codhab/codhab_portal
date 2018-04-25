@@ -1,0 +1,115 @@
+%div{class: (controller_name != 'home') ? 'container main' : '' }
+  .container
+    .col-md-12.no_padding.slider.margint50
+      = render 'partials/slider'
+    .row.no_padding
+      .col-md-2.about_action
+        %span.about_action_title
+          sobre
+      .col-md-10.about_action_text
+        %p
+          AÇÕES URBANAS COMUNITÁRIAS é um programa desenvolvido pela equipe de Assistência Técnica da CODHAB/DF. Em formato de mutirão, as ações somam a participação de profissionais e estudantes de arquitetura e urbanismo, tanto da Companhia quanto voluntários, e dos moradores das comunidades locais. O intuito é transformar coletivamente o espaço público, conectando governo e sociedade, tornando esta a protagonista da mudança. A seleção das áreas onde acontecem as ações segue critérios específicos. Interesse e articulação da comunidade para melhorar o lugar, inexistência de infraestrutura ou manutenção, possibilidade de arborização e paisagismo, vazios urbanos públicos, conexão com praças ou espaços de relevância e grande fluxo na comunidade são alguns deles. Além de identificar os problemas, é preciso observar o potencial do espaço.
+          %br
+          %strong
+            Maiores Informações: acoescomunitarias@codhab.df.gov.br
+        = link_to 'Conheça Melhor', 'http://www.codhab.df.gov.br/portal/acoes/apresentacao_projeto_acoes_urbanas.pdf',target:'_blank' ,class:"action_button action_button2"
+        = link_to 'Manual Ações Urbanas', 'http://www.codhab.df.gov.br/postagem/701',target:'_blank' ,class:"action_button action_button2"
+    .row
+      .col-md-12
+        %h3.titulo_home
+          Próximas Ações
+      - @events_i.each_with_index do |event, index|
+        .col-md-4.action_home_inscription
+          .action_thumb{:class => "action_thumb_#{index}",:style => "background-image: url(#{event.thumb})"}
+          = link_to 'Saiba Mais', social_event_path(event),class:"action_inscription_button action_inscription_button_#{index }"
+          .action_inscription_title
+            = event.name
+            %br
+              = "#{event.city.name}-#{event.district}"
+          .action_inscription_sub_title
+            %b
+              = event.date.strftime('%d.%m /// ')
+              = I18n.translate("date.day_names")[event.date.strftime('%w').to_i]
+            %br
+            = event.hour
+    .row
+      .col-md-12
+        %h3.titulo_home
+          Ações Concluídas
+      - @events_c.each_with_index do |event, index|
+        .col-md-4.action_home_inscription
+          .action_thumb{:class => "action_thumb_#{index}",:style => "background-image: url(#{event.thumb})"}
+          = link_to 'Concluido', social_event_path(event),class:"action_inscription_button action_inscription_button_#{index}"
+          .action_inscription_title
+            = event.name
+            %br
+              = "#{event.city.name}-#{event.district}"
+          .action_inscription_sub_title
+            %b
+              = event.date.strftime('%d.%m /// ')
+              = I18n.translate("date.day_names")[event.date.strftime('%w').to_i]
+            %br
+            = event.hour
+    .row
+      .col-md-12.no_padding.action_inscription_button_2.texto-gigante{style:'margin-top:30px'}
+        .col-md-6
+          %p{:style=>"margin-top: 14px;"}
+            Confira aqui
+            %br
+            todas as ações concluidas
+            %br
+            pela CODHAB em sua cidade.
+        .col-md-6
+          = link_to 'Ações Concluidas','/acoesurbanas/acoes_concluidas', class:"action_button action_button_galeria"
+    .row.margint50
+      .action_title_home.col-md-12{:style=>"margin-top: 5px;"}
+        .col-md-6{:style=>"margin-top: 14px;"}
+          %p
+            seja um parceiro e colabore
+            %br
+            para transformar as áreas de interesse
+            %br
+            social do Distrito Federal
+        .col-md-6
+          = link_to 'Seja Voluntário', "http://www.portaldovoluntariado.df.gov.br/main/visualizar_projeto.xhtml?projeto=1744", class:"action_button", style:"width: 290px;margin-bottom:30px;margin-left:161px;",:target => "_blank"
+    .row
+      .button_acoes.margint50
+      - @links_general.each do |link_general|
+        .col-md-4.no_padding
+          .button{:style => "background-color:#de3859"}
+            .text.button_acoes
+              = link_to 'DADOS GERAIS', link_general.file_link
+      - @links_team.each do |link_team|
+        .col-md-4.no_padding
+          .button{:style => "background-color:#339967"}
+            .text.button_acoes
+              = link_to 'EQUIPE', link_team.file_link
+      - @links_yearly.each do |link_yearly|
+        .col-md-4.no_padding
+          .button{:style => "background-color:#F49649"}
+            .text.button_acoes
+              = link_to 'RELATÓRIO ANUAL', link_yearly.file_link
+    .row
+      .col-md-12.action_map_head
+        %h3.texto_branco.titulo_home_mapa
+          Encontre a Ação
+    .row
+      .col-md-12.no_padding
+        #map
+          %iframe{:src => "https://www.google.com/maps/d/embed?mid=1yz9uyzuqUqOTl5mY0leOov1r2f4", :width => "100%",:height => "480", }
+
+
+-# :javascript
+-#   var map;
+-#   function initMap() {
+-#     map = new google.maps.Map(document.getElementById('map'), {
+-#       center: {lat: -15.795268, lng: -47.883911},
+-#       zoom: 8,
+-#       mapTypeId: google.maps.MapTypeId.ROADMAP
+-#     });
+-#   var ctaLayer = new google.maps.KmlLayer({
+-#     url: 'http://www.codhab.df.gov.br/acoes.kml',
+-#     map: map
+-#   });
+-#   }
+-# %script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyC19AcSjRaoMzPqsBOc7n6S09fs-hOY4Z4&callback=initMap"}

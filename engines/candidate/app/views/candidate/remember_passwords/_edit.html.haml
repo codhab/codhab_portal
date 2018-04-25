@@ -1,0 +1,11 @@
+.row
+  .col-md-7.col-md-offset-3
+    = simple_form_for @password, url: update_password_remember_passwords_path, method: :post, remote: true do |f|
+      .row
+        .col-md-5
+          = f.input :password, label: "Informe sua nova senha", input_html: { placeholder: 'Digite sua nova senha'}
+        .col-md-5
+          = f.input :password_confirmation, label: "Confirmação de senha", input_html: { placeholder: 'Confirme sua nova senha'}
+      .row
+        .col-md-4
+          = f.submit "Atualizar minha senha", class: 'btn btn-success'

@@ -1,0 +1,7 @@
+%ul.list-group
+  - @address.each do |item|
+    %li.list-group-item
+      = link_to "#{@interests.present? && @interests.where(unit_sale_id: item.id).present? ? '<i class="glyphicon glyphicon-check"></i>' : '<i class="glyphicon glyphicon-unchecked"></i>'}".html_safe, interest_update_path(interest_id: item.id), class: "btn #{ @interests.present? && @interests.where(unit_sale_id: item.id).present? ? 'btn-primary' : 'btn-default'} btn-sm"
+      = "#{item.city.name} - #{item.address}"
+  %hr
+  = link_to "Confirmar", entity.entity_area_path, class: 'btn btn-primary'

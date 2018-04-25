@@ -1,0 +1,4 @@
+- if !@password.valid?
+  $('.form').html("#{escape_javascript(render 'form')}")
+- else
+  $('.form').html("#{escape_javascript(render 'question_one')}")

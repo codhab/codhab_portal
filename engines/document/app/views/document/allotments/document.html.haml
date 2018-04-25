@@ -1,0 +1,98 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-md-12
+          %h3
+            %b Validação de Escrituras
+      - if @unit.present?
+        .row
+          .col-md-12
+            %table.table.table-striped
+              %tr
+                %td{style: "width: 30%"}
+                  %b Data do Documento
+                %td{style: "width: 70%"}
+                  %b Título
+              %tr
+                %td 14/12/2017
+                %td TERMO DE OCUPAÇÃO DE USO PRECÁRIO DE IMÓVEL PÚBLICO A TÍTULO GRATUITO
+              %tr
+                %td
+                  %b Cidade
+                %td
+                  %b Endereço
+              %tr
+                %td= @unit.city.name rescue nil
+                %td= @unit.complete_address rescue nil
+              - if @unit.current_candidate.present?
+                %tr
+                  %td{colspan: 2}
+                    %b Expedido para:
+                %tr
+                  %td{colspan: 2}
+                    = @unit.current_candidate.name rescue nil
+                    %br
+                    = "CPF: #{@unit.current_candidate.cpf.format_cpf}" rescue nil
+                - unless params[:o].present?
+                  %tr
+                    %td{colspan: 2}
+                      %b Assinado por:
+                  %tr
+                    %td{colspan: 2}
+                      = "Em 14/12/2017" rescue nil
+                      %br
+                      GILSON PARANHOS
+                      %br
+                      Diretor-Presidente da CODHAB/DF
+                  %tr
+                    %td{colspan: 2}
+                      = "Em 14/12/2017"
+                      %br
+                      RAFAEL VENUTO GONÇALVES SOBENES
+                      %br
+                      GERENTE - GERÊNCIA DE MOBILIZAÇÃO SOCIAL - GEMOB
+                  %tr
+                    %td{colspan: 2}
+                      = "Em 14/12/2017" rescue nil
+                      %br
+                      VICTOR RAMON DE PAIVA FONSECA
+                      %br
+                      Assessor Pleno - GERÊNCIA DE MOBILIZAÇÃO SOCIAL - GEMOB
+                - case params[:o]
+                - when "1"
+                  %tr
+                    %td{colspan: 2}
+                      %b Assinado por:
+                  %tr
+                    %td{colspan: 2}
+                      = "Em 14/12/2017" rescue nil
+                      %br
+                      GILSON PARANHOS
+                      %br
+                      Diretor-Presidente da CODHAB/DF
+                - when "2"
+                  %tr
+                    %td{colspan: 2}
+                      %b Assinado por:
+                  %tr
+                    %td{colspan: 2}
+                      = "Em 14/12/2017"
+                      %br
+                      RAFAEL VENUTO GONÇALVES SOBENES
+                      %br
+                      GERENTE - GERÊNCIA DE MOBILIZAÇÃO SOCIAL - GEMOB
+                - when "3"
+                  %tr
+                    %td{colspan: 2}
+                      %b Assinado por:
+                  %tr
+                    %td{colspan: 2}
+                      = "Em 14/12/2017" rescue nil
+                      %br
+                      VICTOR RAMON DE PAIVA FONSECA
+                      %br
+                      Assessor Pleno - GERÊNCIA DE MOBILIZAÇÃO SOCIAL - GEMOB
+      - else
+        .alert.alert-warning
+          = @message

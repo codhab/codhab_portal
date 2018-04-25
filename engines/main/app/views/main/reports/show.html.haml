@@ -1,0 +1,12 @@
+/ conteudo da pagina
+.container
+  .row
+    .col-md-9.box
+      .box_internal
+        .post
+          .content_post
+            %p.post-post
+              = @report.content.html_safe
+              = @report.report.html_safe if @report.report.present?
+            %a.button_back{"arial-label" => "back to top", :href => "#"} VOLTAR AO TOPO
+    = render('layouts/portal/sidebar')

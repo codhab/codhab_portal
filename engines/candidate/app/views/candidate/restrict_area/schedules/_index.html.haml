@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    %h2
+      %b Meus agendamentos
+.row
+  .col-md-12
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr 
+          %th Id.
+          %th Data
+          %th Hora
+          %th Agenda
+          %th 
+      %tbody
+        - if @cadastre.agenda_schedules.present?
+          - @cadastre.agenda_schedules.each do |cadastre|
+            %tr 
+              %td= cadastre.id
+              %td= cadastre.date.strftime("%d/%m/%Y")
+              %td= cadastre.hour.strftime("%H:%M")
+              %td= cadastre.agenda.title
+              %td= link_to "Cancelar",restrict_area_schedule_path(cadastre), method: :delete, data: { confirm: "Você tem certeza que deseja cancelar"}
+        - else 
+          %tr
+            %td{colspan: 5} 
+              %i Nenhum registro encontrado.

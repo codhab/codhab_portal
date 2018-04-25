@@ -1,0 +1,79 @@
+%hr/
+.row
+  .col-md-12
+    %br/
+    - unless @cadastre.steps.where(step: 1).present?
+      = simple_form_for [@cadastre, @step], url: cadastre_cadastre_steps_path(@cadastre), remote: true do |f|
+        = f.input :step, as: :hidden, input_html: {value: 1}
+        = f.button :submit, "Finalizar Etapa", class: 'btn btn-info btn-sm'
+    %br/
+    %br/
+    - @act = @cadastre.observations.last.active
+    -if @cadastre.observations.present? && @act == true
+      %table.table.table-striped.table-condensed.table-bordered
+        %thead
+          %tr
+            %th{style: 'background-color: #00FF00'} Observação da Comissão de Credenciamento:
+            %th.collapsing{style: 'background-color: #00FF00'} Tipo:
+        %tbody
+          %tr
+            %td= @cadastre.observations.last.observation
+            %td= @cadastre.observations.last.status ? 'Interno' : 'Externo'
+    .row
+      .col-md-3
+        %table.table.table-striped.table-condensed.table-bordered
+          %thead
+            %th Status da Inscrição
+          %tbody
+            %td.collapsing= @cadastre.situation
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Razão social
+          %th CAU/CREA
+          %th Cnpj
+          %th Recursos tecnológicos
+          %th
+      %tbody
+        %tr
+          %td= @cadastre.social_reason
+          %td= @cadastre.crea
+          %td= @cadastre.cnpj
+          %td
+            - if @cadastre.technological_resources == true
+              = 'Sim'
+            - else
+              = 'Não'
+          - if @cadastre.situation != "Habilitado"
+            %td= link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_path(@cadastre),title: "Editar", class: 'btn btn-warning btn-sm', remote: true
+  .col-md-12
+    %h4
+      %b Contato
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Rua, avenida, n° e complemento
+          %th Bairro
+          %th Município
+          %th UF
+      %tbody
+        %tr
+          %td= @cadastre.address
+          %td= @cadastre.district
+          %td= @cadastre.city.name rescue nil
+          %td= Core::Address::State.find(@cadastre.uf).name rescue nil
+      %thead
+        %tr
+          %th E-mail
+          %th Telefone
+          %th Celular
+          %th CEP
+      %tbody
+        %tr
+          %td= @cadastre.email
+          %td= @cadastre.telephone
+          %td= @cadastre.celphone
+          %td= @cadastre.cep
+= render 'members'
+= render 'technical'
+= render 'declaration'

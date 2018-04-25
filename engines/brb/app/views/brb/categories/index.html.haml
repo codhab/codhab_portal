@@ -1,0 +1,20 @@
+.ui.grid
+  .row
+    .column
+      %h1.ui.header
+        Categorias
+        .sub.header
+          Listagem de categorias de cobrança
+      = link_to '+ Adicionar Nova Categoria', new_category_path, remote: true, class: 'ui button yellow'
+  .row
+    .column
+      %table.ui.celled.striped.table.yellow
+        %thead
+          %tr 
+            %th Nome
+            %th Descrição
+            %th Situação
+            %th Valor Padrão
+            %th 
+        %tbody.index-category
+          = render 'index'

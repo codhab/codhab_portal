@@ -1,0 +1,56 @@
+= link_to 'Encerrar Sessão', logout_sessions_path, data: { method: 'delete' }, class: 'btn btn-danger btn-sm'
+.row
+  .col-md-12
+    .row
+      .col-md-12{style: 'text-align: center !important;'}
+        %h1.title Informações da Empresa
+    .row
+      .col-md-12
+        - unless @cadastre.steps.where(step: 1).present?
+          .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
+            Etapa de Identificação da Empresa não concluída.
+        - unless @cadastre.steps.where(step: 2).present?
+          .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
+            Etapa de Documentos não concluída.
+        - unless @cadastre.steps.where(step: 3).present?
+          .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
+            Etapa de Localidades não concluída.
+        - if @cadastre.steps.where(step: 1).present? && @cadastre.steps.where(step: 2).present? && @cadastre.steps.where(step: 3).present?
+          .alert.alert-success{style: 'background-color: #a4eda6 !important; border-color: #a4eda6 !important; color: black !important'}
+            Todas as etapas do cadastro foram finalizadas.
+    .row
+      .col-md-12
+        %br/
+        %br/
+        %ul.nav.nav-tabs
+          %li{:class => (params[:q] == 'e') ? 'active' : '',}
+            %a{:href => "/credenciamento/cadastro/#{@cadastre.id}?q=e"}
+              - if @cadastre.steps.where(step: 1).present?
+                %i.glyphicon.glyphicon-ok{style: 'color: green'}
+              - else
+                %i.glyphicon.glyphicon-warning-sign{style: 'color: orange', title: 'Cadastro não concluído.'}
+              1 - Identificação da Empresa
+          %li{:class => (params[:q] == 'd') ? 'active' : ''}
+            %a{:href => "/credenciamento/cadastro/#{@cadastre.id}?q=d"}
+              - if @cadastre.steps.where(step: 2).present?
+                %i.glyphicon.glyphicon-ok{style: 'color: green'}
+              - else
+                %i.glyphicon.glyphicon-warning-sign{style: 'color: orange', title: 'Nenhum documento incluído.'}
+              2 - Documentos
+          %li{:class => (params[:q] == 'l') ? 'active' : ''}
+            %a{ :href => "/credenciamento/cadastro/#{@cadastre.id}?q=l"}
+              - if @cadastre.steps.where(step: 3).present?
+                %i.glyphicon.glyphicon-ok{style: 'color: green'}
+              - else
+                %i.glyphicon.glyphicon-warning-sign{style: 'color: orange', title: 'Nenhuma localização incluído.'}
+              3 - Localidades
+        .tab-content
+          - case params[:q]
+          - when 'e'
+            = render 'enterprise'
+          - when 'd'
+            = render 'document'
+          - when 'l'
+            = render 'locales'
+          -else
+            = render 'enterprise'

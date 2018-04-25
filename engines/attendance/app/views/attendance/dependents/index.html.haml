@@ -1,0 +1,63 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .h3
+          %b Atualização de dependentes
+        %h4= link_to "Retonar para página anterior", :back
+        .row
+          .col-md-12
+            - if @ticket.closed?(@action)
+              .text-center
+                %p
+                  %h2 
+                    %b 
+                      Dados #{@action.situation.name.pluralize}!
+                      
+                %p
+                  %i.icon.checkmark.huge.green
+              .big-divider
+            %table.ui.celled.table
+              %tbody
+                - if @cadastre_mirror.dependent_mirrors.present?
+                  - @cadastre_mirror.dependent_mirrors.order(:name).each do |mirror|
+                    %tr
+                      %td
+                        .content
+                          - if mirror.name.present?
+                            %small
+                              %i Clique para visualizar os dados
+                            %br/
+                            %b= link_to mirror.name, ticket_dependent_path(@ticket, mirror), remote: true
+                          - else
+                            %b= link_to "Sem nome", ticket_dependent_path(@ticket, mirror), remote: true
+                          .sub.header
+                            %small
+                              = mirror.kinship.name rescue "Sem parentesco"
+                              |
+                              = mirror.born.strftime("%d/%m/%Y") rescue "Sem informação"
+                              |
+                              = mirror.special_condition.name rescue ''
+                          .sub.header
+                            - if !@ticket.input_disabled?(@action)
+                              = link_to "editar", edit_ticket_dependent_path(@ticket, mirror), class: 'btn btn-primary btn-xs'
+                              - if @ticket.disable_remove_spouse(mirror)
+                                = link_to "Enviar documentação", new_ticket_action_document_path(@ticket, @action, dependent_id: mirror.id), class: 'btn btn-primary btn-xs'
+                                = link_to "remover", ticket_dependent_path(@ticket, mirror), class: 'btn btn-danger btn-xs', method: :delete
+                - else
+                  %tr
+                    %td
+                    %td.text-center
+                      %i Nenhum dependente cadastrado
+        .row
+          .col-md-12
+            - if @ticket.confirmation_required?(@action)
+              .row
+                .col-md-3
+                  = link_to "Meus dados estão corretos", ticket_confirm_path(@ticket, @action), class: 'btn btn-success'
+                .col-md-3
+                  = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'btn btn-primary'
+            - elsif @ticket.open?(@action)
+              = link_to "Adicionar dependente", new_ticket_dependent_path(@ticket), class: 'btn btn-warning'
+              .mini-margin
+              = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'btn btn-success', data: { disable_with: t(:disable_with)}

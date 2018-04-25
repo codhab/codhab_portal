@@ -1,0 +1,122 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        %h1
+          %b= "Área restrita - #{current_social_user.company.name rescue nil}"
+          = current_social_user.company.station_id
+          %br/
+          %small
+            = link_to "Finalizar Sessão", destroy_authorization_path, method: :delete
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b Listagem de Candidatos Agendados
+            = link_to '+Adicionar Agendamento', new_candidate_schedule_path, class: 'btn btn-info'
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered{style: 'font-size: 10px'}
+              %thead
+                %tr
+                  %th Agendandos
+                  %th Dados Titular
+                  %th Dados Cônjuge
+                  %th Composição Familiar
+                  %th Situação Habitacional
+                  %th Infra. Resisdencial
+                  %th Arquivos
+                  %th Requisitos Sociais
+                  %th Visita Técnica
+                  %th Requisitos Técnincos
+                  %th Habilitados
+                  %th Estudo Preliminar
+                  %th Aprovação do Morador
+                  %th Projeto Executivo
+              %tbody
+                %tr{style: 'font-weight: bold'}
+                  %td= @candidates.count
+                  %td= @situation.where(step_id: 2).count
+                  %td= @situation.where(step_id: 3).count
+                  %td= @situation.where(step_id: 4).count
+                  %td= @situation.where(step_id: 5).count
+                  %td= @situation.where(step_id: 6).count
+                  %td= @situation.where(step_id: 7).count
+                  %td= @situation.where(step_id: 8).count
+                  %td= @situation.where(step_id: 10).count
+                  %td= @situation.where(step_id: 9).count
+                  %td= @situation.where(step_id: 11).count
+                  %td= @situation.where(step_id: 12).count
+                  %td= @situation.where(step_id: 13).count
+                  %td= @situation.where(step_id: 14).count
+        %hr
+        .row
+          .col-md-12
+            = simple_form_for url_for, method: :get do |f|
+              .row
+                .col-md-6
+                  = f.input :by_name, label: "Nome", input_html: { name: 'by_name', value: params[:by_name]}
+                .col-md-2
+                  = f.input :by_cpf, label: "CPF", input_html: { name: 'by_cpf', value: params[:by_cpf], class: 'cpf'}
+                .col-md-4
+                  = f.submit t(:filter_button), name: nil, class: 'btn btn-warning filter'
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Nº
+                  %th Nome
+                  %th CPF
+                  %th Etapa
+                  %th Prioridade
+                  %th
+                  %th
+              %tbody
+                - @candidates.order('id DESC').each do |candidate|
+                  %tr
+                    %td= candidate.id
+                    %td
+                      - cand = Core::SocialWork::Candidate.find_by_cpf(candidate.cpf) rescue nil
+                      - if cand.present?
+                        = link_to candidate.name, candidate_path(cand)
+                      - else
+                        = candidate.name
+                    %td= candidate.cpf.format_cpf rescue nil
+                    %td
+                      - if cand.present?
+                        = cand.candidate_projects.last.step_projects.last.step.name rescue nil
+                      - else
+                        Agendamento
+                    %td
+                      - case candidate.priority
+                      - when "Baixa"
+                        %span.label.label-success Baixa
+                      - when "Média"
+                        %span.label.label-warning Média
+                      - when "Alta"
+                        %span.label.label-danger Alta
+                      - else
+                        Sem informação
+                    %td
+                      - if cand.present?
+                        = "Perfil já preenchido"
+                      - else
+                        = link_to 'Novo perfil',new_candidate_path
+                    %td
+                      .btn-group
+                        %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                          Ações
+                          %span.caret
+                        %ul.dropdown-menu
+                          %li
+                            = link_to 'Editar agendamento',edit_candidate_schedule_path(candidate)
+                            = link_to 'Interações do agendamento', new_candidate_schedule_agenda_interaction_path(candidate), remote: true
+                            = link_to 'Detalhes do agendamento', candidate_schedule_path(candidate), remote: true
+        .row
+          .col-md-6.col-md-offset-3
+            .container
+              = will_paginate @candidates, renderer: BootstrapPagination::Rails

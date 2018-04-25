@@ -1,0 +1,57 @@
+%ul.list-group
+  %li.list-group-item 
+    %i.fa.fa-user
+    = link_to "Meu cadastro", attendance.root_path
+  %li.list-group-item 
+    %i.fa.fa-bell
+    = link_to "Notificações", attendance.notifications_path
+    %span.badge= current_cadastre.notifications.unread.count
+
+  - if current_cadastre.allow_other_update?
+    %li.list-group-item 
+      %i.fa.fa-user
+      = link_to "Atualizar Meus Dados", attendance.new_ticket_path(context_id: 5)
+
+  - if current_cadastre.allow_regularization_update?
+    %li.list-group-item 
+      %i.fa.fa-user
+      = link_to "Atualizar Meus Dados", attendance.new_ticket_path(context_id: 4)
+
+  - if current_cadastre.allow_able_update?
+    %li.list-group-item 
+      %i.fa.fa-user
+      = link_to "Atualizar Meus Dados", attendance.new_ticket_path(context_id: 3)
+  - if current_cadastre.allow_recadastre_update?
+    %li.list-group-item{style: ' background-color: #454545; color: orange;'}
+      %i.fa.fa-user
+      = link_to "Atualização Cadastral", attendance.new_ticket_path(context_id: 1), style: 'color: white'
+
+    //.column
+    //  .ui.segment.text-center
+    //    %a{href: "#{attendance.new_ticket_path(context_id: 2)}"}
+    //      %i.icon.checkmark.huge
+    //  .text-center
+    //    Habilitação
+
+
+  %li.list-group-item 
+    %i.fa.fa-refresh
+    = link_to "Minhas atualizações", attendance.tickets_path
+    %span.badge= current_cadastre.tickets.count
+  %li.list-group-item 
+    %i.fa.fa-comment-o
+    = link_to "Minhas conversas", attendance.chats_path
+    %span.badge= current_cadastre.attendance_chats.count
+  %li.list-group-item 
+    %i.fa.fa-file-text-o
+    = link_to "Meus requerimentos", attendance.requeriments_path
+    %span.badge= current_cadastre.assessments.count
+
+
+%ul.list-group
+  %li.list-group-item 
+    %i.fa.fa-lock
+    = link_to "Trocar minha senha", edit_profile_path(current_cadastre)
+  %li.list-group-item 
+    %i.fa.fa-sign-out
+    = link_to "Sair", logout_sessions_path, method: :delete

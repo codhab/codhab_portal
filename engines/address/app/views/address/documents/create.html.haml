@@ -1,0 +1,308 @@
+:css
+  .EstiloForms {
+      width: 805px;
+      min-height: 400px;
+      margin: 0 auto;
+      //background: url("/casinha/brasao.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      font-size: 12px;
+      font-family: verdana;
+      padding: 2px;
+  }
+
+
+.EstiloForms
+  %div{:style => "width: 850px; "}
+    %div{:style => "width: 800px"}
+      %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "800px"}
+        %tr
+          %td{:style => "width: 10px;"}
+            %img{:alt => "", :src => "/extranet/images/codhab.png", :style => "margin-left: 5px", :width => "120px"}/
+            %div{:style => "padding: 5px; text-align: center; align-content: left, font-size: 2px"}
+          %td{:style => "font-size: 15px;"}
+            %div{:style => "text-align: center; align-content: left"}
+              GOVERNO DO DISTRITO FEDERAL
+              %br/
+              Secretaria de Estado de Habitação
+              Regularização e Desenvolvimento Urbano
+              %br/
+              Companhia de Desenvolvimento Habitacional do Distrito Federal
+              %br/
+              %br/
+              %b CODHAB-DF
+          %td{:style => "width: 10px;"}
+            %img{:alt => "", :src => "/extranet/images/logo_brasilia.jpg", :style => "margin-left: 5px", :width => "120px"}/
+    %br/
+    %br
+    %br/
+    %br
+  - if @candidate.present?
+    %div{:style => "width: 800px; height: 50px;"}
+      %div{:style => "padding: 5px; text-align: center;"}
+        %b
+          CERTIDÃO POSITIVA DO IMÓVEL DISTRIBUIDO PELA POLÍTICA HABITACIONAL DO GDF Nº
+          %label= @candidate.current_cadastre_address.unit.control_number rescue nil
+        %br/
+        %div{:style => "font-size: 11px;"}
+          Válida até:
+          - date = DateTime.now + 90.days
+          %label=date.strftime('%d/%m/%Y')
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "padding: 5px;"}
+        Certificamos que, a requerimento da parte interessada, CONSTA(M) em nossos arquivos a(s) seguintes(s) informação(ões) quanto ao imóvel abaixo caracterizado:
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "width: 550px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          ENDEREÇO DO IMÓVEL
+          %br/
+          %br/
+          %label
+            %b= @candidate.current_cadastre_address.unit.complete_address rescue nil
+      %div{:style => "width: 240px; height: 50px; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          BAIRRO
+          %br/
+          %br/
+          %label
+            %b= @candidate.current_cadastre_address.unit.city.name rescue nil
+    -if @candidate.inheritors.present?
+      - inheiritor = @candidate.inheritors.where(spoil: true).first
+      -if inheiritor.present?
+        %br/
+        %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+          %div{:style => "width: 550px; height: 50px; border-right: 1px solid gray; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              NOME DO INTERESSADO
+              %br/
+              %br/
+              %label
+                %b= "#{inheiritor.name} espólio de: (#{@candidate.name})" rescue nil
+          %div{:style => "width: 240px; height: 50px; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              CPF
+              %br/
+              %br/
+              %label
+                %b= inheiritor.cpf.format_cpf rescue nil
+        %br/
+        %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+          %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              C. IDENTIDADE
+              %br/
+              %br/
+              %label
+                %b= inheiritor.rg rescue nil
+          %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              DATA NASCIMENTO
+              %br/
+              %br/
+              %label
+                %b= inheiritor.born.strftime('%d/%m/%Y') rescue nil
+          %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              NATURALIDADE
+              %br/
+              %br/
+              %label
+                %b= inheiritor.born_uf rescue nil
+          %div{:style => "width: 190px; height: 50px; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              ESTADO CIVIL
+              %br/
+              %br/
+              %label
+                %b= inheiritor.civil_state.name rescue nil
+      - else
+        %br/
+        %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+          %div{:style => "width: 550px; height: 50px; border-right: 1px solid gray; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              NOME DO INTERESSADO
+              %br/
+              %br/
+              %label
+                %b= @candidate.name
+          %div{:style => "width: 240px; height: 50px; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              CPF
+              %br/
+              %br/
+              %label
+                %b= @candidate.cpf.format_cpf
+        %br/
+        %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+          %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              C. IDENTIDADE
+              %br/
+              %br/
+              %label
+                %b= @candidate.rg
+          %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              DATA NASCIMENTO
+              %br/
+              %br/
+              %label
+                %b= @candidate.born.strftime('%d/%m/%Y')
+          %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              NATURALIDADE
+              %br/
+              %br/
+              %label
+                %b= @candidate.born_uf
+          %div{:style => "width: 190px; height: 50px; float: left"}
+            %div{:style => "padding: 5px; text-align: center"}
+              ESTADO CIVIL
+              %br/
+              %br/
+              %label
+                %b= @candidate.civil_state.name rescue nil
+    - else
+      %br/
+      %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+        %div{:style => "width: 550px; height: 50px; border-right: 1px solid gray; float: left"}
+          %div{:style => "padding: 5px; text-align: center"}
+            NOME DO INTERESSADO
+            %br/
+            %br/
+            %label
+              %b= @candidate.name
+        %div{:style => "width: 240px; height: 50px; float: left"}
+          %div{:style => "padding: 5px; text-align: center"}
+            CPF
+            %br/
+            %br/
+            %label
+              %b= @candidate.cpf.format_cpf
+      %br/
+      %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+        %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+          %div{:style => "padding: 5px; text-align: center"}
+            C. IDENTIDADE
+            %br/
+            %br/
+            %label
+              %b= @candidate.rg
+        %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+          %div{:style => "padding: 5px; text-align: center"}
+            DATA NASCIMENTO
+            %br/
+            %br/
+            %label
+              %b= @candidate.born.strftime('%d/%m/%Y') rescue nil
+        %div{:style => "width: 195px; height: 50px; border-right: 1px solid gray; float: left"}
+          %div{:style => "padding: 5px; text-align: center"}
+            NATURALIDADE
+            %br/
+            %br/
+            %label
+              %b= @candidate.born_uf
+        %div{:style => "width: 190px; height: 50px; float: left"}
+          %div{:style => "padding: 5px; text-align: center"}
+            ESTADO CIVIL
+            %br/
+            %br/
+            %label
+              %b= @candidate.civil_state.name rescue nil
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "width: 550px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          - @spouse = @candidate.dependents.where(kinship_id: 6).last
+          CÔNJUGE/COMPANHEIRO(a)/COADQUIRENTE
+          %br/
+          %br/
+          %label
+            %b= @spouse.name if @spouse.present?
+      %div{:style => "width: 240px; height: 50px; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          CPF
+          %br/
+          %br/
+          %b= @spouse.cpf.format_cpf if @spouse.present? && @spouse.cpf.present?
+    %br/
+    %div{:style => "width: 800px; height: 50px; border: 1px solid gray;"}
+      %div{:style => "width: 260px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          C. IDENTIDADE
+          %br/
+          %br/
+          %b= @spouse.rg if @spouse.present?
+      %div{:style => "width: 260px; height: 50px; border-right: 1px solid gray; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          DATA NASCIMENTO
+          %br/
+          %br/
+          %b= @spouse.born.strftime("%d/%m/%Y") rescue nil
+      %div{:style => "width: 255px; height: 50px; float: left"}
+        %div{:style => "padding: 5px; text-align: center"}
+          DOC. FIRMADO EM
+          %br/
+          %br/
+          %b= @candidate.current_cadastre_address.created_at.strftime('%d/%m/%Y')
+    %br/
+    // =------------------------- --------------
+    %div{:style => "width: 800px; min-height: 170px; border: 1px solid gray;"}
+      %div{:style => "padding: 5px; text-align: center"}
+        COADQUIRENTE / HERDEIRO
+        // tabela de herdeiros
+        - if @candidate.inheritors.present?
+          %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "750px", style: "text-align: left"}
+            %thead
+              %tr
+                %td Nome
+                %td CPF
+                %td Nº RG
+                %td Estado Civil
+                %td Data de Nascimento
+            %tbody
+              - @candidate.inheritors.each do |candidate|
+                - unless candidate.spoil == true
+                  %tr
+                    %td= candidate.name
+                    %td= candidate.cpf
+                    %td= candidate.rg
+                    %td= candidate.civil_state.name rescue t(:no_information)
+                    %td= candidate.born.strftime('%d/%m/%Y') rescue t(:no_information)
+    %br/
+    %div{:style => "width: 800px; height: 30px;"}
+      %div{:style => "padding: 5px; font-weight: bold;"}
+        OBSERVAÇÃO:
+        -if @candidate.current_procedural.id == 46
+          Concessónario de lote residencial com edificação e firmado Termo de Concessão de Uso Oneroso
+        -else
+          = "Concessionário de lote: Tipo - #{@candidate.current_cadastre_address.unit.type_use_unit.name}" rescue nil
+      %div{:style => "padding: 5px; font-size: 9px;"}
+        - obs = @candidate.cadastre_activities.where(activity_status_id: 11)
+        - if obs.present?
+          - obs.each do |obs|
+            = obs.observation
+    %br/
+    %br/
+    %div{:style => "width: 800px; height: 45px; background-color: silver"}
+      %div{:style => "padding: 5px; text-align: center"}
+        ATENÇÃO! FICA VEDADA A COMERCIALIZAÇÃO, CESSÃO, PERMUTA, ALUGUEL OU QUALQUER OUTRA OPERAÇÃO IMOBILIÁRIA DO PRESENTE IMÓVEL.
+    %br/
+    %div{:style => "width: 800px; height: 140px; "}
+      %div{:style => "padding: 5px; text-align: center"}
+        %label{style: 'font-size: 9px'}= @autenticate
+        %div{:style => "font-size: 10px"}
+          = image_tag @qr
+          %br/
+    %div{:style => "width: 800px; height: 55px;"}
+      %div{:style => "padding: 5px; text-align: center; font-size: 10px; font-weight: bold;"}
+        A PRESENTE CERTIDÃO PODE SER VALIDADA NO SITE www.codhab.df.gov.br link SERVIÇOS Brasília,
+        %label= DateTime.now.strftime('%d/%m/%Y')
+    %br/
+    %br/
+    %div{:style => "width: 600px; height: 35px; margin: 0 auto"}
+      %div{:style => "padding: 5px; text-align: center; font-size: 10px;"}
+        SCS Quadra 06 Bloco 'A' Ed. SEDUMA - CEP 70.306-918 - Telefones (61) 3214 1802
+        Site: www.codhab.df.gov.br

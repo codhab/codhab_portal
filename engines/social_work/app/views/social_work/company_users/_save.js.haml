@@ -1,0 +1,8 @@
+- if @company_user.errors.any?
+  - if @company_user.id.present?
+    $('#modal .modal-content').html("#{escape_javascript(render 'edit')}")
+  - else
+    $('#modal .modal-content').html("#{escape_javascript(render 'new')}")
+- else
+  $('#modal').modal('hide')
+  $('.index_user').html("#{escape_javascript(render 'index')}")

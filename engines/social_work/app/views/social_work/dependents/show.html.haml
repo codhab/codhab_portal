@@ -1,0 +1,24 @@
+.ui.grid
+  .row
+    .column
+      %h1.ui.header
+        Social
+        .sub.header
+          Dados da Dependente
+      = link_to "Voltar para listagem", candidate_dependents_path(@params), class: 'ui yellow button no-print'
+  .row
+    .column
+      .ui.segment.yellow
+        %table.ui.celled.striped.table
+          %thead
+            %tr
+              %th Nome
+              %th Nome Fantasy
+              %th CNPJ
+              %th Email
+          %tbody
+            %tr
+              %td= @company.name rescue nil
+              %td= @company.fantasy_name rescue nil
+              %td= @company.cnpj rescue nil
+              %td= @company.email rescue nil

@@ -1,0 +1,63 @@
+.row
+  .col-md-12
+    %h1 
+      %b Vencedores
+.row
+  .col-md-12  
+    - if (@project.result_day.present? && @project.result_hour.present?) &&  (@project.result_day <= Date.current) && @project.winners.present?
+      .row
+        .col-md-12
+          = @project.result_description.html_safe
+      .row
+        .col-md-12
+          - if @project.result_document.to_s.present?
+            - file  =  @project.result_document.to_s.split('/').last
+            - url   = "/uploads/concourse/candidate/files/#{file}"
+            = link_to "Baixar ata de resultado", url, target: '_blank' 
+      - @project.winners.order('group_participation ASC').each do |winner|
+        .row
+          .col-md-12
+            %p
+              - if winner.group_participation.present?
+                %h2
+                  %b= winner.group_participation.humanize
+              %h2
+                %b= winner.winner_type.humanize
+            %p
+              %h3 #{winner.participation.candidate.name} - Nº da pasta: #{winner.participation_id} -  Nº de inscrição: #{winner.participation.candidate_id} -  #{winner.participation.candidate.city} / #{winner.participation.candidate.state.acronym}
+            %p
+              %h4
+                %i
+                  - if winner.participation.team_description.present?
+                    = winner.participation.team_description
+                  - else
+                    - winner.participation.team_participations.each do |team|
+                      = "#{team.name}, "
+        %hr/
+        .row  
+          - if winner.participation.archive_one.to_s.present?
+            .col-md-2{style: 'text-align: center'}
+              = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br#{winner.participation.archive_one}", target: '_blank'
+              %p Arquivo 01
+          - if winner.participation.archive_two.to_s.present?
+            .col-md-2{style: 'text-align: center'}
+              = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br#{winner.participation.archive_two}", target: '_blank'
+              %p Arquivo 02
+          - if winner.participation.archive_three.to_s.present?
+            .col-md-2{style: 'text-align: center'}
+              = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br#{winner.participation.archive_three}", target: '_blank'
+              %p Arquivo 03
+          - if winner.participation.archive_four.to_s.present?
+            .col-md-2{style: 'text-align: center'}
+              = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "#{winner.participation.archive_four}", target: '_blank'
+              %p Arquivo 04
+          - if winner.participation.archive_five.to_s.present?
+            .col-md-2{style: 'text-align: center'}
+              = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "#{winner.participation.archive_five}", target: '_blank'
+              %p Arquivo 05
+        %hr/
+    - else
+      .row
+        .col-md-12
+          %p
+            %h4 Os vencedores deste concurso ainda não estão disponíveis.

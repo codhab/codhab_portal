@@ -1,0 +1,11 @@
+= simple_form_for @candidate, url: project_subscribe_candidate_password_path(project_id: @project, id: @token.secret_key), method: :put do |f|
+  %hr/
+  .row
+    .col-md-6
+      = f.input :password
+      = f.input :token, as: :hidden, input_html: { value: @token.secret_key}
+    .col-md-6
+      = f.input :confirmation_password, label: "Confirmação de senha"
+  .row
+    .col-md-12
+      = f.submit "Atualizar minha senha", class: 'btn btn-inverse'

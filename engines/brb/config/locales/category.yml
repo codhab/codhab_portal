@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    modules:
+      'brb/category': "Categoria"
+    attributes:
+      'brb/category':
+        name: "Nome"
+        default_value: "Valor padrão"
+        status: "Publicado?"
+        description: "Descrição"

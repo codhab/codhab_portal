@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4
+              %b
+                Registro de IPTU
+        .row
+          .col-md-12
+            - if @iptus.present?
+              - @iptus.each_with_index do |iptu, i|
+                %table.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th Endereço
+                      %th Cidade
+                      %th Nº da Inscrição
+                  %tbody
+                    %tr
+                      %td= iptu.address rescue nil
+                      %td= iptu.city
+                      %td= iptu.registration rescue nil
+
+            - else
+              %i Nenhum ocorrência encontrada.

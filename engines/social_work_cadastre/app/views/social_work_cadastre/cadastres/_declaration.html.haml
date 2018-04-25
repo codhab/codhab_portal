@@ -1,0 +1,45 @@
+%hr/
+.row
+  .col-md-12.input-mini
+    .row
+      .col-md-12{style: 'text-align: center !important;'}
+        %h3.title  Declaração de Compromisso
+    %br/
+    %p
+      À CODHAB/DF,
+    %p
+      Ref. Credenciamento no 01/2018
+    %p
+      %b
+        Objeto:
+      credenciar Pessoa Jurídica, devidamente registrada no Conselho Regional de Engenharia e Agronomia (CREA) ou no Conselho de Arquitetura e Urbanismo do Brasil (CAU), para a prestação de serviços técnicos profissionais de pequenas reformas, adiante descritos, em caráter temporário, em residências localizadas em Áreas de Regularização de Interesse Social (ARIS), estabelecidas pela lei complementar nº 854, de 15 de outubro de 2012, e posteriormente definidas pela CODHAB/DF, de acordo   com os       critérios, termos e condições estabelecidas no Projeto Básico e seus Anexos, que o integram e complementam.
+    %p
+      %b
+        Do Responsável Técnico:
+    %p
+      1. Abaixo, informe quem será o responsável técnico pelas execuções dos projetos de melhorias habitacionais durante todo período de vigência do contrato:
+    %p
+      Caso o profissional não tenha sido incluido em quadro técnico, favor incluir
+      , caso o profissional já tenha sido incluido, clique em:
+      = link_to 'Escolher Responsável', new_cadastre_responsible_path(@cadastre), remote: true, class: 'btn btn-info btn-sm'
+    -if @cadastre.responsibles.where(responsible: true).present?
+      - responsible = @cadastre.responsibles.where(responsible: true).last
+      %table.table.table-bordered
+        %tr
+          %td
+            = "1. Nome Completo: #{responsible.cadastre_member.name}" rescue nil
+          %td
+            = "2. Formação: #{responsible.cadastre_member.formation}" rescue nil
+        %tr
+          %td
+            = "3. Cpf: #{responsible.cadastre_member.cpf}" rescue nil
+          %td
+            = "4. Identidade: #{responsible.cadastre_member.rg}" rescue nil
+        %tr
+          %td
+            = "5. Telefone: #{responsible.cadastre_member.telephone}" rescue nil
+          %td
+            = "6. Celular: #{responsible.cadastre_member.celphone}" rescue nil
+        %tr
+          %td{colspan: 2}
+            = "7. N° de Registro COU/CREA: #{responsible.cadastre_member.registration_crea}" rescue nil

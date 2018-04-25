@@ -1,0 +1,14 @@
+.col-md-8.col-md-offset-2
+  .row
+    .col-md-6
+      = f.input :name, label: "Nome", input_html: { placeholder: 'Razão social'}
+    .col-md-6
+      = f.input :formation, label: "CAU/CREA", input_html: { placeholder: 'CAU/CREA' }
+  .row
+    .col-md-6
+      = f.input :rg, label: "Rg", input_html: { placeholder: 'Rg' }
+    .col-md-6
+      = f.input :cpf, label: "Cpf", input_html: {class: 'cpf', placeholder: 'Telefone'}
+  .row
+    .col-md-6
+      = f.button :submit, "Realizar cadastro", class: 'btn btn-success'

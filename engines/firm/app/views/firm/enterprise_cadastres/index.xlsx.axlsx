@@ -1,0 +1,25 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "EnterpiseCadastre") do |sheet|
+sheet.add_row ["Nome", "CPF", "Pontuação", "Condição", "Telefone", "Telefone Opcional", "Celular", "Email", "Situação", "Data de Nascimento", "Nome Cônjuge", "CPF Cônjuge", "Nascimento Cônjuge", "Renda", "UF", "Cidade", "Endereço", "Complemento", "Estado Civil", "Programa", "Lista de Origem", "CEP", "Data da Indicação", "Status da indicação", "Data da Inativação" ]
+  @enterprise_excell.each do |a|
+    if a.cadastre.present?
+      sheet.add_row [a.cadastre.name, a.cadastre.cpf.present? ? a.cadastre.cpf.format_cpf : "Sem informação",
+      a.cadastre.pontuations.present? ? a.cadastre.pontuations.first.total : "Sem informação",
+      a.cadastre.special_condition.present? ? a.cadastre.special_condition.name : "Sem informação",
+      a.cadastre.telephone, a.cadastre.telephone_optional, a.cadastre.celphone, a.cadastre.email,
+      a.enterprise_cadastre_situations.present? && a.enterprise_cadastre_situations.first.enterprise_situation_status.present? ? a.enterprise_cadastre_situations.first.enterprise_situation_status.name : "Não Contactado",
+      a.cadastre.born.present? ? a.cadastre.born.strftime('%d/%m/%Y') : "Sem informação",
+      a.cadastre.spouse_name, a.cadastre.spouse_cpf.present? ? a.cadastre.spouse_cpf.format_cpf : "Sem informação",
+      a.cadastre.spouse_born, a.cadastre.income,
+      a.cadastre.city.present? ? a.cadastre.city.state.acronym : "Sem informação",
+      a.cadastre.city.present? ? a.cadastre.city.name : "Sem informação",
+      a.cadastre.address, a.cadastre.address_complement,
+      a.cadastre.civil_state.present? ? a.cadastre.civil_state.name : "Sem informação",
+      a.cadastre.program.present? ? a.cadastre.program.name : "Sem informação",
+      a.source_list,
+      a.cadastre.cep, a.created_at.strftime("%d/%m/%Y"),
+      a.inactive == true ? "Inativa" : "Ativa",
+      a.inactive_date.present? ? a.inactive_date.strftime("%d/%m/%Y") : "Sem informação"]
+    end
+  end
+end

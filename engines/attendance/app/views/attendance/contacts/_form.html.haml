@@ -1,0 +1,26 @@
+= simple_form_for @cadastre_mirror, url: @ticket.input_disabled?(@action) ? "#" : ticket_contact_path(@ticket, @cadastre_mirror), method: :put, validate: true do |f|
+  .row
+    .col-md-3
+      = f.input :telephone, input_html: { class: 'phone', disabled: @ticket.input_disabled?(@action) }
+    .col-md-3
+      = f.input :telephone_optional, input_html: { class: 'phone',  disabled: @ticket.input_disabled?(@action) }
+    .col-md-3
+      = f.input :celphone, input_html: { class: 'phone', disabled: @ticket.input_disabled?(@action) }
+    .col-md-3
+      = f.input :email, input_html: { disabled: @ticket.input_disabled?(@action) }
+  .row
+    .col-md-4
+      = f.input :cep, input_html: { class: 'cep',disabled: @ticket.input_disabled?(@action)}
+    .col-md-8
+      = f.association :city, include_blank: false, collection: Core::Address::City.federal_district, input_html: { disabled: @ticket.input_disabled?(@action) }
+  .row
+    .col-md-12
+      = f.input :address, input_html: { disabled: @ticket.input_disabled?(@action) }
+  .mini-margin
+  .row
+    .col-md-12
+      - if @ticket.confirmation_required?(@action)
+        = link_to "Meus dados estão corretos", ticket_confirm_path(@ticket, @action), class: 'btn btn-success'
+        = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'btn btn-primary'
+      - elsif @ticket.open?(@action)
+        = f.submit "Salvar dados", class: "btn btn-success"

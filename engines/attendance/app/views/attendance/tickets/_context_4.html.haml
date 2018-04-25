@@ -1,0 +1,34 @@
+%p
+  %b Dados atualizados
+  %table.table.table-striped.table-bordered.mini-font
+    %thead
+      %tr
+        %th Telefone  
+        %th Telefone (Opcional)  
+        %th Celular  
+    %tbody  
+      %tr
+        %td= @ticket.cadastre_mirror.telephone
+        %td= @ticket.cadastre_mirror.telephone_optional
+        %td= @ticket.cadastre_mirror.celphone
+    %thead
+      %tr
+        %th CEP  
+        %th Cidade  
+        %th Logradouro  
+    %tbody  
+      %tr
+        %td= @ticket.cadastre_mirror.cep
+        %td= @ticket.cadastre_mirror.city.name
+        %td= @ticket.cadastre_mirror.address
+%p
+  %b Arquivos
+- if action.uploads.present?
+  %table.table.table-bordered
+    %tbody
+      - action.uploads.each do |upload|
+        %tr 
+          %td= upload.category.name   
+- else
+  %p 
+    %i Nenhum arquivo enviado.

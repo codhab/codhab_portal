@@ -1,0 +1,17 @@
+.col-md-8.col-md-offset-2
+  = simple_form_for [@cadastre, @upload_document], url: cadastre_upload_documents_path(@cadastre) do |f|
+    = f.input :document_type_id, as: :hidden, input_html: {value: params[:document]}
+    .row
+      .col-md-12
+        %b= Core::SocialWorkCadastre::DocumentType.find(params[:document]).name
+    .row
+      .col-md-12
+        = f.input :observation, label: "Descrição", input_html: { placeholder: 'Descreva ou cite observações sobre o documento a ser enviado'}
+    %br/
+    .row
+      .col-md-6
+        = f.input :file_path, as: 'file', label: false, input_html: {class: 'fg-label', placeholder: 'Anexo'}
+    %br/
+    .row
+      .col-md-6
+        = f.button :submit, "Enviar arquivo", class: 'btn btn-success'

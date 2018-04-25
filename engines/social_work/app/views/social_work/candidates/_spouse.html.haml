@@ -1,0 +1,54 @@
+- if @dependents.present? && @dependents.where(kinship_id: 6).present?
+  - dep = @dependents.where(kinship_id: 6).last
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th Nome
+        %th cpf
+        %th Data de Nascimento
+    %tbody
+      %tr
+        %td= dep.name
+        %td= link_to dep.cpf.format_cpf, edit_candidate_spouse_path(@candidate, dep.id), remote: true, title: 'Editar'  rescue nil
+        %td= dep.born.strftime('%d/%m/%Y') rescue nil
+    %thead
+      %tr
+        %th Sexo
+        %th Estado Civil
+        %th Grau de Instrução
+    %tbody
+      %tr
+        %td= dep.gender
+        %td= dep.civil_state.name rescue nil
+        %td= dep.education.name rescue nil
+    %thead
+      %tr
+        %th RG
+        %th Expeditor
+        %th Emissão
+    %tbody
+      %tr
+        %td= dep.rg
+        %td= dep.rg_org
+        %td= dep.rg_date
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th Nome do Pai
+        %th Nome da Mãe
+    %tbody
+      %tr
+        %td= dep.father_name
+        %td= dep.mother_name
+    %thead
+      %tr
+        %th Profissão/Ocupação
+        %th Remuneração
+    %tbody
+      %tr
+        %td= dep.work_ocupation
+        %td= dep.income
+- else
+  %tr
+    %td
+      %i Nenhum dependente cadastrado

@@ -1,0 +1,114 @@
+.container{:style => "background: #ffffff"}
+  .row
+    .col-md-12
+      .slider_retardado
+        .bxslide_action{:style => "margin-top:30px;"}
+          - @sliders.each do |slider|
+            %li.clone{"aria-hidden" => "true", :style => "height: 413px;"}
+              - if slider.photo.present?
+                = image_tag "/uploads/archive/images/"+slider.photo
+              - else
+                = image_tag '/portal/images/codhab.png'
+    .col-md-12.margint50
+      .h3.title_projetos
+        Gerência de Mobilização Social - GEMOB
+    .col-md-12.margint50
+      %p.title.mobilizacao
+        %span.caractere
+          >>
+        Mobilização Social
+      %p{:style => "margin-top: 15px"}
+        A GEMOB tem como atribuição a execução do Trabalho Social, que compreende um conjunto de estratégias, processos e ações, realizado a partir de estudos de diagnósticos integrados e participativos do território, compreendendo as dimensões: social, econômica, produtiva, ambiental e político institucional do território e da população beneficiária, além das características da intervenção. Visa promover o exercício da participação e a inserção social dessas famílias, em articulação com as demais políticas públicas, contribuindo para a melhoria da sua qualidade de vida e para a sustentabilidade dos bens, equipamentos e serviços implantados.
+      %p.title.mobilizacao
+        %span.caractere
+          >>
+        Prestação de Serviços
+
+      %p{:style => "margin-top: 15px"}
+        A equipe técnica da GEMOB é encarregada do planejamento, execução e avaliação de ações do Projeto de Trabalho Social (PTS). O grupo é formado por profissionais especializados em intervenções habitacionais com foco na população de baixa renda. A participação da equipe social ocorre em todas as fases de planejamento pré e pós obra dos projetos. A atuação é feita de forma proativa junto à comunidade, que auxilia no reconhecimento da área. Nessa fase, a GEMOB apresenta o objetivo e as atividades a serem desenvolvidas no PTS aos moradores e identifica o perfil do público a ser beneficiado pelo programa. Entre as atividades desenvolvidas pela equipe de trabalho social da CODHAB estão os serviços de capacitação profissional, direito social, acompanhamento e gestão da intervenção habitacional, desenvolvimento socioeconômico, educação ambiental e patrimonial.
+  .row
+    .col-md-6.margint50
+      %p.title.mobilizacao
+        %span.caractere
+          >>
+        Beneficiados
+
+      %p{:style => "margin-top: 15px"}
+        Famílias localizadas em áreas de atuação do Programa de Aceleração do Crescimento (PAC) no Distrito Federal e famílias beneficiadas pela Política de Habitação do DF, vinculadas ao Programa Morar Bem, com renda familiar mensal até R$1.600,00.
+    .col-md-6.margint50
+      %p.title.mobilizacao
+        %span.caractere
+          >>
+        Plantão Social
+
+      %p{:style => "margin-top: 15px"}
+        O serviço de plantão social da CODHAB é formado por assessores técnicos e assistentes sociais. As demandas são acolhidas, diariamente, conforme o cronograma de atendimento por região, estabelecido pela GEMOB .
+  .row
+    .col-md-12.margint50
+      .h3.title_projetos
+        Projetos de Trabalhos Técnicos Sociais
+  .row
+    .slider_mongol
+      .bxslide.margint50{:style=>"height:578px"}
+        - @events.order('created_at ASC').each do |event|
+          .col-md-4
+            -# %img.action_thumb_mobi{:alt => "PROJETO1", :src => "/uploads/archive/images/#{event.photo}",  }/
+            - if event.photo?
+              = image_tag "/uploads/archive/images/"+event.photo, class:"altura_eventos"
+            - else
+              = image_tag '/portal/images/codhab.png'
+            .span.title_action_thumb_mobi
+              = link_to event.name, event_path(event)
+            .span.descrption_action_thumb_mobi{:style => "margin-top:10px"}
+              = event.description.html_safe
+  .row
+    .col-md-12.margint50
+      .button
+        .text_button
+          = link_to 'Normas e Regulamentação', "http://www.habitacao.sp.gov.br/casapaulista/downloads/portarias/portaria_21_01jan_22_2014_manual_inst_trabalho_social.pdf",target:'_blank'
+        .text_button_desc
+          Portaria nº 21
+          %br
+          22 de janeiro de 2014, Ministério das Cidades
+
+  .row
+    .col-md-12.margint50
+      .h3.title_projetos
+        Selagens
+  .row
+    .slider_selagem
+      .bxslide.margint50
+        .col-md-4
+          %img{:alt => "area total", :src => "http://www.codhab.df.gov.br/portal/images/fotos_selagem_bananal/solnascente.png"}
+          .span.title_action_thumb_mobi
+            = link_to 'Selagem Sol Nascente', "http://www.codhab.df.gov.br/selagem",target:'_blank'
+          .span.descrption_action_thumb_mobi{:style => "margin-top:10px;text-align:center;font-weight:bold;"}
+            SHSN Quadra 209, Conj A e B (Trecho 2)
+        .col-md-4
+          %img{:alt => "area total", :src => "http://www.codhab.df.gov.br/portal/images/fotos_selagem_bananal/crixa.png"}
+          .span.title_action_thumb_mobi
+            = link_to 'Selagem Crixá', "http://www.codhab.df.gov.br/selagem_crixa",target:'_blank'
+          .span.descrption_action_thumb_mobi{:style => "margin-top:10px;text-align:center;font-weight:bold;"}
+            São Sebastião
+        .col-md-4
+          %img{:alt => "area total", :src => "http://www.codhab.df.gov.br/uploads/archive/files/c6df9e3e2110a65d5b88b15f3473eefc.jpg"}
+          .span.title_action_thumb_mobi
+            = link_to 'Selagem Bonsucesso', "http://www.codhab.df.gov.br/selagem_bonsucesso",target:'_blank'
+          .span.descrption_action_thumb_mobi{:style => "margin-top:10px;text-align:center;font-weight:bold;"}
+            São Sebastião
+        .col-md-4
+          %img{:alt => "area total", :src => "http://www.codhab.df.gov.br/portal/images/fotos_selagem_bananal/SOFSULMAPA.png"}
+          .span.title_action_thumb_mobi
+            = link_to 'Selagem Bananal SOF SUL', "http://www.codhab.df.gov.br/selagem_bananal",target:'_blank'
+          .span.descrption_action_thumb_mobi{:style => "margin-top:10px;text-align:center;font-weight:bold;"}
+            SOF SUL
+        .col-md-4
+          %img{:alt => "area total", :src => "http://www.codhab.df.gov.br/uploads/archive/files/e9a04003acacd3bb8dca14d8494fcd01.jpg",:style=> "height: 222px"}
+          .span.title_action_thumb_mobi
+            = link_to 'Selagem Parque das Copaíbas', "http://www.codhab.df.gov.br/selagem_copaibas",target:'_blank'
+          .span.descrption_action_thumb_mobi{:style => "margin-top:10px;text-align:center;font-weight:bold;"}
+            Parque das Copaíbas
+
+    .col-md-12.no_padding.margint50
+      #map
+        %iframe{:src => "https://www.google.com/maps/d/embed?mid=1yRS1CwGHE3DJAA2D0xJLfDXIVkU", :width => "100%",:height => "480", }
