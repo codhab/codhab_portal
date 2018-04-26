@@ -8,8 +8,11 @@
         = f.button :submit, "Finalizar Etapa", class: 'btn btn-info btn-sm'
     %br/
     %br/
-    - @act = @cadastre.observations.last.active
-    -if @cadastre.observations.present? && @act == true
+    - begin
+      - @act = @cadastre.observations.last.active
+    - rescue
+      - nil
+    - if @cadastre.observations.present? && @act == true
       %table.table.table-striped.table-condensed.table-bordered
         %thead
           %tr

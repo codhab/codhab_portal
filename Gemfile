@@ -37,7 +37,7 @@ gem "select2-rails"
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'file_validators'
-gem 'axlsx_rails'
+#gem 'axlsx_rails'
 
 gem 'faraday'
 gem 'faraday_middleware'
