@@ -18,12 +18,12 @@ end
 =end
 
 if ENV["STAGE"] == "dev"
-  set :deploy_to, '/var/www/development/apps/codhab_portal'
+  set :deploy_to, '/var/www/development/apps/portal'
 else
-  set :deploy_to, '/var/www/production/apps/codhab_portal'
+  set :deploy_to, '/var/www/production/apps/portal'
 end
 
-set  :repository, 'https://github.com/codhab/portal.git'
+set  :repository, 'https://github.com/codhab/codhab_portal.git'
 set  :branch, ENV["BRANCH"] ||= 'master'
 
 set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public')
