@@ -9,13 +9,7 @@ module Firm
 
     has_scope :type_action
     # GET /inheritors
-    def index
-      respond_to do |format|
-        format.json {
-          @enterprise_situation_statuses = apply_scopes(Core::Candidate::EnterpriseSituationStatus).all
-        }
-      end
-    end
+    def index; end
 
     def new
       @enterprise_situation = @enterprise_cadastre.enterprise_cadastre_situations.new

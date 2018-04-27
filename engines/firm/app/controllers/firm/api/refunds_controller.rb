@@ -6,7 +6,7 @@ module Firm
 
       def create
         @refund = Firm::Refund.new(set_params)
-        @unit = ::Address::Unit.find_by_control_number(@booking.unit_id)
+        @unit = ::Address::Unit.find_by_control_number(@refund.unit_id)
         @refund.unit_id = @unit.id
 
         if @refund.valid?
