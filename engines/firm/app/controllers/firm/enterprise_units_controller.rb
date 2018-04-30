@@ -24,11 +24,6 @@ module Firm
        @enterprise_units = ::Address::Unit.where(enterprise_typology_id: arr)
        @enterprise_units_excel = apply_scopes(@enterprise_units)
        @enterprise_units =  @enterprise_units_excel.paginate(:page => params[:page], :per_page => 20)
-
-       respond_to do |format|
-       format.html
-         format.xlsx  { response.headers['Content-Disposition'] = "attachment; filename='candidatos_enderecos#{Date.today.to_date}.xlsx'" }
-       end
     end
 
     def new
