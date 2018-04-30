@@ -15,10 +15,11 @@ module Firm
         @refund.unit_id = @unit.id
 
         if @refund.valid?
-          service = Firm::RefundService.new(@refund.cadastre, @unit, 13)
+          @project = ::Firm::UserCompany.find(13)
+          service = Firm::RefundService.new(@refund.cadastre, @unit, @project)
           service.refund!(@refund.observation, @refund.file_path)
 
-          render json: { status: 'success', reference_code: @refund.complete_address }
+          render json: { status: 'success', reference_code: @refund.cpf }
         else
           render json: { status: 'error', errors: @refund.errors.messages }
         end

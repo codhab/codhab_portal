@@ -7,7 +7,7 @@ module Firm
 
     validates :cpf, cpf: true, presence: true
     validates :observation, presence: true
-    validates :file_path, presence: true
+    #validates :file_path, presence: true
 
     validate  :cpf_valid?
 
