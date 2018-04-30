@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 65d6e4461e435e3990ee8ac800ed4082c6560f18
+  revision: 3f6e2f9446ab019e115c22cf8efd283c8fe5d052
   branch: master
   specs:
     core (0.1.0)
@@ -463,4 +463,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.15.4
+   1.16.1

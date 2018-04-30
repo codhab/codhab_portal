@@ -30,9 +30,6 @@ module Firm
 
         end
       end
-
     end
-
-
   end
 end

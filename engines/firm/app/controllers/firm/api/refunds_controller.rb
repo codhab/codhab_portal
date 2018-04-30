@@ -5,7 +5,12 @@ module Firm
     class RefundsController < ApplicationController
 
       def create
-        @refund = Firm::Refund.new(set_params)
+        @refund = Firm::Refund.new
+        @refund.cpf = params[:cpf]
+        @refund.observation = params[:observation]
+        @refund.file_path = params[:file_path]
+        @refund.unit_id = params[:unit_id]
+
         @unit = ::Address::Unit.find_by_control_number(@refund.unit_id)
         @refund.unit_id = @unit.id
 
@@ -23,9 +28,8 @@ module Firm
       private
 
       def set_params
-        params.fetch(:refund, {}).permit(:cpf, :observation, :file_path, :unit_id)
+        params.fetch(:refund).permit(:cpf, :observation, :file_path, :unit_id)
       end
-
     end
   end
 end
