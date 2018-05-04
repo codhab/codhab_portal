@@ -1,0 +1,8 @@
+.col-md-8.col-md-offset-4
+  = simple_form_for @validate, url: validates_path, method: :post do |f|
+    .row
+      .col-md-6
+        = f.input :cnpj, input_html: {class: 'cnpj'}
+    .row
+      .col-md-6
+        = f.submit "Validar", class: 'btn btn-success'

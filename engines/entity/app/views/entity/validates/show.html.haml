@@ -1,0 +1,32 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-md-12
+          %h3
+            %b Validação de Contrato Particular de Promessa de Compra e Venda
+      .row
+        .col-md-12
+          - @entity = Core::Entity::Cadastre.find_by(cnpj: @validate.cnpj)
+          %table.table.table-striped
+            %tr
+              %td{style: "width: 20%"}
+                %b Data do Documento
+              %td{style: "width: 80%"}
+                %b Título
+            %tr
+              %td= @validate.document_date.strftime('%d/%m/%Y')
+              %td CONTRATO PARTICULAR DE PROMESSA DE COMPRA E VENDA DE BEM IMÓVEL EDITAL DE SORTEIO Nº 03/2017 - CODHAB
+            %tr
+              %td{style: "width: 20%"}
+                %b CNPJ
+              %td{style: "width: 80%"}
+                %b Cooperativa
+            %tr
+              %td= @validate.cnpj.format_cnpj
+              %td= "#{@entity.fantasy_name} - #{@entity.name}" rescue nil
+            %tr
+              %td{colspan: 2}
+                %b Assinado por
+            %tr
+              %td{colspan: 2} GILSON PARANHOS - Diretor-Presidente da CODHAB/DF

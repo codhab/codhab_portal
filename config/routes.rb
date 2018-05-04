@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/d', to: 'main/home#d' # => direg
   get '/a', to: 'main/home#a' # => pamila
   get '/b', to: 'main/home#b' # => rafael
+  get '/e', to: 'main/home#e' # => entidades
 
   get  'recadastramento_portal', to: 'custom_pages#index',  as: :index_recadastre
   get  'recadastramento', to: 'custom_pages#new',     as: :new_recadastre

@@ -17,4 +17,6 @@ Entity::Engine.routes.draw do
 #  end
 
   get 'entidades_anteriores', to: 'application#test'
+
+  resources :validates, path: 'validar'
 end

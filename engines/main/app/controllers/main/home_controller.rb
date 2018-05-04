@@ -15,7 +15,7 @@ module Main
       @posts = Main::Post.where(publish: true, slider: false, local_post: 1).limit(10).order("created_at DESC")
       @videos = Main::Video.where(publish: true).limit(5).order("created_at DESC")
 
-      cookies[:recadastre_deny] = "false"
+      cookies[:recadastre_deny] = 'false'
     end
 
     def a
@@ -30,6 +30,10 @@ module Main
     # => rafael
     def b
       redirect_to "/documento/document?id=#{params[:id]}&o=#{params[:o]}"
+    end
+
+    def e
+      redirect_to '/entidades/validar/new'
     end
   end
 end
