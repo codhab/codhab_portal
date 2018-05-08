@@ -4,6 +4,6 @@ module Main
 
     has_many :trading_floor_participants
 
-    # mount_uploader :attachment, Main::FileUploader
+    mount_uploader :attachment, Main::FileUploader
   end
 end
