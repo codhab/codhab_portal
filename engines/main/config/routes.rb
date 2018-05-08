@@ -8,10 +8,13 @@ Main::Engine.routes.draw do
   end
 
 
-  resources :posts,     path: 'postagem'
-  resources :pages,     path: 'pagina'
-  resources :galleries, path: 'galeria'
-  resources :reports,   path: 'relatorios'
+  resources :posts,                      path: 'postagem'
+  resources :pages,                      path: 'pagina'
+  resources :galleries,                  path: 'galeria'
+  resources :reports,                    path: 'relatorios'
+  resources :trading_floors,             path: 'pregao' do
+    resources :trading_floor_participants, path: 'participantes', as: :participants
+  end
 
   get 'noticias',     to: 'noticias#index'
   get 'noticias_mobile', to: 'noticias#mobile'

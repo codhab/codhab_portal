@@ -1,0 +1,17 @@
+/ conteudo da pagina
+.container.box.box_internal
+  .row
+    .col-md-12
+      %h1
+        %b Todos os pregões
+  %hr/
+  .row
+    .col-md-12.box
+      - @trading_floors.order('created_at DESC').each do |trading_floor|
+        .row
+          .col-md-12
+            .panel.panel-default{style:'border-width: 1px !important;'}
+              .panel-body
+                %h4= link_to trading_floor.name , trading_floor, target: '_blank'
+                %small
+                  %b= trading_floor.created_at.strftime('%d/%m/%Y')

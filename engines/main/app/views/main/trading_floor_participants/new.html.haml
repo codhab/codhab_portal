@@ -1,0 +1,30 @@
+.row.mini-margin
+  .col-md-12.box
+    .box_internal
+      .post{:style => "color:#333333;"}
+        .content_post
+          %h3{style: 'color:red'}
+            %b Atenção:
+            Necessário preencher todo o cadastro para acessar o edital com os dados do pregão eletrônico.
+            Os dados mantidos aqui serão para contato posterior.
+            %br
+          Preencha o formulário:
+          %br
+          %br
+          = simple_form_for @participant, url: trading_floor_participants_path(@trading_floor) do |f|
+            .row
+              .col-md-12
+                = f.input :cnpj,label: 'CNPJ',input_html: { class: 'cnpj'}
+            .row
+              .col-md-12
+                = f.input :social_name, label: 'Razão Social'
+            .row
+              .col-md-12
+                = f.input :email, class:'email', label: 'E-mail',input_html: { class: 'email'}
+            .row
+              .col-md-12
+                = f.input :phone, label: 'Telefone',input_html: { class: 'phone'}
+            %hr/
+            .row
+              .col-md-4
+                = f.submit "Salvar e Iniciar Download", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
