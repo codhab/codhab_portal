@@ -13,7 +13,7 @@ module Main
 			@participant = @trading_floor.trading_floor_participants.new(trading_floor_params)
 			if @participant.save
         send_file @trading_floor.attachment,:type => 'application/pdf'
-				redirect_to 'http://www.codhab.df.gov.br/pagina/248'
+				# redirect_to 'http://www.codhab.df.gov.br/pagina/248'
 			else
 				render :new
 			end
