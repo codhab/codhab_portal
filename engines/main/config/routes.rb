@@ -12,7 +12,7 @@ Main::Engine.routes.draw do
   resources :pages,                      path: 'pagina'
   resources :galleries,                  path: 'galeria'
   resources :reports,                    path: 'relatorios'
-  resources :trading_floors,             path: 'pregao' do
+  resources :trading_floors,             path: 'editais' do
     resources :trading_floor_participants, path: 'participantes', as: :participants
   end
 
