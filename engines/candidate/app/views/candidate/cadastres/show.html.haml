@@ -57,7 +57,7 @@
                     %th{colspan: 2} CPF  cônjuge
                   %tr
                     %td{colspan: 3}= @cadastre.spouse.name rescue I18n.t(:no_information)
-                    %td{colspan: 2}= @cadastre.spouse.cpf.format_cpf rescue I18n.t(:no_information)
+                    %td{colspan: 2}= @cadastre.spouse.cpf.format_obfuscator_cpf rescue I18n.t(:no_information)
         .row
           .col-md-12
             %h4
@@ -198,7 +198,7 @@
                       - else
                         %tr
                           %td{colspan: 5}
-                            %i Nenhum registro de contemplação.            
+                            %i Nenhum registro de contemplação.
                 - else
                   %tr
                     %td{colspan: 5}

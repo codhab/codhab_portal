@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 69ecde2a73e0f0855a38f750f220a5ea4f7e2456
+  revision: efd1a6d295e877f593b4fbc15e1ddafa59b40f41
   branch: master
   specs:
     core (0.1.0)
@@ -126,9 +126,9 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (7.1.4)
-    axlsx_rails (0.1.5)
-      axlsx
-      rails (>= 3.1)
+    axlsx_rails (0.5.2)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
     barby (0.6.5)
     bcrypt (3.1.12)
     binding_of_caller (0.8.0)
