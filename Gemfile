@@ -28,7 +28,7 @@ gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
 gem 'email_validator'
 gem 'jquery-fileupload-rails'
-
+gem 'zip-zip'
 gem 'nokogiri'
 gem 'barby'
 gem 'chunky_png'

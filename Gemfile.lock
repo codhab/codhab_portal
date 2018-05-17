@@ -390,6 +390,8 @@ GEM
       will_paginate (>= 3.0.3)
     xpath (3.0.0)
       nokogiri (~> 1.8)
+    zip-zip (0.3)
+      rubyzip (>= 1.0.0)
 
 PLATFORMS
   ruby
@@ -470,6 +472,7 @@ DEPENDENCIES
   validates_timeliness
   web-console (~> 2.0)
   will_paginate-bootstrap
+  zip-zip
 
 BUNDLED WITH
    1.16.1
