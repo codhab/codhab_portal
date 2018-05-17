@@ -17,7 +17,6 @@ gem 'haml-rails'
 gem 'shareable'
 gem 'chartkick'
 gem 'rqrcode'
-gem 'rubyzip', '~> 1.2.1'
 
 gem 'friendly_id'
 gem 'has_scope'
@@ -28,7 +27,6 @@ gem 'validates_cpf_cnpj'
 gem 'validates_timeliness'
 gem 'email_validator'
 gem 'jquery-fileupload-rails'
-
 gem 'nokogiri'
 gem 'barby'
 gem 'chunky_png'
@@ -37,7 +35,9 @@ gem "select2-rails"
 
 gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'file_validators'
-#gem 'axlsx_rails'
+gem 'rubyzip', '>= 1.2.1'
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx_rails'
 
 gem 'faraday'
 gem 'faraday_middleware'

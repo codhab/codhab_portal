@@ -1,9 +1,8 @@
-/ conteudo da pagina
 .container.box.box_internal
   .row
     .col-md-12
       %h1
-        %b Todos os pregões
+        %b Todos os Editais
   %hr/
   .row
     .col-md-12.box
@@ -13,5 +12,12 @@
             .panel.panel-default{style:'border-width: 1px !important;'}
               .panel-body
                 %h4= link_to trading_floor.name , trading_floor, target: '_blank'
-                %small
-                  %b= trading_floor.created_at.strftime('%d/%m/%Y')
+                %h4
+                  = '  - '
+                  %b Data Inicial:
+                  = trading_floor.created_at.strftime('%d/%m/%Y')
+:css
+  h4{
+    display:block;
+    float:left;
+  }

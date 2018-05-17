@@ -5,20 +5,22 @@
         .content_post
           %h1.post_title
             = @trade.name
-          %p
-            %span
-              %b
-                Data Inicial:
-              = @trade.start_date.strftime('%d/%m/%Y')
-          %p
-            %span
-              %b
-                Data Final:
-              = @trade.end_date.strftime('%d/%m/%Y')
+          - if @trade.start_date.present?
+            %p
+              %span
+                %b
+                  Data Inicial:
+                = @trade.start_date.strftime('%d/%m/%Y')
+          - if @trade.end_date.present?
+            %p
+              %span
+                %b
+                  Data Final:
+                = @trade.end_date.strftime('%d/%m/%Y')
           %p.post-post
             %h5
               %b
-                Descrição do Pregão
+                Descrição do Edital
             = @trade.description.html_safe
 
           = link_to 'Baixar Edital', new_trading_floor_participant_path(@trade.id), class:'btn btn-success'
