@@ -24,7 +24,7 @@ module Firm
       @enterprise_cadastres = @enterprise_excell.paginate(:page => params[:page], :per_page => 20)
       respond_to do |format|
        format.html
-       format.csv  { response.headers['Content-Disposition'] = "attachment; filename='candidatos#{Date.today.to_date}.xlsx'" }
+       format.xlsx  { response.headers['Content-Disposition'] = "attachment; filename='candidatos#{Date.today.to_date}.xlsx'" }
       end
     end
 
