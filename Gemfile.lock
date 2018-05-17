@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 92aae871a80dcca92af25bd81555d5c26b2fb78f
+  revision: d40645868f641edee827c84046b4ac2c1d8bdc8b
   branch: master
   specs:
     core (0.1.0)
@@ -122,13 +122,13 @@ GEM
     brakeman (4.2.1)
     builder (3.2.3)
     byebug (10.0.2)
-    capybara (2.18.0)
+    capybara (3.0.3)
       addressable
       mini_mime (>= 0.1.3)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (>= 2.0, < 4.0)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      xpath (~> 3.0)
     chartkick (2.3.4)
     chunky_png (1.3.10)
     cliver (0.3.2)
@@ -143,7 +143,7 @@ GEM
     email_validator (1.6.0)
       activemodel
     erubis (2.7.0)
-    eventmachine (1.2.5)
+    eventmachine (1.2.6)
     execjs (2.7.0)
     factory_girl (4.9.0)
       activesupport (>= 3.0.0)
@@ -164,7 +164,7 @@ GEM
     get_process_mem (0.2.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    groupdate (4.0.0)
+    groupdate (4.0.1)
       activesupport (>= 4.2)
     guard (2.14.2)
       formatador (>= 0.2.4)
@@ -253,8 +253,8 @@ GEM
     one_signal (1.2.0)
     open4 (1.3.4)
     pg (0.21.0)
-    poltergeist (1.17.0)
-      capybara (~> 2.1)
+    poltergeist (1.18.0)
+      capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
     pry (0.11.3)
