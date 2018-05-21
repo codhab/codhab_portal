@@ -24,7 +24,7 @@
               %tr
                 %td= "#{i + 1}"
                 %td= candidate.name
-                %td= candidate.cpf
+                %td= candidate.cpf.format_obfuscator_cpf
                 %td= candidate.process_number
                 %td= candidate.company.name rescue t(:no_information)
                 %td= candidate.company.cnpj rescue t(:no_information)

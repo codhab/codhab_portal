@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180418142327) do
+ActiveRecord::Schema.define(version: 20180521115156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -386,6 +386,18 @@ ActiveRecord::Schema.define(version: 20180418142327) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "main_events", force: :cascade do |t|
+    t.text     "resume"
+    t.text     "content"
+    t.integer  "type_event_id"
+    t.date     "date_publish"
+    t.string   "title"
+    t.string   "file_path"
+    t.boolean  "status"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "main_galleries", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
@@ -495,6 +507,14 @@ ActiveRecord::Schema.define(version: 20180418142327) do
     t.boolean  "status"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "main_type_events", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "main_videos", force: :cascade do |t|

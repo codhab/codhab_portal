@@ -35,5 +35,16 @@ module Main
     def e
       redirect_to '/entidades/validar/new'
     end
+
+    def convenant
+      @type_event = Main::TypeEvent.where(status: true)
+      @events = Main::Event.where(status: true, type_event_id: 2)
+    end
+
+    def event
+      @type_event = Main::TypeEvent.where(status: true)
+      @events = Main::Event.where(status: true, type_event_id: 3)
+    end
+
   end
 end
