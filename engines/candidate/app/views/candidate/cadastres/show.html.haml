@@ -132,6 +132,16 @@
 
         %h4
           %b Indicado ao empreendimento
+        - if Candidate::EntityCadastreEvaluation.where(cadastre_id: @cadastre.id).present?
+          .row
+            .col-md-12
+              %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                %thead
+                  %tr
+                    %th Informação adicional
+                %tbody
+                  %tr
+                    %td Candidato em avaliação por entidade habitacional.
         .row
           .col-md-12
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
