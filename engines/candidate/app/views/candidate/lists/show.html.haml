@@ -41,7 +41,7 @@
                   %th Situação
                   - if @list.slug == 'habilitados-aluguel-legal'
                     %th Idade
-                  /%th Indicação
+                  %th Indicação
                   %th Recusas
                   %th Pendências
               %tbody
@@ -80,15 +80,15 @@
                           #{candidate.age.to_i} - Possui dependente idoso
                         - else
                           = candidate.age.to_i
-                    -# %td
-                    -#   - if @list.slug == 'habilitados-aluguel-legal'
-                    -#     .label.label-default
-                    -#       Aluguel Legal
-                    -#
-                    -#   - else
-                    -#     - if candidate.cadastre.current_indication.present?
-                    -#       .label.label-default
-                    -#         = candidate.cadastre.current_indication
+                    %td
+                      - if @list.slug == 'habilitados-aluguel-legal'
+                        .label.label-default
+                          Aluguel Legal
+
+                      - else
+                        - if candidate.cadastre.current_indication.present?
+                          .label.label-default
+                            = candidate.cadastre.current_indication
                     %td{style: 'text-align: center'}
                       .label.label-default
                         - if candidate.cadastre.count_denial.present?
