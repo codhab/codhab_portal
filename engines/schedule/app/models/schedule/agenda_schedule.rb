@@ -69,14 +69,16 @@ module Schedule
     def restriction!
 
       if !cnpj_present?
+        collection = Schedule::AgendaSchedule.find_by_sql("#{agenda.restriction_sql}")
+
         if agenda.existente?
-          if !Schedule::AgendaSchedule.find_by_sql("#{agenda.restriction_sql} AND cpf = '#{self.cpf}'").present?
+          if !collection.map(&:cpf).include?(self.cpf)
             errors.add(:cpf, 'este CPF não tem permissão de participar desta agenda')
           end
         end
 
         if agenda.inexistente?
-          if Schedule::AgendaSchedule.find_by_sql("#{agenda.restriction_sql} AND cpf = '#{self.cpf}'").present?
+          if collection.map(&:cpf).include?(self.cpf)
             errors.add(:cpf, 'este CPF não tem permissão de participar desta agenda')
           end
         end
