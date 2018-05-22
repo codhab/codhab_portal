@@ -3,6 +3,10 @@ Main::Engine.routes.draw do
   root 'home#index'
 
 
+  resources :events, path: 'evento'
+  get 'convenios', to: 'home#convenant'
+  get 'eventos', to: 'home#event'
+
   scope '/habitabrasilia' do
     resources :brasilia_habitation, path: '/'
   end
