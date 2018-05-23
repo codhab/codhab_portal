@@ -17,6 +17,20 @@ module Main
           # format.json { render :json => @noticias.to_json(:only => ["title","id","thumb,created_at,"])}
         end
       end
+
+      def notice_midia
+        @noticias = Main::Post.where(publish: true, slider: false, local_post: 1, post_category_id: 12).order("created_at DESC")
+        @sliders = Main::Post.where(publish:true, slider: true, local_post: 1, post_category_id: 12).order("created_at DESC")
+
+        respond_to do |format|
+          format.html
+          format.json {
+            render json: [posts: @noticias, sliders: @sliders]
+          }
+          # format.json { render :json => @noticias.to_json(:only => ["title","id","thumb,created_at,"])}
+        end
+      end
+      
       def mobile
         @noticias = Main::Post.where(publish: true, slider: false, local_post: 1).limit(10).order("created_at DESC")
         @sliders = Main::Post.where(publish:true, slider: true, local_post: 1).limit(3).order("created_at DESC")

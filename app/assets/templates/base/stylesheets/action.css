@@ -85,12 +85,17 @@ font-style: italic;
   width: 643px;
 }
 .tech_bloco_32{
-  padding:0;
+  font-family: 'Roboto';
+  margin-top: -56px;
+  width: 500px;
+  background-color: red;
+}
+.tech_bloco_34{
   font-family: 'Roboto';
   margin-top: -56px;
   width: 600px;
-  background-color: red;
-  margin-left: -14px;
+  background-color: #1784f5;
+  margin-left: 539px;
 }
 .col-md-4.tech_bloco_3 img{
   width: 100%;

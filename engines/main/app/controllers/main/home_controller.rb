@@ -46,5 +46,8 @@ module Main
       @events = Main::Event.where(status: true, type_event_id: 3)
     end
 
+    def recognition
+    end
+
   end
 end

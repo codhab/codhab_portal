@@ -6,6 +6,7 @@ Main::Engine.routes.draw do
   resources :events, path: 'evento'
   get 'convenios', to: 'home#convenant'
   get 'eventos', to: 'home#event'
+  get 'reconhecimento', to: 'home#recognition'
 
   scope '/habitabrasilia' do
     resources :brasilia_habitation, path: '/'
@@ -20,11 +21,13 @@ Main::Engine.routes.draw do
     resources :trading_floor_participants, path: 'participantes', as: :participants
   end
 
-  get 'noticias',     to: 'noticias#index'
-  get 'noticias_mobile', to: 'noticias#mobile'
-  get 'galerias',     to: 'galleries#index'
-  get 'videos',       to: 'videos#index'
-  get 'testes',       to: 'galleries#testes'
+  get 'noticias',             to: 'noticias#index'
+  get 'assistencia_noticias', to: 'noticias#notice_midia'
+  get 'noticias_mobile',      to: 'noticias#mobile'
+  get 'galerias',             to: 'galleries#index'
+  get 'videos',               to: 'videos#index'
+  get 'assistencia_videos',   to: 'videos#video_midia'
+  get 'testes',               to: 'galleries#testes'
 resources :stations, path: 'assistencia'
 
   # => Custom pages
