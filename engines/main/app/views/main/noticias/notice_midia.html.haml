@@ -1,0 +1,23 @@
+/ conteudo da pagina
+.container
+  .row
+    .col-md-12.box
+      .box_internal
+        .post
+          .content_post
+            %h1 Assistencia Técnica - Notícias
+            %hr
+            %table.table.table-hover
+              %thead
+                %tr
+                  %th
+                    Título
+                  %th
+                    Publicado em:
+              %tbody
+                - @noticias.each do |p|
+                  %tr
+                    %td
+                      %b= link_to p.title, post_path(p)
+                    %td
+                      = p.date.strftime('%d/%m/%Y')
