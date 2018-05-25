@@ -1,0 +1,14 @@
+.col-md-8.col-md-offset-2
+  = simple_form_for @validation, url: validations_path, method: :post do |f|
+    = f.input :id, as: :hidden, input_html: { value: params[:id] }
+    .row
+      .col-md-12
+        = f.label "Nome"
+        = f.input :name, label: false, input_html: {placeholder: 'Nome completo, conforme documento'}
+    .row
+      .col-md-3
+        = f.label "Data do Documento"
+        = f.input :document_date, label: false, input_html: {class: 'date'}
+    .row
+      .col-md-6
+        = f.submit "Validar", class: 'btn btn-success'

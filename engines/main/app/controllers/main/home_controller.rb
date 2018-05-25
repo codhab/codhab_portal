@@ -35,5 +35,9 @@ module Main
     def e
       redirect_to '/entidades/validar/new'
     end
+
+    def c
+      redirect_to certificate.new_validation_path(id: params[:id])
+    end
   end
 end

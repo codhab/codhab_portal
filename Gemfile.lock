@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 69ecde2a73e0f0855a38f750f220a5ea4f7e2456
+  revision: 4df8468397a267d485d074bddf4e287df697dafd
   branch: master
   specs:
     core (0.1.0)
@@ -49,6 +49,8 @@ PATH
     brb (0.0.1)
       rails (~> 5.0.2)
     candidate (0.0.1)
+      rails (~> 5.0.2)
+    certificate (0.1.0)
       rails (~> 5.0.2)
     concourse (0.0.1)
       rails (~> 5.0.2)
@@ -417,6 +419,7 @@ DEPENDENCIES
   candidate!
   capybara
   carrierwave!
+  certificate!
   chartkick
   chunky_png
   concourse!

@@ -1,0 +1,40 @@
+.col-md-12
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-md-12
+          %h3
+            %b Validação de Escrituras
+      - if @certificate.present? && @allotment.present?
+        .row
+          .col-md-12
+            %table.table.table-striped
+              %tr
+                %td{style: "width: 30%"}
+                  %b Data do Documento
+                %td{style: "width: 70%"}
+                  %b Título
+              %tr
+                %td= @allotment.main_authenticate_date.strftime('%d/%m/%Y') rescue nil
+                %td Documento emitido pela CODHAB
+              %tr
+                %td{colspan: 2}
+                  %b Endereço
+              %tr
+                %td{colspan: 2}= @certificate.address rescue nil
+                %tr
+                  %td{colspan: 2}
+                    %b Expedido para:
+                %tr
+                  %td{colspan: 2}
+                    = @certificate.name rescue nil
+                  %tr
+                    %td{colspan: 2}
+                      %b Assinado por:
+                  %tr
+                    %td{colspan: 2}
+                      = @allotment.main_authenticate_date.strftime('%d/%m/%Y') rescue nil
+                      %br
+                      GILSON PARANHOS
+                      %br
+                      Diretor-Presidente da CODHAB/DF
