@@ -7,6 +7,10 @@ module Main
       @videos = Main::Video.where(publish:true).order(created_at: :desc)
     end
 
+    def video_midia
+      @videos = Main::Video.where(publish:true, post_category_id: 12).order(created_at: :desc)
+    end
+
 
   end
 end

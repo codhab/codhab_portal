@@ -1,9 +1,9 @@
-.container{:style => "background: #ffffff"}
+.container{:style => "background: #ffffff; padding: 15px"}
   .row
     .col-md-12
       %h1
         %b
-          = @station.name
+          = image_tag "/portal/#{@station.id}-station.jpg", style:'width:100%'
           -# = @station.city_id
   .row
     .column
@@ -11,23 +11,84 @@
         %table.ui.celled.table.yellow
           %thead
             %tr
+              %th #
               %th Nome
               %th CPF
               %th Nº de processo
-              %th Localidade
-              %th Empresa
+              %th Empresa Executora
+              %th CNPJ
               %th Valor da Obra
+              %th Situação
           %tbody
-            - @candidates.each do | candidate |
+            - @candidates.order(:name).each_with_index do | candidate, i |
               %tr
+                %td= "#{i + 1}"
                 %td= candidate.name
-                %td= candidate.cpf
+                %td= candidate.cpf.format_obfuscator_cpf
                 %td= candidate.process_number
-                %td= candidate.station.name rescue t(:no_information)
                 %td= candidate.company.name rescue t(:no_information)
+                %td= candidate.company.cnpj rescue t(:no_information)
                 %td= number_to_currency candidate.project_value
+                %td
+                  - if candidate.candidate_situations.present? && candidate.candidate_situations.last.situation.present?
+                    .ui.label{style: "background: #{candidate.candidate_situations.last.situation.color rescue nil}; color: #{candidate.candidate_situations.last.situation.font_color rescue t(:no_information)}" }
+                      = candidate.candidate_situations.last.situation.name rescue t(:no_information)
+                  -else
+                    = "Sem informação"
           %tfoot
             %tr{style: 'background-color: #F2F2F2'}
-              %td{colspan: 5}
+              %td{colspan: 6}
                 %b= "Total de Registros: #{@candidates.count}"
-              %td.collapsing= number_to_currency @candidates.sum(:project_value)
+              %td.collapsing{colspan: 2}= number_to_currency @candidates.sum(:project_value)
+  .row
+    .col-md-12
+      %h2.tech_title
+        %b
+          legislação
+  .row
+    .col-md-12
+      .tech_bloco_5
+        .col-md-4
+          .tech_button_2
+            %a{href:'http://www.codhab.df.gov.br/uploads/archive/files/8d615c3462b583bb444fcf6675b8dcab.pdf',target:'blank'}
+              %b
+                lei federal
+                %br
+              de assistência técnica
+        .col-md-4
+          .tech_button_2
+            %a{href:'	http://www.codhab.df.gov.br/uploads/archive/files/caa4b296ccaeef576eb22bc123d65c0a.pdf',target:'blank'}
+              %b
+                lei distrital
+                %br
+              de assistência técnica
+        .col-md-4
+          .tech_button_2
+            %a{href:'http://www.codhab.df.gov.br/uploads/archive/files/470a163b653e3df800660ee4f2fcc743.pdf',target:'blank'}
+              %b
+                Programa
+                %br
+              habita Brasília
+        -# .col-md-4
+        -#   .tech_button_2
+        -#     %a{href:'http://www.codhab.df.gov.br/uploads/archive/files/7a93a69489b14469917f9d160c770344.pdf',target:'blank'}
+        -#       %b
+        -#         implementação
+        -#         %br
+        -#       diretoria de assistência técnica
+        .col-md-4
+          .tech_button_2
+            %a{href:'http://www.codhab.df.gov.br/uploads/archive/files/429ab57d5a497454a4c3cf472668362a.pdf',target:'blank'}
+              %b
+                programa de trabalho
+                %br
+              melhorias habitacionais
+        .col-md-4
+          .tech_button_2
+            %a{href:'http://www.codhab.df.gov.br/uploads/archive/files/7f94125811c70e0857929ce407123537.pdf',target:'blank'}
+              %b
+                aplicação de recurso
+                %br
+              inicial | vigente
+        .row
+          .col-md-12.margint50

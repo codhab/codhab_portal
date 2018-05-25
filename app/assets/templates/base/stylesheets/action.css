@@ -1,7 +1,7 @@
 /* Assistencia Técnica */
 
 /*
-cores 
+cores
 
 #c1210c
 #98bcce
@@ -17,7 +17,7 @@ cores
   height: 400px!important;
 }
 .slider_tech_mov.technical_slider>.bx-wrapper>.bx-viewport{
-  height: 600px!important;
+  height: 412px!important;
 }
 .tech_bloco_1{
   background-color:#c31f7e;
@@ -72,11 +72,30 @@ font-style: italic;
 .tech_contact{
   font-size: 10px;
   font-weight: bold;
-  border-bottom: 1px solid #fff;  
+  border-bottom: 1px solid #fff;
 }
 .tech_bloco_3{
   padding:0;
   font-family: 'Roboto';
+}
+.tech_bloco_33{
+  padding:0;
+  font-family: 'Roboto';
+  float: right;
+  width: 643px;
+}
+.tech_bloco_32{
+  font-family: 'Roboto';
+  margin-top: -56px;
+  width: 500px;
+  background-color: red;
+}
+.tech_bloco_34{
+  font-family: 'Roboto';
+  margin-top: -56px;
+  width: 600px;
+  background-color: #1784f5;
+  margin-left: 539px;
 }
 .col-md-4.tech_bloco_3 img{
   width: 100%;
@@ -130,6 +149,7 @@ font-style: italic;
   color: #fff;
   font-size: 18px !important;
   padding-top: 10px;
+  overflow: hidden;
 }
 .tech_button_2{
   background-color: #fff;

@@ -1,0 +1,36 @@
+.container{:style => "background: #ffffff"}
+  .row
+    .col-md-12
+      .slider_tech.technical_slider
+        .bxslide_action{:style => "margin-top:30px;height:400px;"}
+          = image_tag('/portal/20.png', :style => 'margin-top:30px;height:341px;')
+  .row
+    .col-md-12{style: 'margin: -24px 0px 21px 0px;'}
+      %h2.tech_title
+        %b
+          mídia & reconhecimento
+  .row
+    .col-md-12
+      .tech_bloco_5
+        .col-md-4
+          .tech_button_2
+            %a{href:'http://www.codhab.df.gov.br/uploads/archive/files/8d615c3462b583bb444fcf6675b8dcab.pdf',target:'blank'}
+              %b
+                Noticias
+        .col-md-4
+          .tech_button_2
+            %a{href:'	http://www.codhab.df.gov.br/uploads/archive/files/caa4b296ccaeef576eb22bc123d65c0a.pdf',target:'blank'}
+              %b
+                Vídeos
+        .col-md-4
+          .tech_button_2
+            %a{href:'http://www.codhab.df.gov.br/uploads/archive/files/470a163b653e3df800660ee4f2fcc743.pdf',target:'blank'}
+              %b
+                Material para Download
+        .row
+          .col-md-12.margint50
+            = image_tag('/portal/17.png',style:'width:100%')
+  .row
+    .col-md-12.margint50
+      .bxslide_action{:style => "overflow: hidden; height: 600px;"}
+        %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "100%", :src => "https://www.youtube.com/embed/cFjAWK2vO9Y", :width => "560"}
