@@ -36,6 +36,11 @@ module Main
       redirect_to '/entidades/validar/new'
     end
 
+
+    def c
+      redirect_to certificate.new_validation_path(id: params[:id])
+    end
+    
     def convenant
       @type_event = Main::TypeEvent.where(status: true)
       @events = Main::Event.where(status: true, type_event_id: 2)
@@ -48,6 +53,5 @@ module Main
 
     def recognition
     end
-
   end
 end

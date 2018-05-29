@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/a', to: 'main/home#a' # => pamila
   get '/b', to: 'main/home#b' # => rafael
   get '/e', to: 'main/home#e' # => entidades
+  get '/c', to: 'main/home#c' # => Certificados
 
   get  'recadastramento_portal', to: 'custom_pages#index',  as: :index_recadastre
   get  'recadastramento', to: 'custom_pages#new',     as: :new_recadastre
@@ -32,11 +33,12 @@ Rails.application.routes.draw do
   mount Geolocation::Engine         => '/maps'
   mount Person::Engine              => '/gestao_pessoa'
   mount Protocol::Engine            => '/protocolo'
-  mount Attendance::Engine          => '/atendimento',          as: :attendance
+  mount Attendance::Engine          => '/atendimento', as: :attendance
   mount Document::Engine            => '/documento'
   mount SocialWork::Engine          => '/social'
   mount Letter::Engine              => '/cartadeservico'
   mount ExternalFirm::Engine        => '/empresa_externa'
   mount TechnicalAssistance::Engine => '/assistencia_tecnica'
+  mount Certificate::Engine         => '/certificado'
 
 end
