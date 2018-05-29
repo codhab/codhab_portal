@@ -64,10 +64,51 @@ cores
   font-weight: bold;
 }
 p.opened{
-border-top: 1px solid #fff;
-border-bottom: 1px solid #fff;
-font-size: 11px;
-font-style: italic;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  font-size: 11px;
+  font-style: italic;
+}
+p.opened2{
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  font-size: 14px;
+  font-style: italic;
+  display: block;
+  width: 30%;
+  margin: 0 auto;
+}
+.block_station{
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  background-color: gray;
+  height: 800px;
+}
+.block_station h1{
+  color: #fff
+}
+.block_station h3{
+  color: #fff
+}
+.block_station h2{
+  color: #fff
+}
+.block_station h1 b{
+  border-bottom: 2px solid #fff;
+  color: #fff
+}
+.block_station h3 b{
+  border-bottom: 2px solid #fff;
+  color: #fff
+}
+.text_station{
+  font-family: 'Roboto';
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  padding: 5px;
 }
 .tech_contact{
   font-size: 10px;
