@@ -10,6 +10,10 @@ module TechnicalAssistance
      @candidates = Core::SocialWork::SocialCandidate.where(station_id: params[:station_id]).where("process_number <> '' ")
     end
 
+    def show_nascente
+      @candidates = Core::SocialWork::SocialCandidate.where("station_id in(2,3) and process_number <> '' ")
+    end
+
     def melhorias
     end
 
@@ -25,6 +29,7 @@ module TechnicalAssistance
       @member_esta_2 = @member_2.where(type_member_id: 3)
       @member_volu_2 = @member_2.where(type_member_id: 4)
       @member_coor_2 = @member_2.where(type_member_id: 5)
+      @member_3 = Core::TechnicalAssistance::Member.where(station_id: params[:station_id], category_id: 4)
     end
   end
 end
