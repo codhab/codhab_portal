@@ -46,11 +46,15 @@
               %tr
                 %td
                   %b{:style => "font-size: 24px;"}
-                    - attendant = resp.staff.name.to_s
-                    - attendant = attendant.split(' ')
-                    = resp.formation? ? 'Eng.' : 'Aqu.'
-                    = attendant.first.capitalize
-                    = attendant.last.capitalize
+                    -unless resp.previous_coordination.present?
+                      - attendant = resp.staff.name.to_s
+                      - attendant = attendant.split(' ')
+                      = resp.formation? ? 'Eng.' : 'Aqu.'
+                      = attendant.first.capitalize
+                      = attendant.last.capitalize
+                    -else
+                      = resp.formation? ? 'Eng.' : 'Aqu.'
+                      = resp.previous_coordination
                 %br
                 %td= "#{resp.formation? ? 'CREA:' : 'CAU:'} #{resp.crea}"
               %br
@@ -90,11 +94,15 @@
               %tr
                 %td
                   %b
-                    - attendant = coor.staff.name.to_s
-                    - attendant = attendant.split(' ')
-                    = coor.formation? ? 'Eng.' : 'Aqu.'
-                    = attendant.first.capitalize
-                    = attendant.last.capitalize
+                    -unless coor.previous_coordination.present?
+                      - attendant = coor.staff.name.to_s
+                      - attendant = attendant.split(' ')
+                      = coor.formation? ? 'Eng.' : 'Aqu.'
+                      = attendant.first.capitalize
+                      = attendant.last.capitalize
+                    -else
+                      = coor.formation? ? 'Eng.' : 'Aqu.'
+                      = coor.previous_coordination
                 %br
                 %td= "#{coor.formation? ? 'CREA:' : 'CAU:'} #{coor.crea} | #{coor.date_service}"
               %br
@@ -121,7 +129,7 @@
           -if @member_esta_2.present?
             %h3
               %b
-                Estágiarios
+                Estagiários
             - @member_esta_2.each do |esta|
               %tr
                 %td
@@ -154,11 +162,15 @@
               %tr
                 %td
                   %b
-                    - attendant = coor.staff.name.to_s
-                    - attendant = attendant.split(' ')
-                    = coor.formation? ? 'Eng.' : 'Aqu.'
-                    = attendant.first.capitalize
-                    = attendant.last.capitalize
+                    -unless coor.previous_coordination.present?
+                      - attendant = coor.staff.name.to_s
+                      - attendant = attendant.split(' ')
+                      = coor.formation? ? 'Eng.' : 'Aqu.'
+                      = attendant.first.capitalize
+                      = attendant.last.capitalize
+                    -else
+                      = coor.formation? ? 'Eng.' : 'Aqu.'
+                      = coor.previous_coordination
                 %br
                 %td= "#{coor.formation? ? 'CREA:' : 'CAU:'} #{coor.crea} | #{coor.date_service}"
           -if @member_3.present?
