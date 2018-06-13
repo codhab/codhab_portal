@@ -20,7 +20,7 @@
           %b
             = @station.name
             %br
-            = "(#{@station.city_id}/DF)"
+            = "(#{@station.city.name}/DF)"
         %p.opened2
           = @station.date_open
         %h4
@@ -49,11 +49,11 @@
                     -unless resp.previous_coordination.present?
                       - attendant = resp.staff.name.to_s
                       - attendant = attendant.split(' ')
-                      = resp.formation? ? 'Eng.' : 'Aqu.'
+                      = resp.formation? ? 'Eng.' : 'Arq.'
                       = attendant.first.capitalize
                       = attendant.last.capitalize
                     -else
-                      = resp.formation? ? 'Eng.' : 'Aqu.'
+                      = resp.formation? ? 'Eng.' : 'Arq.'
                       = resp.previous_coordination
                 %br
                 %td= "#{resp.formation? ? 'CREA:' : 'CAU:'} #{resp.crea}"
@@ -61,15 +61,19 @@
           -if @member_esta_1.present?
             %h3
               %b
-                Estágiarios
+                Estagiários
             - @member_esta_1.each do |esta|
               %tr
                 %td
-                  - attendant = esta.staff.name.to_s
-                  - attendant = attendant.split(' ')
-                  = attendant.first.capitalize
-                  = attendant.last.capitalize
-                  ="(#{esta.formation? ? 'Eng.' : 'Aqu.'})"
+                  -unless esta.previous_coordination.present?
+                    - attendant = esta.staff.name.to_s
+                    - attendant = attendant.split(' ')
+                    = attendant.first.capitalize
+                    = attendant.last.capitalize
+                    ="(#{esta.formation? ? 'Eng.' : 'Arq.'})"
+                  -else
+                    = esta.previous_coordination
+                    ="(#{esta.formation? ? 'Eng.' : 'Arq.'})"
               %br
           -if @member_volu_1.present?
             %h3
@@ -79,11 +83,15 @@
               %tr
                 %td
                   %b
-                    - attendant = volu.staff.name.to_s
-                    - attendant = attendant.split(' ')
-                    = volu.formation? ? 'Eng.' : 'Aqu.'
-                    = attendant.first.capitalize
-                    = attendant.last.capitalize
+                    -unless volu.previous_coordination.present?
+                      - attendant = volu.staff.name.to_s
+                      - attendant = attendant.split(' ')
+                      = volu.formation? ? 'Eng.' : 'Arq.'
+                      = attendant.first.capitalize
+                      = attendant.last.capitalize
+                    -else
+                      = volu.formation? ? 'Eng.' : 'Arq.'
+                      = volu.previous_coordination
                 %td= "#{volu.formation? ? 'CREA:' : 'CAU:'} #{volu.crea} | #{volu.date_service}"
               %br
           -if @member_coor_1.present?
@@ -97,11 +105,11 @@
                     -unless coor.previous_coordination.present?
                       - attendant = coor.staff.name.to_s
                       - attendant = attendant.split(' ')
-                      = coor.formation? ? 'Eng.' : 'Aqu.'
+                      = coor.formation? ? 'Eng.' : 'Arq.'
                       = attendant.first.capitalize
                       = attendant.last.capitalize
                     -else
-                      = coor.formation? ? 'Eng.' : 'Aqu.'
+                      = coor.formation? ? 'Eng.' : 'Arq.'
                       = coor.previous_coordination
                 %br
                 %td= "#{coor.formation? ? 'CREA:' : 'CAU:'} #{coor.crea} | #{coor.date_service}"
@@ -118,11 +126,15 @@
               %tr
                 %td
                   %b{:style => "font-size: 24px;"}
-                    - attendant = resp.staff.name.to_s
-                    - attendant = attendant.split(' ')
-                    = resp.formation? ? 'Eng.' : 'Aqu.'
-                    = attendant.first.capitalize
-                    = attendant.last.capitalize
+                    -unless resp.previous_coordination.present?
+                      - attendant = resp.staff.name.to_s
+                      - attendant = attendant.split(' ')
+                      = resp.formation? ? 'Eng.' : 'Arq.'
+                      = attendant.first.capitalize
+                      = attendant.last.capitalize
+                    -else
+                      = resp.formation? ? 'Eng.' : 'Arq.'
+                      = resp.previous_coordination
                 %br
                 %td= "#{resp.formation? ? 'CREA:' : 'CAU:'} #{resp.crea}"
               %br
@@ -133,11 +145,15 @@
             - @member_esta_2.each do |esta|
               %tr
                 %td
-                  - attendant = esta.staff.name.to_s
-                  - attendant = attendant.split(' ')
-                  = attendant.first.capitalize
-                  = attendant.last.capitalize
-                  ="(#{esta.formation? ? 'Eng.' : 'Aqu.'})"
+                  -unless esta.previous_coordination.present?
+                    - attendant = esta.staff.name.to_s
+                    - attendant = attendant.split(' ')
+                    = attendant.first.capitalize
+                    = attendant.last.capitalize
+                    ="(#{esta.formation? ? 'Eng.' : 'Arq.'})"
+                  -else
+                    = esta.formation? ? 'Eng.' : 'Arq.'
+                    ="(#{esta.formation? ? 'Eng.' : 'Arq.'})"
               %br
           -if @member_volu_2.present?
             %h3
@@ -147,11 +163,15 @@
               %tr
                 %td
                   %b
-                    - attendant = volu.staff.name.to_s
-                    - attendant = attendant.split(' ')
-                    = volu.formation? ? 'Eng.' : 'Aqu.'
-                    = attendant.first.capitalize
-                    = attendant.last.capitalize
+                    -unless volu.previous_coordination.present?
+                      - attendant = volu.staff.name.to_s
+                      - attendant = attendant.split(' ')
+                      = volu.formation? ? 'Eng.' : 'Arq.'
+                      = attendant.first.capitalize
+                      = attendant.last.capitalize
+                    -else
+                      = volu.formation? ? 'Eng.' : 'Arq.'
+                      = volu.previous_coordination
                 %td= "#{volu.formation? ? 'CREA:' : 'CAU:'} #{volu.crea} | #{volu.date_service}"
               %br
           -if @member_coor_2.present?
@@ -165,11 +185,11 @@
                     -unless coor.previous_coordination.present?
                       - attendant = coor.staff.name.to_s
                       - attendant = attendant.split(' ')
-                      = coor.formation? ? 'Eng.' : 'Aqu.'
+                      = coor.formation? ? 'Eng.' : 'Arq.'
                       = attendant.first.capitalize
                       = attendant.last.capitalize
                     -else
-                      = coor.formation? ? 'Eng.' : 'Aqu.'
+                      = coor.formation? ? 'Eng.' : 'Arq.'
                       = coor.previous_coordination
                 %br
                 %td= "#{coor.formation? ? 'CREA:' : 'CAU:'} #{coor.crea} | #{coor.date_service}"
@@ -181,11 +201,15 @@
               %tr
                 %td
                   %b{:style => "font-size: 24px;"}
-                    - attendant = member.staff.name.to_s
-                    - attendant = attendant.split(' ')
-                    = member.formation? ? 'Eng.' : 'Aqu.'
-                    = attendant.first.capitalize
-                    = attendant.last.capitalize
+                    -unless member.previous_coordination.present?
+                      - attendant = member.staff.name.to_s
+                      - attendant = attendant.split(' ')
+                      = member.formation? ? 'Eng.' : 'Arq.'
+                      = attendant.first.capitalize
+                      = attendant.last.capitalize
+                    -else
+                      = member.formation? ? 'Eng.' : 'Arq.'
+                      = member.previous_coordination
                 %br
                 %td= "#{member.formation? ? 'CREA:' : 'CAU:'} #{member.crea}"
               %br
