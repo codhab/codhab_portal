@@ -6,7 +6,9 @@ module SocialWorkCadastre
 
     def index; end
     def presentation; end
-    def inform; end
+    def inform
+      @page = Main::Page.find(params[:id])
+    end
 
     def attach; end
   end
