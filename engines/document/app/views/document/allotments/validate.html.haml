@@ -76,6 +76,27 @@
                       = @doc.allotment.second.name rescue "Documento não assinado"
                       %br
                       = @doc.allotment.second.job.name + ' - ' + @doc.allotment.second.sector_current.name rescue nil
+                  %tr
+                    %td{colspan: 2}
+                      = "Em #{@doc.allotment.third_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
+                      %br
+                      = @doc.allotment.third.name rescue "Documento não assinado"
+                      %br
+                      = @doc.allotment.third.curriculum rescue nil
+                  %tr
+                    %td{colspan: 2}
+                      = "Em #{@doc.allotment.fourth_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
+                      %br
+                      = @doc.allotment.fourth.name rescue "Documento não assinado"
+                      %br
+                      = @doc.allotment.fourth.curriculum rescue nil
+                  %tr
+                    %td{colspan: 2}
+                      = "Em #{@doc.allotment.fifth_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
+                      %br
+                      = @doc.allotment.fifth.name rescue "Documento não assinado"
+                      %br
+                      = @doc.allotment.fifth.curriculum rescue nil
       - else
         .alert.alert-warning
           = @message
