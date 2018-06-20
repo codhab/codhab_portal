@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 85c159865ffd3a3b871243613d5c7517e86766b8
+  revision: d11d490918d61d45cd31d5dbb092b2b43b7113ac
   branch: master
   specs:
     core (0.1.0)
@@ -135,16 +135,16 @@ GEM
     bcrypt (3.1.12)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    brakeman (4.3.0)
+    brakeman (4.3.1)
     builder (3.2.3)
     byebug (10.0.2)
-    capybara (3.1.1)
+    capybara (3.2.1)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      xpath (~> 3.0)
+      xpath (~> 3.1)
     chartkick (2.3.4)
     chunky_png (1.3.10)
     cliver (0.3.2)
@@ -170,7 +170,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
-    ffi (1.9.23)
+    ffi (1.9.25)
     file_validators (2.3.0)
       activemodel (>= 3.2)
       mime-types (>= 1.0)
