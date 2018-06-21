@@ -1,4 +1,5 @@
 .col-md-12
+  - @date_finish = Time.now
   - Core::SocialWorkCadastre::DocumentType.where(description: 'c').order(:order).each_with_index do |doc,i|
     %table.table.table-striped
       %tr
@@ -13,5 +14,6 @@
         %td
           - @upload_documents.where(document_type_id: doc.id).each do |upload|
             = link_to "Visualizar Arquivo", upload.file_path_url, target: '_blank', class: 'btn btn-default' if @cadastre.upload_documents.where(document_type_id: doc.id).present?
-        %td
-          = link_to 'Excluir Arquivo', cadastre_upload_document_path(@cadastre, @cadastre.upload_documents.where(document_type_id: doc.id).last.id), method: :delete, class: 'btn btn-danger btn-sm' if @cadastre.upload_documents.where(document_type_id: doc.id).present? && @cadastre.steps.where(step: 2).present? == false
+        -if @date_finish < Date.parse('2018-06-22')
+          %td
+            = link_to 'Excluir Arquivo', cadastre_upload_document_path(@cadastre, @cadastre.upload_documents.where(document_type_id: doc.id).last.id), method: :delete, class: 'btn btn-danger btn-sm' if @cadastre.upload_documents.where(document_type_id: doc.id).present? && @cadastre.steps.where(step: 2).present? == false

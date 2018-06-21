@@ -47,8 +47,10 @@
               = 'Sim'
             - else
               = 'Não'
-          - if @cadastre.situation != "Habilitado"
-            %td= link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_path(@cadastre),title: "Editar", class: 'btn btn-warning btn-sm', remote: true
+          - @date_finish = Time.now
+          -if @date_finish < Date.parse('2018-06-22')
+            - if @cadastre.situation != "Habilitado"
+              %td= link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_path(@cadastre),title: "Editar", class: 'btn btn-warning btn-sm', remote: true
   .col-md-12
     %h4
       %b Contato
