@@ -1,14 +1,16 @@
 %hr/
 .row
   .col-md-12
+    - @date_finish = Time.now
     -if @cadastre.locations.present?
       - unless @cadastre.steps.where(step: 3).present?
         = simple_form_for [@cadastre, @step], url: cadastre_cadastre_steps_path(@cadastre), remote: true do |f|
           = f.input :step, as: :hidden, input_html: {value: 3}
           = f.button :submit, "Finalizar Etapa", class: 'btn btn-info btn-sm'
       -else
-        -if @cadastre.situation != "Habilitado" 
-          = link_to 'Editar Localidades', cadastre_cadastre_step_path(@cadastre, @cadastre.steps.where(step: 3).last.id), remote: true, method: :delete, class: 'btn btn-danger btn-sm'
+        -if @date_finish < Date.parse('2018-06-22')
+          -if @cadastre.situation != "Habilitado"
+            = link_to 'Editar Localidades', cadastre_cadastre_step_path(@cadastre, @cadastre.steps.where(step: 3).last.id), remote: true, method: :delete, class: 'btn btn-danger btn-sm'
     %p
       = link_to 'Mapa das Poligonais', 'http://www.codhab.df.gov.br/uploads/archive/files/126978a31a899a3ac0351f0e3f923b7c.pdf', target: '_blank'
       \/
@@ -22,10 +24,11 @@
             %td= local.city.name rescue nil
             %td= local.name
             -if @cadastre.steps.where(step: 3).present? == false
-              - unless @cadastre.locations.where(location_id: local.id).present?
-                %td= link_to "Incluir Localidade", locales_path(id: @cadastre, local: local.id), class: 'btn btn-info btn-sm'
-              - else
-                %td= link_to "Excluir Localidade", cadastre_cadastre_location_path(@cadastre, @cadastre.locations.where(location: local).last.id), class: 'btn btn-danger btn-sm', remote: true, method: :delete
+              -if @date_finish < Date.parse('2018-06-22')
+                - unless @cadastre.locations.where(location_id: local.id).present?
+                  %td= link_to "Incluir Localidade", locales_path(id: @cadastre, local: local.id), class: 'btn btn-info btn-sm'
+                - else
+                  %td= link_to "Excluir Localidade", cadastre_cadastre_location_path(@cadastre, @cadastre.locations.where(location: local).last.id), class: 'btn btn-danger btn-sm', remote: true, method: :delete
             -else
               -if @cadastre.locations.where(location_id: local.id).present?
                 %th Local Selecionado
