@@ -46,7 +46,7 @@ module Concourse
     validate  :compare_password, on: :create
     validate  :unique_cnpj
 
-    validates :group, presence: true, if: "self.subscribe_id != 11"
+    #validates :group, presence: true, if: "self.subscribe_id != 11"
     #validate  :validate_current_password, on: :create
 
     def subscribe_groups
