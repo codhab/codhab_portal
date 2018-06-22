@@ -1,22 +1,26 @@
-
 .row.mini-margin
   .col-md-12
     .panel.panel-default
       .panel-body
+        %h1
+          %b Concursos de projetos
         .row
           .col-md-12
             %h3
               %b Em andamento
+            %br/
+            %br/
             - if @projects.opens.present?
               - @projects.opens.order(:id).each_with_index do |project, index|
-                .col-md-4
+                .col-md-6{style: 'margin-bottom: 40px; height: 200px'}
                   .row
                     .col-md-5
-                      = link_to image_tag(project.image_logo, width: 150), concourse.project_path(project)
+                      = link_to image_tag("http://www.codhab.df.gov.br/#{project.image_logo}", width: 150, style: 'border: 1px solid black'), concourse.project_path(project)
                     .col-md-6
                       %h5
-                        %strong= link_to project.title.upcase, concourse.project_path(project), data: {'turbolinks'=> false}
-                        %h6
+                        %strong{style: 'text-align: justify !important'}
+                          = link_to project.title.upcase, concourse.project_path(project), data: {'turbolinks'=> false}
+                        %h6{style: 'text-align: justify !important'}
                           %p= project.mini_description.html_safe
                       %span
                         %p
@@ -33,45 +37,52 @@
           .col-md-12
             %h3
               %b Previstos
-            - if @projects.waiting.present?
-              - @projects.waiting.each_with_index do |project, index|
-                .col-md-4
-                  .row
-                    .col-md-5
-                      = image_tag(project.image_logo, width: 150)
-                    .col-md-6
-                      %h5
-                        %strong= project.title.upcase
-                        %small
-                          %p= project.mini_description.html_safe
-                      %h5
-                        %span.label.label-info
-                          = project.step
-            - else
-              %i Não existem concursos previstos no momento.
+            %br/
+            %br/
+          - if @projects.waiting.present?
+            - @projects.waiting.each_with_index do |project, index|
+              .col-md-6{style: 'margin-bottom: 40px; height: 200px'}
+                .row
+                  .col-md-5
+                    = image_tag("http://www.codhab.df.gov.br/#{project.image_logo}", width: 150, style: 'border: 1px solid black')
+                  .col-md-6
+                    %h5
+                      %strong{style: 'text-align: justify !important'}
+                        = project.title.upcase
+                      %small{style: 'text-align: justify !important'}
+                        %p= project.mini_description.html_safe
+                    %h5
+                      %span.label.label-info
+                        = project.step
+          - else
+            %i Não existem concursos previstos no momento.
         %hr/
         .row
           .col-md-12
             %h3
               %b Finalizados
-            - if @projects.finisheds.present?
-              - @projects.finisheds.each_with_index do |project, index|
-                .col-md-4
-                  .row
-                    .col-md-5
-                      = link_to image_tag(project.image_logo, width: 150), concourse.project_path(project)
-                    .col-md-6
-                      %h5
-                        %strong= link_to project.title.upcase, concourse.project_path(project), data: {'turbolinks'=> false}
-                        %h6
-                          %p= link_to project.mini_description.html_safe, concourse.project_path(project), data: {'turbolinks'=> false}
-                      %span
-                        %p
-                          %b Início - #{project.start.strftime('%d/%m/%Y')}
-                        %p
-                          %b Fim - #{project.end.strftime('%d/%m/%Y')}
-                      %h5
-                        %span.label.label-info
-                          = link_to project.step, concourse.project_path(project), data: {'turbolinks'=> false}
-            - else
-              %i Não existem concursos finalizados no momento.
+            %br/
+            %br/
+          - if @projects.finisheds.present?
+            - @projects.finisheds.each_with_index do |project, index|
+              .col-md-6{style: 'margin-bottom: 40px; height: 200px'}
+                .row
+                  .col-md-5
+                    = link_to image_tag("http://www.codhab.df.gov.br/#{project.image_logo}", width: 150, style: 'border: 1px solid black'), concourse.project_path(project)
+                  .col-md-6
+                    %h5
+                      %strong{style: 'text-align: justify !important'}
+                        = link_to project.title.upcase, concourse.project_path(project), data: {'turbolinks'=> false}
+                      %h6{style: 'text-align: justify !important'}
+                        %p= link_to project.mini_description.html_safe, concourse.project_path(project), data: {'turbolinks'=> false}
+                    %span
+                      %p
+                        %b Início - #{project.start.strftime('%d/%m/%Y')}
+                      %p
+                        %b Fim - #{project.end.strftime('%d/%m/%Y')}
+                    %h5
+                      %span.label.label-info
+                        = link_to project.step, concourse.project_path(project), data: {'turbolinks'=> false}
+              
+          - else
+            %i Não existem concursos finalizados no momento.
