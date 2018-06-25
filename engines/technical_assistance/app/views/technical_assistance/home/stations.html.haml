@@ -12,27 +12,27 @@
     .col-md-12
       %h1
         %b
-          = image_tag "/portal/#{@station.id}-station_posto.jpg", style:'width:100%'
+          = image_tag "/portal/#{@station.id}-station_posto.jpg", style:'width:100%'  rescue nil
   .row
     .col-md-12.tech_bloco_2
       .col-md-8.center{:style => "width: 100%; margin-top: 20;"}
         %h2{:style => "color: #fff"}
           %b
-            = @station.name
+            = @station.name rescue nil
             %br
-            = "(#{@station.city.name}/DF)"
+            = "(#{@station.city.name}/DF)"  rescue nil
         %p.opened2
-          = @station.date_open
+          = @station.date_open  rescue nil
         %h4
           %b
-            = @station.status ? "Posto Ativo" : "Posto Inativo"
+            = @station.status ? "Posto Ativo" : "Posto Inativo"  rescue nil
             %br
-          = @station.schedule
+          = @station.schedule  rescue nil
         %h4
           %b
             Endereço
             %br
-          = @station.address
+          = @station.address  rescue nil
   .row
     .col-md-6.margint50
       .block_station
