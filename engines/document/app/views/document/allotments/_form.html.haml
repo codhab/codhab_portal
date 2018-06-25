@@ -1,0 +1,14 @@
+.col-md-12.col-md-offset-4
+  = simple_form_for @validate, url: validation_path, method: :post do |f|
+    = f.input :allotment_id, as: :hidden, input_html: { value: session[:id] }
+    .row
+      .col-md-2
+        = f.label "CPF"
+        = f.input :cpf, label: false, input_html: { class: 'cpf' }
+    .row
+      .col-md-2
+        = f.label "Data do Documento"
+        = f.input :document_date, label: false, input_html: {class: 'date'}
+    .row
+      .col-md-6
+        = f.submit "Validar", class: 'btn btn-success'

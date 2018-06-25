@@ -4,7 +4,10 @@ Document::Engine.routes.draw do
     resources :data_print_files
   end
 
-  get 'validate',         to: 'allotments#validate',          as: 'validate'
+  get  'validate',   to: 'allotments#validate',   as: 'validate'
+  post 'validation', to: 'allotments#validation', as: 'validation'
+  get  'confirm',    to: 'allotments#confirm',    as: 'confirm'
+
   get 'document',         to: 'allotments#document',          as: 'document'
 
   get 'print_one',        to: 'allotments#print_one',        as: 'print_one'
