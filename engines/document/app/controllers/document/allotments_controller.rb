@@ -6,17 +6,22 @@ module Document
     before_action :set_allotment, only: [:print_one, :print_two, :print_three, :print_correction]
 
     def validate
-      session[:id] = params[:id]
-      @validate = Document::Validate.new   
+      order = params[:order].present? ? params[:order] : params[:o]
+      if order.present?
+        redirect_to confirm_path(id: params[:id], order: order)
+      else
+        session[:id] = params[:id]
+        @validate = Document::Validate.new
+      end
     end
 
     def validation
       @validate = Document::Validate.new(set_params)
-      if @validate.valid?        
-        redirect_to confirm_path(id: @validate.id)        
+      if @validate.valid?
+        redirect_to confirm_path(id: @validate.id)
       else
         render :validate
-      end     
+      end
     end
 
     def confirm
