@@ -2,12 +2,29 @@ require_dependency 'document/application_controller'
 
 module Document
   class AllotmentsController < ApplicationController
-    layout 'empty'
-
 
     before_action :set_allotment, only: [:print_one, :print_two, :print_three, :print_correction]
 
     def validate
+      order = params[:order].present? ? params[:order] : params[:o]
+      if order.present?
+        redirect_to confirm_path(id: params[:id], order: order)
+      else
+        session[:id] = params[:id]
+        @validate = Document::Validate.new
+      end
+    end
+
+    def validation
+      @validate = Document::Validate.new(set_params)
+      if @validate.valid?
+        redirect_to confirm_path(id: @validate.id)
+      else
+        render :validate
+      end
+    end
+
+    def confirm
       @doc = Core::Document::DataPrint.find(params[:id])
       if @doc.allotment.main.present? || @doc.allotment.first.present? || @doc.allotment.second.present?
         order = params[:order].present? ? params[:order] : params[:o]
@@ -37,10 +54,10 @@ module Document
           @user       = @doc.allotment.fifth.name rescue "Documento não assinado"
           @complement = @doc.allotment.fifth.curriculum rescue nil
         end
+        session.delete(:id)
       else
         @message = "O documento não foi assinado."
       end
-      render layout: 'application'
     end
 
     def print_one
@@ -67,6 +84,10 @@ module Document
     end
 
     private
+
+    def set_params
+      params.require(:validate).permit(:cpf, :document_date, :allotment_id)
+    end
 
     def set_allotment
       @doc = Core::Document::DataPrint.find(params[:id])
