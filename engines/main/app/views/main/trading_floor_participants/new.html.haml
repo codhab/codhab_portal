@@ -14,10 +14,10 @@
           = simple_form_for @participant, url: trading_floor_participants_path(@trading_floor) do |f|
             .row
               .col-md-12
-                = f.input :cnpj,label: 'CNPJ',input_html: { class: 'cnpj'}
+                = f.input :cnpj,label: 'CNPJ/CPF - Somente números'
             .row
               .col-md-12
-                = f.input :social_name, label: 'Razão Social'
+                = f.input :social_name, label: 'Razão Social/Nome'
             .row
               .col-md-12
                 = f.input :email, class:'email', label: 'E-mail',input_html: { class: 'email'}
