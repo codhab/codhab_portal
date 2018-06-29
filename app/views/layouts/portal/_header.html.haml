@@ -155,6 +155,12 @@
                 - link_each('Concursos - Editais') do |l|
                   %li.link_submenu
                     = link_to_nav l
+            %li.menu-insider-li
+              %span.submenu_title Regulamento - Licitações
+              %ul
+                - link_each('Regulamento - Editais') do |l|
+                  %li.link_submenu
+                    = link_to_nav l
 
         %li.dropdown.item_menu.concursos
           %a#link_concursos.dropdown-toggle.item_menu{:href => "#","aria-expanded" => "false", "data-toggle" => "dropdown"}
