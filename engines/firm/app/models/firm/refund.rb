@@ -25,9 +25,8 @@ module Firm
       end
 
       if %w(1 2 4 5).include? @cadastre.program_id.to_s
-        unless @cadastre.current_situation_id == 4 && @cadastre.current_procedural.procedural_status_id == 8
+        unless [4, 67, 70].include?(@cadastre.current_situation_id) && @cadastre.current_procedural.procedural_status_id == 8
           errors.add(:observation, 'Situação do CPF não é válida para esta operação')
-
         end
       end
     end
