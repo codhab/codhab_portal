@@ -1,9 +1,7 @@
 .container.margint50
   .row
+  - if Time.now < Date.parse('2018-07-04 00:00:00 -03:00')
     .fundo_resultados.col-md-6
-      -# #bgvid
-      -#   %video{:autoplay => "", :loop => "", :poster => "video.jpg"}
-      -#     %source{:src => "images/video1.mp4", :type => "video/mp4"}
       .slider_dados
         .span_dados
           Resultados de Atendimento
@@ -43,8 +41,8 @@
                   .col-md-3.meta_element
                     .span.number_metas
                       = result.protocol
-                    .span.title_metas
-                      PROTOCOLO
+                  .span.title_metas
+                    PROTOCOLO
                   .col-md-3.meta_element
                     .span.number_metas
                       = result.program_morarbem + result.regularization + result.contract + result.ombudsman + result.protocol rescue nil
