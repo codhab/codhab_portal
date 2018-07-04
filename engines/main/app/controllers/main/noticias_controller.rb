@@ -30,10 +30,12 @@ module Main
           # format.json { render :json => @noticias.to_json(:only => ["title","id","thumb,created_at,"])}
         end
       end
-      
+
       def mobile
-        @noticias = Main::Post.where(publish: true, slider: false, local_post: 1).limit(10).order("created_at DESC")
-        @sliders = Main::Post.where(publish:true, slider: true, local_post: 1).limit(3).order("created_at DESC")
+        @noticias = Main::Post.where(publish: true, slider: false, local_post: 12313).limit(0).order("created_at DESC")
+        @sliders = Main::Post.where(publish:true, slider: true, local_post: 123123).limit(0).order("created_at DESC")
+        # @noticias = Main::Post.where(publish: true, slider: false, local_post: 1).limit(0).order("created_at DESC")
+        # @sliders = Main::Post.where(publish:true, slider: true, local_post: 1).limit(0).order("created_at DESC")
 
         respond_to do |format|
           format.html

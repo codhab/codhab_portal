@@ -1,21 +1,26 @@
+-# - if Date.parse('2018-07-04 00:00:00 -03:00') < Date.parse('2018-07-04 00:00:00 -03:00')
+-#   .container
+-#     .bxslide2{:style => "margin-top:30px;"}
+-#       - slider_each(6,'DESC') do |s|
+-#         - batata(s.post_category.title) do |b|
+-#           %li.clone{"aria-hidden" => "true", :style => "height: 413px;"}
+-#             - if s.thumb.url.present?
+-#               = image_tag s.thumb, :style => "width:68%;float:left;"
+-#             - else
+-#               = image_tag '/portal/images/codhab.png', :style => "width:68%;float:left;"
+-#             - if s.color.present?
+-#               .new-caption{:style =>"background-color: #{s.color}"}
+-#                 %h3{:style => "margin-top:0px;"}
+-#                   = link_to s.title, post_path(s)
+-#                 %p
+-#                   = s.resume.html_safe
+-#             - else
+-#               .new-caption{:style =>"background-color:#feaa15"}
+-#                 %h3{:style => "margin-top:0px;"}
+-#                   = link_to s.title, post_path(s)
+-#                 %p
+-#                   = s.resume.html_safe
+-# - else
 .container
   .bxslide2{:style => "margin-top:30px;"}
-    - slider_each(6,'DESC') do |s|
-      - batata(s.post_category.title) do |b|
-        %li.clone{"aria-hidden" => "true", :style => "height: 413px;"}
-          - if s.thumb.url.present?
-            = image_tag s.thumb, :style => "width:68%;float:left;"
-          - else
-            = image_tag '/portal/images/codhab.png', :style => "width:68%;float:left;"
-          - if s.color.present?
-            .new-caption{:style =>"background-color: #{s.color}"}
-              %h3{:style => "margin-top:0px;"}
-                = link_to s.title, post_path(s)
-              %p
-                = s.resume.html_safe
-          - else
-            .new-caption{:style =>"background-color:#feaa15"}
-              %h3{:style => "margin-top:0px;"}
-                = link_to s.title, post_path(s)
-              %p
-                = s.resume.html_safe
+    = image_tag '/portal/banners_site_principal.png'
