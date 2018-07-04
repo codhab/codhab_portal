@@ -1,8 +1,9 @@
 .container.margint50
   .col-md-6.publicity
     = link_to image_tag("http://www.codhab.df.gov.br/portal/images/publicidade1.png",:style => "width:100%; "), "http://www.codhab.df.gov.br/habitabrasilia"
-  .col-md-6.publicity2
-    = link_to image_tag("http://www.codhab.df.gov.br/portal/images/publicidade2.png",:style => "width:100%;"), "http://www.codhab.df.gov.br/acoesurbanas"
+  -# - if Time.now < Date.parse('2018-07-04 00:00:00 -03:00')
+  -#   .col-md-6.publicity2
+  -#     = link_to image_tag("http://www.codhab.df.gov.br/portal/images/publicidade2.png",:style => "width:100%;"), "http://www.codhab.df.gov.br/acoesurbanas"
 .container.margint50
   .blocobotoes
     .col-md-3.botoes4

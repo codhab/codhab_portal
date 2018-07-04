@@ -1,50 +1,50 @@
 %a.back-to-tops{:href => "#"} voltar
 .container
+  -# .fundo_branco
+  -#   .row
+  -#     .col-md-12
+  -#       %h2{:style => "text-align:center;margin-bottom:50px;font-weight:600;font-size:55px;"}
+  -#         Resultados
+  -#     - @results.each do |result|
+  -#       .col-md-2.icon_home_habita
+  -#         %img{:alt => "icone_morarbem", :src => "/portal/images/morarbem_w.png",:style =>"width:50%"}
+  -#         %h2{:style => "font-weight:bolder;font-size:22px;"}
+  -#           Morar Bem
+  -#         %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+  -#           = result.result_1
+  -#       .col-md-2.icon_home_habita
+  -#         %img{:alt => "icone_lotelegal", :src => "/portal/images/lotelegal_w.png",:style =>"width:50%"}
+  -#         %h2{:style => "font-weight:bolder;font-size:22px;"}
+  -#           Lote Legal
+  -#         %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+  -#           = result.result_2
+  -#       .col-md-2.icon_home_habita
+  -#         %img{:alt => "icone_escrituras", :src => "/portal/images/escrituras_w.png",:style =>"width:50%"}
+  -#         %h2{:style => "font-weight:bolder;font-size:22px;"}
+  -#           Escrituras
+  -#         %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+  -#           = result.result_3
+  -#       .col-md-2.icon_home_habita
+  -#         %img{:alt => "icone_medida", :src => "/portal/images/medida_w.png",:style =>"width:50%"}
+  -#         %h2{:style => "font-weight:bolder;font-size:22px;"}
+  -#           Na medida
+  -#         %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+  -#           = result.result_4
+  -#       .col-md-2.icon_home_habita
+  -#         %img{:alt => "icone_portasabertas", :src => "/portal/images/portasabertas_w.png",:style =>"width:50%"}
+  -#         %h2{:style => "font-weight:bolder;font-size:22px;"}
+  -#           Portas Abertas
+  -#         %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+  -#           = result.result_5
+  -#       .col-md-2.icon_home_habita
+  -#         %img{:alt => "icone_aluguellegal", :src => "/portal/images/aluguellegal_w.png",:style =>"width:50%"}
+  -#         %h2{:style => "font-weight:bolder;font-size:22px;"}
+  -#           Aluguel Legal
+  -#         %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
+  -#           = result.result_6
   .fundo_branco
-    .row
-      .col-md-12
-        %h2{:style => "text-align:center;margin-bottom:50px;font-weight:600;font-size:55px;"}
-          Resultados
-      - @results.each do |result|
-        .col-md-2.icon_home_habita
-          %img{:alt => "icone_morarbem", :src => "/portal/images/morarbem_w.png",:style =>"width:50%"}
-          %h2{:style => "font-weight:bolder;font-size:22px;"}
-            Morar Bem
-          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
-            = result.result_1
-        .col-md-2.icon_home_habita
-          %img{:alt => "icone_lotelegal", :src => "/portal/images/lotelegal_w.png",:style =>"width:50%"}
-          %h2{:style => "font-weight:bolder;font-size:22px;"}
-            Lote Legal
-          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
-            = result.result_2
-        .col-md-2.icon_home_habita
-          %img{:alt => "icone_escrituras", :src => "/portal/images/escrituras_w.png",:style =>"width:50%"}
-          %h2{:style => "font-weight:bolder;font-size:22px;"}
-            Escrituras
-          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
-            = result.result_3
-        .col-md-2.icon_home_habita
-          %img{:alt => "icone_medida", :src => "/portal/images/medida_w.png",:style =>"width:50%"}
-          %h2{:style => "font-weight:bolder;font-size:22px;"}
-            Na medida
-          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
-            = result.result_4
-        .col-md-2.icon_home_habita
-          %img{:alt => "icone_portasabertas", :src => "/portal/images/portasabertas_w.png",:style =>"width:50%"}
-          %h2{:style => "font-weight:bolder;font-size:22px;"}
-            Portas Abertas
-          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
-            = result.result_5
-        .col-md-2.icon_home_habita
-          %img{:alt => "icone_aluguellegal", :src => "/portal/images/aluguellegal_w.png",:style =>"width:50%"}
-          %h2{:style => "font-weight:bolder;font-size:22px;"}
-            Aluguel Legal
-          %h2.number_entrega_habita2.count{:style => "color:#83c341;font-weight:600;font-size:40px;"}
-            = result.result_6
-  .fundo_branco
-    .slidetop
-      %img{:alt => "slider", :src => "/portal/images/sliderhabita6.png", :class =>"widthimg"}/
+    -# .slidetop
+    -#   %img{:alt => "slider", :src => "/portal/images/sliderhabita6.png", :class =>"widthimg"}/
     .margint50
       .col-md-3.icon_home_habita.image_bloco_responsivo
         = link_to image_tag("/portal/images/habita-conheca.png"), "#conhecaoprograma"
@@ -201,9 +201,9 @@
           Caso o beneficiário tenha alguma dúvida sobre o programa, quem ele deve procurar?
         %br
         Para saber mais informações sobre o Habita Brasília, basta ligar para a central 156, opção 5.
-      .margint50
-        .col-md-12.image_bloco_responsivo.no_padding#cartilha
-          = link_to image_tag("/portal/images/blocoimagem4.png", :class =>"widthimg"), "http://www.codhab.df.gov.br/uploads/archive/files/9d9378fbb7dd6300b1833dc3366865b3.pdf", :target => "_blank"
+      -# .margint50
+      -#   .col-md-12.image_bloco_responsivo.no_padding#cartilha
+      -#     = link_to image_tag("/portal/images/blocoimagem4.png", :class =>"widthimg"), "http://www.codhab.df.gov.br/uploads/archive/files/9d9378fbb7dd6300b1833dc3366865b3.pdf", :target => "_blank"
 :javascript
   $(window).scroll(function(){
       var amountScrolled = 300;
@@ -221,16 +221,16 @@
   	}, 700);
   	return false;
   });
-  $(document).ready(function (ev) {
-      $('#custom_carousel').on('slide.bs.carousel', function (evt) {
-          $('#custom_carousel .controls li.active').removeClass('active');
-          $('#custom_carousel .controls li:eq(' + $(evt.relatedTarget).index() + ')').addClass('active');
-      })
-  });
-  $('.carousel').carousel({
-    pause: "hover",
-    interval: 600000000
-  })
+  // $(document).ready(function (ev) {
+  //     $('#custom_carousel').on('slide.bs.carousel', function (evt) {
+  //         $('#custom_carousel .controls li.active').removeClass('active');
+  //         $('#custom_carousel .controls li:eq(' + $(evt.relatedTarget).index() + ')').addClass('active');
+  //     })
+  // });
+  // $('.carousel').carousel({
+  //   pause: "hover",
+  //   interval: 600000000
+  // })
 :css
 
   #custom_carousel .item {
