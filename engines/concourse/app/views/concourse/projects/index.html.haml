@@ -12,7 +12,7 @@
             %br/
             - if @projects.opens.present?
               - @projects.opens.order(:id).each_with_index do |project, index|
-                .col-md-6{style: 'margin-bottom: 40px; height: 200px'}
+                .col-md-6{style: 'margin-bottom: 40px; height: 280px'}
                   .row
                     .col-md-5
                       = link_to image_tag("http://www.codhab.df.gov.br/#{project.image_logo}", width: 150, style: 'border: 1px solid black'), concourse.project_path(project)
