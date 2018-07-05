@@ -24,7 +24,7 @@
               - elsif subscribe.end < Date.today
                 inscrições encerradas
               - else
-                = link_to subscribe.title, concourse.new_project_subscribe_candidate_candidate_path(project_id: @project, subscribe_id: subscribe)
+                = link_to subscribe.title, concourse.new_project_subscribe_candidate_candidate_path(project_id: @project)
             %td= number_to_currency(subscribe.type_guide.default_value)
             %td= subscribe.start.strftime("%d/%m/%Y")
             %td= subscribe.end.strftime("%d/%m/%Y")
