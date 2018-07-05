@@ -56,10 +56,7 @@ module Concourse
       end
 
       def set_subscribe
-
-        session[:subscribe_id] = params[:subscribe_id] unless session[:subscribe_id].present?
-
-        @subscribe = Concourse::Subscribe.find(session[:subscribe_id]) rescue nil
+        @subscribe = Concourse::Subscribe.find(@project.subscribes.last) rescue nil
 
         redirect_to action: :index if @subscribe.nil?
       end
