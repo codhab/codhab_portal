@@ -32,8 +32,8 @@ module Main
       end
 
       def mobile
-        @noticias = Main::Post.where(publish: true, slider: false, local_post: 12313).limit(0).order("created_at DESC")
-        @sliders = Main::Post.where(publish:true, slider: true, local_post: 123123).limit(0).order("created_at DESC")
+        @noticias = Main::Post.where(publish: true, slider: false, local_post: 1).limit(0).order("created_at DESC")
+        @sliders = Main::Post.where(publish:true, slider: true, local_post: 1).limit(0).order("created_at DESC")
         # @noticias = Main::Post.where(publish: true, slider: false, local_post: 1).limit(0).order("created_at DESC")
         # @sliders = Main::Post.where(publish:true, slider: true, local_post: 1).limit(0).order("created_at DESC")
 
