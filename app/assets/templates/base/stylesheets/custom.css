@@ -10,14 +10,12 @@
 .list-group-item i {
   margin-right: 10px;
 }
-
 .collapsing {
   table-layout:fixed !important;
 }
 .panel {
   border-width: 1px !important;
 }
-
 number-.question_single{
   font-size: 18px;
   color:#fff;
