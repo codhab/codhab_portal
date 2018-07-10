@@ -11,9 +11,9 @@ module Main
 
         respond_to do |format|
           format.html
-          format.json {
-            render json: [posts: @noticias, sliders: @sliders]
-          }
+          # format.json {
+          #   render json: [posts: @noticias, sliders: @sliders]
+          # }
           # format.json { render :json => @noticias.to_json(:only => ["title","id","thumb,created_at,"])}
         end
       end
@@ -24,9 +24,9 @@ module Main
 
         respond_to do |format|
           format.html
-          format.json {
-            render json: [posts: @noticias, sliders: @sliders]
-          }
+          # format.json {
+          #   render json: [posts: @noticias, sliders: @sliders]
+          # }
           # format.json { render :json => @noticias.to_json(:only => ["title","id","thumb,created_at,"])}
         end
       end
@@ -39,9 +39,9 @@ module Main
 
         respond_to do |format|
           format.html
-          format.json {
-            render json: [posts: @noticias, sliders: @sliders]
-          }
+          # format.json {
+          #   render json: [posts: @noticias, sliders: @sliders]
+          # }
         end
       end
 

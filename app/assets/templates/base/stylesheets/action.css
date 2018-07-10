@@ -2,13 +2,10 @@
 
 /*
 cores
-
 #c1210c
 #98bcce
 #e25934
 #469657
-
-
 */
 .row.tech_marg{
   padding:10px 0;
@@ -26,7 +23,6 @@ cores
   font-family: 'Roboto';
   height: 500px;
   padding-top: 15px;
-
 }
 .tech_bloco_2 .col-md-8 img{
   width: 100%;
