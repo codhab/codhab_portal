@@ -6,8 +6,10 @@ module Certificate
     validate :authenticate
 
     def authenticate
+      date = Date.parse(self.document_date)
+
       @certificate = Certificate::Cadastre.where(name: self.name, allotment_id: self.id).last
-      @allotment = Certificate::Allotment.where(id: self.id, main_authenticate_date: self.document_date).first
+      @allotment = Certificate::Allotment.where(id: self.id, main_authenticate_date: date).first
 
       if @certificate.present? && @allotment.present?
         self.cadastre_id = @certificate.id
