@@ -7,7 +7,7 @@ module Document
 
     def validate
       order = params[:order].present? ? params[:order] : params[:o]
-      if order.present?
+      if order.present? && !params[:r].present?
         redirect_to confirm_path(id: params[:id], order: order)
       else
         session[:id] = params[:id]
@@ -25,38 +25,42 @@ module Document
     end
 
     def confirm
-      @doc = Core::Document::DataPrint.find(params[:id])
-      if @doc.allotment.main.present? || @doc.allotment.first.present? || @doc.allotment.second.present?
-        order = params[:order].present? ? params[:order] : params[:o]
-        case order
-        when "1"
-          @date =       "Em #{@doc.allotment.main_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
-          @user       = "GILSON PARANHOS" rescue "Documento não assinado"
-          @complement = "Diretor-Presidente da CODHAB/DF" if @doc.allotment.main.present?
-        when "2"
-          @date       = "Em #{@doc.allotment.first_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
-          @user       = @doc.allotment.first.name rescue "Documento não assinado"
-          @complement = @doc.allotment.first.job.name rescue nil
-        when "3"
-          @date       = "Em #{@doc.allotment.second_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
-          @user       = @doc.allotment.second.name rescue "Documento não assinado"
-          @complement = @doc.allotment.second.job.name + ' - ' + @doc.allotment.second.sector_current.name rescue nil
-        when "4"
-          @date       = "Em #{@doc.allotment.third_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
-          @user       = @doc.allotment.third.name rescue "Documento não assinado"
-          @complement = @doc.allotment.third.curriculum rescue nil
-        when "5"
-          @date       = "Em #{@doc.allotment.fourth_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
-          @user       = @doc.allotment.fourth.name rescue "Documento não assinado"
-          @complement = @doc.allotment.fourth.curriculum rescue nil
-        when "6"
-          @date       = "Em #{@doc.allotment.fifth_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
-          @user       = @doc.allotment.fifth.name rescue "Documento não assinado"
-          @complement = @doc.allotment.fifth.curriculum rescue nil
-        end
-        session.delete(:id)
+      if request.referer.nil?
+        redirect_to validate_path(id: params[:id], order: params[:order], r: true)
       else
-        @message = "O documento não foi assinado."
+        @doc = Core::Document::DataPrint.find(params[:id])
+        if @doc.allotment.main.present? || @doc.allotment.first.present? || @doc.allotment.second.present?
+          order = params[:order].present? ? params[:order] : params[:o]
+          case order
+          when "1"
+            @date =       "Em #{@doc.allotment.main_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
+            @user       = "GILSON PARANHOS" rescue "Documento não assinado"
+            @complement = "Diretor-Presidente da CODHAB/DF" if @doc.allotment.main.present?
+          when "2"
+            @date       = "Em #{@doc.allotment.first_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
+            @user       = @doc.allotment.first.name rescue "Documento não assinado"
+            @complement = @doc.allotment.first.job.name rescue nil
+          when "3"
+            @date       = "Em #{@doc.allotment.second_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
+            @user       = @doc.allotment.second.name rescue "Documento não assinado"
+            @complement = @doc.allotment.second.job.name + ' - ' + @doc.allotment.second.sector_current.name rescue nil
+          when "4"
+            @date       = "Em #{@doc.allotment.third_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
+            @user       = @doc.allotment.third.name rescue "Documento não assinado"
+            @complement = @doc.allotment.third.curriculum rescue nil
+          when "5"
+            @date       = "Em #{@doc.allotment.fourth_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
+            @user       = @doc.allotment.fourth.name rescue "Documento não assinado"
+            @complement = @doc.allotment.fourth.curriculum rescue nil
+          when "6"
+            @date       = "Em #{@doc.allotment.fifth_authenticate_date.strftime('%d/%m/%Y - %H:%M:%S')}" rescue nil
+            @user       = @doc.allotment.fifth.name rescue "Documento não assinado"
+            @complement = @doc.allotment.fifth.curriculum rescue nil
+          end
+          session.delete(:id)
+        else
+          @message = "O documento não foi assinado."
+        end
       end
     end
 
