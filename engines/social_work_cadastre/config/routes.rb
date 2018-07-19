@@ -33,5 +33,5 @@ SocialWorkCadastre::Engine.routes.draw do
 
   get 'cities_by_state', to: 'cadastres#cities_by_state', as: 'cities_by_state'
 
-
+  get 'result', to: 'locations#result', as: 'result', path: 'resultado'
 end

@@ -45,6 +45,10 @@ module SocialWorkCadastre
       end
     end
 
+    def result
+      @locations = Core::SocialWorkCadastre::Location.all
+    end
+
     private
 
     def set_params

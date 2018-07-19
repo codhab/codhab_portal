@@ -1,0 +1,48 @@
+.ui.grid
+  .row.mini-margin
+    .col-md-12.box
+      .panel.panel-default
+        .panel-heading
+          .row
+            .col-md-12
+              %h1
+                %b DIVULGAÇÃO DO SORTEIO
+        .panel-body
+          .row
+            .col-md-12
+              %p
+                A Companhia de Desenvolvimento Habitacional do Distrito Federal (CODHAB/DF), por meio da sua Diretoria de Assistência Técnica (DIATE), informa que, às 15h00min do dia 19 de julho de 2018, no Setor Comercial Sul, Quadra 06, Lotes 13/14, Bloco A, no  5º Andar, Sala de nº 02 – CEP: 70.306-918 - Brasília-DF, realizou os sorteios que tinham como objetivo ordenar as 15 (quinze) empresas habilitadas – conforme manifestação de interesse de cada-  em cada uma das 10 (dez) localidades disponibilizadas no Edital de Credenciamento nº 01/2018.
+              %p
+                Sobre o procedimento, abaixo a descrição dos presentes:
+              %p
+                I. Representantes de 10 (dez) empresas habilitadas;
+                %br
+                II. 01 (um) auditor da Controladoria Geral do Distrito Federal;
+                %br
+                III. Membros da Comissão Permanente de Licitação (CPL); e
+                %br
+                IV. 01 (um) Representante da Diretoria de Assistência Técnica (DIATE).
+                %p
+                  %a{href: "http://extranet.codhab.df.gov.br/uploads/archive/files/e9e3dfba9bb34b2b4129241dee0b5075.pdf", target: "_blank"} Ata dos Procedimentos de Sorteio
+                  %br
+                  %a{href: "http://extranet.codhab.df.gov.br/uploads/archive/files/bc0ca5810677e14b539ec0862e61d1d9.pdf", target: "_blank"}Lista das Empresas Presentes no Sorteio
+                %h4 Abaixo, segue o resultado oficial do sorteio:
+                %br
+              #accordion.panel-group
+                - @locations.each do |location|
+                  .panel.panel-default
+                    .panel-heading
+                      %h4.panel-title
+                        %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{location.id}"}= location.name
+                    %div{id: "collapse#{location.id}", class: "panel-collapse collapse"}
+                      .panel-body
+                        %table.ui.table.striped.celled
+                          %thead
+                            %tr
+                              %th Ordem
+                              %th Empresa
+                          %tbody
+                            - Core::SocialWorkCadastre::CadastreLocation.where('location_id = ? and "order" is not null', location.id).order(:order).each do |result|
+                              %tr
+                                %td= result.order
+                                %td= result.cadastre.social_reason rescue nil
