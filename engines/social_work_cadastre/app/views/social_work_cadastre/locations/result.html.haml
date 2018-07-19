@@ -26,23 +26,3 @@
                   %a{href: "http://extranet.codhab.df.gov.br/uploads/archive/files/e9e3dfba9bb34b2b4129241dee0b5075.pdf", target: "_blank"} Ata dos Procedimentos de Sorteio
                   %br
                   %a{href: "http://extranet.codhab.df.gov.br/uploads/archive/files/bc0ca5810677e14b539ec0862e61d1d9.pdf", target: "_blank"}Lista das Empresas Presentes no Sorteio
-                %h4 Abaixo, segue o resultado oficial do sorteio:
-                %br
-              #accordion.panel-group
-                - @locations.each do |location|
-                  .panel.panel-default
-                    .panel-heading
-                      %h4.panel-title
-                        %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{location.id}"}= location.name
-                    %div{id: "collapse#{location.id}", class: "panel-collapse collapse"}
-                      .panel-body
-                        %table.ui.table.striped.celled
-                          %thead
-                            %tr
-                              %th Ordem
-                              %th Empresa
-                          %tbody
-                            - Core::SocialWorkCadastre::CadastreLocation.where('location_id = ? and "order" is not null', location.id).order(:order).each do |result|
-                              %tr
-                                %td= result.order
-                                %td= result.cadastre.social_reason rescue nil

@@ -9,6 +9,7 @@ SocialWorkCadastre::Engine.routes.draw do
   get '/presentation', to: 'dashboard#presentation', as: 'presentation', path: '01-2018'
   get '/attach', to: 'dashboard#attach', as: 'attach'
   get '/inform', to: 'dashboard#inform', as: 'inform'
+  get '/result', to: 'dashboard#result', as: 'result'
 
   resources :document_types, path: 'tipo_documento'
   resources :locations, path: 'localidades'
@@ -33,5 +34,5 @@ SocialWorkCadastre::Engine.routes.draw do
 
   get 'cities_by_state', to: 'cadastres#cities_by_state', as: 'cities_by_state'
 
-  get 'result', to: 'locations#result', as: 'result', path: 'resultado'
+
 end

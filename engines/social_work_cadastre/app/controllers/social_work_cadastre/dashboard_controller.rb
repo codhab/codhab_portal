@@ -11,5 +11,9 @@ module SocialWorkCadastre
     end
 
     def attach; end
+
+    def result
+      @locations = Core::SocialWorkCadastre::Location.all
+    end
   end
 end
