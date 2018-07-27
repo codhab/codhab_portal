@@ -18,9 +18,8 @@ module Firm
       arr =[]
 
       @enterprises.each do |ent|
-        arr = ent.enterprise_typologies.ids if ent.enterprise_typologies.present?
+        arr += ent.enterprise_typologies.ids if ent.enterprise_typologies.present?
       end
-
        @enterprise_units = ::Address::Unit.where(enterprise_typology_id: arr)
        @enterprise_units_excel = apply_scopes(@enterprise_units)
        @enterprise_units =  @enterprise_units_excel.paginate(:page => params[:page], :per_page => 20)
@@ -62,7 +61,7 @@ module Firm
     end
 
     def set_enterprises
-       @enterprises = Firm::Enterprise.where(company_id: @firm.company_id)
+       @enterprises = Firm::Enterprise.where(company_id: @firm.company_id, status: true)
     end
 
     def set_tab
