@@ -19,23 +19,28 @@ module Address
         unless @cadastre.cadastre_address.present?
           flash[:warning] = "Candidato não possui vinculo com endereço."
           render :new
+          return
         else
           @unit = Address::Unit.find(@cadastre.cadastre_address.order(:created_at).last.unit_id)
           @candidate = Candidate::Cadastre.find(@unit.current_cadastre_address.cadastre_id)
-          unless @unit.current_cadastre_address.present?
+
+          if @candidate.id != @cadastre.id  || !@unit.current_cadastre_address.present? 
             flash[:warning] = "Endereço não possui vinculo com candidato."
             render :new
-          end
-
+            return
+          end 
+          
           document_service = Address::PrintingDocumentService.new(@candidate)
           if !document_service.positive_certificate!
             flash[:warning] = "Ficha não pode ser emitida para esse cadastro."
             render :new
+            return
           else
             document_service.positive_certificate_log!
             @autenticate = "#{@candidate.current_cadastre_address.unit_id}#{@candidate.id}"
             @qr = ::PrintingQrcodeService.generate!(@candidate.current_cadastre_address.id)
             render layout: 'empty'
+            return
           end
         end
 
