@@ -54,6 +54,8 @@ PATH
       rails (~> 5.0.2)
     concourse (0.0.1)
       rails (~> 5.0.2)
+    cpl (0.1.0)
+      rails (~> 5.0.2)
     document (0.1.0)
       rails (~> 5.0.2)
     entity (0.0.1)
@@ -424,6 +426,7 @@ DEPENDENCIES
   chunky_png
   concourse!
   core!
+  cpl!
   document!
   email_validator
   entity!

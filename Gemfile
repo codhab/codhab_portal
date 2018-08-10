@@ -99,4 +99,5 @@ path 'engines' do
   gem 'social_work_cadastre'
   gem 'technical_assistance'
   gem 'certificate'
+  gem 'cpl'
 end

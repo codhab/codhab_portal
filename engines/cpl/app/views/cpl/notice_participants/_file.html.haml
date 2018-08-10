@@ -1,0 +1,4 @@
+- @files = Cpl::DocumentParticipant.where(notice_participant_id: @notice_participant.id, document_notice_id: doc.id)
+- if @files.present?
+  - @files.each do |file|
+    = link_to "<i class='glyphicon glyphicon-file'></i>".html_safe, '#'

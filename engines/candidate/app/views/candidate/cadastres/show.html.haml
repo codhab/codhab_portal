@@ -178,7 +178,34 @@
                       %td
                       %td
                       %td
-
+        - if @document.present?
+          %h4
+            %b Histórico de Documentos
+          .row
+            .col-md-12
+              %table.table
+                %thead
+                  %tr
+                    %th Documento
+                    %th Cidade
+                    %th Validação
+                    %th Data da Geração
+                %tbody
+                  %tr
+                    %td= @document.allotment.template.name rescue nil
+                    %td= @document.city.name rescue nil
+                    %td= Digest::MD5.hexdigest @document.id.to_s rescue nil
+                    %td= @document.created_at.strftime('%d/%m/%Y') rescue nil
+          - if @document.rectification
+            - if @document.ready_rectification
+              .alert.alert-success{role: "alert"}
+                %h4 Atenção!
+                A retificação da sua escritura está pronta.
+                = "Você pode buscá-la em: #{@document.observation_rectification}"
+            - else
+              .alert.alert-warning{role: "alert"}
+                %h4 Atenção!
+                A retificação da sua escritura ainda não está pronta, fique atento em breve informaremos onde você pode retirá-la.
 
         %h4
           %b Dados de contemplação
@@ -322,21 +349,3 @@
                   %tr
                     %td{colspan: 3}
                       %i Nenhum registro encontrado.
-        - if @document.present?
-          %h4
-            %b Histórico de Documentos
-          .row
-            .col-md-12
-              %table.table
-                %thead
-                  %tr
-                    %th Documento
-                    %th Cidade
-                    %th Validação
-                    %th Data da Geração
-                %tbody
-                  %tr
-                    %td= @document.allotment.template.name rescue nil
-                    %td= @document.city.name rescue nil
-                    %td= Digest::MD5.hexdigest @document.id.to_s rescue nil
-                    %td= @document.created_at.strftime('%d/%m/%Y') rescue nil
