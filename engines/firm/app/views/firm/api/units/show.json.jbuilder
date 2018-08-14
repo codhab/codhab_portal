@@ -1,5 +1,6 @@
 json.data do
   json.id @unit.id
+  json.control_number @unit.control_number
   json.acron_block @unit.acron_block
   json.block @unit.block
   json.acron_group @unit.acron_group
