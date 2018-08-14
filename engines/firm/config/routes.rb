@@ -29,13 +29,13 @@ Firm::Engine.routes.draw do
 
   namespace :api do
     scope ':token_id' do
-      resources :candidates, only: [:index, :show], path: 'candidatos'
-      resources :units,      only: [:index, :show], path: 'enderecos'
-      resources :sellings,   only: [:create],       path: 'venda'
-      resources :deliveries, only: [:create],       path: 'entrega'
-      resources :bookings,   only: [:create],       path: 'reserva'
-      resources :refunds,    only: [:create],       path: 'liberar'
-      resources :situations, only: [:create],       path: 'situacoes'
+      resources :candidates, only: [:index, :show],   path: 'candidatos'
+      resources :units,      only: [:index, :show],   path: 'enderecos'
+      resources :sellings,   only: [:create],         path: 'venda'
+      resources :deliveries, only: [:create],         path: 'entrega'
+      resources :bookings,   only: [:create],         path: 'reserva'
+      resources :refunds,    only: [:create],         path: 'liberar'
+      resources :situations, only: [:index, :create], path: 'situacoes'
     end
   end
 end
