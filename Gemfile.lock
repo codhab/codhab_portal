@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 2a242663972d4ad97606f535fed2270cbcb0f0f9
+  revision: 9a70f80f5a5dc37ad9bfd9569e3b78655b4d9dc9
   branch: master
   specs:
     core (0.1.0)
