@@ -1,0 +1,41 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4= "Seja bem vindo, #{@participant.name}"
+            = link_to "Sair", session_path(id: session[:user_id]), method: :delete, class: 'btn btn-danger btn-sm'
+            %h1{style: "text-align: center !important"}
+              %b Editais
+        %hr/
+        .row
+          .col-md-12
+            %table.table.table-condensed
+              %thead
+                %tr
+                  %th.col-md-1 #
+                  %th Edital
+                  %th.col-md-2
+                  %th.col-md-2
+              %tbody
+                - if @notices.present?
+                  - @notices.order(created_at: :desc).each_with_index do |notice, i|
+                    %tr
+                      %td= i + 1
+                      %td
+                        = notice.name
+                        - if notice.created_at > 3.days.ago
+                          %span.label.label-warning
+                            Novo
+                      %td= link_to "Baixar Arquivo", download_path(id: notice.id), target: '_blank' rescue nil
+                      %td
+                        - if Cpl::NoticeParticipant.where(notice_id: notice.id, participant_id: session[:user_id]).present?
+                          - @name = 'Estou participando'
+                        - else
+                          - @name = 'Participar'
+                        = link_to @name, notice_participants_path(notice_id: notice.id) rescue nil
+                - else
+                  %tr
+                    %td
+                      %i Nenhum edital cadastrado.

@@ -40,5 +40,5 @@ Rails.application.routes.draw do
   mount ExternalFirm::Engine        => '/empresa_externa'
   mount TechnicalAssistance::Engine => '/assistencia_tecnica'
   mount Certificate::Engine         => '/certificado'
-
+  mount Cpl::Engine                 => '/cpl'
 end

@@ -2,7 +2,13 @@ require_dependency 'firm/api/api_controller'
 
 module Firm
   module Api
-    class SituationsController < ApiController
+    class SituationsController < ApiController # :nodoc:
+
+      def index
+        start_date = Date.parse(params[:start_date])
+        end_date = Date.parse(params[:end_date])
+        @dropouts = current_company.enterprise_cadastres.where('inactive_date >= ? and inactive_date <= ?',start_date ,end_date).order(:inactive_date).take(10)
+      end
 
       def create
         @enterprise_cadastre = current_company.enterprise_cadastres.find(params[:enterprise_cadastre_id]) rescue nil

@@ -1,0 +1,26 @@
+.col-md-12
+  = simple_form_for @participant do |f|
+    .row
+      .col-md-6
+        = f.input :name, input_html: { placeholder: "Razão Social ou Nome"}
+      .col-md-3
+        = f.input :cpf, input_html: { placeholder: "CFP"}
+      .col-md-3
+        = f.input :cnpj, input_html: { placeholder: "CNPJ"}
+    .row
+      .col-md-6
+        = f.input :email, input_html: { placeholder: "Email"}
+      .col-md-3
+        = f.input :telephone, input_html: { placeholder: "(00) 00000-0000"}
+      .col-md-3
+        = f.input :celphone, input_html: { placeholder: "(00) 00000-0000"}
+    .row
+      .col-md-6
+        = f.input :password, input_html: { placeholder: "******"}
+      .col-md-6
+        = f.input :password_confirmation, input_html: { placeholder: "******"}
+    %hr/
+    .row
+      .col-md-12
+        = f.submit "Criar cadastro", class: 'btn btn-success'
+        = link_to "Fazer Login", new_session_path, class: 'btn btn-default'

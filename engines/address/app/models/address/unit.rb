@@ -25,7 +25,7 @@ module Address
     scope :by_typology, -> (typology) {joins(:enterprise_typology).where('extranet.project_enterprise_typologies.typology_id = ?', typology)}
     scope :by_enterprise, -> (enterprise) {joins(:enterprise_typology).where('extranet.project_enterprise_typologies.enterprise_id = ?', enterprise)}
 
-  
+
 
     def unit_void?
       self.situation_unit_id == 1 && (current_cadastre_address.nil? || current_cadastre_address.distrato?)
@@ -37,6 +37,10 @@ module Address
 
     def unit_book?
       self.situation_unit_id == 6 && current_cadastre_address.present? && current_cadastre_address.reserva?
+    end
+
+    def unit_occupied?
+      [2,3,5,6,9,10,12].include? self.situation_unit_id
     end
 
     def current_candidate

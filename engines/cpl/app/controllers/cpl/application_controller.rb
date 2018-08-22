@@ -1,5 +1,7 @@
+require_dependency 'application_controller'
+
 module Cpl
-  class ApplicationController < ActionController::Base
-    protect_from_forgery with: :exception
+  class ApplicationController < ApplicationController # :nodoc:
+    layout 'application'
   end
 end

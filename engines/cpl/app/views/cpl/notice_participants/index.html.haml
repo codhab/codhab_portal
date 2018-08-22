@@ -1,0 +1,44 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h4= @participant.name
+            %h1{style: "text-align: center !important"}
+              %b Para participar da concorrencia é necessario o envio dos seguintes documentos
+        %hr/
+        = link_to "Voltar para editais", notices_path, class: 'btn btn-default'
+        .row
+          .col-md-12
+            %table.table.table-condensed
+              %thead
+                %tr
+                  %th.col-md-1 #
+                  %th Documento
+                  %th
+                  %th
+              %tbody
+                - if @notice.documents.present?
+                  - @notice.documents.each_with_index do |doc, i|
+                    %tr
+                      %td= i + 1
+                      %td= doc.document_type.name rescue nil
+                      %td
+                        = simple_form_for @file, url: document_participants_path, multipart: true,authenticity_token: true, method: :post do |f|
+                          = f.input :document_notice_id, as: :hidden, input_html: { value: doc.id }
+                          = f.input :notice_participant_id, as: :hidden, input_html: { value: @notice_participant.id }
+                          = f.input :attachment, label: false, as: :file, input_html: { onchange: '$(this.form).submit();' }
+                      %td
+                        - @files = Cpl::DocumentParticipant.where(notice_participant_id: @notice_participant.id, document_notice_id: doc.id)
+                        - if @files.present?
+                          - @files.each do |file|
+                            = link_to "<i class='glyphicon glyphicon-file'></i>".html_safe, file.attachment_url, target: '_blank' rescue nil
+                - else
+                  %tr
+                    %td{colspan: 4}
+                      %i Nenhum documento cadastrado.
+        .row
+          .col-md-12
+            %p
+              %i Essa documentação estará disponivel somente para este usuário até a data prevista no edital.
