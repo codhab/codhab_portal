@@ -12,7 +12,7 @@ module Main
       end
 
       @service_results = Main::ServiceResult.where(status: true).order(:date)
-      @posts = Main::Post.where(publish: true, slider: false, local_post: 1).limit(10).order("created_at DESC")
+      @posts = Main::Post.where(publish: true, slider: false, local_post: 1).limit(1).order("created_at DESC")
       @videos = Main::Video.where(publish: true).limit(5).order("created_at DESC")
 
       cookies[:recadastre_deny] = 'false'
@@ -40,7 +40,7 @@ module Main
     def c
       redirect_to certificate.new_validation_path(id: params[:id])
     end
-    
+
     def convenant
       @type_event = Main::TypeEvent.where(status: true)
       @events = Main::Event.where(status: true, type_event_id: 2)
