@@ -25,7 +25,6 @@
           %th Hora/Data
           %th Arquivo 1
           %th Arquivo 2
-          %th Arquivo 3
           %th
       %tbody
         - if @candidate.candidate_participation.present?
@@ -34,7 +33,6 @@
               %td= participation.created_at.strftime("%d/%m/%Y %H:%M")
               %td= link_to 'visualizar', participation.archive_one_url, target: '_blank'
               %td= link_to 'visualizar', participation.archive_two_url, target: '_blank'
-              %td= link_to 'visualizar', participation.archive_three_url, target: '_blank'
               - if (@project.start_participation <= Date.current && @project.end_participation >= Date.current)
                 %td= link_to 'cancelar projeto', project_restrict_participation_path(project_id: @project.id, id: participation.id), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: "Tem certeza que deseja excluir seu projeto?" }
               - else
