@@ -14,10 +14,7 @@
       - if @candidate.homologado?
         - if !@candidate.candidate_participation.present?
           = link_to "ENVIAR MEU PROJETO", new_project_restrict_participation_path(project_id: @project), class: 'btn btn-primary btn-lg'
-      - else
-        - if !@candidate.candidate_participation.present?
-          = link_to "ENVIAR MEU PROJETO (PROVISÓRIO)", new_project_restrict_participation_path(project_id: @project), class: 'btn btn-primary btn-lg'
-
+  
       %hr/
 
 .row
