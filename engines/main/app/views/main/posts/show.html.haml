@@ -1,30 +1,30 @@
 / conteudo da pagina
 .container
-  = image_tag('http://www.codhab.df.gov.br/portal/banners_site_principal.png',style:'width:100%')
-  -# .row
-  -#   .col-md-9.box
-  -#     .box_internal
-  -#       .post_meta
-  -#         = render_shareable :buttons=> ['twitter', 'facebook','google_plus'], :facebook=> {:send=> 'true', :url=> "#{request.original_url}"}
-  -#         -# %a{:href => "https://www.facebook.com/sharer.php?u=#{request.original_url}",:style => 'float:left'}
-  -#         -#   Compartilhar no facebook
-  -#         .post_date
-  -#           = @post.date.strftime('%d/%m/%Y')
-  -#       .post
-          -# .imagem_post
-          -#   - if @post.active_photo?
-          -#     = image_tag @post.thumbnail , :alt => "#{(@post.photo_description.present?) ? @post.photo_description : 'Foto sem descrição'}"
-          -# .author_custom
-          -#   - if @post.photo_description? && @post.photo_author?
-          -#     = @post.photo_description
-          -#     %span
-          -#       Autor:
-          -#       = @post.photo_author.html_safe
-          -# .content_post
-          -#   %h1.post_title
-          -#     = @post.title
-          -#   %p.post-post
-          -#     = @post.content.html_safe
-          -#     = @post.flickr.html_safe if @post.flickr.present?
+  -# = image_tag('http://www.codhab.df.gov.br/portal/banners_site_principal.png',style:'width:100%')
+  .row
+    .col-md-9.box
+      .box_internal
+        .post_meta
+          = render_shareable :buttons=> ['twitter', 'facebook','google_plus'], :facebook=> {:send=> 'true', :url=> "#{request.original_url}"}
+          -# %a{:href => "https://www.facebook.com/sharer.php?u=#{request.original_url}",:style => 'float:left'}
+          -#   Compartilhar no facebook
+          .post_date
+            = @post.date.strftime('%d/%m/%Y')
+        .post
+          .imagem_post
+            - if @post.active_photo?
+              = image_tag @post.thumbnail , :alt => "#{(@post.photo_description.present?) ? @post.photo_description : 'Foto sem descrição'}"
+          .author_custom
+            - if @post.photo_description? && @post.photo_author?
+              = @post.photo_description
+              %span
+                Autor:
+                = @post.photo_author.html_safe
+          .content_post
+            %h1.post_title
+              = @post.title
+            %p.post-post
+              = @post.content.html_safe
+              = @post.flickr.html_safe if @post.flickr.present?
             %a.button_back{"arial-label" => "back to top", :href => "#"} VOLTAR AO TOPO
     -# = render('layouts/portal/sidebar')
