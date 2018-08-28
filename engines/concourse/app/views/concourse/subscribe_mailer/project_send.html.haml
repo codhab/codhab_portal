@@ -149,10 +149,6 @@
                                   %tr
                                     %td{"st-title" => "fulltext-heading", :style => "font-family: Helvetica, arial, sans-serif; font-size: 30px; color: #333333; text-align:left; line-height: 30px;"}
                                       %b Projeto Recebido - Inscrição Nº #{@number}
-                                - else
-                                  %tr
-                                    %td{"st-title" => "fulltext-heading", :style => "font-family: Helvetica, arial, sans-serif; font-size: 30px; color: #333333; text-align:left; line-height: 30px;"}
-                                      %b Projeto Provisório Recebido - Inscrição Nº #{@number}
                                 / End of Title
                                 / spacing
                                 %tr
@@ -200,22 +196,22 @@
                             %table.devicewidthinner{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                               %tr
                                 %td{"st-title" => "fulltext-heading", :style => "font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #333333; text-align:left; line-height: 30px;"}
-                                  %p 06 pranchas A2, em formato PDF, dispostas em arquivo único
+                                  %p Arquivo 1
                                   %p= link_to "visualizar", "http://www.codhab.df.gov.br/#{@participation.archive_one.url}"
                                   %br/
-                                  %p 01 prancha A1, em formato PDF
+                                  %p Arquivo 2
                                   %p= link_to "visualizar", "http://www.codhab.df.gov.br/#{@participation.archive_two.url}"
                                   %br/
                                   %br/
-                                  %p 01 imagem ilustrativa, em formato PNG ou JPG
-                                  %p= link_to "visualizar", "http://www.codhab.df.gov.br/#{@participation.archive_three.url}"
-                                  %br/
-
-                                  %p Aguarde o julgamento e a divulgação dos resultados, as datas de divulgação e julgamento podem ser consultadas no site oficial do concurso: (www.codhab.df.gov.br/concursos/#{@project.slug}).
+                                  %p Em se tratando do #{@project.title}, confirmamos que o seu projeto foi recebido com sucesso! 
 
                                   %br/
 
-                                  %p Atenciosamente, #{@project.title}
+                                  %p O candidato poderá, logo após o envio do projeto - em página específica dentro da sua área restrita - fazer a verificação de todos os arquivos enviados.
+
+                                  %br/
+
+                                  %p Para maiores informações sobre a data do processo de julgamento ou sobre a divulgação do resultado do Concurso, acessar o site oficial do certame, e verificar a página “Cronograma”. 
 
 
                         %tr
