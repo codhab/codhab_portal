@@ -3,6 +3,12 @@
     %h1 
       %b Vencedores
 .row
+  .col-md-12
+    - if @project.id == 15 
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/WMyYuZgOFF8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+  
+.row
   .col-md-12  
     - if (@project.result_day.present? && @project.result_hour.present?) &&  (@project.result_day <= Date.current) && @project.winners.present?
       .row
