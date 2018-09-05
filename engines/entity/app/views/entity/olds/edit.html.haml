@@ -1,0 +1,36 @@
+.row.mini-margin
+	.col-md-12
+		.panel.panel-default
+			.panel-body
+				%h2
+					Editar dados
+				.row
+					.col-md-12
+						= simple_form_for @entity, url: old_path(@entity.id), method: :put do |f|
+							.row
+								.col-md-6
+									= f.input :name, label: "Nome"
+								.col-md-6
+									= f.input :fantasy_name, label: "Sigla"
+								.col-md-6
+									= f.input :president_name, label: "Nome do Presidente"
+								.col-md-6
+									= f.input :president_cpf,label:"CPF do Presidente", input_html: {class: 'cpf'}
+								.col-md-6
+									= f.input :address, label: "Endereço"
+								.col-md-6
+									= f.input :telephone, label: "Telefone"
+								.col-md-6
+									= f.input :cep, label: "CEP"
+								.col-md-6
+									= f.input :email, label: "EMAIL"
+								.col-md-6
+									= f.input :city_id, label: "CIDADE",  as: :select, collection:  Address::City.federal_district, include_blank: false, include_blank: "Selecione..."
+								.col-md-12
+									.col-md-6
+										= f.input :password, label: "Senha"
+									.col-md-6
+										= f.input :password_confirmation, label: "Repita a Senha"
+							.row
+								.col-md-6
+									= f.submit "Salvar", class: 'btn btn-success'
