@@ -11,6 +11,7 @@ Entity::Engine.routes.draw do
   resources :cadastres, path: 'cadastros'
   resources :events, path: 'eventos'
   resources :geolocations, path: 'localizacao'
+  resources :olds, path: 'entidades_antigas'
 
 #  resources :interests do
 #    get 'update'
