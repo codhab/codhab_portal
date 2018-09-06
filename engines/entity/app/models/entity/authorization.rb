@@ -12,11 +12,7 @@ module Entity
 
     def authenticate
       @entity = Core::Entity::Cadastre.where(cnpj: self.cnpj, password: self.password, status: true)
-<<<<<<< HEAD
-      
-=======
       @entity_old = Core::Entity::Old.where(cnpj: self.cnpj, password: self.password)
->>>>>>> 9e50a0d272af66f72a41f59d16daf8643e5fe0b0
       if @entity.present?
         self.old = false
         self.id = @entity.last.id
