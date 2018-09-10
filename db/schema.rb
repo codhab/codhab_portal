@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180905182956) do
+ActiveRecord::Schema.define(version: 20180906125032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -2755,6 +2755,7 @@ ActiveRecord::Schema.define(version: 20180905182956) do
     t.text     "observation"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "old_id"
     t.index ["cadastre_id"], name: "index_entity_documents_on_cadastre_id", using: :btree
     t.index ["cadastre_mirror_id"], name: "index_entity_documents_on_cadastre_mirror_id", using: :btree
     t.index ["document_category_id"], name: "index_entity_documents_on_document_category_id", using: :btree

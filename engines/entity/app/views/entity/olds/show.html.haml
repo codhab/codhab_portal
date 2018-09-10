@@ -4,9 +4,9 @@
 			.panel-body
 				.row
 					.col-md-12
-						%h1
+						%h2
 							%b Área da Entidade
-
+							= link_to 'Corrigir meus dados', edit_old_path(@entity.id), class: 'btn btn-success'
 						.row
 							.col-md-12
 								.row
@@ -52,4 +52,23 @@
 												%tr
 													%td.col-md-2= @entity.president_name.to_s.mb_chars.upcase rescue 'Sem Informação'
 													%td.col-md-2= @entity.president_cpf.format_cpf rescue 'Sem Informação'
-								= link_to 'Corrigir meus dados', edit_old_path(@entity.id), class: 'btn btn-success'
+								
+				.col-md-12
+					%h2
+						%b Documentos
+						= link_to 'Enviar Documentos', new_old_document_path(@entity.id), class: 'btn btn-success'
+					.row
+						.col-md-12
+							.row
+								.col-md-12{style: 'margin-bottom: 20px;'}
+									%table.table.table-striped.table-bordered
+										%thead
+											%tr
+												%th Tipo
+												%th Arquivo
+										%tbody	
+											- @documents.each do |document|
+												%tr
+													%td= document.document_category_id
+													%td
+														= link_to 'Visualizar', document.archive_path.url, target: '_blank'

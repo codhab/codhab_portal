@@ -5,14 +5,13 @@ module Entity
 	 before_action :set_entity, only: [:show, :edit, :update]
 	
 	def show
-		# @entity = Core::Entity::Old.find(params[:id])
+		@documents = Entity::Document.where(old_id: params[:id])
 	end
 
 	def edit
 	end
 
 	def update
-		# @entity.president_cpf = @entity.president_cpf.gsub('.','').gsub('-','')
 		if @entity.update(entity_params)
 			redirect_to action: 'show'
 		else
