@@ -20,7 +20,7 @@ module Concourse
                                                  message: 'O arquivo excede o tamanho permitido'}
 
 
-    validates :archive_three, file_content_type: { allow: ['image/png', 'image/jpg'],
+    validates :archive_three, file_content_type: { allow: ['image/png', 'image/jpg', 'image/jpeg'],
                                                  message: 'Somente arquivos no formato PNG ou JPG' },
                                                  file_size: {less_than_or_equal_to: 5.megabytes.to_i,
                                                  message: 'O arquivo excede o tamanho permitido'}
