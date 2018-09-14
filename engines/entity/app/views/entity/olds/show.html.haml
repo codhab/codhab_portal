@@ -1,0 +1,74 @@
+.row.mini-margin
+	.col-md-12
+		.panel.panel-default
+			.panel-body
+				.row
+					.col-md-12
+						%h2
+							%b Área da Entidade
+							= link_to 'Corrigir meus dados', edit_old_path(@entity.id), class: 'btn btn-success'
+						.row
+							.col-md-12
+								.row
+									.col-md-12{style: 'margin-bottom: 20px;'}
+										= "Seja bem vindo a sua área #{@entity.name}"
+										%table.table.table-striped.table-bordered
+											%thead
+												%tr
+													%th CNPJ
+													%th Nome
+													%th Sigla
+											%tbody
+												%tr
+													%td.col-md-2= @entity.cnpj.format_cnpj
+													%td= @entity.name.to_s.mb_chars.upcase rescue 'Sem Informação'
+													%td.col-md-2= @entity.fantasy_name.to_s.mb_chars.upcase rescue 'Sem Informação'
+										%table.table.table-striped.table-bordered
+											%thead
+												%tr
+													%th Telefone
+													%th E-mail
+											%tbody
+												%tr
+													%td.col-md-2= @entity.telephone rescue 'Sem Informação'
+													%td= @entity.email rescue 'Sem Informação'
+										%table.table.table-striped.table-bordered
+											%thead
+												%tr
+													%th Endereço
+													%th Cidade
+													%th CEP
+											%tbody
+												%tr
+													%td.col-md-2= @entity.address.to_s.mb_chars.upcase rescue 'Sem Informação'
+													%td.col-md-2= @entity.new_city.name
+													%td.col-md-2= @entity.cep rescue 'Sem Informação'
+										%table.table.table-striped.table-bordered
+											%thead
+												%tr
+													%th Nome do presidente
+													%th CPF do presidente
+											%tbody
+												%tr
+													%td.col-md-2= @entity.president_name.to_s.mb_chars.upcase rescue 'Sem Informação'
+													%td.col-md-2= @entity.president_cpf.format_cpf rescue 'Sem Informação'
+								
+				.col-md-12
+					%h2
+						%b Documentos
+						= link_to 'Enviar Documentos', new_old_document_path(@entity.id), class: 'btn btn-success'
+					.row
+						.col-md-12
+							.row
+								.col-md-12{style: 'margin-bottom: 20px;'}
+									%table.table.table-striped.table-bordered
+										%thead
+											%tr
+												%th Tipo
+												%th Arquivo
+										%tbody	
+											- @documents.each do |document|
+												%tr
+													%td= document.document_category_id
+													%td
+														= link_to 'Visualizar', document.archive_path.url, target: '_blank'

@@ -15,10 +15,13 @@
       %h4 Projeto
   .row
     .col-md-10
-      = f.input :archive_one, label: "I. Proposta de Projeto - 05 (cinco) Pranchas A3, em um único arquivo (Máximo 18MB)", as: :file
+      = f.input :archive_one, label: "I. Proposta de Projeto - 06 (cinco) Pranchas A3, em um único arquivo (Máximo 30MB)", as: :file
   .row
     .col-md-10
       = f.input :archive_two, label: "II. Prancha Síntese – 01 (uma) Prancha A1 (Máximo 5MB)", as: :file
+  .row
+    .col-md-10
+      = f.input :archive_three, label: "III. Imagem ilustrativa PNG ou JPG – (Máximo 5MB)", as: :file
   .row
     .col-md-12
       = @project.text_participation.html_safe
