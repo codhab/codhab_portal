@@ -1,0 +1,9 @@
+%h1
+	%b Área da Entidade
+%br
+= simple_form_for @document, url: old_documents_path, method: :post do |f|
+	= f.input :document_category_id,label: 'Tipo de Documento', as: :select, collection: Entity::DocumentCategory.where(required: true).order(:name), include_blank: false 
+	= f.input :archive_path,label: 'Arquvio', as: :file
+	= f.input :observation,label: 'Observação' 
+	= f.submit 'Enviar', class: 'btn btn-success'
+	= link_to 'Voltar', old_path(@entity), class: 'btn btn-cancel'

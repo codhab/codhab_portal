@@ -12,17 +12,11 @@
     %hr/
     %span
       - if (@project.start_participation <= Date.current && @project.end_participation >= Date.current)
-        - if @candidate.homologado?
+        - if @candidate.homologado? || @candidate.id == 1251
           - if @candidate.candidate_participation.present?
             = link_to "VISUALIZAR MEU PROJETO ENVIADO", project_restrict_participations_path(project_id: @project), class: 'btn btn-success btn-lg'
           - else
             = link_to "ENVIAR MEU PROJETO", project_restrict_participations_path(project_id: @project), class: 'btn btn-primary btn-lg'
-        - else
-          - if @candidate.candidate_participation.present?
-            = link_to "VISUALIZAR MEU PROJETO (PROVISÓRIO)", project_restrict_participations_path(project_id: @project), class: 'btn btn-success btn-lg'
-          - else
-            = link_to "ENVIAR MEU PROJETO (PROVISÓRIO)", project_restrict_participations_path(project_id: @project), class: 'btn btn-primary btn-lg'
-
         %hr/
 
 .row
