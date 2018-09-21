@@ -4,8 +4,8 @@
       %b Vencedores
 .row
   .col-md-12
-    - if @project.id == 99
-      = link_to "Clique aqui para acompanhar a divulgação do resultado", "https://www.youtube.com/watch?v=EpfPkFKqIrg", target: "_blank"  
+    - if @project.id == 17
+      = link_to "Clique aqui para acompanhar a divulgação do resultado", "https://www.youtube.com/watch?v=4gVKxQrsF9c", target: "_blank"  
 .row
   .col-md-12  
     - if (@project.result_day.present? && @project.result_hour.present?) &&  (@project.result_day <= Date.current) && @project.winners.present?
