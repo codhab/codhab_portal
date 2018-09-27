@@ -41,7 +41,7 @@ module Entity
         result
       end
     }   
-
+    mount_uploader :archive_path, Wiki::FileUploader
 
 
     scope :by_city, -> (value) { where(city_id: value) }
