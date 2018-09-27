@@ -5,7 +5,7 @@
 .row
   .col-md-12
     - if @project.id == 99
-      = link_to "Clique aqui para acompanhar a divulgação do resultado", "https://www.youtube.com/watch?v=EpfPkFKqIrg", target: "_blank"  
+      = link_to "Clique aqui para acompanhar a divulgação do resultado", "https://www.youtube.com/watch?v=4gVKxQrsF9c", target: "_blank"  
 .row
   .col-md-12  
     - if (@project.result_day.present? && @project.result_hour.present?) &&  (@project.result_day <= Date.current) && @project.winners.present?
@@ -18,6 +18,9 @@
             - file  =  @project.result_document.to_s.split('/').last
             - url   = "/uploads/concourse/candidate/files/#{file}"
             = link_to "Baixar ata de resultado", url, target: '_blank' 
+          - if @project.id == 17
+            %br/
+            = link_to "Baixar errata da Ata do Resultado", "http://www.codhab.df.gov.br/uploads/archive/files/9ac8ab959f85255b57a366d2a1464704.pdf", target: '_blank'
       - @project.winners.order('group_participation ASC').each do |winner|
         .row
           .col-md-12
