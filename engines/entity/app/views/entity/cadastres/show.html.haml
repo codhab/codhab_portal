@@ -55,10 +55,33 @@
               %table.table.table-striped.table-bordered
                 %thead
                   %tr
-                    %th Nome do presidente
+                    %th Presidente
+                    %th Foto
                 %tbody
                   %tr
                     %td.col-md-2= @cadastre.current_president_name.to_s.mb_chars.upcase
+                    - if @cadastre.current_president_photo.present?
+                      %td.col-md-2= image_tag(@cadastre.current_president_photo,alt:@cadastre.current_president_name.to_s.mb_chars.upcase, title:@cadastre.current_president_name.to_s.mb_chars.upcase)
+                    - else  
+                      %td.col-md-2= 'Sem Informação'
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Vice presidente
+                %tbody
+                  %tr
+                    - if @cadastre.current_vice_president_name.present?
+                      %td.col-md-2= @cadastre.current_vice_president_name.to_s.mb_chars.upcase
+                    - else
+                      %td.col-md-2= 'Sem Informação'
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th{colspan:2} Diretores
+                %tbody
+                  - @cadastre.current_directors_name.each do |director|
+                    %tr
+                      %td= director.name.to_s.mb_chars.upcase
               %hr/
               %h4
                 %b Projeto vínculado
@@ -180,6 +203,7 @@
                 %tbody
                   %tr
                     %td.col-md-2= @cadastre.current_president_name.to_s.mb_chars.upcase
+                    %td.col-md-2= @cadastre.current_president_photo
               %hr/
               %h4
                 %b Projeto vínculado

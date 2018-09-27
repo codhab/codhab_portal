@@ -60,6 +60,16 @@ module Entity
     def current_president_name
       self.members.where(member_job_id: 2).first.name rescue nil
     end
+    def current_president_photo
+      self.members.where(member_job_id: 2).first.photo rescue nil
+    end
+    def current_vice_president_name
+      self.members.where(member_job_id: 3).first.name rescue nil
+    end
+    
+    def current_directors_name
+      self.members.where(member_job_id: 5) rescue nil
+    end
     
     def current_situation
       self.situations.order(:id).last.situation_status.name.mb_chars.upcase rescue I18n.t(:no_information)
