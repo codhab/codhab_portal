@@ -39,6 +39,7 @@ module Entity
 
     def show
       @cadastre = ::Entity::Cadastre.find(params[:id])
+      # byebug
       @candidates = @http.get("/entidade/candidatos.json?id=#{@cadastre.id}")
     end
 
