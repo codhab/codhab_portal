@@ -1,22 +1,22 @@
--# - if Time.now < Date.parse('2018-07-04 00:00:00 -03:00')
+- if Time.now < Date.parse('2018-07-04 00:00:00 -03:00')
 
-.container
-  .col-md-12{style: 'width:1200px!important;'}
-    %h2.title_notice Urgente
-    .bxslide
-      - @posts.each do |p|
-        .col-sm-6.col-md-4
-          .thumbnail.thumbnoticia
-            .thumbnail-img
-              - if p.thumbnail?
-                = image_tag p.thumbnail , :alt => "#{(p.photo_description.present?) ? p.photo_description : 'Foto sem descrição'}"
-              - else
-                = image_tag '/portal/images/codhab.png'
-            .caption.caption_notice
-              %a.link_caption
-                %b= link_to "#{(p.post_category.present?) ? p.post_category.title : ''}", post_path(p), class: 'council'
-              .link_caption_date
-                = p.date.strftime('%d/%m/%Y')
-            .link_caption_text
-              %h3
-                %b= link_to p.title, post_path(p) rescue nil
+  .container
+    .col-md-12{style: 'width:1200px!important;'}
+      %h2.title_notice Urgente
+      .bxslide
+        - @posts.each do |p|
+          .col-sm-6.col-md-4
+            .thumbnail.thumbnoticia
+              .thumbnail-img
+                - if p.thumbnail?
+                  = image_tag p.thumbnail , :alt => "#{(p.photo_description.present?) ? p.photo_description : 'Foto sem descrição'}"
+                - else
+                  = image_tag '/portal/images/codhab.png'
+              .caption.caption_notice
+                %a.link_caption
+                  %b= link_to "#{(p.post_category.present?) ? p.post_category.title : ''}", post_path(p), class: 'council'
+                .link_caption_date
+                  = p.date.strftime('%d/%m/%Y')
+              .link_caption_text
+                %h3
+                  %b= link_to p.title, post_path(p) rescue nil
