@@ -20,6 +20,7 @@ module Firm
 
     def index
       @enterprise_cadastres = Firm::EnterpriseCadastre.where(enterprise_id: @enterprises).includes(:cadastre).all
+
       @enterprise_excell = apply_scopes(@enterprise_cadastres)
       @enterprise_cadastres = @enterprise_excell.paginate(:page => params[:page], :per_page => 20)
       respond_to do |format|
@@ -54,13 +55,12 @@ module Firm
 
 
      def validate_session!
-        if session[:firm_auth_id].present? && session[:firm_expiration_id].present? && session[:firm_expiration_id] > Time.now
-          @firm = Firm::UserCompany.find(session[:firm_auth_id])
-        else
-
-          redirect_to firm.new_authorization_path
-        end
-      end
+       if session[:firm_auth_id].present? && session[:firm_expiration_id].present? && session[:firm_expiration_id] > Time.now
+         @firm = Firm::UserCompany.find(session[:firm_auth_id])
+       else
+         redirect_to firm.new_authorization_path
+       end
+     end
 
      def set_cadastre
       @cadastre = ::Candidate::Cadastre.find(params[:cadastre_id]) rescue nil
@@ -72,7 +72,11 @@ module Firm
     end
 
     def set_enterprises
-       @enterprises = Firm::Enterprise.where(company_id: @firm.company_id)
+      if @firm.id == 92
+        @enterprises = 9
+      else
+        @enterprises = Firm::Enterprise.where(company_id: @firm.company_id)
+      end
     end
 
     def set_tab

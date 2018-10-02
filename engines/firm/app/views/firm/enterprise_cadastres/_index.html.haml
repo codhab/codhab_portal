@@ -24,11 +24,12 @@
             ações
             %span.caret
           %ul.dropdown-menu
-            - if cand.inactive != true
-              - if cand.enterprise_cadastre_situations.present?
-                - status = cand.enterprise_cadastre_situations.first
-                -if status.enterprise_cadastre_status_id == 9 || status.enterprise_cadastre_status_id == 10 || status.enterprise_cadastre_status_id == 12 || status.enterprise_cadastre_status_id == 14
+            - if @firm.id != 92
+              - if cand.inactive != true
+                - if cand.enterprise_cadastre_situations.present?
+                  - status = cand.enterprise_cadastre_situations.first
+                  -if status.enterprise_cadastre_status_id == 9 || status.enterprise_cadastre_status_id == 10 || status.enterprise_cadastre_status_id == 12 || status.enterprise_cadastre_status_id == 14
+                    %li= link_to "Alterar Status", new_enterprise_cadastre_situation_path(enterprise_cadastre_id: cand.id), remote: true
+                -else
                   %li= link_to "Alterar Status", new_enterprise_cadastre_situation_path(enterprise_cadastre_id: cand.id), remote: true
-              -else
-                %li= link_to "Alterar Status", new_enterprise_cadastre_situation_path(enterprise_cadastre_id: cand.id), remote: true
             %li= link_to "Visualizar Dados", enterprise_cadastre_path(id: cand.id,cadastre_id: cand.cadastre_id)
