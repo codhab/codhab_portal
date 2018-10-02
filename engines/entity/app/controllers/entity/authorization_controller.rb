@@ -10,10 +10,17 @@ module Entity
       @authorization = Entity::Authorization.new(set_params)
 
       if @authorization.valid?
-        session[:entity_auth_id] = @authorization.id
-        session[:entity_expiration_id] = Time.now + 2.hours
-
-        redirect_to entity_area_path
+        if @authorization.old
+          session[:entity_auth_id] = @authorization.id
+          session[:entity_expiration_id] = Time.now + 2.hours
+          redirect_to old_path(@authorization.id)
+        else
+          session[:entity_auth_id] = @authorization.id
+          session[:entity_expiration_id] = Time.now + 2.hours
+          redirect_to entity_area_path
+        end
+        
+       
       else
         render action: 'new'
       end

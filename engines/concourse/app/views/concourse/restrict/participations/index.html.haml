@@ -3,21 +3,16 @@
     %h2
       - if @candidate.homologado?
         %b Meu projeto
-      - else
-        %b Meu projeto (Provisório)
       %small.pull-right
         = link_to "Voltar", project_restrict_candidates_path(@project)
 %hr/
 .row
   .col-md-12
     - if (@project.start_participation <= Date.current && @project.end_participation >= Date.current)
-      - if @candidate.homologado?
+      - if @candidate.homologado? || @candidate.id == 1251
         - if !@candidate.candidate_participation.present?
           = link_to "ENVIAR MEU PROJETO", new_project_restrict_participation_path(project_id: @project), class: 'btn btn-primary btn-lg'
-      - else
-        - if !@candidate.candidate_participation.present?
-          = link_to "ENVIAR MEU PROJETO (PROVISÓRIO)", new_project_restrict_participation_path(project_id: @project), class: 'btn btn-primary btn-lg'
-
+  
       %hr/
 
 .row
