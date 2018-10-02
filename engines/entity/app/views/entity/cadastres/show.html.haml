@@ -199,11 +199,15 @@
               %table.table.table-striped.table-bordered
                 %thead
                   %tr
-                    %th Nome do presidente
+                    %th Presidente
+                    %th Foto
                 %tbody
                   %tr
                     %td.col-md-2= @cadastre.current_president_name.to_s.mb_chars.upcase
-                    %td.col-md-2= @cadastre.current_president_photo
+                    - if @cadastre.current_president_photo.present?
+                      %td.col-md-2= image_tag("http://www.codhab.df.gov.br/uploads/files/entity/documents/#{@cadastre.current_president_photo}",alt:@cadastre.current_president_name.to_s.mb_chars.upcase, title:@cadastre.current_president_name.to_s.mb_chars.upcase,width:'200')
+                    - else  
+                      %td.col-md-2= 'Sem Informação'
               %hr/
               %h4
                 %b Projeto vínculado
