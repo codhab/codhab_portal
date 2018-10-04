@@ -61,12 +61,15 @@ module Firm
     end
 
     def set_enterprises
-       @enterprises = Firm::Enterprise.where(company_id: @firm.company_id, status: true)
+      if @firm.id == 92
+        @enterprises = Firm::Enterprise.where(id: 9, status: true)
+      else
+        @enterprises = Firm::Enterprise.where(company_id: @firm.company_id, status: true)
+      end
     end
 
     def set_tab
-        @tab = 'enderecos'
+      @tab = 'enderecos'
     end
-
   end
 end

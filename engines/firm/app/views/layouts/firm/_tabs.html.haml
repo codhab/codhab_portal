@@ -17,5 +17,6 @@
         %a{:href => "#{enterprise_cadastres_path}"} Candidatos
       %li{:role => "enderecos", :class => "#{(@tab == 'enderecos') ? 'active' : ''}"}
         %a{:href => "#{enterprise_units_path}"} Endereços
-      %li{:role => "user", :class => "#{(@tab == 'user') ? 'active' : ''}"}
-        %a{:href => "#{user_companies_path}"} Usuários
+      - if @firm.id != 92
+        %li{:role => "user", :class => "#{(@tab == 'user') ? 'active' : ''}"}
+          %a{:href => "#{user_companies_path}"} Usuários

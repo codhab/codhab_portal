@@ -9,13 +9,14 @@
     %td= u.area
     %td= u.situation_unit.description rescue nil
     %td
-      - if u.situation_unit_id == 1
-        = link_to "Reservar".html_safe, new_booking_path(unit_id: u.id), class: " btn btn-primary"
-      - if  u.situation_unit_id == 6
-        .btn-group
-          %button.btn.btn-warning.dropdown-toggle{ type: 'button', :"data-toggle" => 'dropdown', :"aria-expanded" => 'false', :"aria-haspopup" => 'true'}
-            ações
-            %span.caret
-          %ul.dropdown-menu
-            %li= link_to "Liberar".html_safe, new_refund_path(unit_id: u.id)
-            %li= link_to "Vender".html_safe, new_selling_path(unit_id: u.id)
+      - if @firm.id != 92
+        - if u.situation_unit_id == 1
+          = link_to "Reservar".html_safe, new_booking_path(unit_id: u.id), class: " btn btn-primary"
+        - if  u.situation_unit_id == 6
+          .btn-group
+            %button.btn.btn-warning.dropdown-toggle{ type: 'button', :"data-toggle" => 'dropdown', :"aria-expanded" => 'false', :"aria-haspopup" => 'true'}
+              ações
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to "Liberar".html_safe, new_refund_path(unit_id: u.id)
+              %li= link_to "Vender".html_safe, new_selling_path(unit_id: u.id)
