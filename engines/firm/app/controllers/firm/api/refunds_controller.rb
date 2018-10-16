@@ -24,7 +24,7 @@ module Firm
       private
 
       def set_params
-        params.fetch(:refund {}).permit(:cpf, :observation, :file_path, :unit_id)
+        params.fetch(:refund, {}).permit(:cpf, :observation, :file_path, :unit_id)
       end
     end
   end
