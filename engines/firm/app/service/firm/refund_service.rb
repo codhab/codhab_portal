@@ -9,7 +9,7 @@ module Firm
 
 
     def refund!(refund_observation, refund_file_path)
-      return false unless @unit.unit_book?
+      #return false unless @unit.unit_book?
 
       #realiza a criação de um novo registro em unit
       cadastre_address = @unit.cadastre_address.new(
