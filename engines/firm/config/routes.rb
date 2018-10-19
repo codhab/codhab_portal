@@ -12,7 +12,7 @@ Firm::Engine.routes.draw do
   resources :refunds,     path: 'distrato',   only: [:new, :create]
 
   resources :enterprise_units, path: 'enderecos' do
-      resources :cadastre_address, path: 'candidato_unidade'
+    resources :cadastre_address, path: 'candidato_unidade'
   end
 
   resources :user_companies, path: 'usuarios' do
