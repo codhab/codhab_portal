@@ -44,28 +44,38 @@ module Concourse
       def bank_slip
 
         @category = Brb::Category.find(@candidate.subscribe.type_guide_id)
-
-        @invoice = Brb::Invoice.new({
-          name: @candidate.name,
-          cpf: @candidate.cpf,
-          cep: @candidate.cep,
-          address: @candidate.address,
-          state_id: @candidate.state_id,
-          city: @candidate.city,
-          due: @candidate.subscribe.date_payment.strftime('%d/%m/%Y'),
-          category_id: @category.id,
-          message: "Concursos Codhab",
-          invoice_type: 1
-        })
-
-        if @invoice.save!
+        @billets  = Brb::Invoice.where(cpf: @candidate.cpf).order(id: :asc)
+        
+        if @billets.present?
+          @invoice = @billets.last
+          
           barcode = Barby::Code128.new(@invoice.barcode)
           File.open("public/uploads/barcodes/#{barcode}.png", 'wb') { |f| f.write barcode.to_png(xdim: 1,height: 50) }
 
           render layout: 'brb/invoice'
         else
-          flash[:danger] = "Não é possível realizar a emissão de boleto fora do período especificado no edital"
-          redirect_to action: :index
+          @invoice = Brb::Invoice.new({
+            name: @candidate.name,
+            cpf: @candidate.cpf,
+            cep: @candidate.cep,
+            address: @candidate.address,
+            state_id: @candidate.state_id,
+            city: @candidate.city,
+            due: @candidate.subscribe.date_payment.strftime('%d/%m/%Y'),
+            category_id: @category.id,
+            message: "Concursos Codhab",
+            invoice_type: 1
+          })
+
+          if @invoice.save!
+            barcode = Barby::Code128.new(@invoice.barcode)
+            File.open("public/uploads/barcodes/#{barcode}.png", 'wb') { |f| f.write barcode.to_png(xdim: 1,height: 50) }
+
+            render layout: 'brb/invoice'
+          else
+            flash[:danger] = "Não é possível realizar a emissão de boleto fora do período especificado no edital"
+            redirect_to action: :index
+          end
         end
       end
 
