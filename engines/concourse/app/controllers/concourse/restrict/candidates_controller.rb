@@ -44,7 +44,7 @@ module Concourse
       def bank_slip
 
         @category = Brb::Category.find(@candidate.subscribe.type_guide_id)
-        @billets  = Brb::Invoice.where(cpf: @candidate.cpf).order(id: :asc)
+        @billets  = Brb::Invoice.where(cpf: @candidate.cpf, category_id: @category.id).order(id: :asc)
         
         if @billets.present?
           @invoice = @billets.last
