@@ -47,7 +47,7 @@ module Concourse
         @billets  = Brb::Invoice.where(cpf: @candidate.cpf, category_id: @category.id).order(id: :asc)
         
         if @billets.present?
-          @invoice = @billets.last
+          @invoice = @billets.first
           
           barcode = Barby::Code128.new(@invoice.barcode)
           File.open("public/uploads/barcodes/#{barcode}.png", 'wb') { |f| f.write barcode.to_png(xdim: 1,height: 50) }
