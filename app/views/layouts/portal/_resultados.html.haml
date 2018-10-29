@@ -1,60 +1,59 @@
 .container.margint50
-  -# .row
-  -# - if Time.now < Date.parse('2018-07-04 00:00:00 -03:00')
-  -#   .fundo_resultados.col-md-6
-  -#     .slider_dados
-  -#       .span_dados
-  -#         Resultados de Atendimento
-  -#       .bxslide4
-  -#         - @service_results.each do |result|
-  -#           .dados_slider
-  -#             .col-md-4.graficoresult
-  -#               = pie_chart [["Morar Bem", result.program_morarbem],["Regularização",result.regularization], ["Escrituras", result.contract], ["Protocolo", result.protocol], ["Ouvidoria", result.ombudsman]],
-  -#               colors: ['#5fb29d', '#9F2735', '#E34153', '#5FA5B4', '#6FB8C8'],
-  -#               library:{ legend: "none"}
-  -#             .col-md-8.totalresult
-  -#               .mes_corrente_result
-  -#                 = t("date.month_names")[result.date.month]
-  -#                 = result.date.strftime("/ %Y")
-  -#               .row
-  -#                 .col-md-3.meta_element
-  -#                   .span.number_metas
-  -#                     = result.program_morarbem
-  -#                   .span.title_metas
-  -#                     MORAR BEM
-  -#                 .col-md-3.meta_element
-  -#                   .span.number_metas
-  -#                     = result.regularization
-  -#                   .span.title_metas
-  -#                     REGULARIZAÇÃO
-  -#                 .col-md-3.meta_element
-  -#                   .span.number_metas
-  -#                     = result.contract
-  -#                   .span.title_metas
-  -#                     ESCRITURAS
-  -#               .row
-  -#                 .col-md-3.meta_element
-  -#                   .span.number_metas
-  -#                     = result.ombudsman
-  -#                   .span.title_metas
-  -#                     OUVIDORIA
-  -#                 .col-md-3.meta_element
-  -#                   .span.number_metas
-  -#                     = result.protocol
-  -#                 .span.title_metas
-  -#                   PROTOCOLO
-  -#                 .col-md-3.meta_element
-  -#                   .span.number_metas
-  -#                     = result.program_morarbem + result.regularization + result.contract + result.ombudsman + result.protocol rescue nil
-  -#                   .span.title_metas
-  -#                     TOTAL
-  -#       #slider_meses{:style => "margin-left: -2px;"}
-  -#         - @service_results.each_with_index do |result, i|
-  -#           %a{"data-slide-index" => i, :href => ""}
-  -#             = t("date.abbr_month_names")[result.date.month]
-  -#   .fundo_video.col-md-6
-  -#     %h2.title_notice_video CODHAB na mídia
-  -#     .bxslide3
-  -#       - @videos.each do |vid|
-  -#         %li
-  -#           <iframe width="535" height="290" src="#{vid.url}" frameborder="0" allowfullscreen></iframe>
+  .row
+    -# .fundo_resultados.col-md-6
+    -#   .slider_dados
+    -#     .span_dados
+    -#       Resultados de Atendimento
+    -#     .bxslide4
+    -#       - @service_results.each do |result|
+    -#         .dados_slider
+    -#           .col-md-4.graficoresult
+    -#             = pie_chart [["Morar Bem", result.program_morarbem],["Regularização",result.regularization], ["Escrituras", result.contract], ["Protocolo", result.protocol], ["Ouvidoria", result.ombudsman]],
+    -#             colors: ['#5fb29d', '#9F2735', '#E34153', '#5FA5B4', '#6FB8C8'],
+    -#             library:{ legend: "none"}
+    -#           .col-md-8.totalresult
+    -#             .mes_corrente_result
+    -#               = t("date.month_names")[result.date.month]
+    -#               = result.date.strftime("/ %Y")
+    -#             .row
+    -#               .col-md-3.meta_element
+    -#                 .span.number_metas
+    -#                   = result.program_morarbem
+    -#                 .span.title_metas
+    -#                   MORAR BEM
+    -#               .col-md-3.meta_element
+    -#                 .span.number_metas
+    -#                   = result.regularization
+    -#                 .span.title_metas
+    -#                   REGULARIZAÇÃO
+    -#               .col-md-3.meta_element
+    -#                 .span.number_metas
+    -#                   = result.contract
+    -#                 .span.title_metas
+    -#                   ESCRITURAS
+    -#             .row
+    -#               .col-md-3.meta_element
+    -#                 .span.number_metas
+    -#                   = result.ombudsman
+    -#                 .span.title_metas
+    -#                   OUVIDORIA
+    -#               .col-md-3.meta_element
+    -#                 .span.number_metas
+    -#                   = result.protocol
+    -#               .span.title_metas
+    -#                 PROTOCOLO
+    -#               .col-md-3.meta_element
+    -#                 .span.number_metas
+    -#                   = result.program_morarbem + result.regularization + result.contract + result.ombudsman + result.protocol rescue nil
+    -#                 .span.title_metas
+    -#                   TOTAL
+    -#     #slider_meses{:style => "margin-left: -2px;"}
+    -#       - @service_results.each_with_index do |result, i|
+    -#         %a{"data-slide-index" => i, :href => ""}
+    -#           = t("date.abbr_month_names")[result.date.month]
+    .fundo_video.col-md-6
+      %h2.title_notice_video CODHAB na mídia
+      .bxslide3
+        - @videos.each do |vid|
+          %li
+            <iframe width="535" height="290" src="#{vid.url}" frameborder="0" allowfullscreen></iframe>
