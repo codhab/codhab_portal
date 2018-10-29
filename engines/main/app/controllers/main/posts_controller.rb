@@ -7,6 +7,12 @@ module Main
 
     def index
       @posts = apply_scopes(Main::Post).where(publish:true, local_post:10).order(created_at: :desc)
+      respond_to do |format|
+        format.html
+        format.json {
+          render json: @post
+        }
+      end
       render layout: 'layouts/portal/slim_portal'
     end
 
