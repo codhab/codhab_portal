@@ -172,13 +172,13 @@
                 - link_each('Agendamentos') do |l|
                   %li.link_submenu
                     = link_to_nav l
-        %li.dropdown.item_menu.concursos
-          %a#link_concursos.dropdown-toggle.item_menu{:href => "#/concursos","aria-expanded" => "false", "data-toggle" => "dropdown"}
-            Concursos
-            %span.sr-only (current)
-          %ul#concursos.dropdown-menu-mod.dropdown-menu
-            %li.menu-insider-li
-              %ul
-                - link_each('Concursos') do |l|
-                  %li.link_submenu
-                    = link_to_nav l
+        -# %li.dropdown.item_menu.concursos
+        -#   %a#link_concursos.dropdown-toggle.item_menu{:href => "#/concursos","aria-expanded" => "false", "data-toggle" => "dropdown"}
+        -#     Concursos
+        -#     %span.sr-only (current)
+        -#   %ul#concursos.dropdown-menu-mod.dropdown-menu
+        -#     %li.menu-insider-li
+        -#       %ul
+        -#         - link_each('Concursos') do |l|
+        -#           %li.link_submenu
+        -#             = link_to_nav l
