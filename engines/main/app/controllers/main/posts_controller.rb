@@ -6,7 +6,7 @@ module Main
     has_scope :by_title
 
     def index
-      @posts = apply_scopes(Main::Post).where(publish:true, local_post:1).order(created_at: :desc)
+      @posts = apply_scopes(Main::Post).where(publish:true, local_post:10).order(created_at: :desc)
       render layout: 'layouts/portal/slim_portal'
     end
 
