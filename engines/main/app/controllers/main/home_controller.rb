@@ -12,7 +12,7 @@ module Main
       end
 
       @service_results = Main::ServiceResult.where(status: true).order(:date)
-      @posts = Main::Post.where(publish: true, slider: false, local_post: 1).limit(1).order("created_at DESC")
+      @posts = Main::Post.where(publish: true, slider: false, local_post: 1).limit(10).order("created_at DESC")
       @videos = Main::Video.where(publish: true).limit(5).order("created_at DESC")
 
       cookies[:recadastre_deny] = 'false'
