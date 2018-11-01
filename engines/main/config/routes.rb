@@ -21,12 +21,12 @@ Main::Engine.routes.draw do
     resources :trading_floor_participants, path: 'participantes', as: :participants
   end
 
-  # get 'noticias',             to: 'noticias#index'
-  # get 'assistencia_noticias', to: 'noticias#notice_midia'
-  # get 'noticias_mobile',      to: 'noticias#mobile'
-  # get 'galerias',             to: 'galleries#index'
-  # get 'videos',               to: 'videos#index'
-  # get 'assistencia_videos',   to: 'videos#video_midia'
+  get 'noticias',             to: 'noticias#index'
+  get 'assistencia_noticias', to: 'noticias#notice_midia'
+  get 'noticias_mobile',      to: 'noticias#mobile'
+  get 'galerias',             to: 'galleries#index'
+  get 'videos',               to: 'videos#index'
+  get 'assistencia_videos',   to: 'videos#video_midia'
   # get 'testes',               to: 'galleries#testes'
 resources :stations, path: 'assistencia'
 
