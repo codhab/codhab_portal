@@ -158,18 +158,22 @@
                                 %tr
                                   %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #666666; text-align:left; line-height: 30px;"}
                                     %p Prezado candidato,
-
+                                    %br
                                     %p
                                       1. Confirmamos o recebimento dos seus dados bancários, de posse dos quais a CODHAB/DF terá condições de efetuar o reembolso do valor despendido com a sua taxa de inscrição: R$ 300,00 (trezentos reais). A equipe técnica da Companhia responsável pelo procedimento trabalha incansavelmente para que o ressarcimento ocorra da forma mais célere possível.
+                                    %br
                                     %p
                                       2. Contudo, informamos que a conclusão do ato administrativo, por questões técnicas e legais, pode levar por volta de 10 (dez) dias úteis. Para garantir ao inscrito o conhecimento do momento em que o lançamento do crédito for realizado, uma mensagem automática será enviada ao seu e-mail - cadastrado no momento da inscrição do certame.
+                                    %br
                                     %p
                                       3. Agradecemos, uma vez mais, a compreensão e nos colocamos à disposição.
+                                    %br
                                     %p
                                       Abaixo, um espelho dos seus dados preenchidos no formulário de reembolso:
+                                    %br
                                     %h3
                                       1. Identificação do requerente:
-                                    %table
+                                    %table#data-table-command.table.table-striped.table-vmiddle.datatable
                                       %thead
                                         %tr
                                           %th Nome
@@ -184,7 +188,7 @@
                                           %td R$ 300,00
                                     %h3
                                       2. Dados bancários informados:
-                                    %table
+                                    %table#data-table-command.table.table-striped.table-vmiddle.datatable
                                       %thead
                                         %tr
                                           %th Banco
@@ -201,7 +205,7 @@
                                           %td= @refund.operation
                                     %h3
                                       3. Localidade da agência:
-                                    %table
+                                    %table#data-table-command.table.table-striped.table-vmiddle.datatable
                                       %thead
                                         %tr
                                           %th Estado da agência
@@ -212,6 +216,8 @@
                                           %td= @refund.state.name rescue "Não informado"
                                           %td= @refund.city.name  rescue "Não informado"
                                           %td= @refund.address
+                                    %br
+                                    %br
                                     %p
                                       Atenciosamente,
                                       %br
