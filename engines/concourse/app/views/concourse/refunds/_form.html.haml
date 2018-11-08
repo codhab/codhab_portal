@@ -1,6 +1,10 @@
 = simple_form_for @refund, url: project_refunds_path(@project) do |f|
   %hr/
   .row
+    .col-md-12
+      %h3
+        Verifique os dados registrados
+  .row
     .col-md-4
       %b Candidato:
       = @candidate.name
@@ -17,6 +21,10 @@
       R$ 300,00
   %hr/
   .row
+    .col-md-12
+      %h3
+        Informe os dados bancários para reembolso
+  .row
     .col-md-6
       = f.input :bank_number, label: "Informe o Banco", as: :select, collection: @bank, value_method: lambda { |bank| "#{bank[:Codigo]}" }, label_method: lambda { |bank| "#{bank[:Codigo]} - #{bank[:Nome]}" }, prompt: "selecione"
     .col-md-6
@@ -24,7 +32,7 @@
   .row
     .col-md-4
       = f.label "Nº da Agencia"
-      %a{title: 'Pedimos que informe, no campo “agência”, também o dígito identificador.'} (?)
+      %a{title: 'Pedimos que informe, no campo “agência”, também o dígito identificador.', style: 'color: red; !important'} (?)
       = f.input :agency, label: false, input_html: { placeholder: "0000-0"}
     .col-md-4
       = f.input :operation, label: "Operação (se houver)", input_html: { placeholder: "000"}
@@ -34,16 +42,25 @@
   .row
     .col-md-12
       %h3
-        informe os dados sobre a localidade da agência
-        %a{title: 'Informando os dados de endereço da agência, teremos condições de efetuar o reembolso com mais celeridade.'} (?)
+        Informe os dados sobre a localidade da agência
+        %a{title: 'Informando os dados de endereço da agência, teremos condições de efetuar o reembolso com mais celeridade.', style: 'color: red; !important;'} (?)
   .row
-    .col-md-4
+    .col-md-6
       = f.input :state_id, label: "Estado", collection: Core::Address::State.all, input_html: { id: 'state_id'}, include_blank: 'Selecione'
-    .col-md-4
+    .col-md-6
       = f.input :city_id, label: "Cidade",  as: :select, collection: [], input_html: { id: 'city_id'}, include_blank: 'Selecione'
-    .col-md-4
+  .row
+    .col-md-12
       = f.input :address, label: "Endereço"
   %hr/
+  %p
+    Obs1. Os dados bancários informados deverão constar no nome do responsável pela inscrição, conta na qual a CODHAB/DF fará o crédito.
+  %p
+    Obs2. Por questões técnicas e legais, após o recebimento dos dados, o ressarcimento poderá levar cerca de 10 (dez) dias úteis para ser concluído.
+  %p
+    Obs3. Para garantir ao inscrito pagante o conhecimento do momento em que o lançamento do crédito for realizado em sua conta, uma mensagem automática será enviada ao seu e-mail com a respectiva confirmação.
+  %p
+    Obs4. No caso de dúvidas ou dificuldades, disponibilizamos um endereço de e-mail, por meio do qual o candidato pagante terá acesso ao suporte técnico: concursos@codhab.df.gov.br
   %br
   .row
     .col-md-12
