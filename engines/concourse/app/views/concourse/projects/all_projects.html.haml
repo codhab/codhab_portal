@@ -1,10 +1,10 @@
 .row
   .col-md-12
-    %h1 
+    %h1
       %b Todas as participações
 .row
-  .col-md-12  
-    - if (@project.result_day.present? && @project.result_hour.present?) &&  (@project.result_day <= Date.today && @project.result_hour <= Time.now.to_formatted_s(:time)) 
+  .col-md-12
+    - if (@project.result_day.present? && @project.result_hour.present?) &&  (@project.result_day <= Date.today && @project.result_hour <= Time.now.to_formatted_s(:time))
       - @project.candidate_participations.order(:group_participation).each do |participation|
         .row
           .col-md-12
@@ -23,7 +23,7 @@
                     - participation.team_participations.each do |team|
                       = "#{team.name}   "
         %hr/
-        .row  
+        .row
           - if participation.archive_one.to_s.present?
             .col-md-2{style: 'text-align: center'}
               = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br#{participation.archive_one}", target: '_blank'
@@ -40,11 +40,11 @@
               %p Prancha 03
           - if participation.archive_four.to_s.present?
             .col-md-2{style: 'text-align: center'}
-              = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "#{participation.archive_four}", target: '_blank'
+              = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/uploads/concourse/candidate/files/#{participation.archive_four}", target: '_blank'
               %p Prancha 04
           - if participation.archive_five.to_s.present?
             .col-md-2{style: 'text-align: center'}
-              = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "#{participation.archive_five}", target: '_blank'
+              = link_to image_tag('/portal/images/pdf_flat.png', width: 100), "http://www.codhab.df.gov.br/uploads/concourse/candidate/files/#{participation.archive_five}", target: '_blank'
               %p Prancha síntese
         %hr/
     - else
@@ -52,4 +52,3 @@
         .col-md-12
           %p
             %h4 A divulgação de todos os projetos enviados ainda não está disponível.
-

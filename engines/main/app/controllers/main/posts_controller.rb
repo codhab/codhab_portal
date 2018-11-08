@@ -6,7 +6,13 @@ module Main
     has_scope :by_title
 
     def index
-      @posts = apply_scopes(Main::Post).where(publish:true, local_post:1).order(created_at: :desc)
+      @posts = apply_scopes(Main::Post).where(publish:true).order(created_at: :desc)
+      respond_to do |format|
+        format.html
+        format.json {
+          render json: @post
+        }
+      end
       render layout: 'layouts/portal/slim_portal'
     end
 
