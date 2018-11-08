@@ -1,0 +1,16 @@
+= simple_form_for @refund, url: project_validate_refunds_path(@project) do |f|
+  %hr/
+  .row
+    .col-md-4
+      = f.input :candidate_id, as: :string, label: "Nº de inscrição", placeholder: "Digite aqui seu nº de inscrição"
+    .col-md-4
+      = f.input :password, label: "Senha da inscrição", placeholder: "Informe sua senha"
+  %br
+  Obs. Esqueceu os seus dados? Clique
+  = link_to "aqui.", "http://www.codhab.df.gov.br/concursos/centro-multiuso/inscricao/lembrar", target: 'blank'
+  %br
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Validar inscrição e avançar", class: 'btn btn-success'
+      = link_to "Cancelar e voltar", project_resources_path(@project), class: 'btn btn-default'

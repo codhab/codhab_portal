@@ -1,0 +1,67 @@
+= simple_form_for @refund, url: project_refunds_path(@project) do |f|
+  %hr/
+  .row
+    .col-md-4
+      %b Candidato:
+      = @candidate.name
+    .col-md-4
+      %b CPF:
+      = @candidate.cpf
+  .row
+    .col-md-4
+      %b Data de inscrição:
+      = @candidate.created_at.strftime('%d/%m/%Y') rescue nil
+    .col-md-4
+      %b
+        Taxa de inscrição:
+      R$ 300,00
+  %hr/
+  .row
+    .col-md-6
+      = f.input :bank_number, label: "Informe o Banco", as: :select, collection: @bank, value_method: lambda { |bank| "#{bank[:Codigo]}" }, label_method: lambda { |bank| "#{bank[:Codigo]} - #{bank[:Nome]}" }, prompt: "selecione"
+    .col-md-6
+      = f.input :account_type_id, label: "Tipo de conta", collection: Concourse::CandidateRefund.account_type_ids.keys.map { |w| [w.humanize, w] } , prompt: "selecione"
+  .row
+    .col-md-4
+      = f.label "Nº da Agencia"
+      %a{title: 'Pedimos que informe, no campo “agência”, também o dígito identificador.'} (?)
+      = f.input :agency, label: false, input_html: { placeholder: "0000-0"}
+    .col-md-4
+      = f.input :operation, label: "Operação (se houver)", input_html: { placeholder: "000"}
+    .col-md-4
+      = f.input :account, label: "Nº da conta", input_html: { placeholder: "000000000"}
+  %hr/
+  .row
+    .col-md-12
+      %h3
+        informe os dados sobre a localidade da agência
+        %a{title: 'Informando os dados de endereço da agência, teremos condições de efetuar o reembolso com mais celeridade.'} (?)
+  .row
+    .col-md-4
+      = f.input :state_id, label: "Estado", collection: Core::Address::State.all, input_html: { id: 'state_id'}, include_blank: 'Selecione'
+    .col-md-4
+      = f.input :city_id, label: "Cidade",  as: :select, collection: [], input_html: { id: 'city_id'}, include_blank: 'Selecione'
+    .col-md-4
+      = f.input :address, label: "Endereço"
+  %hr/
+  %br
+  .row
+    .col-md-12
+      = f.submit "Enviar Dados", class: 'btn btn-success'
+      = link_to "Cancelar e voltar", project_resources_path(@project), class: 'btn btn-default'
+
+:javascript
+  $(document).ready(function(){
+    $("#state_id").on('change', function(){
+      id = $(this).val();
+      $.getJSON("#{city_path}?state_id=" +  id, function(data) {
+        var options = "<option value>selecione...</option>";
+
+        $.each(data, function(key, val) {
+          options += "<option value='" + val.id + "'>" + val.name + "</option>";
+        });
+
+          $("#city_id").html(options);
+      });
+    });
+  });

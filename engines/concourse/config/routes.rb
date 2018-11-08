@@ -10,9 +10,13 @@ Concourse::Engine.routes.draw do
 
   resources :certificates, path: 'certificados'
 
+  get 'city', to: 'refunds#city', as: 'city'
+
   resources :projects, path: '/' do
 
     resources :resources, path: 'recursos'
+    resources :refunds, path: 'solicitar-reembolso'
+    resources :validate_refunds, path: 'reembolsos'
 
     get 'result', path: 'resultado', to: 'projects#result'
     get 'all_projects', path: 'todos_projetos', to: 'projects#all_projects'
@@ -53,6 +57,4 @@ Concourse::Engine.routes.draw do
     resources :consults,        path: '/consultas'
 
   end
-
-
 end

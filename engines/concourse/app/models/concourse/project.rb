@@ -17,12 +17,13 @@ module Concourse
     has_many :consults
     has_many :winners
     has_many :resources
+    has_many :refunds, class_name: 'Concourse::CandidateRefund'
 
     enum step: ['desenvolvimento', 'previsto', 'aberto', 'finalizado']
 
-    scope :waiting,     -> {where(step:[0,1], status: true)}
-    scope :opens,       -> {where(step: 2)}
-    scope :finisheds,   -> {where(step: 3)}
+    scope :waiting,     -> { where(step:[0,1], status: true) }
+    scope :opens,       -> { where(step: 2) }
+    scope :finisheds,   -> { where(step: 3) }
 
     mount_uploader :image_logo,   ImageUploader
     mount_uploader :image_header, ImageUploader

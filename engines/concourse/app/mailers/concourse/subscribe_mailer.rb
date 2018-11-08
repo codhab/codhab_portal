@@ -55,5 +55,10 @@ module Concourse
       @resource = resource
       mail(to: email, subject: "MANIFESTAÇÃO DE  INTERPOSIÇÃO DE RECURSO")
     end
+
+    def refund(email, refund)
+      @refund = refund
+      mail(to: email, subject: "SOLICITAÇÃO DE REEMBOLSO")
+    end
   end
 end
