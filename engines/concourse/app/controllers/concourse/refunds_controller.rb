@@ -26,7 +26,7 @@ module Concourse
       end
 
       if @refund.save
-        #Concourse::SubscribeMailer.refund(@candidate, @refund).deliver_now!
+        Concourse::SubscribeMailer.refund(@candidate, @refund).deliver_now!
         flash[:success] = t :success
         session[:candidate_id] = nil
         redirect_to project_refunds_path(@project)
