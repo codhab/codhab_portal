@@ -176,46 +176,46 @@
                                     %table.devicewidthinner{:align => "center", :border => "1", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                                       %thead
                                         %tr
-                                          %th Nome
-                                          %th CPF
-                                          %th Data de inscrição
-                                          %th Taxa de inscrição
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Nome
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} CPF
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Data de inscrição
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Taxa de inscrição
                                       %tbody
                                         %tr
-                                          %td= @candidate.name
-                                          %td= @candidate.cpf
-                                          %td= @candidate.created_at.strftime('%d/%m/%Y')
-                                          %td R$ 300,00
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @candidate.name
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @candidate.cpf
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @candidate.created_at.strftime('%d/%m/%Y')
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} R$ 300,00
                                     %h3
                                       2. Dados bancários informados:
                                     %table.devicewidthinner{:align => "center", :border => "1", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                                       %thead
                                         %tr
-                                          %th Banco
-                                          %th Tipo de conta
-                                          %th Agência
-                                          %th Conta
-                                          %th Operação
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Banco
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Tipo de conta
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Agência
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Conta
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Operação
                                       %tbody
                                         %tr
-                                          %td= @refund.bank_name
-                                          %td= @refund.account_type_id
-                                          %td= @refund.agency
-                                          %td= @refund.account
-                                          %td= @refund.operation
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @refund.bank_name
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @refund.account_type_id
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @refund.agency
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @refund.account
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @refund.operation
                                     %h3
                                       3. Localidade da agência:
                                     %table.devicewidthinner{:align => "center", :border => "1", :cellpadding => "0", :cellspacing => "0", :width => "560"}
                                       %thead
                                         %tr
-                                          %th Estado da agência
-                                          %th Cidade da agência
-                                          %th Endereço da agência
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Estado da agência
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Cidade da agência
+                                          %th{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"} Endereço da agência
                                       %tbody
                                         %tr
-                                          %td= @refund.state.name rescue "Não informado"
-                                          %td= @refund.city.name  rescue "Não informado"
-                                          %td= @refund.address
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @refund.state.name rescue "Não informado"
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @refund.city.name  rescue "Não informado"
+                                          %td{"st-content" => "fulltext-content", :style => "font-family: Helvetica, arial, sans-serif; font-size: 12px; color: #666666; text-align:left; line-height: 30px; padding-left: 10px;"}= @refund.address
                                     %br
                                     %br
                                     %p
