@@ -1,0 +1,58 @@
+.row
+  .col-md-12
+    %p
+      %h1
+        %b CONFIRMAÇÃO DE RECEBIMENTO!
+    %p
+      Prezado inscrito,
+      %br
+      %br
+      1. Confirmamos o recebimento dos seus dados bancários, o que possibilitará o posterior ressarcimento do valor despendido com a taxa de participação de R$ 300,00 (trezentos reais).
+      %br
+      %br
+      2. Para o e-mail cadastrado no momento da inscrição foi enviada uma confirmação de recebimento dos seus dados, juntamente com um espelho das informações preenchidas.
+      %br
+      Abaixo os dados que constam desta inscrição:textile
+      %table#data-table-command.table.table-striped.table-vmiddle.datatable
+        %thead
+          %tr
+            %th Nome
+            %th CPF
+            %th Data de inscrição
+            %th Taxa de inscrição
+        %tbody
+          %tr
+            %td= @candidate.name
+            %td= @candidate.cpf
+            %td= @candidate.created_at.strftime('%d/%m/%Y')
+            %td R$ 300,00
+      %h3
+        2. Dados bancários informados:
+      %table#data-table-command.table.table-striped.table-vmiddle.datatable
+        %thead
+          %tr
+            %th Banco
+            %th Tipo de conta
+            %th Agência
+            %th Conta
+            %th Operação
+        %tbody
+          %tr
+            %td= @refund.bank_name
+            %td= @refund.account_type_id
+            %td= @refund.agency
+            %td= @refund.account
+            %td= @refund.operation
+      %h3
+        3. Localidade da agência:
+      %table#data-table-command.table.table-striped.table-vmiddle.datatable
+        %thead
+          %tr
+            %th Estado da agência
+            %th Cidade da agência
+            %th Endereço da agência
+        %tbody
+          %tr
+            %td= @refund.state.name rescue "Não informado"
+            %td= @refund.city.name  rescue "Não informado"
+            %td= @refund.address

@@ -3,15 +3,16 @@ require_dependency 'concourse/application_controller'
 module Concourse
   class RefundsController < ApplicationController
     before_action :set_project, except: [:city]
-    before_action :load_bank, except: [:city, :index]
+    before_action :load_bank, except: [:city, :index, :show]
 
     def index
       @refunds = @project.refunds
     end
 
     def new
-      unless session[:candidate_id].present?
-        new_project_validate_refund_path(@project)
+      refund_did = Concourse::CandidateRefund.find_by(candidate_id: session[:candidate_id])
+      if refund_did.present?
+        redirect_to project_refund_path(@project, refund_did)
       end
       @refund = @project.refunds.new
     end
@@ -38,6 +39,17 @@ module Concourse
     def city
       state = params[:state_id]
       render json: @cities = Core::Address::City.where(state_id: state).order(:name)
+    end
+
+    def show
+      unless session[:candidate_id].present?
+        flash[:warning] = 'Sessão expirada.'
+        redirect_to new_project_validate_refund_path(@project)
+      else
+        @refund = Concourse::CandidateRefund.find_by(candidate_id: session[:candidate_id])
+        @candidate = Concourse::Candidate.find(session[:candidate_id])
+        session[:candidate_id] = nil
+      end
     end
 
     private
