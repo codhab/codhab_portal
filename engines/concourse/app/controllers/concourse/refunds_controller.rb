@@ -24,7 +24,6 @@ module Concourse
         bank_name = JSON.parse(open("https://www.pagueveloz.com.br/Api/v1/Bancos?Codigo=#{@refund.bank_number}").read, symbolize_names: true)
         @refund.bank_name = bank_name[:Nome]
       end
-
       if @refund.save
         Concourse::SubscribeMailer.refund(@candidate, @refund).deliver_now!
 
@@ -32,7 +31,6 @@ module Concourse
         session[:candidate_id] = nil
         redirect_to project_refunds_path(@project)
       else
-
         render action: :new
       end
     end

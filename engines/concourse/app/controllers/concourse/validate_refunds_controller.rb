@@ -10,7 +10,7 @@ module Concourse
 
     def create
       @refund = Concourse::RefundValidate.new(set_params)
-      if @refund.valid?
+      if @refund.valid?        
         session[:candidate_id] = @refund.candidate_id
         redirect_to new_project_refund_path(@project)
       else
