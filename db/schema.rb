@@ -2404,7 +2404,7 @@ ActiveRecord::Schema.define(version: 20181106185808) do
     t.string   "agency"
     t.string   "second_name"
     t.string   "second_cpf"
-    t.string   "status"
+    t.boolean  "status",          default: false
     t.date     "refund_date"
     t.integer  "project_id"
     t.integer  "state_id"
@@ -2413,8 +2413,8 @@ ActiveRecord::Schema.define(version: 20181106185808) do
     t.integer  "account_type_id"
     t.integer  "bank_number"
     t.string   "bank_name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "concourse_candidate_tokens", force: :cascade do |t|

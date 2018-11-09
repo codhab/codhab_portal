@@ -7,7 +7,7 @@ class CreateConcourseCandidateRefunds < ActiveRecord::Migration[5.0]
       t.string  :agency
       t.string  :second_name
       t.string  :second_cpf
-      t.string  :status
+      t.boolean :status, default: false
       t.date    :refund_date
       t.integer :project_id
       t.integer :state_id
