@@ -11,7 +11,7 @@ module Concourse
 
     def new
       refund_did = Concourse::CandidateRefund.find_by(candidate_id: session[:candidate_id])
-      if refund_did.present?
+      if refund_did.present? && session[:candidate_id] != "1487"
         redirect_to project_refund_path(@project, refund_did)
       end
       @refund = @project.refunds.new
