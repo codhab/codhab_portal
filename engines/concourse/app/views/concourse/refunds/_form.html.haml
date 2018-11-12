@@ -30,14 +30,16 @@
     .col-md-6
       = f.input :account_type_id, label: "Tipo de conta", collection: Concourse::CandidateRefund.account_type_ids.keys.map { |w| [w.humanize, w] } , prompt: "selecione"
   .row
-    .col-md-4
+    .col-md-3
       = f.label "Nº da Agencia"
       %a{title: 'Pedimos que informe, no campo “agência”, também o dígito identificador.', style: 'color: red; !important'} (?)
       = f.input :agency, label: false, input_html: { placeholder: "0000-0"}
-    .col-md-4
+    .col-md-3
       = f.input :operation, label: "Operação (se houver)", input_html: { placeholder: "000"}
-    .col-md-4
+    .col-md-3
       = f.input :account, label: "Nº da conta", input_html: { placeholder: "000000000"}
+    .col-md-3
+      = f.input :agency_name, label: "Nome da agencia"
   %hr/
   .row
     .col-md-12

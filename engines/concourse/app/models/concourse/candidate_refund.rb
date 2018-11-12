@@ -8,5 +8,6 @@ module Concourse
 
     validates :account, :agency, :bank_number, presence: true
     validates :account_type_id, presence: true
+    validates :state_id, :city_id, :address, :agency_name, presence: true
   end
 end

@@ -62,7 +62,8 @@ module Concourse
 
     def set_params
       params.require(:candidate_refund).permit(:account, :operation, :agency, :bank_number,
-                                              :state_id, :city_id, :address, :account_type_id)
+                                              :state_id, :city_id, :address, :account_type_id,
+                                              :agency_name)
     end
 
     def set_project

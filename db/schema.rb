@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181106185808) do
+ActiveRecord::Schema.define(version: 20181112095502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -2415,6 +2415,9 @@ ActiveRecord::Schema.define(version: 20181106185808) do
     t.string   "bank_name"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "attachment"
+    t.integer  "staff_id"
+    t.string   "agency_name"
   end
 
   create_table "concourse_candidate_tokens", force: :cascade do |t|
