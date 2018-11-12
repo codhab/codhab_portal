@@ -33,7 +33,7 @@
     .col-md-3
       = f.label "Nº da Agencia"
       %a{title: 'Pedimos que informe, no campo “agência”, também o dígito identificador.', style: 'color: red; !important'} (?)
-      = f.input :agency, label: false, input_html: { placeholder: "0000-0"}
+      = f.input :agency, label: false, input_html: { class: 'agency' }
     .col-md-3
       = f.input :operation, label: "Operação (se houver)", input_html: { placeholder: "000"}
     .col-md-3
