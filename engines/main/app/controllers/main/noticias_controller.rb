@@ -11,10 +11,10 @@ module Main
 
         respond_to do |format|
           format.html
-          # format.json {
-          #   render json: [posts: @noticias, sliders: @sliders]
-          # }
-          # format.json { render :json => @noticias.to_json(:only => ["title","id","thumb,created_at,"])}
+          format.json {
+            render json: [posts: @noticias, sliders: @sliders]
+          }
+          format.json { render :json => @noticias.to_json(:only => ["title","id","thumb,created_at,"])}
         end
       end
 
@@ -24,24 +24,24 @@ module Main
 
         respond_to do |format|
           format.html
-          # format.json {
-          #   render json: [posts: @noticias, sliders: @sliders]
-          # }
-          # format.json { render :json => @noticias.to_json(:only => ["title","id","thumb,created_at,"])}
+          format.json {
+            render json: [posts: @noticias, sliders: @sliders]
+          }
+          format.json { render :json => @noticias.to_json(:only => ["title","id","thumb,created_at,"])}
         end
       end
 
       def mobile
         @noticias = Main::Post.where(publish: true, slider: false, local_post: 1).limit(0).order("created_at DESC")
         @sliders = Main::Post.where(publish:true, slider: true, local_post: 1).limit(0).order("created_at DESC")
-        # @noticias = Main::Post.where(publish: true, slider: false, local_post: 1).limit(0).order("created_at DESC")
-        # @sliders = Main::Post.where(publish:true, slider: true, local_post: 1).limit(0).order("created_at DESC")
+        @noticias = Main::Post.where(publish: true, slider: false, local_post: 1).limit(0).order("created_at DESC")
+        @sliders = Main::Post.where(publish:true, slider: true, local_post: 1).limit(0).order("created_at DESC")
 
         respond_to do |format|
           format.html
-          # format.json {
-          #   render json: [posts: @noticias, sliders: @sliders]
-          # }
+          format.json {
+            render json: [posts: @noticias, sliders: @sliders]
+          }
         end
       end
 
