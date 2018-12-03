@@ -3,7 +3,9 @@ require_dependency 'main/application_controller'
 module Main
   class CustomPagesController < ApplicationController
 
-
+    def habilitacao
+      
+    end
 
     def terms
 
