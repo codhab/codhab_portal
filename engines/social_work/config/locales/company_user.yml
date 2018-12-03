@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      'core/social_work/company_user': 'Usuário'
+    attributes:
+      'core/social_work/company_user':
+        name: "Nome"
+        username: "Login"
+        status: "Ativo?"
+        password: "Senha"
+        password_confirmation: "Confirmação de senha"

@@ -2,12 +2,22 @@
   .col-md-12
     .panel.panel-default
       .panel-body
+        %h1
+          %b= "Área restrita - #{current_social_user.company.name rescue nil}"
+          %br/
+          %br/
+          %small
+            = link_to "Finalizar Sessão", destroy_authorization_path, method: :delete
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
         .row
           .col-md-12
             %h4
               %b Listagem de Usuários
             %hr
-            = link_to 'Criar Usuário', new_company_user_path, remote: true, class: 'btn btn-info'
+            = link_to 'Criar Usuário', new_company_user_path, remote: true, class: 'btn btn-info' if current_social_user.user_type == 1
         .row
           .col-md-12
             %table.table.table-striped.table-bordered

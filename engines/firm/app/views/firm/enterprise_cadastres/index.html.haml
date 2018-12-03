@@ -51,7 +51,8 @@
               = @enterprise_cadastres.count
         .row
           .col-md-12
-            = link_to 'Exportar Excel',  params.permit(:by_name,:by_cpf,:by_situation,:by_date,:by_enterprise, :by_new, :by_inactive,:by_list).merge(format: :xlsx), class:  'btn btn-success', data: {  disable_with: "Aguarde..."}
+            - if session[:firm_auth_id] != 92
+              = link_to 'Exportar Excel',  params.permit(:by_name,:by_cpf,:by_situation,:by_date,:by_enterprise, :by_new, :by_inactive,:by_list).merge(format: :xlsx), class:  'btn btn-success', data: {  disable_with: "Aguarde..."}
         .row
           .col-md-12
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
