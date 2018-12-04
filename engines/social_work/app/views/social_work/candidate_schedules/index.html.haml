@@ -16,7 +16,6 @@
           .col-md-12
             %h4
               %b Listagem de Candidatos Agendados
-            = link_to '+Adicionar Agendamento', new_candidate_schedule_path, class: 'btn btn-info'
         .row
           .col-md-12
             %table.table.table-striped.table-bordered{style: 'font-size: 10px'}
@@ -72,13 +71,13 @@
                   %th Nome
                   %th CPF
                   %th Etapa
-                  %th Prioridade
+                  %th Endereço
                   %th
                   %th
               %tbody
-                - @candidates.order('id DESC').each do |candidate|
+                - @candidates.order('id DESC').each_with_index do |candidate, i|
                   %tr
-                    %td= candidate.id
+                    %td= candidate.order
                     %td
                       - cand = Core::SocialWork::Candidate.find_by_cpf(candidate.cpf) rescue nil
                       - if cand.present?
@@ -89,18 +88,11 @@
                     %td
                       - if cand.present?
                         = cand.candidate_projects.last.step_projects.last.step.name rescue nil
+                      - elsif !candidate.schedule_status_id.present?
+                        = link_to 'Agendar',edit_candidate_schedule_path(candidate), remote: true
                       - else
                         Agendamento
-                    %td
-                      - case candidate.priority
-                      - when "Baixa"
-                        %span.label.label-success Baixa
-                      - when "Média"
-                        %span.label.label-warning Média
-                      - when "Alta"
-                        %span.label.label-danger Alta
-                      - else
-                        Sem informação
+                    %td= candidate.address
                     %td
                       - if cand.present?
                         = "Perfil já preenchido"
