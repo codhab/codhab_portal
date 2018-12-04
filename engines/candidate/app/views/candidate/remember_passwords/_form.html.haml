@@ -6,3 +6,5 @@
           = f.input :cpf, label: mobile_device? ? "Informe seu CPF(somente números)" : "Informe seu CPF", input_html: { class: mobile_device? ? '' : 'cpf'}
         .col-md-4
           = f.submit "Prosseguir", class: 'btn btn-success filter-button', data: { disable_with: t(:disable_with)}
+  .col-md-6.col-md-offset-4
+    = link_to 'Manual de recuperação de senha.', 'http://www.codhab.df.gov.br/uploads/archive/files/e99bb92b31bb423902c50c8c56344d0a.pdf', target:'_blank'
