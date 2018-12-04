@@ -30,6 +30,7 @@ Candidate::Engine.routes.draw do
 
     root 'dashboard#index'
 
+    get 'simulator', to: 'dashboard#simulator'
 
     resources :askings, path: 'perguntas', only: [:new, :create]
     resources :questions, path: 'questionamento' do

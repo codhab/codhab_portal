@@ -4,7 +4,7 @@
       .panel-body
         %h1
           %b= "Área restrita - #{current_social_user.company.name rescue nil}"
-          = current_social_user.company.station_id
+          %br/
           %br/
           %small
             = link_to "Finalizar Sessão", destroy_authorization_path, method: :delete

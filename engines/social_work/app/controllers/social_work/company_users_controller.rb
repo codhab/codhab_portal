@@ -16,6 +16,7 @@ module SocialWork
 
     def create
       @company_user = @company.company_users.new(set_params)
+      @company_user.user_type = 0
       @company_user.save
     end
 
@@ -33,7 +34,7 @@ module SocialWork
 
 
     def set_company
-      @company = Core::SocialWork::Company.find(current_social_user.id)
+      @company = Core::SocialWork::Company.find(current_social_user.company_id)
     end
 
     def set_company_users
@@ -41,7 +42,8 @@ module SocialWork
     end
 
     def set_params
-      params.require(:social_work_company_user).permit(:name,:username,:password,:password_confirmation,:status)
+      params.require(:social_work_company_user).permit(:name, :username, :password,
+                                                       :password_confirmation, :status)
     end
 
     def set_company_user
