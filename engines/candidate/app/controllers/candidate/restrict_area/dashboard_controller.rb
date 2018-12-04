@@ -12,6 +12,10 @@ module Candidate
         @asking = ::Candidate::Asking.new
       end
 
+      def simulator
+      
+      end
+
       private
 
       def set_cadastre

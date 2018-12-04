@@ -56,4 +56,5 @@ resources :stations, path: 'assistencia'
   get 'selagem_bananal_area1',to: 'custom_pages#selagem_bananal_area1'
   get 'selagem_copaibas',      to: 'custom_pages#selagem_copaibas'
   get 'selagem_copaibas_area1',to: 'custom_pages#selagem_copaibas_area1'
+  get 'habilitacao',to:'custom_pages#habilitacao'
 end
