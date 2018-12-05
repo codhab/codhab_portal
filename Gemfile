@@ -47,7 +47,7 @@ gem 'one_signal'
 gem 'bcrypt'
 
 
-gem 'sassc', '1.7.1'
+gem 'sassc', '2.0.0'
 
  # gem 'core', path: '../mobile/components/core'
 gem 'core', github: 'codhab/core', branch: :master
