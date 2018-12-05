@@ -169,10 +169,6 @@ GEM
     factory_girl_rails (4.9.0)
       factory_girl (~> 4.9.0)
       railties (>= 3.0.0)
-    faraday (0.15.4)
-      multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.12.2)
-      faraday (>= 0.7.4, < 1.0)
     ffi (1.9.25)
     file_validators (2.3.0)
       activemodel (>= 3.2)
@@ -263,7 +259,6 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
-    multipart-post (2.0.0)
     nenv (0.3.0)
     nio4r (2.3.1)
     nokogiri (1.8.5)
@@ -432,8 +427,6 @@ DEPENDENCIES
   entity!
   external_firm!
   factory_girl_rails
-  faraday
-  faraday_middleware
   file_validators
   firm!
   friendly_id
