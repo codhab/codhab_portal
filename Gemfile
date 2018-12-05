@@ -46,6 +46,9 @@ gem 'simple_captcha2'
 gem 'one_signal'
 gem 'bcrypt'
 
+
+gem 'sassc', '1.7.1'
+
  # gem 'core', path: '../mobile/components/core'
 gem 'core', github: 'codhab/core', branch: :master
 
