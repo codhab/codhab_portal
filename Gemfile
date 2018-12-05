@@ -39,15 +39,15 @@ gem 'rubyzip', '>= 1.2.1'
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
 
-#gem 'faraday'
-#gem 'faraday_middleware'
+gem 'faraday'
+gem 'faraday_middleware'
 gem 'i18n'
 gem 'simple_captcha2'
 gem 'one_signal'
 gem 'bcrypt'
 
 
-gem 'sassc', '2.0.0'
+#gem 'sassc', '2.0.0'
 
  # gem 'core', path: '../mobile/components/core'
 gem 'core', github: 'codhab/core', branch: :master

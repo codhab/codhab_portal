@@ -4,7 +4,7 @@ require 'mina/git'
 require 'mina/rvm'
 require 'mina/unicorn'
 
-#set :sudo, 'true'
+set :sudo, 'true'
 set :rvm_use_path, '/usr/local/rvm/scripts/rvm'
 set :domain, '10.233.38.15'
 set :user, 'sedhab'
