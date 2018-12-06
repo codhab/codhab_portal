@@ -2,12 +2,18 @@
   .col-md-12
     .panel.panel-default
       .panel-body
-        %h1
-          %b= "Área restrita - #{current_social_user.company.name rescue nil}"
-          %br/
-          %br/
-          %small
-            = link_to "Finalizar Sessão", destroy_authorization_path, method: :delete
+        .row
+          .col-md-12
+            %h1
+              %b= "Área restrita - #{current_social_user.company.name rescue nil}"
+              %br/
+        .row
+          .col-md-6
+            %h3
+              = link_to "Finalizar Sessão", destroy_authorization_path, method: :delete
+          .col-md-6
+            %h3
+              = link_to "Atualizar Senha", edit_company_user_path(current_social_user.id), remote: true
 .row
   .col-md-12
     .panel.panel-default
