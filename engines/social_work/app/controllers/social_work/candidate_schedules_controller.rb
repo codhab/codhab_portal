@@ -9,7 +9,12 @@ module SocialWork
     has_scope :by_cpf
 
     def index
-      @candidates = Core::SocialWork::CandidateSchedule.where(attendance_station_id: current_social_user.company.station_id)
+      if current_social_user.company_id == 34
+        city = 825
+      else
+        city = 835
+      end
+      @candidates = Core::SocialWork::CandidateSchedule.where(city_id: city).order(id: :asc)
       @candidates = apply_scopes(@candidates).paginate(:page => params[:page], :per_page => 20)
       @cand = Core::SocialWork::Candidate.where(cpf: @candidates.map(&:cpf))
       @pro = Core::SocialWork::CandidateProject.where(candidate_id: @candidates.map(&:id))

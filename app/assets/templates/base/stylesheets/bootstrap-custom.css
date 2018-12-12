@@ -385,7 +385,18 @@ color: #fff!important;
   background-color:#c9155c;
   width: 500px;
 }
-.navbar-default .navbar-nav>.mobilizacao>a:focus, .navbar-default .navbar-nav>.mobilizacao>
+.navbar-default .navbar-nav>.mobilizacao>a, .navbar-default .navbar-nav>.mobilizacao>
+a{
+background-color:#BB1630 !important;
+color: #fff!important;
+}
+.mobilizacao,
+.mobilizacao>li>a,
+.mobilizacao{
+  background-color: #BB1630 !important;
+  color:#fff!important;
+}
+/* .navbar-default .navbar-nav>.mobilizacao>a:focus, .navbar-default .navbar-nav>.mobilizacao>
 a:hover{
 background-color:#BB1630 !important;
 color: #fff!important;
@@ -395,7 +406,7 @@ color: #fff!important;
 .mobilizacao:active{
   background-color: #BB1630 !important;
   color:#fff!important;
-}
+} */
 #mobilizacao{
   background-color:#BB1630;
   width: 500px;

@@ -172,6 +172,12 @@
                 - link_each('Agendamentos') do |l|
                   %li.link_submenu
                     = link_to_nav l
+
+        %li.dropdown.item_menu.mobilizacao
+          %a#link_mobilizacao.dropdown-toggle.item_menu{:href => "/link_download"}
+            Área do candidato
+            %span.sr-only (current)
+                    
         -# %li.dropdown.item_menu.concursos
         -#   %a#link_concursos.dropdown-toggle.item_menu{:href => "#/concursos","aria-expanded" => "false", "data-toggle" => "dropdown"}
         -#     Concursos

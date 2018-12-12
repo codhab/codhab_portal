@@ -7,12 +7,12 @@ require 'mina/unicorn'
 set :sudo, 'true'
 set :rvm_use_path, '/usr/local/rvm/scripts/rvm'
 set :domain, '10.233.38.15'
-set :user, 'sedhab'
+set :user, 'root'
 
 =begin
 if ENV['SERVER'] == 'B'
-  set :domain, '10.233.38.15'
-else
+  set :domain, '10.233.38.19'
+else:
   set :domain, '10.233.38.23'
 end
 =end
@@ -20,7 +20,7 @@ end
 if ENV["STAGE"] == "dev"
   set :deploy_to, '/var/www/development/apps/portal'
 else
-  set :deploy_to, '/var/www/production/apps/portal'
+  set :deploy_to, '/var/www/production/application/portal'
 end
 
 set  :repository, 'https://github.com/codhab/codhab_portal.git'

@@ -7,7 +7,7 @@ module Schedule
 
     enum restriction_type: ['nenhuma', 'existente', 'inexistente']
 
-    
+
 
     scope :regularization,  -> { where(program: 3)}
     scope :habitation,      -> { where(program: 1)}
@@ -47,6 +47,7 @@ module Schedule
       time_iterate(start_hour, last_hour, attendance_time.minutes)      { |t| hour_array.push t.strftime('%H:%M') }
 
       attendance_iterate(hour_array, lunch_array, self.attendants, self.lunch_attendants, date)
+    
     end
 
 
@@ -57,7 +58,7 @@ module Schedule
 
       if !date.nil?
         Array.new(hour.count) do |i|
-          
+
           if date.wday == 6 && Time.parse(hour[i]) > Time.parse('12:00')
             'esgotado'
           elsif lunch.include? hour[i]
@@ -65,7 +66,7 @@ module Schedule
           else
             (schedules_time(hour[i], date) >= attendant) ? 'esgotado' : hour[i]
           end
-          
+
         end
       else
         []
