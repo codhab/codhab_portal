@@ -32,20 +32,20 @@
             %h4
               = "Total de Requerimentos - #{@solicitations.count}"
         .row
-          .col-md-12{style: 'text-align: center'}
+          .col-md-12
             = render 'counter_page'
         .row
           .col-md-12
             %table.table
               %thead
                 %tr
-                  %th{style: 'text-align: center'} #
-                  %th{style: 'text-align: center'} Nome
-                  %th{style: 'text-align: center'} Data da solicitação
-                  %th{style: 'text-align: center'} Data da Resposta
-                  %th{style: 'text-align: center'} Situação
+                  %th #
+                  %th Nome
+                  %th Data da solicitação
+                  %th Data da Resposta
+                  %th Situação
               %tbody.index_solicitation_answer
                 = render 'index'
         .row
-          .col-md-12{style: 'text-align: center'}
+          .col-md-12
             = render 'counter_page'
