@@ -1,0 +1,15 @@
+- if !params[:by_cpf].present? && !params[:by_name].present?
+  %ul.pagination.pagination
+    %li.prev
+      %a{:href =>  "#{url_for}?page=1", :rel => "next", data: { disable_with: t(:disable_with_spin)}}  Início
+    - current_index   = params[:page].present? ? params[:page].to_i : 1
+    - simulate_index  = current_index
+    - index  = simulate_index > 4 ? simulate_index - 4 : 1
+    - 10.times do
+      %li{class: "#{index.to_i == current_index.to_i ? 'active' : ''}"}
+        %a{:href => "#{url_for}?page=#{index}", :rel => "next", data: { disable_with: t(:disable_with_spin)}}= index
+      - index += 1
+      
+    %li.next
+      %a{:href =>  "#{url_for}?page=#{current_index + 1}", :rel => "next",  data: { disable_with: t(:disable_with_spin)}} Próxima
+  

@@ -1,0 +1,17 @@
+- if @solicitations.present?
+  - @solicitations.each_with_index do |solicitation_new, i|
+    %tr
+      %td
+        - params[:page] ||= 1
+        = "#{(i + 1) + ((params[:page].to_i - 1)* 50)}"
+      %td
+        = solicitation_new.name
+        %br
+        %span{style: 'font-size: 14px'}= solicitation_new.cpf.format_obfuscator_cpf rescue nil
+      %td= solicitation_new.created_at.strftime('%d/%m/%Y')
+      %td= solicitation_new.solicitation_answers.last.created_at.strftime('%d/%m/%Y') rescue "Sem informação"
+      %td
+        -if solicitation_new.answer_status
+          = "Respondido"
+        -else
+          = "Aberto"
