@@ -6,7 +6,7 @@ Regularization::Engine.routes.draw do
 
   resources :lists, path: 'listas'
   resources :cadastres, path: 'cadastro'
-  resources :solicitations, path: 'solicitacao'
+  resources :solicitations, path: 'solicitacoes'
 
 =begin
   resources :requeriments, path: 'requerimentos' do
