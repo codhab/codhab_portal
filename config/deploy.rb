@@ -20,7 +20,7 @@ end
 if ENV["STAGE"] == "dev"
   set :deploy_to, '/var/www/development/apps/portal'
 else
-  set :deploy_to, '/var/www/production/application/portal'
+  set :deploy_to, '/var/www/production/apps/portal'
 end
 
 set  :repository, 'https://github.com/codhab/codhab_portal.git'
@@ -47,7 +47,7 @@ task :deploy do
     invoke  :'git:clone'
     invoke  :'deploy:link_shared_paths'
     invoke  :'bundle:install'
-    invoke  :'rails:assets_precompile'
+    # invoke  :'rails:assets_precompile'
     invoke  :'deploy:cleanup'
     on :launch do
       invoke :'unicorn:restart'

@@ -1,0 +1,51 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h2{style: 'text-align: center !important'}
+              %b Listagem de Requerimentos  
+        -# .row 
+        -#   .col-md-12
+        -#     = simple_form_for  url_for, method: 'get' do |f|
+        -#       .fields
+        -#         .col-md-6
+        -#           = f.label 'Nome'
+        -#           = f.input :name_reg, label: false, input_html: { name: 'name_reg', value: params[:name_reg], placeholder: 'Preencha' }
+        -#         .col-md-2
+        -#           = f.label 'Data da Solicitação'
+        -#           = f.input :date,label: false, input_html: { name: 'date', value: params[:date], class: 'date', placeholder: "ex.: 00/00/0000"}
+        -#       .fields
+        -#         .col-md-2
+        -#           = f.label 'CPF'
+        -#           = f.input :cpf, label: false, input_html: { name: 'cpf', value: params[:cpf], class: 'cpf' }
+        -#         .col-md-2
+        -#           = f.label 'Situação'
+        -#           = f.input :by_situation, label: false, collection: [['Aberto',false],['Respondido',true]], prompt: 'Selecione', selected: params[:by_situation], input_html: { name: 'by_situation' }
+        -#         .col-md-3
+        -#           = f.submit 'Pesquisar', name: nil, class:  'btn-success btn', data: {  disable_with: t(:disable_with)}
+        -#           = link_to 'Limpar pesquisa', solicitations_path, class:  ' btn-success btn', data: {  disable_with: t(:disable_with)}
+        %hr/
+        .row
+          .col-md-8
+            %h4
+              = "Total de Requerimentos - #{@solicitations.count}"
+        .row
+          .col-md-12{style: 'text-align: center'}
+            = render 'counter_page'
+        .row
+          .col-md-12
+            %table.table
+              %thead
+                %tr
+                  %th{style: 'text-align: center'} #
+                  %th{style: 'text-align: center'} Nome
+                  %th{style: 'text-align: center'} Data da solicitação
+                  %th{style: 'text-align: center'} Data da Resposta
+                  %th{style: 'text-align: center'} Situação
+              %tbody.index_solicitation_answer
+                = render 'index'
+        .row
+          .col-md-12{style: 'text-align: center'}
+            = render 'counter_page'
