@@ -22,14 +22,14 @@
           %tr
             %th CEP
             %th Cidade
+            %th Bairro
             %th Endereço
-            %th Complemento
         %tbody
           %tr
             %td= @candidate_schedule.cep
             %td= @candidate_schedule.city.name rescue nil
+            %td= @candidate_schedule.burgh.name rescue nil
             %td= @candidate_schedule.address
-            %td= @candidate_schedule.complement_address
         %thead
           %tr
             %th Observação

@@ -59,9 +59,14 @@ module SocialWork
       redirect_to action: 'index'
     end
 
+    def burgh
+      city = params[:city_id]
+      render json: @burgh = Core::Address::Burgh.where(city_id: city)
+    end
+
     private
     def set_params
-      params.require(:social_work_candidate).permit(:name,:cpf,:rg,:rg_org, :born,:rg_date,:father_name,:mother_name,:place_birth,
+      params.require(:social_work_candidate).permit(:name,:cpf,:rg,:rg_org, :born,:rg_date,:father_name,:mother_name,:place_birth, :burgh_id,
                                                     :technical_course_interest,:technical_course_name,:address,:complement_address,:email,
                                                     :telephone,:celphone,:work,:work_ocupation,:work_phone,:income,:pension_flag,:benefit_flag, :nis,
                                                     :family_special,:gender,:city_id,:civil_state_id,:education_id,:pension_id,:benefit_id)

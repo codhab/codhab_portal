@@ -23,5 +23,5 @@ SocialWork::Engine.routes.draw do
 
   resources :company_users, path: 'usuarios'
   resources :executor_companies, path: 'executora'
-
+  get 'burgh', to: 'candidates#burgh', as: 'burgh'
 end

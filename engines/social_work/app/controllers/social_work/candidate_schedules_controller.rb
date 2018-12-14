@@ -39,9 +39,7 @@ module SocialWork
       end
     end
 
-    def edit
-
-    end
+    def edit; end
 
     def update
       if @candidate_schedule.update(set_params)
@@ -52,9 +50,7 @@ module SocialWork
       end
     end
 
-    def show
-
-    end
+    def show; end
 
     def destroy
       @candidate_schedule.destroy
