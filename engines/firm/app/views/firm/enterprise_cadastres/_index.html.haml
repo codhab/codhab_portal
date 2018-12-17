@@ -13,7 +13,10 @@
       %td= cand.cadastre.pontuations.first.total rescue nil
       %td
         - if cand.inactive == true
-          %span.label.label-danger Inativa
+          - inactivate = "Inativa"
+          - if cand.accepted == false && cand.accepted_date.present?
+            - inactivate = "Inativa - Pelo candidato"
+          %span.label.label-danger= inactivate
         - else
           %span.label.label-primary Ativa
       %td= cand.created_at.strftime("%d/%m/%Y")
