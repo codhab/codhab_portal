@@ -19,3 +19,4 @@ pt-BR:
         restrict: "Restrito"
         restrict_sql: "Consulta"
         attendance_station: "Posto de Atendimento"
+        schedule_status_id: "Estatus do agendamento"
