@@ -19,7 +19,8 @@ module Firm
 
 
     def index
-      @enterprise_cadastres = Firm::EnterpriseCadastre.where(enterprise_id: @enterprises).includes(:cadastre).all
+      @enterprise_cadastres = Firm::EnterpriseCadastre.where(enterprise_id: @enterprises)
+                                                      .includes([:cadastre, :enterprise_cadastre_situations]).all
 
       @enterprise_excell = apply_scopes(@enterprise_cadastres)
       @enterprise_cadastres = @enterprise_excell.paginate(:page => params[:page], :per_page => 20)
