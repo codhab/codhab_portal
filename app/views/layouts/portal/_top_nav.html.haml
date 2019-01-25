@@ -128,9 +128,9 @@
               O conteúdo deste portal pode ser acessível em Libras usando o
               %a{:href => "http://www.vlibras.gov.br/"}
                 Vlibras.
-      -# %li.bug-bugado
-      -#   = simple_form_for url_for, url: main.posts_path, method: :get, html: { class: 'inline-form top_search'} do |f|
-      -#     = f.input :title,label: false, input_html: { name: 'by_title'}, placeholder: 'Pesquise aqui...'
+      %li.bug-bugado
+        = simple_form_for url_for, url: main.posts_path, method: :get, html: { class: 'inline-form top_search'} do |f|
+          = f.input :title,label: false, input_html: { name: 'by_title'}, placeholder: 'Pesquise aqui...'
       %li.item_menu-top.acessoainformacao
         %a#link_acessoainformacao.item_menu{:href => "/acessoainformacao"}
           %img{:src => "http://www.geekninjas.com.br/img/unnamed.png",:style => "width:20px;margin-top:-4px;margin-right:2px"}
