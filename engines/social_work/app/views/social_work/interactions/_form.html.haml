@@ -20,10 +20,10 @@
     = f.input :hour, as: :string, label: false, input_html:  { class: 'hour' }
 .row
   .col-md-6
-    = f.label params[:type].to_i == 1 ? 'Parecer técnico social' : 'Documento'
+    = f.label params[:type].to_i == 1 ? 'Parecer técnico social' : 'Visita técnica'
     = f.input :document_one, as: :file, label: false
   .col-md-6
-    = f.label 'Documento'
+    = f.label 'Croqui'
     = f.input :document_two, as: :file, label: false
 .row
   .col-md-12
