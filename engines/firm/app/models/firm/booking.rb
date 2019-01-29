@@ -35,9 +35,8 @@ module Firm
            errors.add(:cpf, 'CPF já possui vinculo com imóvel.')
           end
         end
-
+        
         if @cadastre.enterprise_cadastres.where('inactive is not true').present?
-          
           begin
             unless @cadastre.enterprise_cadastres.where('inactive is not true and enterprise_id = ?',   @unit.enterprise_typology.enterprise_id).present?
               errors.add(:cpf, 'CPF não possui indicação para este empreendimento.')

@@ -58,11 +58,16 @@ module SocialWork
       redirect_to action: :index
     end
 
+    def burgh
+      city = params[:city_id]
+      render json: @burgh = Core::Address::Burgh.where(city_id: city)
+    end
+
     private
 
     def set_params
       params.require(:social_work_candidate_schedule).permit(:attendance_station_id,:name,:cpf,:email,:telphone,:address,:complement_address,:cep,:date,:hour,
-                                                             :observation,:restrict,:restrict_sql,:city_id,:situation_id,:schedule_status_id, :priority)
+                                                             :observation,:restrict,:restrict_sql,:city_id,:situation_id,:schedule_status_id, :priority, :burgh_id)
     end
 
     def set_candidate_schedule

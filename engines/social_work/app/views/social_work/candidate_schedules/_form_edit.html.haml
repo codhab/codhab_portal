@@ -7,6 +7,14 @@
       = f.label :cpf
       = f.input :cpf, label: false, input_html: { class: 'cpf', disabled: true  }
   .row
+    .col-md-4
+      = f.label :cep
+      = f.input :cep, label: false, input_html: { placeholder: 'Digite o CEP' }
+    .col-md-4
+      = f.input :city_id, label: 'Cidade', as: :select, collection: Core::Address::City.where(id:[825,835]), input_html: { id: 'city_id'}, include_blank: 'Filtrar por Cidade'
+    .col-md-4
+      = f.input :burgh_id, label: 'Bairro', as: :select, collection: [], input_html: { id: 'burgh_id'}, include_blank: 'Filtrar por Bairro'
+  .row
     .col-md-3
       = f.label :telphone
       = f.input :telphone, label: false, input_html: { placeholder: '(00) 00000-0000' }
@@ -27,3 +35,27 @@
     .col-md-12
       = f.button :submit, 'Salvar', class: 'btn btn-success', data: {disable_with: t(:disable_with)}
       = link_to 'Voltar', candidate_schedules_path, class: 'btn btn-default'
+
+:javascript
+  $(document).ready(function(){
+    if ($("#city_id").val() == "825" || $("#city_id").val() == "835")
+    {
+      getBurgh($("#city_id").val());
+    }
+
+    $("#city_id").on('change', function(){
+      id = $(this).val();
+      getBurgh(id);
+    });
+
+    function getBurgh(id) {
+      $.getJSON("#{burgh_path}?city_id=" +  id, function(data) {
+        var options = "<option value>selecione...</option>";
+
+        $.each(data, function(key, val) {
+          options += "<option value='" + val.id + "'>" + val.name + "</option>";
+        });
+        $("#burgh_id").html(options);
+      });
+    }
+  });

@@ -78,6 +78,7 @@
                   %th CPF
                   %th Etapa
                   %th Endereço
+                  %th Bairro
                   %th
                   %th
               %tbody
@@ -99,6 +100,7 @@
                       - else
                         Agendamento
                     %td= candidate.address
+                    %td= candidate.burgh.name rescue nil
                     %td
                       - if cand.present?
                         = "Perfil já preenchido"

@@ -47,8 +47,7 @@ module SocialWork
 
     def destroy
       @document_upload.destroy
-      flash[:success] =  t :success
-      redirect_to action: :index
+      redirect_to candidate_path(@candidate)
     end
 
     private
