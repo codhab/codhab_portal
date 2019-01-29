@@ -52,5 +52,5 @@ task :deploy do
     on :launch do
       invoke :'unicorn:restart'
     end
-  end
+  endp
 end
