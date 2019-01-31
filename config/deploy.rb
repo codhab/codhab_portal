@@ -10,11 +10,11 @@ set :domain, '10.233.38.15'
 set :user, 'root'
 
 =begin
-if ENV['SERVER'] == 'B'
-  set :domain, '10.233.38.19'
-else:
-  set :domain, '10.233.38.23'
-end
+ if ENV['SERVER'] == 'B'
+   set :domain, '10.233.38.19'
+ else:
+   set :domain, '10.233.38.23'
+ end
 =end
 
 if ENV["STAGE"] == "dev"
@@ -47,7 +47,7 @@ task :deploy do
     invoke  :'git:clone'
     invoke  :'deploy:link_shared_paths'
     invoke  :'bundle:install'
-    invoke  :'rails:assets_precompile'
+    #invoke  :'rails:assets_precompile'
     invoke  :'deploy:cleanup'
     on :launch do
       invoke :'unicorn:restart'

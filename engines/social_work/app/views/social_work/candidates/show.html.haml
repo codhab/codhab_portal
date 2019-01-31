@@ -228,8 +228,8 @@
                       %tbody
                         %tr
                           %td= @candidate.city.name rescue nil
-                          %td= @candidate.address rescue nil
-                          %td= @candidate.complement_addresss rescue nil
+                          %td= @candidate.burgh.name rescue nil
+                          %td= "#{@candidate.address @candidate.complement_addresss}" rescue nil
                       %thead
                         %tr
                           %th Telefone
