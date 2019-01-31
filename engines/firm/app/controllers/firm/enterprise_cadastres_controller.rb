@@ -16,8 +16,8 @@ module Firm
      has_scope :by_list
      has_scope :by_date
      has_scope :by_inactive
-
-
+     has_scope :by_inactive_date
+     
     def index
       @enterprise_cadastres = Firm::EnterpriseCadastre.where(enterprise_id: @enterprises)
                                                       .includes([:cadastre, :enterprise_cadastre_situations]).all

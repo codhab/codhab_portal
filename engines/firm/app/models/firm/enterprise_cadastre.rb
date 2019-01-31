@@ -6,12 +6,13 @@ module Firm
     belongs_to :enterprise, class_name: "Firm::Enterprise"
     has_many   :enterprise_cadastre_situations, class_name: "Firm::EnterpriseCadastreSituation"
 
-    scope :by_name,  -> (name) {joins(:cadastre).where('candidate_cadastres.name like ?', "#{name}%")}
+    scope :by_name,          -> (name) {joins(:cadastre).where('candidate_cadastres.name like ?', "#{name}%")}
     scope :by_cpf,           -> (cpf = nil)             { joins(:cadastre).where('candidate_cadastres.cpf = ?', cpf.gsub('.','').gsub('-',''))}
     scope :by_enterprise,    -> (enterprise_id = nil)   { where(enterprise_id: enterprise_id)}
     scope :by_list,          -> (list = nil)           { joins(:cadastre).where('candidate_cadastres.program_id = ?', list)}
-    scope :by_step,          -> (step_id = nil)         { where(indication_cadastre_id: prepare_step(step_id))}
-    scope :by_inactive,       -> (inactive)            { where(inactive: inactive)}
+    scope :by_step,          -> (step_id = nil)       { where(indication_cadastre_id: prepare_step(step_id))}
+    scope :by_inactive,      -> (inactive)            { where(inactive: inactive)}
+    scope :by_inactive_date, -> (inactive_date)       { where(inactive_date: Date.parse(inactive_date))}
 
     scope :prepare_allotment, -> (allotment_id) {
           cadastres = Firm::Cadastre.where(allotment_id: allotment_id).map(&:id)

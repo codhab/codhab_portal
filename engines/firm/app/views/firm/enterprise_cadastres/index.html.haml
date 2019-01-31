@@ -35,6 +35,9 @@
                 = f.label 'Indicação Inativa?'
                 = f.input :by_inactive, as: :select, collection: [["Sim", true],["Não", false]], label: false, selected: params[:by_inactive],  input_html: {:"data-toggle" => 'toggle', name: 'by_inactive'},include_blank: 'Todos'
               .col-md-2
+                = f.label 'Data de Inativação'
+                = f.input :by_inactive_date, label: false, input_html: { class: 'date', name: 'by_inactive_date', value: params[:by_inactive_date]}
+              .col-md-2
                 = f.label 'Tipo de Lista'
                 = f.input :by_list, label: false,  collection: ::Candidate::Program.all, selected: params[:by_list], input_html: { name: 'by_list'},include_blank: 'Todos'
               .col-md-4
