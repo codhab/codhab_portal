@@ -22,6 +22,9 @@ module Main
     def ouvidoria
     end
     
+    def carta_de_servico
+    end
+    
     def passoapasso
 
     end
