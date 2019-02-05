@@ -7,7 +7,15 @@ module Firm
       def index
         start_date = Date.parse(params[:start_date])
         end_date = Date.parse(params[:end_date])
-        @dropouts = current_company.enterprise_cadastres.where('inactive_date >= ? and inactive_date <= ?',start_date ,end_date).order(:inactive_date)
+        enterprise = params[:enterprise].present? ? params[:enterprise] : current_company.enterprise_ids
+
+        last = current_company.enterprise_cadastres.where(id:
+             Core::Candidate::EnterpriseCadastre.where(enterprise_id: current_company.enterprise_ids)
+                                                .select('MAX(candidate_enterprise_cadastres.id)')
+                                                .group('candidate_enterprise_cadastres.cadastre_id'))
+
+
+        @dropouts = current_company.enterprise_cadastres.where('candidate_enterprise_cadastres.id in (?) and inactive_date >= ? and inactive_date <= ? and candidate_enterprise_cadastres.enterprise_id in (?)', last.ids, start_date ,end_date, enterprise).order(:inactive_date)
       end
 
       def create

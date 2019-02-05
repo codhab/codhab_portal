@@ -5,12 +5,14 @@
         %th Tipo de Documento
         %th Documento
         %th Data
+        %th
     %tbody
     - @documents.each do |doc|
       %tr
         %td= "#{doc.document_category.type_document.humanize } - #{doc.document_category.name}" rescue nil
         %td= link_to "Visualizar", doc.document_url, target: '_blank' rescue "Nenhum arquivo"
         %td= doc.created_at.strftime('%d/%m/%Y')
+        %td= link_to "Excluir", candidate_document_upload_path(doc.candidate_id, doc.id), method: :delete, data: {confirm: "#{t(:confirm_delete)}"}
   - else
     %tr
       %td

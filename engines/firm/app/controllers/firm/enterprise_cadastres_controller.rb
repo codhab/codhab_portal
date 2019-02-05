@@ -16,16 +16,17 @@ module Firm
      has_scope :by_list
      has_scope :by_date
      has_scope :by_inactive
-
+     has_scope :by_inactive_date
 
     def index
-      @enterprise_cadastres = Firm::EnterpriseCadastre.where(enterprise_id: @enterprises).includes(:cadastre).all
+      @enterprise_cadastres = Firm::EnterpriseCadastre.where(enterprise_id: @enterprises)
+                                                      .includes([:cadastre, :enterprise_cadastre_situations]).all
 
       @enterprise_excell = apply_scopes(@enterprise_cadastres)
       @enterprise_cadastres = @enterprise_excell.paginate(:page => params[:page], :per_page => 20)
       respond_to do |format|
        format.html
-       format.xlsx  { response.headers['Content-Disposition'] = "attachment; filename='candidatos#{Date.today.to_date}.xlsx'" }
+       format.xlsx  { response.headers['Content-Disposition'] = "attachment; filename=candidatos#{Date.today.to_date}.xlsx" }
       end
     end
 
