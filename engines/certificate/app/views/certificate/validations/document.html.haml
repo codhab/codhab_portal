@@ -34,7 +34,13 @@
                   %tr
                     %td{colspan: 2}
                       = @allotment.main_authenticate_date.strftime('%d/%m/%Y') rescue nil
-                      %br
-                      GILSON PARANHOS
-                      %br
-                      Diretor-Presidente da CODHAB/DF
+                      - if @allotment.created_at.year < 2019
+                        %br
+                        GILSON PARANHOS
+                        %br
+                        Diretor-Presidente da CODHAB/DF
+                      - else
+                        %br
+                        WELLINGTON LUIZ DE SOUZA SILVA
+                        %br
+                        Diretor-Presidente da CODHAB/DF

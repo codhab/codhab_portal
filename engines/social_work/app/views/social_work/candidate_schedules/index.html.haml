@@ -98,7 +98,7 @@
                       - elsif !candidate.schedule_status_id.present?
                         = link_to 'Agendar',edit_candidate_schedule_path(candidate), remote: true
                       - else
-                        Agendamento
+                        = "Agendamento - #{candidate.schedule_status.name}" rescue nil
                     %td= candidate.address
                     %td= candidate.burgh.name rescue nil
                     %td
