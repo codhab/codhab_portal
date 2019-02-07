@@ -182,12 +182,18 @@
                     %table.table.table-striped.table-bordered
                       %thead
                         %tr
-                          %th Nome
+                          %th{colspan: 3} Nome
+                      %tbody
+                        %tr
+                          %td{colspan: 3}= @candidate.name rescue nil
+                      %thead
+                        %tr
+                          %th Sexo
                           %th CPF
                           %th Email
                       %tbody
                         %tr
-                          %td= @candidate.name rescue nil
+                          %td= @candidate.gender rescue nil
                           %td= @candidate.cpf.format_cpf rescue nil
                           %td= @candidate.email rescue nil
                       %thead
