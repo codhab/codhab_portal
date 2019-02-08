@@ -7,6 +7,8 @@ module SocialWork
 
     has_scope :by_name
     has_scope :by_cpf
+    has_scope :by_start_date
+    has_scope :by_end_date
 
     def index
       if current_social_user.company_id == 34
