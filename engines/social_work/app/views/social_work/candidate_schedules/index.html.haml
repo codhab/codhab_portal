@@ -66,8 +66,14 @@
                   = f.input :by_name, label: "Nome", input_html: { name: 'by_name', value: params[:by_name]}
                 .col-md-2
                   = f.input :by_cpf, label: "CPF", input_html: { name: 'by_cpf', value: params[:by_cpf], class: 'cpf'}
+                .col-md-2
+                  = f.input :by_start_date, label: "Data início", input_html: { name: 'by_start_date', value: params[:by_start_date], class: 'date'}
+                .col-md-2
+                  = f.input :by_end_date, label: "Data fim", input_html: { name: 'by_end_date', value: params[:by_end_date], class: 'date'}
+              .row
                 .col-md-4
                   = f.submit t(:filter_button), name: nil, class: 'btn btn-warning filter'
+                  = link_to 'Limpar Filtro', candidate_schedules_path, class: 'btn btn-default filter'
         .row
           .col-md-12
             %table.table.table-striped.table-bordered
@@ -79,6 +85,7 @@
                   %th Etapa
                   %th Endereço
                   %th Bairro
+                  %th Data
                   %th
                   %th
               %tbody
@@ -98,9 +105,10 @@
                       - elsif !candidate.schedule_status_id.present?
                         = link_to 'Agendar',edit_candidate_schedule_path(candidate), remote: true
                       - else
-                        Agendamento
+                        = "Agendamento - #{candidate.schedule_status.name}" rescue nil
                     %td= candidate.address
                     %td= candidate.burgh.name rescue nil
+                    %td= candidate.created_at.strftime('%d/%m/%Y') rescue nil
                     %td
                       - if cand.present?
                         = "Perfil já preenchido"
