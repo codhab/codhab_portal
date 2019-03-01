@@ -34,7 +34,7 @@
                   %tr
                     %td{colspan: 2}
                       = @allotment.main_authenticate_date.strftime('%d/%m/%Y') rescue nil
-                      - if @allotment.created_at.year < 2019
+                      - if @allotment.main_authenticate_date.present? && @allotment.main_authenticate_date.year < 2019
                         %br
                         GILSON PARANHOS
                         %br
