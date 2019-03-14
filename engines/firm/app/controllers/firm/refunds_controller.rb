@@ -5,7 +5,6 @@ module Firm
     before_action :set_unit
 
     def new
-
       @refund = Firm::Refund.new
     end
 
@@ -19,7 +18,7 @@ module Firm
         service.refund!(@refund.observation, @refund.file_path)
         @enterprise_cadastres = Firm::EnterpriseCadastre.where(enterprise_id: @enterprise_unit.enterprise_typology.enterprise_id).paginate(:page => params[:page], :per_page => 20)
         flash[:success] = "Reserva de imóvel liberada com sucesso."
-        redirect_to enterprise_cadastres_path 
+        redirect_to enterprise_cadastres_path
       else
         render :new
       end
