@@ -275,7 +275,7 @@
     %div{:style => "width: 800px; height: 30px;"}
       %div{:style => "padding: 5px; font-weight: bold;"}
         OBSERVAÇÃO:
-        -if @candidate.current_procedural.id == 46
+        -if @candidate.current_procedural.present? && @candidate.current_procedural.id == 46
           Concessónario de lote residencial com edificação e firmado Termo de Concessão de Uso Oneroso
         -else
           = "Concessionário de lote: Tipo - #{@candidate.current_cadastre_address.unit.type_use_unit.name}" rescue nil
