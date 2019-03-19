@@ -16,7 +16,7 @@ module Firm
         cadastre_id: @cadastre.id,
         observation: refund_observation,
         situation_id: 2,
-        user_company_id: @user_company.id
+        user_company_id: nil
       ).save
 
       #imovel_reservado
@@ -55,7 +55,7 @@ module Firm
         enterprise_cadastre_status_id: 14, #reserva de imóvel
         file_path: refund_file_path, #simples
         observation: refund_observation,
-        firm_user_id: @user_company.id,
+        firm_user_id: nil,
         enterprise_cadastre_id: @enterprise_cadastre.id,
         success: true
       ).save
