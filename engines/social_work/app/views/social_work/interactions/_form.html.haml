@@ -20,10 +20,26 @@
     = f.input :hour, as: :string, label: false, input_html:  { class: 'hour' }
 .row
   .col-md-6
-    = f.label params[:type].to_i == 1 ? 'Parecer técnico social' : 'Visita técnica'
+    - case params[:type]
+    - when "1"
+      - my_label = "Parecer técnico social"
+      - my_label2 = "Croqui"
+    - when "2"
+      - my_label = "Formulário técnico"
+      - my_label2 = "Levantamento"
+    - when "3"
+      - my_label = "Levantamento"
+      - my_label2 = "Nota técninca"
+    - when "4"
+      - my_label = "Planta cadastral"
+      - my_label2 = "Planta baixa"
+    - when "5"
+      - my_label = "Estudo preliminar"
+      - my_label2 = "Planta revisada"
+    = f.label my_label
     = f.input :document_one, as: :file, label: false
   .col-md-6
-    = f.label 'Croqui'
+    = f.label my_label2
     = f.input :document_two, as: :file, label: false
 .row
   .col-md-12
