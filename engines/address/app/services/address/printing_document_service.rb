@@ -7,7 +7,7 @@ module Address
 
     def positive_certificate!
 
-      return false if (@cadastre.current_situation_id != 7 || ![3,6].include?(@cadastre.program_id))
+      return false if (![7,9,44].include?(@cadastre.current_situation_id) || ![3,6].include?(@cadastre.program_id))
       unit = @cadastre.current_cadastre_address.unit rescue nil
 
       return false if unit.nil?
