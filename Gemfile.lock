@@ -56,6 +56,8 @@ PATH
       rails (~> 5.0.2)
     cpl (0.1.0)
       rails (~> 5.0.2)
+    cpl_concurrence (0.1.0)
+      rails (~> 5.0.2)
     document (0.1.0)
       rails (~> 5.0.2)
     entity (0.0.1)
@@ -427,6 +429,7 @@ DEPENDENCIES
   concourse!
   core!
   cpl!
+  cpl_concurrence!
   document!
   email_validator
   entity!
@@ -487,4 +490,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

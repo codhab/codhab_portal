@@ -253,7 +253,7 @@ footer {
   margin-top: 80px !important;
 }
 .filter-button, .btn-filter{
-  margin-top: 24px;
+  margin-top: 24px !important;
 }
 
 

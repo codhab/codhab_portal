@@ -1,0 +1,13 @@
+= simple_form_for url_for do |f|
+  .row
+    .col-md-3
+      = f.input :cpf_cnpj, label: "CPF ou CNPJ (Somente números)", placeholder: "Informe sua credencial (CPF ou CNPJ)"
+    .col-md-3
+      = f.input :password, label: "Senha", placeholder: "Informe sua senha"
+    .col-md-6
+      = f.submit "Realizar acesso", class: 'btn btn-success btn-filter'
+      = link_to "Realizar meu cadastro", cpl_concurrence.new_user_path, class: 'btn btn-warning btn-filter'
+  .row
+    .col-md-3
+    .col-md-3
+      = link_to "Esqueci minha senha", "#"
