@@ -35,7 +35,7 @@ module Regularization
     private 
 
     def unique_cpf
-      if Core::Regularization::Request.where(cpf: self.cpf, unit_id: self.unit).present?
+      if ::Core::Regularization::Request.where(cpf: self.cpf, unit_id: self.unit).present?
         errors.add(:cpf, "já possui recurso apresentado.")
       end
     end

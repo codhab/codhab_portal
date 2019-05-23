@@ -16,18 +16,18 @@ module Regularization
         }
 
         f.json {
-          @units = apply_scopes(Core::Address::Unit.where(city_id: 821))
+          @units = apply_scopes(::Core::Address::Unit.where(city_id: 821))
         }
       end
       
     end
 
     def new
-      @request = Regularization::Request.new
+      @request = ::Regularization::Request.new
     end
 
     def create
-      @request = Regularization::Request.new(set_params)
+      @request = ::Regularization::Request.new(set_params)
       
       if @request.save
         # enviar um email
