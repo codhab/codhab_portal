@@ -5,6 +5,7 @@ Regularization::Engine.routes.draw do
   post  '/pesquisa-cpf',  to: 'cadastres#show_candidate', as: 'show_candidate'
 
   resources :lists, path: 'listas'
+  resources :requests, path: 'requerimento'
   resources :cadastres, path: 'cadastro'
   resources :solicitations, path: 'solicitacoes'
 

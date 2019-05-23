@@ -1,0 +1,10 @@
+pt-BR:
+  activemodel:
+    errors:
+      models:
+        'regularization/request':
+          attributes:
+            file:
+              allowed_file_content_types: 'Permitido somente arquivos jpeg, png, pdf, word'
+              file_size_is_less_than_or_equal_to: 'Permitido somente arquivos com no máximo 20mb'
+        

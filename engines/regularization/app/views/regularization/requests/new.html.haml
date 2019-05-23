@@ -1,0 +1,103 @@
+.row
+  .col-md-12.box
+    .panel.panel-default
+      .panel-heading.green
+        .row
+          .col-md-12
+            %h1
+              %b Novo recurso
+      .panel-body
+        = simple_form_for @request, url: requests_path, method: 'post' do |f|
+          .row
+            .col-md-3
+              = f.input :city_id, label: 'Cidade', as: :select, collection: Address::City.where(id: 821), include_blank: 'Selecione...', input_html: {id: 'city_id'}
+            .col-md-3
+              = f.input :block,label: 'Quadra', as: :select, collection: f.object.city_id.present? ? Address::Unit.where(city_id: f.object.city_id).order('block ASC').uniq.pluck(:block) : {}, include_blank: 'Selecione...', input_html: {id: 'block',  value: f.object.block.present? ? f.object.block : nil}
+            .col-md-3
+              = f.input :group,label: 'Conjunto', as: :select, collection: f.object.block.present? ? Address::Unit.where(city_id: f.object.city_id, block: f.object.block).select(:group).distinct.order('"group" ASC') : {}, label_method: :group, value_method: :group, include_blank: 'Selecione...', input_html: {id: 'group',  value: f.object.group.present? ? f.object.group : nil}
+            .col-md-3
+              = f.input :unit, label: 'Unidade', as: :select, collection: f.object.group.present? ? Address::Unit.where(city_id: f.object.city_id, block: f.object.block, group: f.object.group).select(:id, :unit).distinct.order('unit ASC') : {},label_method: :unit, value_method: :id,  include_blank: 'Selecione...', input_html: {id: 'unit',  value: f.object.unit.present? ? f.object.unit : nil}
+
+          .row
+            .col-md-8
+              = f.input :name,  label: 'Nome', placeholder:  'Informe seu nome'
+            .col-md-4
+              = f.input :cpf, label: 'Cpf', input_html:{ class: 'cpf'}
+
+          .row
+            .col-md-4
+              = f.input :telephone, label: 'Telefone', placeholder:  'Informe seu telefone'
+            .col-md-4
+              = f.input :telephone_optional, label: 'Telefone(opcional)', placeholder:  'Informe outro telefone'
+            .col-md-4
+              = f.input :email,  label: 'E-mail', placeholder:  'Informe seu e-mail'
+            
+
+          .row
+            .col-md-12
+              = f.input :description,as: :text, label: 'Recurso', input_html: { rows: 5, cols: 20}, placeholder:  'Infome seu recurso'
+              
+          .row
+            .col-md-3
+              = f.input :file, as: :file, label: 'Arquivo'
+          
+          %hr/
+          .row
+            .col-md-12
+              = f.submit "Enviar recurso", class: "btn btn-success"
+
+
+:javascript
+          
+  $(document).ready(function() {
+
+    $("#city_id").on('change', function(){
+      city = $(this).val();
+      
+      $.getJSON("/regularizacao/requerimento.json?by_city=" + city , function(data) {
+
+        html = "<option value>selecione...</option>"
+
+        for(var i = 0; i < data.blocks.length; i++) {
+          html += "<option value='"+data.blocks[i].value+"'>"+data.blocks[i].value+"</option>"
+        }
+        console.log(html)
+        $("#block").html(html)
+
+      });
+    });
+
+    $("#block").on('change', function(){
+      block = $(this).val();
+      
+      $.getJSON("/regularizacao/requerimento.json?by_city=" + $("#city_id").val() + "&by_block=" + block, function(data) {
+
+        html = "<option value>selecione...</option>"
+
+        for(var i = 0; i < data.groups.length; i++) {
+          html += "<option value='"+data.groups[i].value.group+"'>"+data.groups[i].value.group+"</option>"
+        }
+        console.log(html)
+        $("#group").html(html)
+
+      });
+    });
+
+    $("#group").on('change', function(){
+      group = $(this).val();
+      
+      $.getJSON("/regularizacao/requerimento.json?by_city=" + $("#city_id").val() + "&by_block=" + $("#block").val() + "&by_group=" + group , function(data) {
+
+        html = "<option value>selecione...</option>"
+
+        for(var i = 0; i < data.units.length; i++) {
+          html += "<option value='"+data.units[i].value.id+"'>"+data.units[i].value.unit+"</option>"
+        }
+        console.log(html)
+
+        $("#unit").html(html)
+
+      });
+    });
+
+  });
