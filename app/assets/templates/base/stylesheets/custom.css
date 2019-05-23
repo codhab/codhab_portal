@@ -256,6 +256,12 @@ footer {
   margin-top: 24px !important;
 }
 
+.collapsing {
+  width: 1%;
+  white-space: nowrap;
+  overflow: visible !important;
+}
+
 
 #heading1 a, #heading2 a{
   font-size:30px;

@@ -3882,6 +3882,12 @@ a {
     position: relative
 }
 
+.collapsing {
+  width: 1px;
+  white-space: nowrap;
+  overflow: visible !important;
+}
+
 #main-menu-bar .search a.btn-search {
     display: block;
     height: 36px;

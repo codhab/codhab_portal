@@ -1,16 +1,12 @@
 require_dependency 'cpl_concurrence/application_controller'
 
 module CplConcurrence
-  class NoticesController < ApplicationController
+  class NoticeParticipationsController < ApplicationController
+    before_action :authenticate_user
     
     def index
       @notices = CplConcurrence::Notice.all.order(:number)
     end 
-
-    def show
-      @notice = CplConcurrence::Notice.find(params[:id])
-    end 
-
-    
-  end
+  
+  end 
 end

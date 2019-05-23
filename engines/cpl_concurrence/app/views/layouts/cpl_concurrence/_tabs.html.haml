@@ -1,0 +1,8 @@
+%ul.nav.nav-tabs
+  %li{class: controller_name == 'notice_participations' ? 'active' : nil}
+    = link_to "Editais", user_notices_path(current_notice_user)
+  %li{class: controller_name == 'participations' ? 'active' : nil}
+    = link_to "Participando", user_participations_path(current_notice_user)
+  %li{class: controller_name == 'users' ? 'active' : nil}
+    = link_to "Meus dados", user_path(current_notice_user)
+  
