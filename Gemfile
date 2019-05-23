@@ -93,7 +93,6 @@ path 'engines' do
   gem 'geolocation'
   gem 'person'
   gem 'protocol'
-  gem 'document'
   gem 'social_work'
   gem 'document'
   gem 'letter'
@@ -102,4 +101,5 @@ path 'engines' do
   gem 'technical_assistance'
   gem 'certificate'
   gem 'cpl'
+  gem 'cpl_concurrence'
 end
