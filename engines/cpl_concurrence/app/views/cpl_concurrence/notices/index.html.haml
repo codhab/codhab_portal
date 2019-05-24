@@ -6,4 +6,15 @@
           %b Editais - Concorrência
         %h4= link_to "Acessar área restrita", cpl_concurrence.new_session_path
       .panel-body
-        Edital
+        %table.table.table-striped.table-celled.table-bordered
+          %thead
+            %tr
+              %th Número
+              %th Edital
+          %tbody
+            - @notices.each do |notice|
+              %tr
+                %td.collapsing= link_to notice.number, cpl_concurrence.notice_path(notice)
+                %td= link_to notice.title, cpl_concurrence.notice_path(notice)
+          
+

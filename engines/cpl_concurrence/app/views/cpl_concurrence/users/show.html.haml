@@ -1,0 +1,44 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        = render 'layouts/cpl_concurrence/header'
+      .panel-body
+        .row
+          .col-md-12
+            = render 'layouts/cpl_concurrence/tabs'
+        .row
+          .col-md-12
+            
+            %table.table.table-striped.table-celled.table-bordered
+              %thead
+                %tr
+                  %th Nome completo
+                  %th CPF
+                  %th CNPJ
+                  %th E-mail
+                  %th Telefone
+
+              %tbody
+                %tr
+                  %td= @user.name.to_s.mb_chars.upcase
+                  %td.collapsing= @user.cpf 
+                  %td.collapsing= @user.cnpj.blank? ? 'Sem informação' : @user.cnpj
+                  %td.collapsing= @user.email.to_s.mb_chars.upcase
+                  %td.collapsing= @user.telephone
+
+        .row
+          .col-md-12  
+            %h4
+              %b Atividades
+            %table.table.table-striped.table-celled.table-bordered
+              %thead
+                %tr
+                  %th.collapsing Edital
+                  %th.collapsing Data/Hora
+                  %th Descrição
+              %tbody
+                %tr
+                  %td
+                  %td
+                  %td

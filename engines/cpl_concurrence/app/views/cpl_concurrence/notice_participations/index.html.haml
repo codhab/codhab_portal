@@ -1,0 +1,29 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        = render 'layouts/cpl_concurrence/header'
+      .panel-body
+        .row
+          .col-md-12
+            = render 'layouts/cpl_concurrence/tabs'
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled.table-bordered
+              %thead
+                %tr
+                  %th Número
+                  %th Número
+                  %th Data
+                  %th Hora
+                  %th
+
+              %tbody
+                - @notices.each do |notice|
+                  %tr
+                    %td.collapsing= notice.number
+                    %td= notice.title
+                    %td.collapsing= notice.session_start_date.strftime("%d/%m/%Y")
+                    %td.collapsing= notice.session_start_hour.strftime("%H:%M")
+                    %td.collapsing
+                      = link_to "Participar", "#", class: 'btn btn-success btn-xs'
