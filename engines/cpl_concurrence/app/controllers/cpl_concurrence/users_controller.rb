@@ -2,7 +2,7 @@ require_dependency 'cpl_concurrence/application_controller'
 
 module CplConcurrence
   class UsersController < ApplicationController
-    #before_action :authenticate_user
+    before_action :authenticate_notice_user, only: [:show]
     
     def new
       @user = CplConcurrence::User.new

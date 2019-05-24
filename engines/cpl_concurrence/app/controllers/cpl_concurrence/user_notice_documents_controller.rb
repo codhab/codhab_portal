@@ -17,11 +17,31 @@ module CplConcurrence
       end
     end 
 
+    def index
+      @user_document = CplConcurrence::NoticeUserDocument.where(notice_user_id: @participation.id).find_by(document: params[:id])
+      
+      if @user_document.nil?
+        flash[:danger] = 'O Arquivo não encontrado'
+        redirect_to user_notice_participation_path(current_notice_user, @participation)
+      else
+        send_file "#{Rails.root}/public#{@user_document.document_url}"
+      end
+      
+    end
+    
+    def destroy 
+      @user_document = CplConcurrence::NoticeUserDocument.where(notice_user_id: @participation.id).find_by(id: params[:id])
+      @user_document.update(deleted: true, deleted_at: Time.now)
+
+      flash[:success] = 'O Arquivo removido com sucesso!'
+      redirect_to user_notice_participation_path(current_notice_user, @participation)
+    end
+
     private
 
     def set_params
       params.require(:notice_user_document)
-        .permit(:file,:proposal)
+        .permit(:document,:proposal)
     end
     
 

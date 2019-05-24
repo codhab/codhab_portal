@@ -9,11 +9,6 @@
             = render 'layouts/cpl_concurrence/tabs'
         .row
           .col-md-12
-            %br/
-            = link_to "Voltar para minhas participações", user_notice_participations_path(current_notice_user), class: 'btn btn-primary btn-xs'
-            = link_to "Entrar no chat", user_notice_participation_chats_path(current_notice_user, @participation), class: 'btn btn-success btn-xs', remote: true
-        .row
-          .col-md-12
             %table.table.table-striped.table-bordered.table-celled
               %thead
                 %tr
@@ -25,6 +20,13 @@
                   %td.collapsing= @notice.number
                   %td= @notice.title
                   %td= @participation.created_at.strftime("%d/%m/%Y - %H:%M")
+        %br/
+        .row
+          .col-md-6
+            = link_to "Voltar para minhas participações", user_notice_participations_path(current_notice_user), class: 'btn btn-primary'
+          .col-md-6{style: 'text-align: right'}
+            = link_to "Entrar no chat", user_notice_participation_chats_path(current_notice_user, @participation), class: 'btn btn-success', remote: true
+                          
         .row
           .col-md-12
             %table.table.table-striped.table-bordered.table-celled
@@ -67,3 +69,24 @@
                 %tr                            
                   %td.form-proposal
                     = render 'cpl_concurrence/user_documents/proposal_index'
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled.table-bordered
+              %thead
+                %tr
+                  %th.text-center{colspan: 2} 
+                    %h4
+                      %b Histórico de atividades
+                %tr
+                  %th Data/Hora
+                  %th Descrição
+              %tbody
+                - if @logs.present?
+                  - @logs.each do |log|
+                    %tr
+                      %td.collapsing= log.created_at.strftime("%d/%m/%Y %H:%M")
+                      %td= log.content
+                - else 
+                  %tr
+                    %td{colspan: 2}
+                      Nenhuma atividade realizada.

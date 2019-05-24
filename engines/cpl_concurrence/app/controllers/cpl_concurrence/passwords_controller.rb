@@ -2,6 +2,7 @@ require_dependency 'cpl_concurrence/application_controller'
 
 module CplConcurrence
   class PasswordsController < ApplicationController
+    before_action :authenticate_notice_user
 
     def edit
       @user_password = CplConcurrence::Password.new(user_id: current_notice_user.id)

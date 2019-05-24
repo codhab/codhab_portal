@@ -11,7 +11,7 @@ module CplConcurrence
     def show
       @participation = CplConcurrence::NoticeUser.where(user_id: current_notice_user.id).find(params[:id])
       @notice = CplConcurrence::Notice.find(@participation.notice_id)
- 
+      @logs = CplConcurrence::NoticeUserLog.where(user_id: current_notice_user.id, notice_id: @notice.id).order(created_at: :desc)
     end
 
 

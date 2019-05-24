@@ -1,14 +1,14 @@
-
 - if !@notice.proposal_open?
   = simple_form_for @participation.user_documents.where(proposal: true).new, url: user_notice_participation_documents_path(current_notice_user, @participation) do |f|
     .row
       .col-md-12
-        = f.input :document, as: :file
+        = f.input :document, label: "Arquivo", as: :file
+        = f.hint "São permitidos arquivos (.xlsx, .xls, .doc, .docx, .zip, .7z, .rar, .jpg, .png, .pdf) de no máximo 25 Mb"
         = f.input :proposal, as: :hidden, input_html: { value: true}
     %br/
     .row
       .col-md-12
-        = f.submit "Enviar arquivo", class: 'btn btn-success btn-block'
+        = f.submit "Enviar arquivo", class: 'btn btn-success btn-block', data: { disable_with: t(:disable_with) }
 - else
   %br/
   %p.text-center
@@ -16,19 +16,28 @@
 %table.table.table-striped.table-bordered.table-celled
   %thead
     %tr
-      %th Arquivos enviados (#{@participation.user_documents.where(proposal: true).count})
-
+      %th{colspan: 3} Arquivos enviados (#{@participation.user_documents.where(proposal: true).count})
+    %tr
+      %th.collapsing Protocolo
+      %th Arquivo
       - if !@notice.proposal_open?
         %th
   %tbody               
     - if @participation.user_documents.present?
       - @participation.user_documents.where(proposal: true).order(created_at: :asc).each_with_index do |doc, index|
         %tr
+          %td= doc.id
           %td
-            = link_to "Arquivo #{index + 1}", doc.document
+            - if !doc.deleted
+              = link_to "Visualizar arquivo", user_notice_participation_documents_path(current_notice_user, @participation, id: doc.document.identifier), target: '_blank' if doc.document?
+            - else
+              %i Arquivo removido
           - if !@notice.proposal_open?
             %td.collapsing
-              = link_to "Remover", "#", class: 'btn btn-danger btn-xs', data: { confirm: "Tem certeza que deseja remover o arquivo?"}
+              - if !doc.deleted
+                = link_to "Remover", user_notice_participation_document_path(current_notice_user, @participation, doc.id), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Tem certeza que deseja remover o arquivo?"}
+              - else
+                %i Removido
     - else
       %tr
         %td{colspan: 2}

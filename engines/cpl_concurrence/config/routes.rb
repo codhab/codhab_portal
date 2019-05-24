@@ -4,6 +4,7 @@ CplConcurrence::Engine.routes.draw do
   resources :notices,   path: 'editais'
   resources :passwords, path: 'minha-senha'
   resources :sessions,  path: 'acesso'
+  resources :remembers, path: 'lembrar-senha'
 
   resources :users,    path: 'usuario' do 
     get 'confirmation_email', on: :collection, path: 'confirmacao-email'

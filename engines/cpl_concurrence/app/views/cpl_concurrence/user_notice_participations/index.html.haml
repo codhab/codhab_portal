@@ -28,4 +28,4 @@
                     %td.collapsing
                       #{user_notice.notice.session_start_date.strftime("%d/%m/%Y")} - #{user_notice.notice.session_start_hour.strftime("%H:%M")}
                     %td.collapsing
-                      = link_to "Detalhar", user_notice_participation_path(current_notice_user, user_notice), class: 'btn btn-success btn-xs'
+                      = link_to "Minha participação", user_notice_participation_path(current_notice_user, user_notice)
