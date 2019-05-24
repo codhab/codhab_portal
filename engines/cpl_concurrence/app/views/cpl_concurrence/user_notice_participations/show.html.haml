@@ -1,0 +1,69 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        = render 'layouts/cpl_concurrence/header'
+      .panel-body
+        .row
+          .col-md-12
+            = render 'layouts/cpl_concurrence/tabs'
+        .row
+          .col-md-12
+            %br/
+            = link_to "Voltar para minhas participações", user_notice_participations_path(current_notice_user), class: 'btn btn-primary btn-xs'
+            = link_to "Entrar no chat", user_notice_participation_chats_path(current_notice_user, @participation), class: 'btn btn-success btn-xs', remote: true
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th Número
+                  %th Edital
+                  %th.collapsing Participação iniciada em
+              %tbody
+                %tr
+                  %td.collapsing= @notice.number
+                  %td= @notice.title
+                  %td= @participation.created_at.strftime("%d/%m/%Y - %H:%M")
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th.collapsing.text-center 
+                    %h3 
+                      %b Data/Hora para início da sessão
+              %tbody
+                %tr
+                  %td.collapsing.text-center
+                    %h4
+                      %b #{@notice.session_start_date.strftime("%d/%m/%Y")} - #{@notice.session_start_hour.strftime("%H:%M")}
+        .row
+          .col-md-6
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th.collapsing.text-center 
+                    %h3
+                      %b Documentação
+                    Finaliza em #{@notice.document_end_date.strftime("%d/%m/%Y")} - #{@notice.document_end_hour.strftime("%H:%M")}
+              %tbody
+                %tr
+                  %td.form-proposal
+                    = render 'cpl_concurrence/user_documents/document_index'
+                    
+                
+
+          .col-md-2                            
+          .col-md-6                          
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th.collapsing.text-center 
+                    %h3
+                      %b Proposta
+                    Finaliza em #{@notice.proposal_end_date.strftime("%d/%m/%Y")} - #{@notice.proposal_end_hour.strftime("%H:%M")} 
+              %tbody
+                %tr                            
+                  %td.form-proposal
+                    = render 'cpl_concurrence/user_documents/proposal_index'

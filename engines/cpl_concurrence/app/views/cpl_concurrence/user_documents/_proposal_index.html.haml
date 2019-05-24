@@ -1,0 +1,35 @@
+
+- if !@notice.proposal_open?
+  = simple_form_for @participation.user_documents.where(proposal: true).new, url: user_notice_participation_documents_path(current_notice_user, @participation) do |f|
+    .row
+      .col-md-12
+        = f.input :document, as: :file
+        = f.input :proposal, as: :hidden, input_html: { value: true}
+    %br/
+    .row
+      .col-md-12
+        = f.submit "Enviar arquivo", class: 'btn btn-success btn-block'
+- else
+  %br/
+  %p.text-center
+    Envio da proposta já finalizou.
+%table.table.table-striped.table-bordered.table-celled
+  %thead
+    %tr
+      %th Arquivos enviados (#{@participation.user_documents.where(proposal: true).count})
+
+      - if !@notice.proposal_open?
+        %th
+  %tbody               
+    - if @participation.user_documents.present?
+      - @participation.user_documents.where(proposal: true).order(created_at: :asc).each_with_index do |doc, index|
+        %tr
+          %td
+            = link_to "Arquivo #{index + 1}", doc.document
+          - if !@notice.proposal_open?
+            %td.collapsing
+              = link_to "Remover", "#", class: 'btn btn-danger btn-xs', data: { confirm: "Tem certeza que deseja remover o arquivo?"}
+    - else
+      %tr
+        %td{colspan: 2}
+          Nenhum arquivo enviado.

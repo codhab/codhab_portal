@@ -16,7 +16,7 @@
                   %th Número
                   %th Data
                   %th Hora
-                  %th
+                  %th{colspan: 2}
 
               %tbody
                 - @notices.each do |notice|
@@ -26,4 +26,9 @@
                     %td.collapsing= notice.session_start_date.strftime("%d/%m/%Y")
                     %td.collapsing= notice.session_start_hour.strftime("%H:%M")
                     %td.collapsing
-                      = link_to "Participar", "#", class: 'btn btn-success btn-xs'
+                      = link_to "Detalhar", notice_path(notice), class: 'btn btn-default btn-xs', target: '_blank'
+                    %td.collapsing
+                      - if ::CplConcurrence::NoticeUser.where(user_id: current_notice_user.id, notice_id: notice.id).present?
+                        = link_to "Já participando", user_notice_participation_path(user_id: current_notice_user, id: notice), class: 'btn btn-default btn-xs', target: '_blank'
+                      - else
+                        = link_to "Participar", new_user_notice_participation_path(user_id: current_notice_user, notice_id: notice), class: 'btn btn-success btn-xs', target: '_blank'

@@ -1,0 +1,32 @@
+- if @notice.document_open?
+  = simple_form_for url_for do |f|
+    .row
+      .col-md-12
+        = f.input :category_id, as: :select, collection: {}, include_blank: "Selecione a categoria..."
+    .row
+      .col-md-6
+        = f.input :document, as: :file
+    %br/
+    .row
+      .col-md-12
+        = f.submit "Enviar arquivo", class: 'btn btn-success btn-block'
+- else 
+  %br/
+  %p.text-center
+    Envio de documentação já finalizou.
+%table.table.table-striped.table-bordered.table-celled
+  %thead
+    %tr
+      %th{colspan: 2} Arquivos enviados (#{@participation.user_documents.where(proposal: true).count})
+  %tbody
+    - if @participation.user_documents.present?
+      - @participation.user_documents.where(proposal: false).each do |doc|
+        %tr
+          %td
+            Categoria
+          %td
+            = link_to "Arquivo 1", "#"
+    - else
+      %tr
+        %td{colspan: 2}
+          Nenhum arquivo enviado.

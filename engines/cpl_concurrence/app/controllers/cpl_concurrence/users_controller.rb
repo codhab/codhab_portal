@@ -2,7 +2,7 @@ require_dependency 'cpl_concurrence/application_controller'
 
 module CplConcurrence
   class UsersController < ApplicationController
-    before_action :authenticate_user
+    #before_action :authenticate_user
     
     def new
       @user = CplConcurrence::User.new
@@ -18,6 +18,7 @@ module CplConcurrence
 
     def show
       @user = current_notice_user
+      @logs = CplConcurrence::NoticeUserLog.where(user_id: current_notice_user.id, notice_id: nil).order(created_at: :desc)
     end
 
     private

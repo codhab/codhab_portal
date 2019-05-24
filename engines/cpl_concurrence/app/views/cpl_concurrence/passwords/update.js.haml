@@ -1,0 +1,4 @@
+- if @user_password.errors.any?
+  $('#modal .modal-content .modal-body').html("#{escape_javascript(render 'form')}")
+- else
+  $('#modal .modal-content .modal-body').html("#{escape_javascript(render 'success')}")

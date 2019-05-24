@@ -7,17 +7,5 @@
           %br/
           %small Novo cadastro
         %h5= link_to "Retornar para editais", cpl_concurrence.notices_path
-      .panel-body.text-center
-        %h3
-          %b Cadastro realizado com sucesso!
-        %p
-          Acesse seu e-mail #{@notice.email rescue nil} e realize a ativação de seu usuário.
-
-        = link_to "Reenviar e-mail", cpl_concurrence.confirmation_email_users_path, class: 'btn btn-primary'
-        
-        = link_to "Acessar meu cadastro", cpl_concurrence.new_session_path, class: 'btn btn-success'
-        %br/
-        %br/
-        %br/
-        %br/
-        %br/
+      .panel-body
+        = render 'form'

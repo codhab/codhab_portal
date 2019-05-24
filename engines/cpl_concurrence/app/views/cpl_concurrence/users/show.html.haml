@@ -30,15 +30,19 @@
         .row
           .col-md-12  
             %h4
-              %b Atividades
+              %b Histórico
             %table.table.table-striped.table-celled.table-bordered
               %thead
                 %tr
-                  %th.collapsing Edital
-                  %th.collapsing Data/Hora
+                  %th Data/Hora
                   %th Descrição
               %tbody
-                %tr
-                  %td
-                  %td
-                  %td
+                - if @logs.present?
+                  - @logs.each do |log|
+                    %tr
+                      %td.collapsing= log.created_at.strftime("%d/%m/%Y %H:%M")
+                      %td= log.content
+                - else 
+                  %tr
+                    %td{colspan: 2}
+                      Nenhuma atividade realizada.
