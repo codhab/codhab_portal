@@ -1,0 +1,34 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        = render 'layouts/cpl_concurrence/header'
+      .panel-body
+        .row
+          .col-md-12
+            = render 'layouts/cpl_concurrence/tabs'
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled.table-bordered
+              %thead
+                %tr
+                  %th Número
+                  %th Número
+                  %th Data
+                  %th Hora
+                  %th{colspan: 2}
+
+              %tbody
+                - @notices.each do |notice|
+                  %tr
+                    %td.collapsing= link_to notice.number, notice_path(notice)
+                    %td= link_to notice.title, notice_path(notice)
+                    %td.collapsing= notice.session_start_date.strftime("%d/%m/%Y")
+                    %td.collapsing= notice.session_start_hour.strftime("%H:%M")
+                    %td.collapsing
+                      = link_to "+ Informações", notice_path(notice), target: '_blank'
+                    %td.collapsing
+                      - if ::CplConcurrence::NoticeUser.where(user_id: current_notice_user.id, notice_id: notice.id).present?
+                        %b{style: 'color: green'}Participando
+                      - else
+                        = link_to "Participar", new_user_notice_participation_path(user_id: current_notice_user, notice_id: notice), class: 'btn btn-success btn-xs', target: '_blank'

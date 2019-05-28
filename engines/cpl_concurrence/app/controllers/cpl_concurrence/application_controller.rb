@@ -6,19 +6,19 @@ module CplConcurrence
 
     layout 'application'
 
-    helper_method :current_notice_user, :authenticate_user
+    helper_method :current_notice_user, :authenticate_notice_user
 
     private
 
-    def authenticate_user
-      if current_notice_user.nil? || controler_name != "sessions"
+    def authenticate_notice_user
+      if current_notice_user.nil? && controller_name != "sessions"
         redirect_to new_session_path
       end
     end
 
 
     def current_notice_user
-      CplConcurrence::User.find_by(id: session[:user_notice_id])
+      ::CplConcurrence::User.find_by(id: session[:user_notice_id])
     end
   end
 end

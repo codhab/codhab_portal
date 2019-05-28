@@ -1,0 +1,6 @@
+= simple_form_for url_for do |f|
+  .row
+    .col-md-4
+      = f.input :cpf_cnpj, label: "Informe o CPF ou CNPJ cadastrado."
+    .col-md-6
+      = f.submit "Enviar recuperação de senha", class: 'btn btn-success btn-filter', data: { disable_with: t(:disable_with)}

@@ -45,7 +45,7 @@ gem 'i18n'
 gem 'simple_captcha2'
 gem 'one_signal'
 gem 'bcrypt'
-
+gem 'recaptcha'
 
 
  # gem 'core', path: '../mobile/components/core'

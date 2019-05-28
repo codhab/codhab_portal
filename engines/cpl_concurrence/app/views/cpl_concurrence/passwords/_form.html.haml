@@ -1,0 +1,8 @@
+.row
+  .col-md-12
+    = simple_form_for @user_password, url: password_path, method: :put, remote: true do |f|
+      = f.input :current_password, label: 'Senha atual', placeholder: "Informe a senha atual"
+      = f.input :new_password, label: 'Nova senha', placeholder: "Informe a nova senha"
+      = f.input :confirmation_password, label: 'Confirmação da senha', placeholder: "Confirme a nova senha"
+
+      = f.submit "Atualizar minha senha", class: 'btn btn-success'

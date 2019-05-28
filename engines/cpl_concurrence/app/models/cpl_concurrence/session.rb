@@ -10,6 +10,11 @@ module CplConcurrence
     def save
       return false if !valid?
 
+      log = ::CplConcurrence::NoticeUserLog.new
+      log.user_id = self.user_id
+      log.content = "Acesso realizado com uso da senha pessoal"
+      log.save
+      
       true
     end
 
@@ -18,11 +23,13 @@ module CplConcurrence
     def authenticate
       user = ::CplConcurrence::User.where('cpf = ? OR cnpj = ?', self.cpf_cnpj, self.cpf_cnpj).last rescue nil
 
-      if user.nil?
-        errors.add(:cpf_cnpj, 'CPF ou CNPJ não encontrado, senha não confere')
+      if user.nil? || user.password != self.password
+        errors.add(:cpf_cnpj, 'Dados informados não conferem')
       else
         self.user_id = user.id
       end
+      
     end
+    
   end
 end
