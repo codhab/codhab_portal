@@ -34,6 +34,19 @@
                 %tr
                   %th.collapsing.text-center 
                     %h3 
+                      %b CREDENCIAMENTO
+              %tbody  
+                %tr
+                  %td
+                    = render 'cpl_concurrence/notice_user_credentials/form'
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th.collapsing.text-center 
+                    %h3 
                       %b Data/Hora para início da sessão
               %tbody
                 %tr
@@ -41,13 +54,48 @@
                     %h4
                       %b #{@notice.session_start_date.strftime("%d/%m/%Y")} - #{@notice.session_start_hour.strftime("%H:%M")}
         .row
+          .col-md-6                          
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th.collapsing.text-center 
+                    %h3
+                      %b 
+                        ENVELOPE N° 01 
+                        %br/
+                        PROPOSTA DE PREÇOS
+                    COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
+                    %br/
+                    CONCORRÊNCIA Nº #{@notice.number}
+                    %br/
+                    = current_notice_user.name
+                    %br/
+                    = current_notice_user.cnpj.format_cnpj
+                    %br/
+                    Finaliza em #{@notice.proposal_end_date.strftime("%d/%m/%Y")} - #{@notice.proposal_end_hour.strftime("%H:%M")} 
+              %tbody
+                %tr                            
+                  %td.form-proposal
+                    = render 'cpl_concurrence/user_documents/proposal_index'
+
           .col-md-6
             %table.table.table-striped.table-bordered.table-celled
               %thead
                 %tr
                   %th.collapsing.text-center 
                     %h3
-                      %b Documentação
+                      %b 
+                        ENVELOPE N° 02 
+                        %br/ 
+                        DOCUMENTOS DE HABILITAÇÃO
+                    COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
+                    %br/
+                    CONCORRÊNCIA Nº #{@notice.number}
+                    %br/
+                    = current_notice_user.name
+                    %br/
+                    = current_notice_user.cnpj.format_cnpj
+                    %br/
                     Finaliza em #{@notice.document_end_date.strftime("%d/%m/%Y")} - #{@notice.document_end_hour.strftime("%H:%M")}
               %tbody
                 %tr
@@ -57,18 +105,7 @@
                 
 
           .col-md-2                            
-          .col-md-6                          
-            %table.table.table-striped.table-bordered.table-celled
-              %thead
-                %tr
-                  %th.collapsing.text-center 
-                    %h3
-                      %b Proposta
-                    Finaliza em #{@notice.proposal_end_date.strftime("%d/%m/%Y")} - #{@notice.proposal_end_hour.strftime("%H:%M")} 
-              %tbody
-                %tr                            
-                  %td.form-proposal
-                    = render 'cpl_concurrence/user_documents/proposal_index'
+
         .row
           .col-md-12
             %table.table.table-striped.table-celled.table-bordered
