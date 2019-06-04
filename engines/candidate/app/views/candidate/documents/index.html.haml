@@ -1,0 +1,27 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %table.table
+              %thead
+                %tr
+                  %th Edital
+                  %th Enidade
+                  %th CNPJ
+                  %th Pesidente
+                  %th CPF
+                  %th Endereços
+              %tbody
+                - if @excel.present?
+                  - @excel.each do |excel|
+                    - row = excel.checker.gsub('"', "").gsub("[","").gsub("]","").split(",")
+                    %tr
+                      %td= row[0]
+                      %td= row[1]
+                      %td.collapsing= row[2]
+                      %td= row[3]
+                      %td.collapsing= row[4]
+                      %td= row[6..row.length].split(',').join(',')
+                        

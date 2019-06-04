@@ -12,6 +12,7 @@ Candidate::Engine.routes.draw do
   get 'indication_explanation', to: 'cadastres#indication_explanation'
   
   resources :lists, path: 'listas'
+  resources :documents, path: 'validador'
 
   resources :cadastres, path: 'cadastro', only: :show
   resources :positions, path: 'posicoes' do
