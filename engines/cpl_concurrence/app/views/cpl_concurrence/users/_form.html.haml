@@ -3,9 +3,9 @@
     .col-md-6
       = f.input :name, label: "Nome completo ou Nome fantasia", placeholder: "Informe o nome"
     .col-md-3
-      = f.input :cpf, input_html: { class: 'cpf'}
+      = f.input :cnpj, label: "CNPJ", input_html: { class: 'cnpj'}
     .col-md-3
-      = f.input :cnpj, input_html: { class: 'cnpj'}
+      = f.input :modality, label: "Modalidade", as: :select, include_blank: 'Selecione...', collection: ::CplConcurrence::User.modalities.keys
   .row
     .col-md-3
       = f.input :email, label: "E-mail", placeholder: "Informe um e-mail válido"

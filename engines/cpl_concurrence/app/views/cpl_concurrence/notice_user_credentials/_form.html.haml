@@ -1,0 +1,13 @@
+= simple_form_for url_for do |f|
+  .row
+    .col-md-3
+      = f.input :crendential_type, label: "Proprietário/Sócio ou Procurador", as: :select, include_blank: 'selecione...'
+    .col-md-3
+      = f.input :name, label: "Nome completo"
+    .col-md-3
+      = f.input :cpf, label: "CPF", input_html: { class: 'cpf'}
+    .col-md-3
+      = f.input :document, as: :file, label: "Documento"
+  .row
+    .col-md-12
+      = f.submit "Salvar informações", class: 'btn btn-success'

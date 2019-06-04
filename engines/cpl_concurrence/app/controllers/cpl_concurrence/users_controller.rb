@@ -24,7 +24,7 @@ module CplConcurrence
     private
 
     def set_params
-      params.require(:user).permit(:name, :cpf, :cnpj, :email, :telephone, :email_confirmation, :password, :password_confirmation)
+      params.require(:user).permit(:name, :cpf, :cnpj, :email, :modality, :telephone, :email_confirmation, :password, :password_confirmation)
     end 
     
   end

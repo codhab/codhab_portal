@@ -4,7 +4,8 @@ module CplConcurrence
 
     attr_accessor :cpf_cnpj, :password, :user_id
 
-    validates :cpf_cnpj, :password, presence: true
+    validates :cpf_cnpj, cnpj: true, presence: true
+    validates :password, presence: true
     validate  :authenticate
     
     def save
@@ -21,7 +22,7 @@ module CplConcurrence
     private
 
     def authenticate
-      user = ::CplConcurrence::User.where('cpf = ? OR cnpj = ?', self.cpf_cnpj, self.cpf_cnpj).last rescue nil
+      user = ::CplConcurrence::User.find_by(cnpj: self.cpf_cnpj)
 
       if user.nil? || user.password != self.password
         errors.add(:cpf_cnpj, 'Dados informados não conferem')
