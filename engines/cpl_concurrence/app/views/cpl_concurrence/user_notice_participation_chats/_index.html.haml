@@ -1,10 +1,20 @@
 .modal-header
   %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
     %span{"aria-hidden" => "true"} ×
-  %h4#modal.modal-title Chat da sessão
+  %h4#modal.modal-title 
+    %b Chat da sessão
 .modal-body
   .row
     .col-md-12
-      .alert.alert-info
-        ok
-  = render 'form'
+      .text-center
+        %br/
+        %br/
+        %h3 O chat estará disponível assim que a sessão iniciar.
+        %br/
+        %br/
+        %br/
+  /.row
+  /  .col-md-12
+  /    .alert.alert-info
+  /      ok
+  /= render 'form'

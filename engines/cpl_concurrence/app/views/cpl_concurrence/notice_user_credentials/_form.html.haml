@@ -1,7 +1,7 @@
 = simple_form_for url_for do |f|
   .row
     .col-md-3
-      = f.input :crendential_type, label: "Proprietário/Sócio ou Procurador", as: :select, include_blank: 'selecione...'
+      = f.input :crendential_type, collection: CplConcurrence::NoticeUserCredential.credential_types.map { |k,v| [k.humanize, k]}, label: "Proprietário/Sócio ou Procurador", as: :select, include_blank: 'selecione...'
     .col-md-3
       = f.input :name, label: "Nome completo"
     .col-md-3
