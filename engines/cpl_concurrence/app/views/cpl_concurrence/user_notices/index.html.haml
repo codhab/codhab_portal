@@ -13,9 +13,10 @@
               %thead
                 %tr
                   %th Número
-                  %th Número
-                  %th Data
-                  %th Hora
+                  %th Edital
+                  %th.collapsing Participação até
+                  %th.collapsing Inicio da sessão
+                  %th Situação
                   %th{colspan: 2}
 
               %tbody
@@ -23,12 +24,9 @@
                   %tr
                     %td.collapsing= link_to notice.number, notice_path(notice)
                     %td= link_to notice.title, notice_path(notice)
-                    %td.collapsing= notice.session_start_date.strftime("%d/%m/%Y")
-                    %td.collapsing= notice.session_start_hour.strftime("%H:%M")
+                    %td= notice.participation_ended_at.strftime("%d/%m/%Y %H:%M")
+                    %td.collapsing= notice.session_started_at.strftime("%d/%m/%Y %H:%M")
                     %td.collapsing
-                      = link_to "+ Informações", notice_path(notice), target: '_blank'
                     %td.collapsing
-                      - if ::CplConcurrence::NoticeUser.where(user_id: current_notice_user.id, notice_id: notice.id).present?
-                        %b{style: 'color: green'}Participando
-                      - else
-                        = link_to "Participar", new_user_notice_participation_path(user_id: current_notice_user, notice_id: notice), class: 'btn btn-success btn-xs', target: '_blank'
+                      - user_notice = CplConcurrence::NoticeUser.where(notice_id: notice.id).find_by(user_id: current_notice_user.id)
+                      = link_to "Minha participação", user_notice_participation_path(current_notice_user, user_notice)

@@ -1,0 +1,129 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        = render 'layouts/cpl_concurrence/header'
+      .panel-body
+        .row
+          .col-md-12
+            = render 'layouts/cpl_concurrence/tabs'
+        .row
+          .col-md-12
+        .row
+          .col-md-12
+            .text-center
+              = image_tag 'http://www.codhab.df.gov.br/portal/images/codhab.png', width: '300'
+            = @notice.header_minute.html_safe
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 8} PROPOSTAS
+                %tr
+                  %th Nº
+                  %th CNPJ
+                  %th Fornecedor
+                  %th Porte ME/EPP
+                  %th Declaração ME/EPP
+                  %th Envelope 1
+                  %th Envelope 2
+                  %th Data/Hora
+              %tbody
+                - 10.times.each_with_index do |i|
+                  %tr
+                    %td= i + 1
+                    %td 00.000.000/0000-00
+                    %td Empresa exemplo #{i + 1}
+                    %td Sim
+                    %td Sim
+                    %td= link_to "Visualizar", "#"
+                    %td= link_to "Visualizar", "#"
+                    %td 12/06/2018 05:35
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} CLASSIFICAÇÃO
+                %tr
+                  %th #
+                  %th CNPJ
+                  %th Fornecedor
+                  %th Porte ME/EPP
+                  %th Valor
+                  %th Data/Hora
+              %tbody
+                - 10.times.each_with_index do |i|
+                  %tr
+                    %td= i + 1
+                    %td 00.000.000/0000-00
+                    %td Empresa exemplo #{i + 1}
+                    %td Sim
+                    %td 
+                    %td 12/06/2018 05:35
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} EVENTOS
+                %tr
+                  %th.collapsing Data/Hora
+                  %th Autor
+                  %th Descrição
+              %tbody
+                %tr
+                  %td.collapsing                              
+                  %td                              
+                  %td                              
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} CHAT
+                %tr
+                  %th.collapsing Data/Hora
+                  %th Autor
+                  %th Descrição
+              %tbody
+                %tr
+                  %td.collapsing                              
+                  %td                              
+                  %td                             
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} AVISOS
+              %tbody
+                %tr
+                  %th.collapsing Data/Hora
+                  %th Autor
+                  %th Descrição
+              %tbody
+                %tr
+                  %td.collapsing                              
+                  %td                              
+                  %td 
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} RECURSOS
+              %tbody
+                %tr
+                  %th.collapsing Data/Hora
+                  %th Autor
+                  %th Descrição
+              %tbody
+                %tr
+                  %td.collapsing                              
+                  %td                              
+                  %td                

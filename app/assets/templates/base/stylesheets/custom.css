@@ -731,3 +731,9 @@ ul.menu_assi{
         display: none !important;
     }
 }
+
+.th-gray {
+  background-color: #bfc0bf;
+  color: black;
+  border: 1px solid black !important;
+}

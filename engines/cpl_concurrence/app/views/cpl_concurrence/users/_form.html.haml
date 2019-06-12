@@ -4,8 +4,6 @@
       = f.input :name, label: "Nome completo ou Nome fantasia", placeholder: "Informe o nome"
     .col-md-3
       = f.input :cnpj, label: "CNPJ", input_html: { class: 'cnpj'}
-    .col-md-3
-      = f.input :modality, label: "Modalidade", as: :select, include_blank: 'Selecione...', collection: ::CplConcurrence::User.modalities.keys
   .row
     .col-md-3
       = f.input :email, label: "E-mail", placeholder: "Informe um e-mail válido"
@@ -22,4 +20,4 @@
   .row 
     .col-md-6
       = f.submit 'Realizar cadastro', class: 'btn btn-success', data: { disable_with: t(:disable_with)}
-      = link_to 'Cancelar', cpl_concurrence.new_session_path, class: 'btn btn-warning', data: { disable_with: t(:disable_with)}
+      = link_to 'Ir para tela de acesso', cpl_concurrence.new_session_path, class: 'btn btn-warning', data: { disable_with: t(:disable_with)}
