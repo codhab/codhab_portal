@@ -58,11 +58,13 @@
               %tbody
                 - 10.times.each_with_index do |i|
                   %tr
-                    %td= i + 1
+                    %td
+                      %i Ainda não classificado
                     %td 00.000.000/0000-00
                     %td Empresa exemplo #{i + 1}
                     %td Sim
-                    %td 
+                    %td
+                      %i Ainda não registrado
                     %td 12/06/2018 05:35
 
         .row
@@ -77,9 +79,21 @@
                   %th Descrição
               %tbody
                 %tr
-                  %td.collapsing                              
-                  %td                              
-                  %td                              
+                  %td.collapsing 12/06/2019 - 08:02        
+                  %td.collapsing Nome usuário        
+                  %td Abertura de sessão realizada através de senha pessoal     
+                %tr
+                  %td.collapsing 12/06/2019 - 08:03       
+                  %td.collapsing Nome usuário        
+                  %td Visualização de envelope 1 da participação vínculada ao CPNJ 00.000.000/0000-00     
+                %tr
+                  %td.collapsing 12/06/2019 - 08:04        
+                  %td.collapsing Nome usuário        
+                  %td Visualização de envelope 2 da participação vínculada ao CPNJ 00.000.000/0000-00     
+                %tr
+                  %td.collapsing 12/06/2019 - 08:05        
+                  %td.collapsing Nome usuário        
+                  %td Inserção de valor de proposta enviado pelo CNPJ 00.000.000/0000-00  
         .row
           .col-md-12
             %table.table.table-striped.table-celled
@@ -91,10 +105,12 @@
                   %th Autor
                   %th Descrição
               %tbody
-                %tr
-                  %td.collapsing                              
-                  %td                              
-                  %td                             
+                - 2.times.each_with_index do |i|
+                  %tr
+                    %td.collapsing 12/06/2019 08:0#{i}                              
+                    %td.collapsing Usuário extranet                              
+                    %td Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ipsum neque. Suspendisse a mi eget dui ultricies vulputate. Nam efficitur elit non scelerisque varius. Sed eu commodo leo. Maecenas at enim ante. Vivamus nulla erat, feugiat a lacinia quis, pulvinar in turpis. Nulla ornare aliquet fermentum. Praesent faucibus fringilla nisl, vitae dignissim sapien dictum id. Sed aliquam nisi suscipit leo pulvinar bibendum. Nullam auctor magna est. Proin dapibus dolor id risus pulvinar, sed tincidunt dui blandit.                              
+                            
         .row
           .col-md-12
             %table.table.table-striped.table-celled
@@ -108,9 +124,8 @@
                   %th Descrição
               %tbody
                 %tr
-                  %td.collapsing                              
-                  %td                              
-                  %td 
+                  %td{colspan: 3}
+                    Nenhum aviso registrado.
         .row
           .col-md-12
             %table.table.table-striped.table-celled
@@ -124,6 +139,5 @@
                   %th Descrição
               %tbody
                 %tr
-                  %td.collapsing                              
-                  %td                              
-                  %td                
+                  %td{colspan: 3}
+                    Nenhum recurso registrado.          

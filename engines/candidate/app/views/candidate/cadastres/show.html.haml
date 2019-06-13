@@ -149,7 +149,7 @@
                 %tr
                   %th{colspan: 2} Empreendimento
                   %th Data de encaminhamento
-                  %th Inativação
+                  %th Devolução
               %tbody
                 - if @cadastre.enterprise_cadastres.present?
                   - @cadastre.enterprise_cadastres.where(indication_situation_id: [1,4]).order('created_at desc').each do |enterprise_cadastre|
@@ -164,7 +164,7 @@
                       - else
                         %td= enterprise_cadastre.created_at.strftime("%d/%m/%Y") rescue I18n.t(:no_information)
 
-                      %td= enterprise_cadastre.inactive.present? ? "Indicação inativa" : "Indicação ativa"
+                      %td= enterprise_cadastre.inactive.present? ? "Indicação devolvida" : "Indicação ativa"
                 - else
                   %tr
                     %td{colspan: 4}
@@ -173,7 +173,7 @@
                   %tfoot
                     %tr
                       %td
-                        %b Quantidade de recusas:
+                        %b Quantidade de recusas consideradas:
                         = @cadastre.deadline_indication[:count]
                       %td
                       %td
