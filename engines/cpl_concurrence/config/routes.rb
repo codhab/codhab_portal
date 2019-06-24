@@ -11,8 +11,11 @@ CplConcurrence::Engine.routes.draw do
 
     resources :notices, controller: :user_notices, path: 'editais'
     resources :notice_participations, controller: :user_notice_participations, path: 'edital-participacoes' do
-      get 'general'
+      get 'session_participation', path: 'sessao'
 
+      get 'proposal'
+      get 'document'
+      
       resources :documents, controller: :user_notice_documents
       resources :chats, controller: :user_notice_participation_chats
     end

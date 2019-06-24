@@ -31,16 +31,16 @@
                   %th Envelope 2
                   %th Data/Hora
               %tbody
-                - 10.times.each_with_index do |i|
+                - @notice.notice_users.order(created_at: :asc).each_with_index do |notice_user, index|
                   %tr
-                    %td= i + 1
-                    %td 00.000.000/0000-00
-                    %td Empresa exemplo #{i + 1}
-                    %td Sim
-                    %td Sim
-                    %td= link_to "Visualizar", "#"
-                    %td= link_to "Visualizar", "#"
-                    %td 12/06/2018 05:35
+                    %td= index + 1
+                    %td= notice_user.user.cnpj rescue nil
+                    %td= notice_user.user.name rescue nil
+                    %td
+                    %td
+                    %td= link_to "Visualizar", user_notice_participation_document_path(@notice, notice_user)
+                    %td= link_to "Visualizar", user_notice_participation_proposal_path(@notice  )
+                    %td= notice_user.created_at.strftime("%d/%m/%Y %H:%M")
 
         .row
           .col-md-12
@@ -56,17 +56,22 @@
                   %th Valor
                   %th Data/Hora
               %tbody
-                - 10.times.each_with_index do |i|
+                - @notice.notice_users.order(created_at: :asc).each_with_index do |notice_user, index|
                   %tr
+                    %td 
+                      - if notice_user.value.nil?
+                        %i Ainda não classificado 
+                      - else
+                        = index + 1 
+                    %td= notice_user.user.cnpj rescue nil
+                    %td= notice_user.user.name rescue nil
                     %td
-                      %i Ainda não classificado
-                    %td 00.000.000/0000-00
-                    %td Empresa exemplo #{i + 1}
-                    %td Sim
                     %td
-                      %i Ainda não registrado
-                    %td 12/06/2018 05:35
-
+                      - if notice_user.value.nil?
+                        %i Ainda não informado
+                      - else
+                        = number_to_currency notice_user.value
+                    %td= notice_user.created_at.strftime("%d/%m/%Y %H:%M")
         .row
           .col-md-12
             %table.table.table-striped.table-celled
@@ -75,25 +80,17 @@
                   %th.th-gray.text-center{colspan: 6} EVENTOS
                 %tr
                   %th.collapsing Data/Hora
-                  %th Autor
                   %th Descrição
+                  %th Autor
+                  %th.collapsing Participante (CNPJ)
               %tbody
-                %tr
-                  %td.collapsing 12/06/2019 - 08:02        
-                  %td.collapsing Nome usuário        
-                  %td Abertura de sessão realizada através de senha pessoal     
-                %tr
-                  %td.collapsing 12/06/2019 - 08:03       
-                  %td.collapsing Nome usuário        
-                  %td Visualização de envelope 1 da participação vínculada ao CPNJ 00.000.000/0000-00     
-                %tr
-                  %td.collapsing 12/06/2019 - 08:04        
-                  %td.collapsing Nome usuário        
-                  %td Visualização de envelope 2 da participação vínculada ao CPNJ 00.000.000/0000-00     
-                %tr
-                  %td.collapsing 12/06/2019 - 08:05        
-                  %td.collapsing Nome usuário        
-                  %td Inserção de valor de proposta enviado pelo CNPJ 00.000.000/0000-00  
+                - @notice.notice_events.order(created_at: :desc).each do |notice_event|
+                  %tr
+                    %td.collapsing= notice_event.created_at.strftime("%d/%m/%Y %H:%M")       
+                    %td.collapsing= notice_event.description.upcase       
+                    %td= notice_event.staff.name.upcase rescue 'sem informação'  
+                    %td.collapsing= notice_event.notice_user.user.cnpj rescue 'sem informação'  
+
         .row
           .col-md-12
             %table.table.table-striped.table-celled
@@ -105,12 +102,11 @@
                   %th Autor
                   %th Descrição
               %tbody
-                - 2.times.each_with_index do |i|
+                - @notice.notice_chats.order(created_at: :asc).each do |notice_chat|
                   %tr
-                    %td.collapsing 12/06/2019 08:0#{i}                              
-                    %td.collapsing Usuário extranet                              
-                    %td Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ipsum neque. Suspendisse a mi eget dui ultricies vulputate. Nam efficitur elit non scelerisque varius. Sed eu commodo leo. Maecenas at enim ante. Vivamus nulla erat, feugiat a lacinia quis, pulvinar in turpis. Nulla ornare aliquet fermentum. Praesent faucibus fringilla nisl, vitae dignissim sapien dictum id. Sed aliquam nisi suscipit leo pulvinar bibendum. Nullam auctor magna est. Proin dapibus dolor id risus pulvinar, sed tincidunt dui blandit.                              
-                            
+                    %td.collapsing= notice_chat.created_at.strftime("%d/%m/%Y %H:%M")                            
+                    %td.collapsing= notice_chat.staff.name.upcase rescue "Sem informação"                              
+                    %td= notice_chat.content     
         .row
           .col-md-12
             %table.table.table-striped.table-celled
@@ -141,3 +137,9 @@
                 %tr
                   %td{colspan: 3}
                     Nenhum recurso registrado.          
+
+
+:javascript
+  setTimeout(function() {
+    location = ''
+  }, 20000);
