@@ -1,0 +1,145 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        = render 'layouts/cpl_concurrence/header'
+      .panel-body
+        .row
+          .col-md-12
+            = render 'layouts/cpl_concurrence/tabs'
+        .row
+          .col-md-12
+        .row
+          .col-md-12
+            .text-center
+              = image_tag 'http://www.codhab.df.gov.br/portal/images/codhab.png', width: '300'
+            = @notice.header_minute.html_safe
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 8} PROPOSTAS
+                %tr
+                  %th Nº
+                  %th CNPJ
+                  %th Fornecedor
+                  %th Porte ME/EPP
+                  %th Declaração ME/EPP
+                  %th Envelope 1
+                  %th Envelope 2
+                  %th Data/Hora
+              %tbody
+                - @notice.notice_users.order(created_at: :asc).each_with_index do |notice_user, index|
+                  %tr
+                    %td= index + 1
+                    %td= notice_user.user.cnpj rescue nil
+                    %td= notice_user.user.name rescue nil
+                    %td
+                    %td
+                    %td= link_to "Visualizar", user_notice_participation_document_path(@notice, notice_user)
+                    %td= link_to "Visualizar", user_notice_participation_proposal_path(@notice  )
+                    %td= notice_user.created_at.strftime("%d/%m/%Y %H:%M")
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} CLASSIFICAÇÃO
+                %tr
+                  %th #
+                  %th CNPJ
+                  %th Fornecedor
+                  %th Porte ME/EPP
+                  %th Valor
+                  %th Data/Hora
+              %tbody
+                - @notice.notice_users.order(created_at: :asc).each_with_index do |notice_user, index|
+                  %tr
+                    %td 
+                      - if notice_user.value.nil?
+                        %i Ainda não classificado 
+                      - else
+                        = index + 1 
+                    %td= notice_user.user.cnpj rescue nil
+                    %td= notice_user.user.name rescue nil
+                    %td
+                    %td
+                      - if notice_user.value.nil?
+                        %i Ainda não informado
+                      - else
+                        = number_to_currency notice_user.value
+                    %td= notice_user.created_at.strftime("%d/%m/%Y %H:%M")
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} EVENTOS
+                %tr
+                  %th.collapsing Data/Hora
+                  %th Descrição
+                  %th Autor
+                  %th.collapsing Participante (CNPJ)
+              %tbody
+                - @notice.notice_events.order(created_at: :desc).each do |notice_event|
+                  %tr
+                    %td.collapsing= notice_event.created_at.strftime("%d/%m/%Y %H:%M")       
+                    %td.collapsing= notice_event.description.upcase       
+                    %td= notice_event.staff.name.upcase rescue 'sem informação'  
+                    %td.collapsing= notice_event.notice_user.user.cnpj rescue 'sem informação'  
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} CHAT
+                %tr
+                  %th.collapsing Data/Hora
+                  %th Autor
+                  %th Descrição
+              %tbody
+                - @notice.notice_chats.order(created_at: :asc).each do |notice_chat|
+                  %tr
+                    %td.collapsing= notice_chat.created_at.strftime("%d/%m/%Y %H:%M")                            
+                    %td.collapsing= notice_chat.staff.name.upcase rescue "Sem informação"                              
+                    %td= notice_chat.content     
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} AVISOS
+              %tbody
+                %tr
+                  %th.collapsing Data/Hora
+                  %th Autor
+                  %th Descrição
+              %tbody
+                %tr
+                  %td{colspan: 3}
+                    Nenhum aviso registrado.
+        .row
+          .col-md-12
+            %table.table.table-striped.table-celled
+              %thead
+                %tr
+                  %th.th-gray.text-center{colspan: 6} RECURSOS
+              %tbody
+                %tr
+                  %th.collapsing Data/Hora
+                  %th Autor
+                  %th Descrição
+              %tbody
+                %tr
+                  %td{colspan: 3}
+                    Nenhum recurso registrado.          
+
+
+:javascript
+  setTimeout(function() {
+    location = ''
+  }, 20000);

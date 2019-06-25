@@ -1,9 +1,9 @@
-- if !@notice.proposal_open?
+- if !@notice.participation_open?
   = simple_form_for @participation.user_documents.where(proposal: true).new, url: user_notice_participation_documents_path(current_notice_user, @participation) do |f|
     .row
       .col-md-12
         = f.input :document, label: "Arquivo", as: :file
-        = f.hint "São permitidos arquivos (.xlsx, .xls, .doc, .docx, .zip, .7z, .rar, .jpg, .png, .pdf) de no máximo 25 Mb"
+        = f.hint "São permitidos arquivos (.xlsx, .pdf) de no máximo 25 Mb"
         = f.input :proposal, as: :hidden, input_html: { value: true}
     %br/
     .row
@@ -20,7 +20,7 @@
     %tr
       %th.collapsing Protocolo
       %th Arquivo
-      - if !@notice.proposal_open?
+      - if !@notice.participation_open?
         %th
   %tbody               
     - if @participation.user_documents.present?
@@ -32,7 +32,7 @@
               = link_to "Visualizar arquivo", user_notice_participation_documents_path(current_notice_user, @participation, id: doc.document.identifier), target: '_blank' if doc.document?
             - else
               %i Arquivo removido
-          - if !@notice.proposal_open?
+          - if !@notice.participation_open?
             %td.collapsing
               - if !doc.deleted
                 = link_to "Remover", user_notice_participation_document_path(current_notice_user, @participation, doc.id), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "Tem certeza que deseja remover o arquivo?"}

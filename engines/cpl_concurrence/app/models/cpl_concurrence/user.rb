@@ -4,13 +4,6 @@ module CplConcurrence
 
     attr_accessor :email_confirmation, :password_confirmation
 
-    enum modality: [
-      'LTDA',
-      'ME EPP',
-      'EIRELI',
-      'S.A'
-    ]
-
     validates :name, presence: true
     validates :cnpj, cnpj: true, presence: true, uniqueness: true
     validates :email, :email_confirmation, presence: true, email: true

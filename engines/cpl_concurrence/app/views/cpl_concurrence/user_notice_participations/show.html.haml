@@ -52,7 +52,7 @@
                 %tr
                   %td.collapsing.text-center
                     %h4
-                      %b #{@notice.session_start_date.strftime("%d/%m/%Y")} - #{@notice.session_start_hour.strftime("%H:%M")}
+                      %b= @notice.session_started_at.strftime("%d/%m/%Y")
         .row
           .col-md-6                          
             %table.table.table-striped.table-bordered.table-celled
@@ -72,7 +72,7 @@
                     %br/
                     = current_notice_user.cnpj.format_cnpj
                     %br/
-                    Finaliza em #{@notice.proposal_end_date.strftime("%d/%m/%Y")} - #{@notice.proposal_end_hour.strftime("%H:%M")} 
+                    Finaliza em #{@notice.participation_ended_at.strftime("%d/%m/%Y")} 
               %tbody
                 %tr                            
                   %td.form-proposal
@@ -96,7 +96,7 @@
                     %br/
                     = current_notice_user.cnpj.format_cnpj
                     %br/
-                    Finaliza em #{@notice.document_end_date.strftime("%d/%m/%Y")} - #{@notice.document_end_hour.strftime("%H:%M")}
+                    Finaliza em #{@notice.participation_ended_at.strftime("%d/%m/%Y")}
               %tbody
                 %tr
                   %td.form-proposal

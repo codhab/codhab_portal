@@ -14,7 +14,6 @@
               %thead
                 %tr
                   %th Nome completo
-                  %th CPF
                   %th CNPJ
                   %th E-mail
                   %th Telefone
@@ -22,7 +21,6 @@
               %tbody
                 %tr
                   %td= @user.name.to_s.mb_chars.upcase
-                  %td.collapsing= @user.cpf 
                   %td.collapsing= @user.cnpj.blank? ? 'Sem informação' : @user.cnpj
                   %td.collapsing= @user.email.to_s.mb_chars.upcase
                   %td.collapsing= @user.telephone

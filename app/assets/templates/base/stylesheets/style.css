@@ -9448,3 +9448,10 @@ a {
     filter: Alpha(Opacity=30);
     border-radius: 8px
 }
+
+
+.th-gray {
+    background-color: #bfc0bf;
+    color: black;
+    border: 1px solid black !important;
+}

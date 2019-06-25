@@ -42,7 +42,7 @@
                   - if @list.slug == 'habilitados-aluguel-legal'
                     %th Idade
                   %th Indicação
-                  %th Recusas
+                  %th Recusas consideradas
                   %th Pendências
               %tbody
                 - if @list.slug != 'habilitados-aluguel-legal'
@@ -91,8 +91,9 @@
                             = candidate.cadastre.current_indication
                     %td{style: 'text-align: center'}
                       .label.label-default
-                        - if candidate.cadastre.count_denial.present?
-                          = candidate.cadastre.count_denial rescue nil
+                        - cadastre_presenter = Core::Candidate::CadastrePresenter.new(candidate.cadastre)
+                        - if cadastre_presenter.deadline_indication.present?
+                          = cadastre_presenter.deadline_indication[:count] rescue nil
                         - else
                           0
                     %td
