@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get '/e', to: 'main/home#e' # => entidades
   get '/c', to: 'main/home#c' # => Certificados
 
+  get  '/boletos/retorno-externo', to: 'external_invoices#external_return'
+  post '/boletos/remessa-externa', to: 'external_invoices#external_remmitance'
+
   get  'recadastramento_portal', to: 'custom_pages#index',  as: :index_recadastre
   get  'recadastramento', to: 'custom_pages#new',     as: :new_recadastre
   post 'recadastramento', to: 'custom_pages#create',  as: :post_recadastre
