@@ -20,7 +20,7 @@ class ExternalInvoicesController < ApplicationController
   end
 
   def external_file
-    send_file "#{Rails.root}/public/brb_file/RECEPÇÃO/#{params[:file]}.txt"
+    send_file "#{Rails.root}/brb_file/RECEPÇÃO/#{params[:file]}.txt"
   rescue 
     nil
   end

@@ -1,7 +1,7 @@
 class BrbFile
 
   def self.file_return
-    dir = Dir.entries("#{Rails.root}/public/brb_file/RECEPÇÃO")
+    dir = Dir.entries("#{Rails.root}/brb_file/RECEPÇÃO")
     
     json = []
 
