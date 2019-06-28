@@ -3,9 +3,8 @@ class ExternalInvoicesController < ApplicationController
 
   def external_return
     request.headers["Content-Type"] = 'json/'
-
-    json_data = [{ 'remessa': '2019-01-01', arquivo: 'http://www.codhab.df.gov.br/uploads/archive/files/5f3c04ee96f7401a4e89c7914017d100.png'}]
-
+    
+    json_data = BrbFile.file_return
     render json: json_data, status: 200
   end
 
@@ -18,6 +17,12 @@ class ExternalInvoicesController < ApplicationController
     end
 
     render json: json_data, status: 200
+  end
+
+  def external_file
+    send_file "#{Rails.root}/public/brb_file/RECEPÇÃO/#{params[:file]}.txt"
+  rescue 
+    nil
   end
 
 end
