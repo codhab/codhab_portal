@@ -5,7 +5,7 @@ class BrbFile
     
     json = []
 
-    dir.each_with_index do |file, index|
+    dir.sort.each_with_index do |file, index|
       next if index < 2
 
       json << {
