@@ -1,0 +1,11 @@
+
+- if current_user.nil?
+  .row
+    .col
+      = link_to "Acessar meu cadastro", cpl_competition.new_session_path, class: 'btn btn-primary'
+      = link_to "Realizar meu cadastro", cpl_competition.new_external_user_path, class: 'btn btn-success'
+- else
+  - if current_user.administrator? 
+    = render 'cpl_competition/competitions/header_internal'
+  - else
+    = render 'cpl_competition/competitions/header_external'

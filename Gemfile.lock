@@ -58,6 +58,8 @@ PATH
       rails (~> 5.0.2)
     cpl (0.1.0)
       rails (~> 5.0.2)
+    cpl_competition (0.1.0)
+      rails (~> 5.0.2)
     cpl_concurrence (0.1.0)
       rails (~> 5.0.2)
     document (0.1.0)
@@ -439,6 +441,7 @@ DEPENDENCIES
   concourse!
   core!
   cpl!
+  cpl_competition!
   cpl_concurrence!
   document!
   email_validator

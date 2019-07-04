@@ -1,0 +1,21 @@
+
+.row 
+  .col-md-12
+    %h4 
+      %b Olá, 
+      #{current_user.name}
+.mt-4
+.row
+  .col-md-12
+    %ul.nav.nav-tabs
+      %li.nav-item{class: controller_name == "competitions" ? "active" : nil}
+        %a.nav-link{class: ((controller_name == "competitions") ? "active" : nil), href: cpl_competition.root_path(current_user) }
+          Editais
+      %li.nav-item
+        %a.nav-link{class: ((controller_name == "external_users") ? "active" : nil), href: cpl_competition.edit_external_user_path(current_user) }
+          Meus dados
+      %li.nav-item
+        %a.nav-link{class: ((controller_name == "user_logs") ? "active" : nil), href: cpl_competition.user_logs_path }
+          Histórico de acesso   
+      %li.nav-item
+        = link_to "Finalizar sessão", cpl_competition.session_path(current_user), method: :delete, class: 'nav-link'

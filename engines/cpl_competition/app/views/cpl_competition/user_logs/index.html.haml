@@ -1,0 +1,14 @@
+.mt-4
+.row
+  .col-md-12
+    %table.table.table-striped.table-celled.table-bordered
+      %thead
+        %tr
+          %th Data/Hora
+          %th Descrição
+      %tbody
+        - if @logs.present?
+          - @logs.each do |log|
+            %tr
+              %td.collapsing= log.created_at.strftime("%d/%m/%Y %H:%M")
+              %td.collapsing= log.content

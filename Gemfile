@@ -102,4 +102,5 @@ path 'engines' do
   gem 'certificate'
   gem 'cpl'
   gem 'cpl_concurrence'
+  gem 'cpl_competition'
 end
