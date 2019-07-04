@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get  '/boletos/retorno-externo', to: 'external_invoices#external_return'
   post '/boletos/remessa-externa', to: 'external_invoices#external_remmitance'
+  get  '/boletos/arquivo/:file', to: 'external_invoices#external_file'
 
   get  'recadastramento_portal', to: 'custom_pages#index',  as: :index_recadastre
   get  'recadastramento', to: 'custom_pages#new',     as: :new_recadastre

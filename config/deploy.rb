@@ -26,10 +26,8 @@ end
 set  :repository, 'https://github.com/codhab/codhab_portal.git'
 set  :branch, ENV["BRANCH"] ||= 'master'
 
-set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public')
+set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public', 'brb_file')
 set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml', 'config/unicorn.rb', 'config/env.yml')
-
-
 
 
 task :setup do
