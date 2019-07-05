@@ -3,6 +3,8 @@ require_dependency 'cpl_competition/application_controller'
 module CplCompetition
   class SessionsController < ApplicationController
 
+    before_action :authenticate!, except: :destroy 
+    
     def index
     end 
   

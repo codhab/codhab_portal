@@ -3,6 +3,7 @@ require_dependency 'cpl_competition/application_controller'
 module CplCompetition
   class ExternalUsersController < ApplicationController
 
+
     def new
       @user = CplCompetition::ExternalUser.new
     end 
@@ -16,21 +17,6 @@ module CplCompetition
         render action: :new 
       end
     end 
-
-    def edit
-      @user = CplCompetition::ExternalUser.find_by(id: current_user)
-    end 
-    
-    def update
-      @user = CplCompetition::ExternalUser.find_by(id: current_user)
-      
-      if @user.update(set_update_params)
-
-      else
-        render action: :edit
-      end
-    end 
-
 
     private
 

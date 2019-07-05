@@ -5,6 +5,10 @@ CplCompetition::Engine.routes.draw do
   resources :internal_users
   resources :user_logs
   resources :sessions
-  resources :competitions
+  
+  resources :competitions do
+    resources :users, controller: :competition_users
+  end
+
   resources :users, only: [:edit, :update]
 end

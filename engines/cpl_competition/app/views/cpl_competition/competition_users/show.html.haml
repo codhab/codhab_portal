@@ -1,0 +1,151 @@
+.row
+  .col-md-12
+    %h4
+      %b= @competition.title
+    = link_to "Retornar para editais", cpl_competition.competitions_path, data: { disable_with: 'aguarde...'}
+%hr/
+.row
+  .col-md-12
+    .card
+      .card-body
+        = @competition.document_introduce.html_safe
+.mt-4
+.row
+  .col-md-12
+    .card
+      .card-body
+        .row
+          .col-md-12
+            %h5
+              %b Credenciamento
+        .row
+          .col-md-12              
+            .card
+              .card-body
+                = simple_form_for url_for do |f|
+                  .row 
+                    .col-md-5
+                      = f.input :name
+                    .col-md-3
+                      = f.input :cpf
+                    .col-md-2
+                      = f.input :document
+                    .col-md-2
+                      = f.input :modality
+                    .col-md-2
+                      = f.submit "Enviar arquivo", class: 'btn btn-success btn-sm', style: 'margin-top: 30px'
+        .mt-4
+        .row
+          .col-md-12  
+            %table.table.table-striped.table-celled.table-bordered
+              %thead
+                %tr
+                  %td Documento
+                  %td Enviado em
+                  %td Arquivo
+                  %td
+              %tbody
+                %tr
+                  %td
+                  %td
+                  %td
+                  %td          
+
+.mt-4
+.row
+  .col-md-12
+    .card
+      .card-body
+        .row
+          .col-md-12
+            %h5
+              %b Evelope 1
+        .row
+          .col-md-12              
+            .card
+              .card-body
+                = simple_form_for url_for do |f|
+                  .row 
+                    .col-md-5
+                      = f.input :document_type_id, as: :select, collection: {} , include_blank: "selecione o documento..."
+                    .col-md-3
+                      = f.input :document, as: :file
+                    .col-md-2
+                      = f.submit "Enviar arquivo", class: 'btn btn-success btn-sm', style: 'margin-top: 30px'
+        .mt-4
+        .row
+          .col-md-12  
+            %table.table.table-striped.table-celled.table-bordered
+              %thead
+                %tr
+                  %td Documento
+                  %td Enviado em
+                  %td Arquivo
+                  %td
+              %tbody
+                %tr
+                  %td
+                  %td
+                  %td
+                  %td
+
+.mt-4
+.row
+  .col-md-12
+    .card
+      .card-body
+        .row
+          .col-md-12
+            %h5
+              %b Evelope 2
+        .row
+          .col-md-12              
+            .card
+              .card-body
+                = simple_form_for url_for do |f|
+                  .row 
+                    .col-md-3
+                      = f.input :document, as: :file
+                    .col-md-2
+                      = f.submit "Enviar arquivo", class: 'btn btn-success btn-sm', style: 'margin-top: 30px'
+        .mt-4
+        .row
+          .col-md-12  
+            %table.table.table-striped.table-celled.table-bordered
+              %thead
+                %tr
+                  %td Documento
+                  %td Enviado em
+                  %td Arquivo
+                  %td
+              %tbody
+                %tr
+                  %td
+                  %td
+                  %td
+                  %td
+
+.mt-4
+.row
+  .col-md-12
+    .card
+      .card-body
+        %h5
+          %b Histórico de participação
+
+        .mt-4
+        .row
+          .col-md-12  
+            %table.table.table-striped.table-celled.table-bordered
+              %thead
+                %tr
+                  %td Documento
+                  %td Enviado em
+                  %td Arquivo
+                  %td
+              %tbody
+                %tr
+                  %td
+                  %td
+                  %td
+                  %td    

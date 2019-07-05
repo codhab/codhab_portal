@@ -7,3 +7,7 @@
 table tr td {
   vertical-align: middle !important;
 }
+
+.text-center {
+  text-align: center;
+}

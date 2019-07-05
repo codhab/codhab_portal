@@ -1,0 +1,30 @@
+.mt-4
+.row
+  .col-md-12
+    %h5 
+      %b Listagem de usuários (Internos)
+
+.mt-2
+.row
+  .col-md-12    
+    .mt-2
+    %table.table.table-striped.table-bordered.table-celled
+      %thead
+        %tr
+          %th Nome
+          %th CPF
+          %th E-mail
+          %th Interno
+          %th.collapsing Somente visualizar
+          %th
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.name
+            %td.collapsing= user.cpf
+            %td.collapsing= user.email
+            %td= user.administrator ? "Sim" : "Não"
+            %td= user.only_view ? "Sim" : "Não"
+            %td.collapsing
+              = link_to "Editar", "#", class: 'btn btn-primary btn-sm'
+              = link_to "Remover", "#", class: 'btn btn-danger btn-sm'

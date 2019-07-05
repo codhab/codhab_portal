@@ -7,7 +7,8 @@
 .mt-2
 .row
   .col-md-12    
-    = link_to "+ Adicionar novo edital", new_competition_path
+    - if current_user.administrator?
+      = link_to "+ Adicionar novo edital", new_competition_path, class:'btn btn-primary btn-sm'
     .mt-2
     %table.table.table-striped.table-bordered.table-celled
       %thead
@@ -25,8 +26,10 @@
                 = link_to "Editar", cpl_competition.edit_competition_path(comp), class: 'btn btn-primary btn-sm'
               = link_to "Detalhar", cpl_competition.competition_path(comp), class: 'btn btn-secondary btn-sm'
               - if !current_user.administrator?
-                = link_to "Participar", cpl_competition.edit_competition_path(comp), class: 'btn btn-success btn-sm'
-                = link_to "Minha participação", cpl_competition.edit_competition_path(comp), class: 'btn btn-success btn-sm'
+                - if current_user.competition_users.where(competition_id: comp).present?
+                  = link_to "Minha participação", cpl_competition.competition_user_path(comp, current_user), class: 'btn btn-success btn-sm'
+                - else
+                  = link_to "Participar", cpl_competition.new_competition_user_path(comp), class: 'btn btn-success btn-sm', data: { confirm: "Tem certeza que deseja participar do edital?"}
               - if comp.session_opened?
                 = link_to "Visualizar ata", cpl_competition.edit_competition_path(comp), class: 'btn btn-success btn-sm'
               

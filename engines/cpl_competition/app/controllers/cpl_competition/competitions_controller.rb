@@ -2,6 +2,8 @@ require_dependency 'cpl_competition/application_controller'
 
 module CplCompetition
   class CompetitionsController < ApplicationController
+
+    before_action :authenticate!
     before_action :set_competition, only: [:edit, :update, :show]
 
     def index

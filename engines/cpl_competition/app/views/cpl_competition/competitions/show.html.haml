@@ -13,25 +13,27 @@
       %tbody
         %tr
           %td= @competition.content.html_safe
-    %table.table.table-celled.table-bordered
-      %thead
-        %tr 
-          %th{colspan: 4} Histórico de atividades
-        %tr 
-          %th.collapsing Data/Hora
-          %th.collapsing Usuário
-          %th Descrição
-          %th.collapsing Detalhe
-      %tbody
-        - if @competition.competition_events.present?
-          - @competition.competition_events.order(created_at: :desc).each do |event|
+
+    - if current_user.administrator?
+      %table.table.table-celled.table-bordered
+        %thead
+          %tr 
+            %th{colspan: 4} Histórico de atividades
+          %tr 
+            %th.collapsing Data/Hora
+            %th.collapsing Usuário
+            %th Descrição
+            %th.collapsing Detalhe
+        %tbody
+          - if @competition.competition_events.present?
+            - @competition.competition_events.order(created_at: :desc).each do |event|
+              %tr
+                %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
+                %td.collapsing= event.user.name rescue "Sem informação"
+                %td= event.description
+                %td.collapsing
+                  = link_to "Passe o mouse", "javascript:void(0)", title: event.content
+          - else
             %tr
-              %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
-              %td.collapsing= event.user.name rescue "Sem informação"
-              %td= event.description
-              %td.collapsing
-                = link_to "Passe o mouse", "javascript:void(0)", title: event.content
-        - else
-          %tr
-            %td{colspan: 4}
-              %i Nenhum evento registrado
+              %td{colspan: 4}
+                %i Nenhum evento registrado

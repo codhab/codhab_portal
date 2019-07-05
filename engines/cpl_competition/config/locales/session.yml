@@ -1,0 +1,10 @@
+pt-BR:
+  activemodel:
+    models: 
+      'cpl_competition/session': 'Sessão'
+    attributes:
+      'cpl_competition/session':
+          cpf: "CPF"
+          cnpj: "CNPJ"
+          password: "Senha"
+          session_type: "Tipo de acesso"
