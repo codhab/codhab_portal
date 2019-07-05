@@ -5,7 +5,30 @@
       = link_to "Acessar meu cadastro", cpl_competition.new_session_path, class: 'btn btn-primary'
       = link_to "Realizar meu cadastro", cpl_competition.new_external_user_path, class: 'btn btn-success'
 - else
-  - if current_user.administrator? 
-    = render 'cpl_competition/competitions/header_internal'
-  - else
-    = render 'cpl_competition/competitions/header_external'
+  .row 
+    .col-md-12
+      %h4 
+        %b Olá, 
+        #{current_user.name}
+  .mt-4
+  .row
+    .col-md-12
+      %ul.nav.nav-tabs
+        %li.nav-item{class: controller_name == "competitions" ? "active" : nil}
+          %a.nav-link{class: ((controller_name == "competitions") ? "active" : nil), href: cpl_competition.root_path(current_user) }
+            Editais
+        %li.nav-item
+          %a.nav-link{class: ((controller_name == "users") ? "active" : nil), href: cpl_competition.edit_user_path(current_user) }
+            Meus dados
+        %li.nav-item
+          %a.nav-link{class: ((controller_name == "user_logs") ? "active" : nil), href: cpl_competition.user_logs_path }
+            Histórico de acesso 
+            
+        - if current_user.administrator? 
+          %li.nav-item
+            %a.nav-link{class: ((controller_name == "internal_users") ? "active" : nil), href: cpl_competition.internal_users_path }
+              Usuários (CODHAB)            
+        %li.nav-item
+          = link_to "Finalizar sessão", cpl_competition.session_path(current_user), method: :delete, class: 'nav-link'
+
+.mt-4

@@ -8,9 +8,9 @@
   .row
     .col-md-3
       = f.input :session_type, as: :select, include_blank: false, collection: CplCompetition::Session.session_types, input_html: { id: 'session_type'}
-    .col-md-3#cnpj{style: f.object.is_internal? ? 'display: none' : nil}
+    .col-md-3#cnpj{style: (f.object.is_internal? ) ? 'display: none' : nil}
       = f.input :cnpj, input_html: { class: 'cnpj'}
-    .col-md-3#cpf{style: f.object.is_external? ? 'display: none' : nil}
+    .col-md-3#cpf{style: (f.object.is_external? || f.object.session_type.nil?) ? 'display: none' : nil}
       = f.input :cpf, input_html: { class: 'cpf'}
     .col-md-3
       = f.input :password

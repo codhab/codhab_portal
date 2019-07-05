@@ -4,12 +4,30 @@
     %h5 
       %b Listagem de editais
 
+.mt-2
+.row
+  .col-md-12    
+    = link_to "+ Adicionar novo edital", new_competition_path
     .mt-2
     %table.table.table-striped.table-bordered.table-celled
       %thead
         %tr
-          %th Nome Edital
+          %th Descrição
+          %th Publicado em
+          %th
       %tbody
-        %tr
-          %td
-            Detalhamento edital
+        - @competitions.each do |comp|
+          %tr
+            %td= link_to comp.title, cpl_competition.competition_path(comp)
+            %td.collapsing= comp.publish_at.strftime("%d/%m/%Y") rescue "Sem informação"
+            %td.collapsing
+              - if current_user.administrator? && !comp.session_opened?
+                = link_to "Editar", cpl_competition.edit_competition_path(comp), class: 'btn btn-primary btn-sm'
+              = link_to "Detalhar", cpl_competition.competition_path(comp), class: 'btn btn-secondary btn-sm'
+              - if !current_user.administrator?
+                = link_to "Participar", cpl_competition.edit_competition_path(comp), class: 'btn btn-success btn-sm'
+                = link_to "Minha participação", cpl_competition.edit_competition_path(comp), class: 'btn btn-success btn-sm'
+              - if comp.session_opened?
+                = link_to "Visualizar ata", cpl_competition.edit_competition_path(comp), class: 'btn btn-success btn-sm'
+              
+              

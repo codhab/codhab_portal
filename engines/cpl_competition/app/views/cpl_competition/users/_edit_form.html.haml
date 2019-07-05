@@ -1,0 +1,27 @@
+= simple_form_for @user do |f|
+  
+  .row
+    .col-md-3
+      - if @user.administrator?
+        = f.input :cpf, placeholder: "Informe seu CPF", input_html: { disabled: true }
+      - else
+        = f.input :cnpj, placeholder: "Informe seu CNPJ", input_html: { disabled: true }
+    .col-md-9
+      = f.input :name, placeholder: "Informe o nome"
+  .row
+    .col-md-3
+      = f.input :email, placeholder: "Informe um e-mail"
+    .col-md-3
+      = f.input :email_confirmation, placeholder: "Confirme o e-mail"
+    .col-md-3
+      = f.input :telephone, placeholder: "Informe o telefone"
+  .row
+    .col-md-3
+      = f.input :password, placeholder: "Informe uma senha"
+    .col-md-3
+      = f.input :password_confirmation, placeholder: "Confirme sua senha"
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Atualizar cadastro", class: 'btn btn-success', data: { disable_with: "aguarde..."}
+      = link_to "Cancelar", cpl_competition.root_path, class: 'btn btn-dark', data: { disable_with: "aguarde..."}

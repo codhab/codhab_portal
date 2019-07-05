@@ -1,0 +1,32 @@
+= simple_form_for @competition do |f|
+  .row
+    .col-md-12
+      = f.input :title, placeholder: "Informe o título do Edital"
+  .row
+    .col-md-3
+      = f.input :publish, as: :select, include_blank: false
+    .col-md-3
+      = f.input :publish_at, as: :string, input_html: { class: 'date', value: (f.object.publish_at.strftime("%d/%m/%Y") rescue nil) }
+    .col-md-3
+      = f.input :participation_started_at, as: :string, input_html: { class: 'datetime', value: (f.object.participation_started_at.strftime("%d/%m/%Y %H:%M") rescue nil) }
+    .col-md-3
+      = f.input :participation_ended_at, as: :string, input_html: { class: 'datetime', value: (f.object.participation_ended_at.strftime("%d/%m/%Y %H:%M") rescue nil) }
+  .row
+    .col-md-3
+      = f.input :session_started_at, as: :string, input_html: { class: 'datetime', value: (f.object.session_started_at.strftime("%d/%m/%Y %H:%M") rescue nil) }
+    .col-md-3
+      = f.input :resource_started_at, as: :string, input_html: { class: 'datetime', value: (f.object.resource_stated_at.strftime("%d/%m/%Y %H:%M") rescue nil) }
+    .col-md-3
+      = f.input :resource_ended_at, as: :string, input_html: { class: 'datetime', value: (f.object.resource_ended_at.strftime("%d/%m/%Y %H:%M") rescue nil) }
+  .row
+    .col-md-12
+      = f.input :content, as: :text, input_html: { class: 'tinymce', rows: 20, cols: 80}
+  .row
+    .col-md-12
+      = f.input :document_introduce, as: :text, input_html: { class: 'tinymce', rows: 20, cols: 80}
+  %hr/
+  .row
+    .col-md-12
+      = f.submit "Salvar", class: 'btn btn-success', data: { disable_with: 'aguarde...'}
+      = link_to "Cancelar", cpl_competition.competitions_path, class: 'btn btn-dark', data: { disable_with: 'aguarde...'}
+

@@ -12,7 +12,7 @@
         %a.nav-link{class: ((controller_name == "competitions") ? "active" : nil), href: cpl_competition.root_path(current_user) }
           Editais
       %li.nav-item
-        %a.nav-link{class: ((controller_name == "external_users") ? "active" : nil), href: cpl_competition.edit_external_user_path(current_user) }
+        %a.nav-link{class: ((controller_name == "users") ? "active" : nil), href: cpl_competition.edit_user_path(current_user) }
           Meus dados
       %li.nav-item
         %a.nav-link{class: ((controller_name == "user_logs") ? "active" : nil), href: cpl_competition.user_logs_path }

@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      'cpl_competition/competition': 'Concorrência'
+    attributes:
+      'cpl_competition/competition':
+        title: "Título"
+        publish: "Publicado?"
+        publish_at: "Publicado em"
+        participation_started_at: "Participação (início)"
+        participation_ended_at: "Participação (Fim)"
+        session_started_at: "Sessão (início)"
+        resource_started_at: "Recursos (início)"
+        resource_ended_at: "Recursos (fim)"
+        content: "Conteúdo"
+        document_introduce: "Cabeçalho (Ata)"

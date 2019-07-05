@@ -385,6 +385,13 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.9)
     timeliness (0.3.10)
+    tinymce-rails (4.3.13)
+      railties (>= 3.1.1)
+    tinymce-rails-imageupload (4.0.17.beta.3)
+      railties (>= 3.2, < 6)
+      tinymce-rails (~> 4.0)
+    tinymce-rails-langs (4.20180103)
+      tinymce-rails (~> 4.1, >= 4.1.10)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -494,6 +501,9 @@ DEPENDENCIES
   spring
   sqlite3
   technical_assistance!
+  tinymce-rails (~> 4.3.8)
+  tinymce-rails-imageupload (~> 4.0.0.beta)
+  tinymce-rails-langs (~> 4.20180103)
   turbolinks
   uglifier (~> 2.7)
   unicorn

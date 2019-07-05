@@ -9,7 +9,7 @@ class CreateCplCompetitionCompetitions < ActiveRecord::Migration[5.0]
       t.datetime :participation_started_at
       t.datetime :participation_ended_at
       t.datetime :session_started_at
-      t.datetime :resource_stated_at
+      t.datetime :resource_started_at
       t.datetime :resource_ended_at
       
       t.boolean  :publish, default: false

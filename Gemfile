@@ -47,6 +47,10 @@ gem 'one_signal'
 gem 'bcrypt'
 gem 'recaptcha'
 
+gem 'tinymce-rails', '~> 4.3.8'
+gem 'tinymce-rails-langs', '~> 4.20180103'
+gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
+
 
  # gem 'core', path: '../mobile/components/core'
 gem 'core', github: 'codhab/core', branch: :master

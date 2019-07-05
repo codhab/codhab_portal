@@ -13,3 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require cpl_competition/bootstrap.min
+//= require cpl_competition/jquery.mask.min
+//= require tinymce-jquery
+//= require cpl_competition/custom

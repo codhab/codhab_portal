@@ -1,0 +1,37 @@
+.row
+  .col-md-12
+    %h5
+      %b= @competition.title
+    = link_to "Retornar para editais", cpl_competition.competitions_path, data: { disable_with: 'aguarde...'}
+%hr/
+.row
+  .col-md-12
+    %table.table.table-celled.table-bordered
+      %thead
+        %tr 
+          %th Detalhamento do edital
+      %tbody
+        %tr
+          %td= @competition.content.html_safe
+    %table.table.table-celled.table-bordered
+      %thead
+        %tr 
+          %th{colspan: 4} Histórico de atividades
+        %tr 
+          %th.collapsing Data/Hora
+          %th.collapsing Usuário
+          %th Descrição
+          %th.collapsing Detalhe
+      %tbody
+        - if @competition.competition_events.present?
+          - @competition.competition_events.order(created_at: :desc).each do |event|
+            %tr
+              %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
+              %td.collapsing= event.user.name rescue "Sem informação"
+              %td= event.description
+              %td.collapsing
+                = link_to "Passe o mouse", "javascript:void(0)", title: event.content
+        - else
+          %tr
+            %td{colspan: 4}
+              %i Nenhum evento registrado
