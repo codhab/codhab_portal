@@ -1,0 +1,16 @@
+= simple_form_for @credential, url: cpl_competition.competition_user_credentials_path(@competition, @user_competition) do |f|
+  .row 
+    .col-md-6
+      = f.input :credential_type, as: :select, collection: CplCompetition::CompetitionUserCredential.credential_types.keys, include_blank: false
+    .col-md-6
+      = f.input :regime_type, as: :select, collection: CplCompetition::CompetitionUserCredential.regime_types.keys, include_blank: false
+  .row 
+    .col-md-6
+      = f.input :name, placeholder: "Informe o nome"
+    .col-md-3
+      = f.input :cpf, input_html: { class: 'cpf'}
+    .col-md-3
+      = f.input :document, as: :file
+  .row       
+    .col-md-2
+      = f.submit "Enviar arquivo", class: 'btn btn-success btn-sm', style: 'margin-top: 30px'

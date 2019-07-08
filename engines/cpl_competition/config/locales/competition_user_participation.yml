@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      'cpl_competition/competition_user_participation': "Participação"
+    attributes:
+      'cpl_competition/competition_user_participation':
+        document: "Arquivo"
+        competition_document_id: "Categoria"

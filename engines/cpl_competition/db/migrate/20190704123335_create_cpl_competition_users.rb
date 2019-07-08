@@ -16,7 +16,10 @@ class CreateCplCompetitionUsers < ActiveRecord::Migration[5.0]
       
       t.boolean  :administrator, default: false
       t.boolean  :only_view, default: false
-
+      
+      t.boolean  :term_use, default: false 
+      t.datetime :term_use_accepted_at 
+      
       t.timestamps
     end
 

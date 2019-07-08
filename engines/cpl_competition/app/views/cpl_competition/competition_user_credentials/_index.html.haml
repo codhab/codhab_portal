@@ -1,0 +1,28 @@
+%table.table.table-striped.table-celled.table-bordered
+  %thead
+    %tr
+      %th Tipo
+      %th Regime
+      %th Nome
+      %th CPF
+      %th Comprovante
+      %th
+  %tbody
+    - if @user_competition.competition_user_credentials.reject(&:new_record?).present?
+      - @user_competition.competition_user_credentials.order(created_at: :desc).reject(&:new_record?).each do |cred|
+        %tr{style: cred.deleted ? 'opacity: 0.5' : nil}
+          %td{style: cred.deleted ? 'text-decoration: line-through;' : nil}= cred.credential_type.upcase
+          %td{style: cred.deleted ? 'text-decoration: line-through;' : nil}= cred.regime_type
+          %td{style: cred.deleted ? 'text-decoration: line-through;' : nil}= cred.name
+          %td{style: cred.deleted ? 'text-decoration: line-through;' : nil}= cred.cpf
+          %td= link_to "Visualizar arquivo", cred.document_url, target: '_blank'
+          %td
+            - if cred.deleted
+              %i Cancelado em #{cred.deleted_at.strftime("%d/%m/%Y %H:%M")}
+            - else 
+              - if @competition.participation_allow?
+                = link_to "Cancelar", cpl_competition.competition_user_credential_path(@competition, @user_competition, cred), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Tem certeza que deseja remover os dados de credenciamento?'} 
+    - else
+      %tr
+        %td{colspan: 6}
+          %i Nenhum credenciamento realizado.

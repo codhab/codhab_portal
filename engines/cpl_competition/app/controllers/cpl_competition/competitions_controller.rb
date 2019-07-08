@@ -6,6 +6,10 @@ module CplCompetition
     before_action :authenticate!
     before_action :set_competition, only: [:edit, :update, :show]
 
+    def special
+      @competition = CplCompetition::Competition.find(params[:competition_id])
+    end
+
     def index
 
       if current_user.nil? || !current_user.administrator?

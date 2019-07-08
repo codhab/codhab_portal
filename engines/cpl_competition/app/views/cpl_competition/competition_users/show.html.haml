@@ -9,47 +9,6 @@
     .card
       .card-body
         = @competition.document_introduce.html_safe
-.mt-4
-.row
-  .col-md-12
-    .card
-      .card-body
-        .row
-          .col-md-12
-            %h5
-              %b Credenciamento
-        .row
-          .col-md-12              
-            .card
-              .card-body
-                = simple_form_for url_for do |f|
-                  .row 
-                    .col-md-5
-                      = f.input :name
-                    .col-md-3
-                      = f.input :cpf
-                    .col-md-2
-                      = f.input :document
-                    .col-md-2
-                      = f.input :modality
-                    .col-md-2
-                      = f.submit "Enviar arquivo", class: 'btn btn-success btn-sm', style: 'margin-top: 30px'
-        .mt-4
-        .row
-          .col-md-12  
-            %table.table.table-striped.table-celled.table-bordered
-              %thead
-                %tr
-                  %td Documento
-                  %td Enviado em
-                  %td Arquivo
-                  %td
-              %tbody
-                %tr
-                  %td
-                  %td
-                  %td
-                  %td          
 
 .mt-4
 .row
@@ -58,36 +17,31 @@
       .card-body
         .row
           .col-md-12
-            %h5
-              %b Evelope 1
-        .row
-          .col-md-12              
-            .card
-              .card-body
-                = simple_form_for url_for do |f|
-                  .row 
-                    .col-md-5
-                      = f.input :document_type_id, as: :select, collection: {} , include_blank: "selecione o documento..."
-                    .col-md-3
-                      = f.input :document, as: :file
-                    .col-md-2
-                      = f.submit "Enviar arquivo", class: 'btn btn-success btn-sm', style: 'margin-top: 30px'
-        .mt-4
-        .row
-          .col-md-12  
-            %table.table.table-striped.table-celled.table-bordered
-              %thead
-                %tr
-                  %td Documento
-                  %td Enviado em
-                  %td Arquivo
-                  %td
-              %tbody
-                %tr
-                  %td
-                  %td
-                  %td
-                  %td
+            %h5.text-center
+              %b CREDENCIAMENTO
+            %h6.text-center
+              COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
+              %br/
+              CONCORRÊNCIA Nº #{(@competition.number rescue 'sem número')}
+              %br/
+              %br/
+              = current_user.name.mb_chars.upcase
+              %br/
+              = current_user.cnpj.format_cnpj
+              %br/
+              %br/
+        - if !@user_competition.competition_user_credentials.where(deleted: false).reject(&:new_record?).present?   
+          - if @competition.participation_allow?       
+            .row
+              .col-md-12              
+                .card
+                  .card-body
+                    = render 'cpl_competition/competition_user_credentials/form'
+        - else
+          .mt-4
+          .row
+            .col-md-12  
+              = render 'cpl_competition/competition_user_credentials/index'    
 
 .mt-4
 .row
@@ -96,42 +50,88 @@
       .card-body
         .row
           .col-md-12
-            %h5
-              %b Evelope 2
-        .row
-          .col-md-12              
-            .card
-              .card-body
-                = simple_form_for url_for do |f|
-                  .row 
-                    .col-md-3
-                      = f.input :document, as: :file
-                    .col-md-2
-                      = f.submit "Enviar arquivo", class: 'btn btn-success btn-sm', style: 'margin-top: 30px'
-        .mt-4
-        .row
-          .col-md-12  
-            %table.table.table-striped.table-celled.table-bordered
-              %thead
-                %tr
-                  %td Documento
-                  %td Enviado em
-                  %td Arquivo
-                  %td
-              %tbody
-                %tr
-                  %td
-                  %td
-                  %td
-                  %td
+            %h5.text-center
+              %b ENVELOPE Nº 1
+              %br/
+            %h6.text-center
+              DOCUMENTOS DE HABILITAÇÃO
+              %br/
+              COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
+              %br/
+              CONCORRÊNCIA Nº #{(@competition.number rescue 'sem número')}
+              %br/
+              %br/
+              = current_user.name.mb_chars.upcase
+              %br/
+              = current_user.cnpj.format_cnpj
+              %br/
+              %br/
+        - if @user_competition.competition_user_credentials.where(deleted: false).reject(&:new_record?).present?              
+          - if @competition.participation_allow? 
+            .row
+              .col-md-12              
+                .card
+                  .card-body
+                    = render 'cpl_competition/competition_user_documents/form'
+          .mt-4
+          .row
+            .col-md-12  
+              = render 'cpl_competition/competition_user_documents/index'
+        - else
+          .row
+            .col-md-12
+              .text-center
+                %i O envio de arquivos para o Envelope 1 é liberado após a realização do credenciamento.        
 
 .mt-4
 .row
   .col-md-12
     .card
       .card-body
-        %h5
-          %b Histórico de participação
+        .row
+          .col-md-12
+            %h5.text-center
+              %b ENVELOPE Nº 2
+              %br/
+            %h6.text-center
+              PROPOSTAS DE PREÇOS
+              %br/
+              COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
+              %br/
+              CONCORRÊNCIA Nº #{(@competition.number rescue 'sem número')}
+              %br/
+              %br/
+              = current_user.name.mb_chars.upcase
+              %br/
+              = current_user.cnpj.format_cnpj
+              %br/
+              %br/
+
+        - if @user_competition.competition_user_credentials.where(deleted: false).reject(&:new_record?).present?
+          - if @competition.participation_allow?
+            .row
+              .col-md-12              
+                .card
+                  .card-body
+                    = render 'cpl_competition/competition_user_proposals/form'
+
+          .mt-4
+          .row
+            .col-md-12  
+              = render 'cpl_competition/competition_user_proposals/index'
+        - else
+          .row
+            .col-md-12
+              .text-center
+                %i O envio de arquivos para o Envelope 2 é liberado após a realização do credenciamento.
+
+.mt-4
+.row
+  .col-md-12
+    .card
+      .card-body
+        %h5.text-center
+          %b HISTÓRICO DE PARTICIPAÇÃO
 
         .mt-4
         .row
@@ -139,13 +139,10 @@
             %table.table.table-striped.table-celled.table-bordered
               %thead
                 %tr
-                  %td Documento
-                  %td Enviado em
-                  %td Arquivo
-                  %td
+                  %td Data/Hora
+                  %td Conteúdo
               %tbody
-                %tr
-                  %td
-                  %td
-                  %td
-                  %td    
+                - @user_competition.competition_user_logs.order(created_at: :desc).each do |log|
+                  %tr
+                    %td= log.created_at.strftime("%d/%m/%Y %H:%M")
+                    %td= log.content

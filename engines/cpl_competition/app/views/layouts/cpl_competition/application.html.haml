@@ -5,7 +5,7 @@
     = stylesheet_link_tag    "cpl_competition/application", media: "all"
     = javascript_include_tag "cpl_competition/application"
     = csrf_meta_tags
-  %body
+  %body{style: "background-color: rgb(235, 236, 240) !important;"}
     .container.mt-4
       .card
         .card-body
@@ -21,3 +21,6 @@
             .col-md-12
               = render 'cpl_competition/competitions/header'
               = yield
+    #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content              

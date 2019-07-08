@@ -2,6 +2,7 @@ class CreateCplCompetitionCompetitions < ActiveRecord::Migration[5.0]
   def change
     create_table 'competition.competitions' do |t|
       t.string :title
+      t.string :number
       t.text   :content 
       t.text   :document_introduce
       

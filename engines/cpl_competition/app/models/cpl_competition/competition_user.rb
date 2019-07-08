@@ -4,6 +4,9 @@ module CplCompetition
     
     belongs_to :competition
     belongs_to :user
+    has_many   :competition_user_participations
+    has_many   :competition_user_logs
+    has_many   :competition_user_credentials
 
     validates :competition_id, :user_id, presence: true
     validates_uniqueness_of :user_id, scope: :user_id

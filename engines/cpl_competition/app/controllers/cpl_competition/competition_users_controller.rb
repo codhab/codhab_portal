@@ -16,6 +16,9 @@ module CplCompetition
 
     def show
       @user_competition = current_user.competition_users.find_by(competition_id: @competition)
+      @document   = @user_competition.competition_user_participations.where(partipation_type: 0).new
+      @proposal   = @user_competition.competition_user_participations.where(partipation_type: 1).new
+      @credential = @user_competition.competition_user_credentials.new 
     end
     
     private

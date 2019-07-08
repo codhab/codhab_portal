@@ -22,7 +22,7 @@
             %td= link_to comp.title, cpl_competition.competition_path(comp)
             %td.collapsing= comp.publish_at.strftime("%d/%m/%Y") rescue "Sem informação"
             %td.collapsing
-              - if current_user.administrator? && !comp.session_opened?
+              - if current_user.administrator? #&& !comp.session_opened?
                 = link_to "Editar", cpl_competition.edit_competition_path(comp), class: 'btn btn-primary btn-sm'
               = link_to "Detalhar", cpl_competition.competition_path(comp), class: 'btn btn-secondary btn-sm'
               - if !current_user.administrator?
@@ -31,6 +31,6 @@
                 - else
                   = link_to "Participar", cpl_competition.new_competition_user_path(comp), class: 'btn btn-success btn-sm', data: { confirm: "Tem certeza que deseja participar do edital?"}
               - if comp.session_opened?
-                = link_to "Visualizar ata", cpl_competition.edit_competition_path(comp), class: 'btn btn-success btn-sm'
+                = link_to "Visualizar ata", cpl_competition.competition_special_path(comp), class: 'btn btn-success btn-sm'
               
               

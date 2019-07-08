@@ -2,7 +2,9 @@ module CplCompetition
   class Competition < ApplicationRecord
     self.table_name = 'competition.competitions'
 
+    has_many :competition_users
     has_many :competition_events
+    has_many :competition_documents
 
     scope :published, -> {
       where(publish: true)
@@ -22,6 +24,10 @@ module CplCompetition
 
     def session_opened?
       publish && session_started_at >= Time.now
+    end
+
+    def participation_allow?
+      participation_started_at <= Time.now && participation_ended_at > Time.now
     end
 
     def save_log
