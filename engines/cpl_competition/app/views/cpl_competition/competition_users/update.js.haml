@@ -1,0 +1,6 @@
+- if @user_competition.errors.any?
+  $('#modal .modal-content').html("#{escape_javascript(render 'edit')}");
+- else
+  $(".participation-index").html("#{escape_javascript(render 'cpl_competition/competitions/participation') }")
+  $("#modal").modal("hide");
+

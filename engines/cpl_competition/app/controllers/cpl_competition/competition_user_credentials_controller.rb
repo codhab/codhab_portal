@@ -23,7 +23,15 @@ module CplCompetition
     end
     
     def show
-      @credential = @user_competition.competition_user_credentials.where(deleted: false).last
+      event = @competition.competition_events.new(
+        description: "Usuário #{current_user.name} abriu informações de credenciamento",
+        user_id: current_user.id,
+        event_type: 'histórico'
+      )
+
+      event.save
+
+      @credential = @user_competition.competition_user_credential
     end
 
     private

@@ -13,6 +13,10 @@ module CplCompetition
 
     validate  :competition_valid?
 
+    def competition_user_credential
+      competition_user_credentials.where(deleted: false).last
+    end
+
     private
 
     def competition_valid?

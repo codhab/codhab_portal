@@ -1,0 +1,3 @@
+= simple_form_for @user_competition, url: cpl_competition.competition_user_path(@competition, @user_competition), method: :put, remote: true do |f|
+  = f.input :value, as: :string, input_html: { class: 'coin' }
+  = f.submit "Salvar", class: 'btn btn-success'

@@ -21,7 +21,27 @@ module CplCompetition
       @credential = @user_competition.competition_user_credentials.new 
     end
     
+    def edit
+      @user_competition = @competition.competition_users.find_by(id: params[:id])
+    end
+    
+    def update
+      @user_competition = @competition.competition_users.find_by(id: params[:id])
+      @user_competition.update(set_params)
+
+      event = @competition.competition_events.new(
+        description: "Usuário #{current_user.name.upcase} atualizou o valor de proposta da empresa #{@user_competition.user.name.upcase}",
+        user_id: current_user.id,
+        event_type: 'evento'
+      )
+      event.save
+    end
+
     private
+
+    def set_params
+      params.require(:competition_user).permit(:value)
+    end
 
     def set_competition
       @competition = CplCompetition::Competition.find(params[:competition_id])

@@ -31,23 +31,8 @@
               %th.collapsing ENV 1
               %th.collapsing ENV 2
               %th.collapsing VALOR
-          %tbody
-            - @competition.competition_users.order(value: :asc).each_with_index do |comp_user, index|
-              %tr
-                %td= index + 1
-                %td= comp_user.user.cnpj
-                %td.collapsing= comp_user.competition_user_credentials.where(deleted: false).last.regime_type
-                %td.collapsing
-                  = link_to "Abrir", cpl_competition.competition_user_credential_path(@competition, comp_user, comp_user), remote: true
-                %td.collapsing
-                  = link_to "Abrir", "#"
-                %td.collapsing
-                  = link_to "Abrir", "#"
-                %td.collapsing
-                  - if current_user.administrator?
-                    = link_to "Adicionar valor"
-                  - else
-                    %i Sem valor definido
+          %tbody.participation-index
+            = render 'participation'
 
 
 .mt-4
@@ -87,16 +72,16 @@
         %table.table.table-celled.table-bordered
           %thead
             %tr 
-              %th CNPJ
-              %th NOME
-              %th REGIME
-              %th VALOR
+              %th DATA/HORA
+              %th DESCRIÇÃO
+              %th AUTOR
           %tbody
-            %tr
-              %td
-              %td
-              %td
-              %td    
+            - @competition.competition_events.where(event_type: 1).order(created_at: :desc).each do |event|
+              %tr
+                %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
+                %td= event.description
+                %td.collapsing= event.user.special_name
+                      
 .mt-4
 .row
   .col-md-12
@@ -109,13 +94,13 @@
         %table.table.table-celled.table-bordered
           %thead
             %tr 
-              %th CNPJ
-              %th NOME
-              %th REGIME
-              %th VALOR
+              %th DATA/HORA
+              %th DESCRIÇÃO
+              %th AUTOR
           %tbody
-            %tr
-              %td
-              %td
-              %td
-              %td                            
+            - @competition.competition_events.where(event_type: 2).order(created_at: :desc).each do |event|
+              %tr
+                %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
+                %td= event.description
+                %td.collapsing= event.user.special_name
+                     

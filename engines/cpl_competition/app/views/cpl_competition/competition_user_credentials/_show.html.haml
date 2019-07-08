@@ -1,9 +1,35 @@
 .modal-header
-  %h5.modal-title CREDENCIAMENTO
+  %h5.modal-title 
+    %b CREDENCIAMENTO
   %button.close{"aria-label" => "Fechar", "data-dismiss" => "modal", :type => "button"}
     %span{"aria-hidden" => "true"} ×
 .modal-body
-  %p Texto do corpo do modal, é aqui.
-.modal-footer
-  %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Fechar
-  %button.btn.btn-primary{:type => "button"} Salvar mudanças
+  
+  %table.table.table-striped.table-celled.table-bordered
+    %thead
+      %tr
+        %th Tipo
+        %th Regime
+    %tbody
+      %tr
+        %td= @credential.credential_type
+        %td.collapsing= @credential.regime_type  
+  
+  %table.table.table-striped.table-celled.table-bordered
+    %thead
+      %tr
+        %th Nome
+        %th CPF
+    %tbody
+      %tr
+        %td= @credential.name
+        %td.collapsing= @credential.cpf
+  
+  %table.table.table-striped.table-celled.table-bordered
+    %thead
+      %tr
+        %th Comprovante
+    %tbody
+      %tr
+        %td= link_to "Visualizar", @credential.document_url, target: "_blank"
+  

@@ -23,6 +23,18 @@ module CplCompetition
       redirect_to cpl_competition.competition_user_path(@competition, @user_competition)
     end
 
+    def show
+
+      event = @competition.competition_events.new(
+        description: "Usuário #{current_user.name} abriu envelope 1",
+        user_id: current_user.id,
+        event_type: 'histórico'
+      )
+      event.save
+
+      @documents = @user_competition.competition_user_participations.where(partipation_type: 0, deleted: false)
+    end
+
     private
 
     def set_competition_user
