@@ -12,4 +12,4 @@
 /portal
 /img
 .byebug_history
-/uploads/*
+/public/uploads/*
