@@ -9,7 +9,6 @@
     .container.mt-4
       .card
         .card-body
-
           .row
             .col-md-12
               %h2.text-center
@@ -20,6 +19,11 @@
           .row
             .col-md-12
               = render 'cpl_competition/competitions/header'
+      .mt-4
+      .card
+        .card-body          
+          .row
+            .col-md-12
               = yield
     #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
       .modal-dialog

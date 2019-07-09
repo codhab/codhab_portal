@@ -1,0 +1,3 @@
+= simple_form_for @competition.competition_chats.new, remote: true do |f|
+  = f.input :content, as: :text, label: false, placeholder: "Informe sua mensagem", input_html: { id: "input-chat"}
+  = f.submit "Enviar mensagem", class: 'btn btn-success btn-sm', data: { disable_with: "enviando..."}

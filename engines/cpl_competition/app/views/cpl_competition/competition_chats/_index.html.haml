@@ -1,0 +1,10 @@
+- if @competition.competition_chats.present?
+  - @competition.competition_chats.order(created_at: :asc).each do |chat|
+    %tr
+      %td.collapsing= chat.created_at.strftime("%d/%m/%Y %H:%M")
+      %td.collapsing= chat.user.name rescue nil
+      %td= chat.content
+- else
+  %tr
+    %td{colspan: 3}
+      %i Nenhum histórico encontrado.

@@ -5,6 +5,7 @@ module CplCompetition
     has_many :competition_users
     has_many :competition_events
     has_many :competition_documents
+    has_many :competition_chats
 
     scope :published, -> {
       where(publish: true)

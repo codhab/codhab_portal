@@ -2,6 +2,8 @@ module CplCompetition
   class CompetitionUserParticipation < ApplicationRecord
     self.table_name = 'competition.competition_user_participations'
 
+    belongs_to :competition_document
+    
     enum partipation_type: ['documento', 'proposta']
     
     mount_uploader :document, ::CplCompetition::DocumentUploader

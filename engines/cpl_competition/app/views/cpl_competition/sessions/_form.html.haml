@@ -13,7 +13,7 @@
     .col-md-3#cpf{style: (f.object.is_external? || f.object.session_type.nil?) ? 'display: none' : nil}
       = f.input :cpf, input_html: { class: 'cpf'}
     .col-md-3
-      = f.input :password
+      = f.input :password, placeholder: "******"
   %hr/
   .row
     .col-md-12

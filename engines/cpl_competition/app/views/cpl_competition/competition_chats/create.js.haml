@@ -1,0 +1,3 @@
+- if !@chat.errors.any?
+  $(".chat-index").html("#{escape_javascript(render 'cpl_competition/competition_chats/index') }")
+  $("#input-chat").val("")

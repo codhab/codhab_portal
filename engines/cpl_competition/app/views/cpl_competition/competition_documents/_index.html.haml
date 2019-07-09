@@ -1,0 +1,9 @@
+- if @documents.present?
+  - @documents.each do |document|
+    %tr
+      %td= document.name
+      %td.collapsing= document.status ? "Ativo" : "Inativo"
+- else
+  %tr
+    %td{colspan: 2}
+      Nenhum documento cadastrado.

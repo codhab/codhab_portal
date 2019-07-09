@@ -1,0 +1,23 @@
+.row
+  .col-md-12
+    %h5
+      %b Documentações
+    = link_to "Retornar para editais", cpl_competition.competitions_path
+    %br/
+    %br/
+    %h6
+      %b= @competition.title
+%hr/
+.row
+  .col-md-12
+    = link_to "+ Adicionar documento", cpl_competition.new_competition_document_path(@competition), remote: true
+%br/
+.row
+  .col-md-12
+    %table.table.table-striped.table-bordered.table-celled
+      %thead
+        %tr
+          %th Nome
+          %th Ativo?
+      %tbody.document-index
+        = render 'index'

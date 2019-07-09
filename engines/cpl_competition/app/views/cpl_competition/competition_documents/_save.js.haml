@@ -1,0 +1,6 @@
+- if @document.errors.any?
+  $('#modal .modal-content').html("#{escape_javascript(render 'edit')}");
+- else
+  $(".document-index").html("#{escape_javascript(render 'index') }")
+  $("#modal").modal("hide");
+

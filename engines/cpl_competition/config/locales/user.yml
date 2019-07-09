@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      'cpl_competition/user': 'Usuário'
+    attributes:
+      'cpl_competition/user':
+        name: "Nome"
+        cnpj: "CNPJ"
+        email: "E-mail"
+        email_confirmation: "Confirmação e-mail"
+        telephone: "Telefone"
+        password: "Senha"
+        password_confirmation: "Confirmação senha"

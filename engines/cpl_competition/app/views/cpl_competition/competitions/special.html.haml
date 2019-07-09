@@ -9,11 +9,11 @@
     %table.table.table-celled.table-bordered
       %thead
         %tr 
-          %th Detalhamento do Ata
+          %th.text-center
+            = image_tag 'http://www.codhab.df.gov.br/portal/images/codhab_footer.png'
       %tbody
         %tr
-          %td= @competition.content.html_safe
-
+          %td= @competition.document_introduce.html_safe
 .row
   .col-md-12
     .card
@@ -46,21 +46,33 @@
         %table.table.table-celled.table-bordered
           %thead
             %tr 
+              %th DATA/HORA
+              %th USUÁRIO
+              %th CONTEÚDO
+          %tbody.chat-index
+            = render 'cpl_competition/competition_chats/index'
+        
+        - if current_user.administrator?
+          = render 'cpl_competition/competition_chats/form'
+.mt-4
+.row
+  .col-md-12
+    .card
+      .card-body
+        %h5.text-center
+          %b RECURSOS 
+        %br/
+        %table.table.table-celled.table-bordered
+          %thead
+            %tr 
+              %th DATA/HORA
               %th CNPJ
-              %th NOME
-              %th REGIME
-              %th VALOR
+              %th DESCRIÇÃO
+
           %tbody
             %tr
-              %td
-              %td
-              %td
-              %td
-                - if current_user.administrator?
-                  = link_to "Adicionar valor"
-                - else
-                  Sem valor definido
-
+              %td{colspan: 3}
+                %i Nenhum recurso registrado. 
 .mt-4
 .row
   .col-md-12
@@ -76,12 +88,16 @@
               %th DESCRIÇÃO
               %th AUTOR
           %tbody
-            - @competition.competition_events.where(event_type: 1).order(created_at: :desc).each do |event|
+            - if @competition.competition_events.where(event_type: 1).present?
+              - @competition.competition_events.where(event_type: 1).order(created_at: :desc).each do |event|
+                %tr
+                  %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
+                  %td= event.description
+                  %td.collapsing= event.user.special_name
+            - else
               %tr
-                %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
-                %td= event.description
-                %td.collapsing= event.user.special_name
-                      
+                %td{colspan: 3} 
+                  %i Nenhum evento registrado.                       
 .mt-4
 .row
   .col-md-12
@@ -98,9 +114,17 @@
               %th DESCRIÇÃO
               %th AUTOR
           %tbody
-            - @competition.competition_events.where(event_type: 2).order(created_at: :desc).each do |event|
+            - if @competition.competition_events.where(event_type: 2).present?
+              - @competition.competition_events.where(event_type: 2).order(created_at: :desc).each do |event|
+                %tr
+                  %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
+                  %td= event.description
+                  %td.collapsing= event.user.special_name
+            - else
               %tr
-                %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
-                %td= event.description
-                %td.collapsing= event.user.special_name
-                     
+                %td{colspan: 3}
+                  %i Nenhum histórico encontrado.
+                        
+- if !current_user.administrator
+  %script
+    setTimeout(function(){ location.reload(); },60000)

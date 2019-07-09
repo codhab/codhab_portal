@@ -12,11 +12,13 @@ $(document).ready(ready);
 
 
 function js_update() {
-  initTinyMCE()
+  initTinyMCE();
 
-  $(".datetime").mask("00/00/0000 00:00", { placeholder: "__/__/____ 00:00" })
+  $(".datetime").mask("00/00/0000 00:00", { placeholder: "__/__/____ 00:00" });
   $('.date').mask("00/00/0000", { placeholder: "__/__/____" });
   $('.hour').mask("00:00", { placeholder: "00:00" });
+  $('.cpf').mask("###.###.###-##", { placeholder: "000.000.000-00" });
+  $('.cnpj').mask("##.###.###/####-##", { placeholder: "00.00.000/0000-00" });
 }
 
 function initTinyMCE() {

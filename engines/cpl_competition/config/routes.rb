@@ -8,7 +8,8 @@ CplCompetition::Engine.routes.draw do
   
   resources :competitions do
     get 'special'
-    
+    resources :chats, controller: :competition_chats
+    resources :documents, controller: :competition_documents
     resources :users, controller: :competition_users do
       resources :proposals, controller: :competition_user_proposals
       resources :documents, controller: :competition_user_documents
