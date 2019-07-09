@@ -1,11 +1,11 @@
 class ExternalInvoicesController < ApplicationController
   skip_before_action :verify_authenticity_token
-
+  layout 'empty'
+  
   def external_return
     request.headers["Content-Type"] = 'json/'
     
-    json_data = BrbFile.file_return
-    render json: json_data, status: 200
+    @json_data = BrbFile.file_return
   end
 
   def external_remmitance
