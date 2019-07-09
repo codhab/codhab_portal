@@ -24,7 +24,7 @@ module CplCompetition
     before_save :save_log 
 
     def session_opened?
-      publish && session_started_at >= Time.now
+      publish && session_started_at <= Time.now
     end
 
     def participation_allow?

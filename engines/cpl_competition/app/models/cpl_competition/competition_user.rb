@@ -9,7 +9,7 @@ module CplCompetition
     has_many   :competition_user_credentials
 
     validates :competition_id, :user_id, presence: true
-    validates_uniqueness_of :user_id, scope: :user_id
+    validates_uniqueness_of :user_id, scope: :competition_id
 
     validate  :competition_valid?
 

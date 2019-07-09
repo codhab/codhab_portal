@@ -1,9 +1,10 @@
 - if @competition.competition_users.present?
   - @competition.competition_users.order(value: :asc).each_with_index do |comp_user, index|
     %tr
-      %td= index + 1
+      %td #{comp_user.user.name}(#{comp_user.competition_user_credentials.where(deleted: false).last.regime_type})
       %td= comp_user.user.cnpj
-      %td.collapsing= comp_user.competition_user_credentials.where(deleted: false).last.regime_type
+      %td= comp_user.competition_user_credentials.where(deleted: false).last.name
+      %td= comp_user.competition_user_credentials.where(deleted: false).last.cpf
       %td.collapsing
         = link_to "Abrir", cpl_competition.competition_user_credential_path(@competition, comp_user, comp_user), remote: true, data: {disable_with: "Carregando..."}
       %td.collapsing
@@ -13,7 +14,7 @@
       %td.collapsing
         - if current_user.administrator?
           - if comp_user.value.present?
-            %b= link_to "R$ #{comp_user.value}", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
+            %b= link_to "R$ #{number_to_currency(comp_user.value)}", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
           - else
             %b= link_to "Adicionar valor", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
         - else
