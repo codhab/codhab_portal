@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/a', to: 'main/home#a' # => pamila
   get '/b', to: 'main/home#b' # => rafael
   get '/e', to: 'main/home#e' # => entidades
+  get '/f', to: 'main/home#f' # => favelinha
   get '/c', to: 'main/home#c' # => Certificados
 
   get  '/boletos/retorno-externo', to: 'external_invoices#external_return'

@@ -31,9 +31,13 @@ module Main
     def b
       redirect_to "/documento/document?id=#{params[:id]}&o=#{params[:o]}"
     end
-
+    
     def e
       redirect_to '/entidades/validar/new'
+    end
+    
+    def f
+      redirect_to "/documento/document?id=#{params[:id]}&f=1"
     end
 
 
