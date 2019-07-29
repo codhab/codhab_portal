@@ -14,7 +14,7 @@
         %tr
           %td= @competition.content.html_safe
 
-    - if current_user.administrator?
+    - if !current_user.nil? && current_user.administrator?
       %table.table.table-celled.table-bordered
         %thead
           %tr 

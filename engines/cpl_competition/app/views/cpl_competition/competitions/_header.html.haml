@@ -1,9 +1,12 @@
 
 - if current_user.nil?
   .row
-    .col-md-12
-      = link_to "Acessar meu cadastro", cpl_competition.new_session_path, class: 'btn btn-primary'
-      = link_to "Realizar meu cadastro", cpl_competition.new_external_user_path, class: 'btn btn-success'
+    .col-md-6.text-center
+      %br/
+      %h4= link_to "Acessar meu cadastro", cpl_competition.new_session_path
+    .col-md-6.text-center
+      %br/
+      %h4= link_to "Realizar meu cadastro", cpl_competition.new_external_user_path
 - else
   .row 
     .col-md-12

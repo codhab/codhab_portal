@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'main/home#index'
 
+  get '/cpl/concorrencia', to: 'cpl/iframe#concurrence'
+
   get '/d', to: 'main/home#d' # => direg
   get '/a', to: 'main/home#a' # => pamila
   get '/b', to: 'main/home#b' # => rafael

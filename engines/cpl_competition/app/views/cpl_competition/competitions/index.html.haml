@@ -7,7 +7,7 @@
 .mt-2
 .row
   .col-md-12    
-    - if current_user.administrator?
+    - if !current_user.nil? && current_user.administrator?
       = link_to "+ Adicionar novo edital", new_competition_path, class:'btn btn-primary btn-sm'
     .mt-2
     %table.table.table-striped.table-bordered.table-celled
@@ -22,16 +22,16 @@
             %td= link_to comp.title, cpl_competition.competition_path(comp)
             %td.collapsing= comp.publish_at.strftime("%d/%m/%Y") rescue "Sem informação"
             %td.collapsing
-              - if current_user.administrator? && !comp.session_opened?
+              - if (!current_user.nil? && current_user.administrator?) && !comp.session_opened?
                 = link_to "Editar", cpl_competition.edit_competition_path(comp), class: 'btn btn-primary btn-sm'
                 = link_to "Documentação", cpl_competition.competition_documents_path(comp), class: 'btn btn-primary btn-sm'
               = link_to "Detalhar", cpl_competition.competition_path(comp), class: 'btn btn-secondary btn-sm'
-              - if !current_user.administrator?
+              - if (!current_user.nil? && !current_user.administrator?)
                 - if current_user.competition_users.where(competition_id: comp).present?
                   = link_to "Minha participação", cpl_competition.competition_user_path(comp, current_user), class: 'btn btn-success btn-sm'
                 - else
                   = link_to "Participar", cpl_competition.new_competition_user_path(comp), class: 'btn btn-success btn-sm', data: { confirm: "Tem certeza que deseja participar do edital?"}
-              - if comp.session_opened? && (current_user.administrator? || current_user.competition_users.where(competition_id: comp).present?)
+              - if comp.session_opened? && ((!current_user.nil? && current_user.administrator?) || (!current_user.nil? && current_user.competition_users.where(competition_id: comp).present?))
                 - if current_user.administrator?
                   = link_to "Visualizar sessão", cpl_competition.competition_special_path(comp), class: 'btn btn-success btn-sm'
                 - else
