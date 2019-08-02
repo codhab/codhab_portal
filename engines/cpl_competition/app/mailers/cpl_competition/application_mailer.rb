@@ -1,6 +1,6 @@
 module CplCompetition
   class ApplicationMailer < ActionMailer::Base
-    default from: 'from@example.com'
+    default from: 'nao-responda@example.com'
     layout 'mailer'
   end
 end

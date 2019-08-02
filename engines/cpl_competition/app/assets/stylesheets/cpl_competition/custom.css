@@ -11,3 +11,11 @@ table tr td {
 .text-center {
   text-align: center;
 }
+
+.help-block {
+  color:red;
+}
+
+.has-error input {
+  border: 1px red solid;
+}

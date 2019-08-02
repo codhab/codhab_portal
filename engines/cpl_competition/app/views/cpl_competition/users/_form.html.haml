@@ -7,14 +7,9 @@
       - else
         = f.input :cnpj, placeholder: "Informe seu CNPJ", input_html: { disabled: true}
     .col-md-9
-      = f.input :name, placeholder: "Informe o nome"
+      = f.input :name, placeholder: "Informe o nome", input_html: { disabled: true}
   .row
     .col-md-3
-      = f.input :email, placeholder: "Informe um e-mail"
+      = f.input :email, placeholder: "Informe um e-mail", input_html: { disabled: true}
     .col-md-3
-      = f.input :telephone, placeholder: "Informe o telefone"
-  %hr/
-  .row
-    .col-md-12
-      = f.submit "Realizar cadastro", class: 'btn btn-success', data: { disable_with: "aguarde..."}
-      = link_to "Cancelar", cpl_competition.root_path, class: 'btn btn-dark', data: { disable_with: "aguarde..."}
+      = f.input :telephone, placeholder: "Informe o telefone", input_html: { disabled: true}

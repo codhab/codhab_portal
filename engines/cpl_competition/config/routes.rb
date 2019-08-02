@@ -1,7 +1,11 @@
 CplCompetition::Engine.routes.draw do
   root 'competitions#index'
 
-  resources :external_users
+  resources :external_users do 
+    get 'confirmation'
+    get 'send_confirmation'
+  end
+
   resources :internal_users
   resources :user_logs
   resources :sessions

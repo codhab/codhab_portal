@@ -1,5 +1,11 @@
 pt-BR:
   activerecord:
+    errors:
+      models: 
+        'cpl_competition/competition_user_participation':
+          attributes:
+            document:
+              allowed_file_content_types: "Tipo de arquivo inválido, envie somente arquivos .pdf"  
     models:
       'cpl_competition/competition_user_participation': "Participação"
     attributes:

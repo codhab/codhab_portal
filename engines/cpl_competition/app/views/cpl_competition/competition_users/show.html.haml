@@ -22,7 +22,7 @@
             %h6.text-center
               COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
               %br/
-              CONCORRÊNCIA Nº #{(@competition.number rescue 'sem número')}
+              = @competition.title
               %br/
               %br/
               = current_user.name.mb_chars.upcase
@@ -58,7 +58,7 @@
               %br/
               COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
               %br/
-              CONCORRÊNCIA Nº #{(@competition.number rescue 'sem número')}
+              = @competition.title
               %br/
               %br/
               = current_user.name.mb_chars.upcase
@@ -98,7 +98,7 @@
               %br/
               COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
               %br/
-              CONCORRÊNCIA Nº #{(@competition.number rescue 'sem número')}
+              = @competition.title
               %br/
               %br/
               = current_user.name.mb_chars.upcase

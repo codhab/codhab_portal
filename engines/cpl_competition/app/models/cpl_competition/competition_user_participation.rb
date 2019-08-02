@@ -10,7 +10,7 @@ module CplCompetition
 
     validates :partipation_type, presence: true
     validates :document, file_size: { less_than_or_equal_to: 15.megabytes },
-                     file_content_type: { allow: ['application/pdf'] }, presence: true
+                     file_content_type: { allow: ["application/pdf", "application/wps-office.pdf"] }, presence: true
   
   
     after_commit :create_log 

@@ -12,11 +12,29 @@ module CplCompetition
       @user = CplCompetition::ExternalUser.new(set_params)
 
       if @user.save
+        CplCompetition::CompetitionMailer.confirmation(@user, @user.email).deliver_now! 
         redirect_to cpl_competition.new_session_path
       else
         render action: :new 
       end
     end 
+
+    def confirmation 
+      @user = CplCompetition::User.find_by(confirmation_token: params[:external_user_id])
+      
+      if !@user.nil?
+        @notice = 'Seu e-mail foi confirmado'
+        @user.update(confirmation: true, confirmation_token: nil)
+      end
+      
+      session[:cpl_session_user_id] = nil
+
+      redirect_to cpl_competition.new_session_path
+    end
+
+    def send_confirmation
+      CplCompetition::CompetitionMailer.confirmation(current_user, current_user.email).deliver_now! 
+    end
 
     private
 

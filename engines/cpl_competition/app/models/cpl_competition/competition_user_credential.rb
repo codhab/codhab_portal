@@ -7,8 +7,7 @@ module CplCompetition
 
     mount_uploader :document, ::CplCompetition::DocumentUploader
 
-    validates :document, file_size: { less_than_or_equal_to: 15.megabytes },
-                     file_content_type: { allow: ['application/pdf'] }, presence: true
+    validates :document, file_size: { less_than_or_equal_to: 15.megabytes }, presence: true
   
   
     validates :name, :credential_type, :regime_type, :document, presence: true
