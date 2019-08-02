@@ -1,6 +1,7 @@
 module CplCompetition
   class CompetitionUserValuesController < ApplicationController
     before_action :set_competition
+    before_action :administrator_user?
     
     def edit
       @user_competition_value = CplCompetition::CompetitionUserValue.new

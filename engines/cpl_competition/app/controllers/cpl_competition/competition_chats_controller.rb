@@ -1,6 +1,7 @@
 module CplCompetition
   class CompetitionChatsController < ApplicationController
     before_action :set_competition
+    before_action :administrator_user?
 
     def create
       @chat = @competition.competition_chats.new(set_params)
