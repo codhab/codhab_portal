@@ -1,6 +1,6 @@
 module CplCompetition
   class CompetitionMailer < ActionMailer::Base
-    default from: 'nao-responda@example.com'
+    default from: 'nao-responda@codhab.df.gov.br'
 
     def confirmation(user, email)
       @user  = user
