@@ -43,45 +43,7 @@
             .col-md-12  
               = render 'cpl_competition/competition_user_credentials/index'    
 
-.mt-4
-.row
-  .col-md-12
-    .card
-      .card-body
-        .row
-          .col-md-12
-            %h5.text-center
-              %b ENVELOPE Nº 1
-              %br/
-            %h6.text-center
-              DOCUMENTOS DE HABILITAÇÃO
-              %br/
-              COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
-              %br/
-              = @competition.title
-              %br/
-              %br/
-              = current_user.name.mb_chars.upcase
-              %br/
-              = current_user.cnpj.format_cnpj
-              %br/
-              %br/
-        - if @user_competition.competition_user_credentials.where(deleted: false).reject(&:new_record?).present?              
-          - if @competition.participation_allow? 
-            .row
-              .col-md-12              
-                .card
-                  .card-body
-                    = render 'cpl_competition/competition_user_documents/form'
-          .mt-4
-          .row
-            .col-md-12  
-              = render 'cpl_competition/competition_user_documents/index'
-        - else
-          .row
-            .col-md-12
-              .text-center
-                %i O envio de arquivos para o Envelope 1 é liberado após a realização do credenciamento.        
+       
 
 .mt-4
 .row
@@ -91,7 +53,7 @@
         .row
           .col-md-12
             %h5.text-center
-              %b ENVELOPE Nº 2
+              %b ENVELOPE Nº 1
               %br/
             %h6.text-center
               PROPOSTAS DE PREÇOS
@@ -123,7 +85,47 @@
           .row
             .col-md-12
               .text-center
-                %i O envio de arquivos para o Envelope 2 é liberado após a realização do credenciamento.
+                %i O envio de arquivos para o Envelope 1 é liberado após a realização do credenciamento.
+
+.mt-4
+.row
+  .col-md-12
+    .card
+      .card-body
+        .row
+          .col-md-12
+            %h5.text-center
+              %b ENVELOPE Nº 2
+              %br/
+            %h6.text-center
+              DOCUMENTOS DE HABILITAÇÃO
+              %br/
+              COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
+              %br/
+              = @competition.title
+              %br/
+              %br/
+              = current_user.name.mb_chars.upcase
+              %br/
+              = current_user.cnpj.format_cnpj
+              %br/
+              %br/
+        - if @user_competition.competition_user_credentials.where(deleted: false).reject(&:new_record?).present?              
+          - if @competition.participation_allow? 
+            .row
+              .col-md-12              
+                .card
+                  .card-body
+                    = render 'cpl_competition/competition_user_documents/form'
+          .mt-4
+          .row
+            .col-md-12  
+              = render 'cpl_competition/competition_user_documents/index'
+        - else
+          .row
+            .col-md-12
+              .text-center
+                %i O envio de arquivos para o Envelope 2 é liberado após a realização do credenciamento. 
 
 .mt-4
 .row
