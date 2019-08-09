@@ -2,7 +2,7 @@
   
   .row
     .col-md-3
-      = f.input :cnpj, placeholder: "Informe seu CNPJ"
+      = f.input :cnpj, placeholder: "Informe seu CNPJ", input_html: { class: 'cnpj' }
     .col-md-9
       = f.input :name, placeholder: "Informe o nome"
   .row

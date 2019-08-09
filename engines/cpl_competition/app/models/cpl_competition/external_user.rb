@@ -4,7 +4,8 @@ module CplCompetition
 
     attr_accessor :email_confirmation, :password_confirmation
 
-    validates :cnpj, cnpj: true, presence: true
+    validates_cnpj :cnpj
+    validates :cnpj, presence: true
     validates :name, :telephone, :password, :password_confirmation, presence: true
     validates :email, :email_confirmation, email: true, presence: true
 
