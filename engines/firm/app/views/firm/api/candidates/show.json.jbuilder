@@ -44,7 +44,7 @@ json.data do
 
     json.situation indication.enterprise_cadastre_situations.order('created_at ASC') do |situation|
       json.id          situation.id
-      json.status      situation.enterprise_situation_status.name
+      json.status      situation.enterprise_situation_status.name rescue nil
       json.observation situation.observation
       json.date        situation.created_at
     end
