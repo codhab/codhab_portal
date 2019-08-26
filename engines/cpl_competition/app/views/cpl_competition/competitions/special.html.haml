@@ -61,25 +61,6 @@
     .card
       .card-body
         %h5.text-center
-          %b RECURSOS 
-        %br/
-        %table.table.table-celled.table-bordered
-          %thead
-            %tr 
-              %th DATA/HORA
-              %th CNPJ
-              %th DESCRIÇÃO
-
-          %tbody
-            %tr
-              %td{colspan: 3}
-                %i Nenhum recurso registrado. 
-.mt-4
-.row
-  .col-md-12
-    .card
-      .card-body
-        %h5.text-center
           %b EVENTOS 
         %br/
         %table.table.table-celled.table-bordered
@@ -128,4 +109,4 @@
                         
 - if !current_user.administrator
   %script
-    setTimeout(function(){ location.reload(); },60000)
+    setTimeout(function(){ location.reload(); },10000)

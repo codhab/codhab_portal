@@ -13,6 +13,10 @@ module CplCompetition
 
     validate  :competition_valid?
 
+    def value=(value)
+      self[:value] = value.gsub('.','') 
+    end
+
     def competition_user_credential
       competition_user_credentials.where(deleted: false).last
     end

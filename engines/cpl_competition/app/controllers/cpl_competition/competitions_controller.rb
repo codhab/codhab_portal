@@ -15,6 +15,7 @@ module CplCompetition
 
       if current_user.nil? || !current_user.administrator?
         @competitions = CplCompetition::Competition.published
+        #@competitions = CplCompetition::Competition.all
       else
         @competitions = CplCompetition::Competition.all.order(publish_at: :desc)
       end

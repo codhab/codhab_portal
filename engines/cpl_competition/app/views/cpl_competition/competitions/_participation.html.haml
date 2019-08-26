@@ -1,10 +1,10 @@
 - if @competition.competition_users.present?
   - @competition.competition_users.order(value: :asc).each_with_index do |comp_user, index|
     %tr
-      %td #{comp_user.user.name}(#{comp_user.competition_user_credentials.where(deleted: false).last.regime_type})
+      %td #{comp_user.user.name}(#{comp_user.competition_user_credentials.where(deleted: false).last.regime_type rescue nil} ) 
       %td= comp_user.user.cnpj
-      %td= comp_user.competition_user_credentials.where(deleted: false).last.name
-      %td= comp_user.competition_user_credentials.where(deleted: false).last.cpf
+      %td= comp_user.competition_user_credentials.where(deleted: false).last.name rescue nil
+      %td= comp_user.competition_user_credentials.where(deleted: false).last.cpf rescue nil
       %td.collapsing
         = link_to "Abrir", cpl_competition.competition_user_credential_path(@competition, comp_user, comp_user), remote: true, data: {disable_with: "Carregando..."}
       %td.collapsing
@@ -14,12 +14,12 @@
       %td.collapsing
         - if current_user.administrator?
           - if comp_user.value.present?
-            %b= link_to "R$ #{number_to_currency(comp_user.value)}", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
+            %b= link_to "R$ #{Money.new(comp_user.value)}", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
           - else
             %b= link_to "Adicionar valor", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
         - else
           - if comp_user.value.present?
-            = number_to_currency comp_user.value, precision: 2
+            = Money.new comp_user.value
           - else
             %i Sem valor definido
 - else
