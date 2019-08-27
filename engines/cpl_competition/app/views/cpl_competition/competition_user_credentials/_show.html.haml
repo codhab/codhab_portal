@@ -12,8 +12,8 @@
         %th Regime
     %tbody
       %tr
-        %td= @credential.credential_type
-        %td.collapsing= @credential.regime_type  
+        %td= @credential.credential_type  rescue nil
+        %td.collapsing= @credential.regime_type  rescue nil
   
   %table.table.table-striped.table-celled.table-bordered
     %thead
@@ -22,8 +22,8 @@
         %th CPF
     %tbody
       %tr
-        %td= @credential.name
-        %td.collapsing= @credential.cpf
+        %td= @credential.name  rescue nil
+        %td.collapsing= @credential.cpf  rescue nil
   
   %table.table.table-striped.table-celled.table-bordered
     %thead
@@ -31,5 +31,5 @@
         %th Comprovante
     %tbody
       %tr
-        %td= link_to "Visualizar", @credential.document_url, target: "_blank"
+        %td= link_to "Visualizar", @credential.document_url, target: "_blank" rescue nil
   

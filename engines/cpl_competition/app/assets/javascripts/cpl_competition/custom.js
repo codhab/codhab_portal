@@ -19,6 +19,7 @@ function js_update() {
   $('.hour').mask("00:00", { placeholder: "00:00" });
   $('.cpf').mask("###.###.###-##", { placeholder: "000.000.000-00" });
   $('.cnpj').mask("##.###.###/####-##", { placeholder: "00.00.000/0000-00" });
+  $('.coin').mask("######0.00", { reverse: true });
 }
 
 function initTinyMCE() {

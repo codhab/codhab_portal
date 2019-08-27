@@ -97,7 +97,7 @@
                         - else
                           0
                     %td
-                      - if candidate.cadastre.ocurrences.present?
+                      - if candidate.cadastre.ocurrences.where(solved: false, portal: true).present?
                         .label.label-danger
                           = link_to "Pendência", ocurrences_path(id: candidate.id), style: 'color: white', remote: true
                       - if [4,54].include?(candidate.situation_status_id)
