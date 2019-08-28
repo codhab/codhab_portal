@@ -1,6 +1,6 @@
 .modal-header
   %h5.modal-title 
-    %b ENVELOPE 1
+    %b ENVELOPE 2 - Documentos
   %button.close{"aria-label" => "Fechar", "data-dismiss" => "modal", :type => "button"}
     %span{"aria-hidden" => "true"} ×
 .modal-body
@@ -17,7 +17,7 @@
           %tr
             %td= pro.created_at.strftime("%d/%m/%Y %H:%M")
             %td= pro.competition_document.name rescue 'sem informação'
-            %td.collapsing= link_to "Visualizar proposta", pro.document_url, target: "_blank"
+            %td.collapsing= link_to "Visualizar", pro.document_url, target: "_blank"
       - else
         %tr
           %td{colspan: 3}

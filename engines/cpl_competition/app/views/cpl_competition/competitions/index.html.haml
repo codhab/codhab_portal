@@ -39,8 +39,8 @@
                     = link_to "Minha participação", cpl_competition.competition_user_path(comp, current_user), class: 'btn btn-success btn-sm'
                   - else
                     = link_to "Participar", cpl_competition.new_competition_user_path(comp), class: 'btn btn-success btn-sm', data: { confirm: "Tem certeza que deseja participar do edital?"}
-                /- if ((!current_user.nil? && current_user.administrator?) || (!current_user.nil? && current_user.competition_users.where(competition_id: comp).present?))
-                - if comp.session_opened? && ((!current_user.nil? && current_user.administrator?) || (!current_user.nil? && current_user.competition_users.where(competition_id: comp).present?))
+                /- if !comp.participation_allow? && comp.session_opened? && ((!current_user.nil? && current_user.administrator?) || (!current_user.nil? && current_user.competition_users.where(competition_id: comp).present?))
+                - if ((!current_user.nil? && current_user.administrator?) || (!current_user.nil? && current_user.competition_users.where(competition_id: comp).present?))
                   - if current_user.administrator?
                     = link_to "Visualizar sessão", cpl_competition.competition_special_path(comp), class: 'btn btn-success btn-sm'
                   - else

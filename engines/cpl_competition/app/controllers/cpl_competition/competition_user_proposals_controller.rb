@@ -39,7 +39,7 @@ module CplCompetition
 
     def set_competition_user
       @competition      = CplCompetition::Competition.find(params[:competition_id])
-      @user_competition = @competition.competition_users.find_by(user_id: current_user.id)
+      @user_competition = @competition.competition_users.find_by(user_id: params[:user_id])
     end
 
     def set_params

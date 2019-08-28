@@ -1,27 +1,97 @@
+
+
 - if @competition.competition_users.present?
-  - @competition.competition_users.order(value: :asc).each_with_index do |comp_user, index|
-    %tr
-      %td #{comp_user.user.name}(#{comp_user.competition_user_credentials.where(deleted: false).last.regime_type rescue nil} ) 
-      %td= comp_user.user.cnpj
-      %td= comp_user.competition_user_credentials.where(deleted: false).last.name rescue nil
-      %td= comp_user.competition_user_credentials.where(deleted: false).last.cpf rescue nil
-      %td.collapsing
-        = link_to "Abrir", cpl_competition.competition_user_credential_path(@competition, comp_user, comp_user), remote: true, data: {disable_with: "Carregando..."}
-      %td.collapsing
-        = link_to "Abrir", cpl_competition.competition_user_document_path(@competition, comp_user, comp_user), remote: true, data: {disable_with: "Carregando..."}
-      %td.collapsing
-        = link_to "Abrir", cpl_competition.competition_user_proposal_path(@competition, comp_user, comp_user), remote: true, data: {disable_with: "Carregando..."}
-      %td.collapsing
-        - if current_user.administrator?
-          - if comp_user.value.present?
-            %b= link_to "R$ #{Money.new(comp_user.value)}", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
+  - @competition.competition_users.where.not(value: 0).order(value: :asc).each_with_index do |comp_user, index|
+    - if comp_user.competition_user_credentials.where(deleted: false).present?
+      %tr
+        %td.collapsing #{index + 1} º
+        %td #{comp_user.user.name.to_s.upcase.mb_chars}(#{comp_user.competition_user_credentials.where(deleted: false).last.regime_type rescue nil} ) 
+        %td= comp_user.user.cnpj
+        %td= comp_user.competition_user_credentials.where(deleted: false).last.name.to_s.upcase.mb_chars rescue nil
+        %td= comp_user.competition_user_credentials.where(deleted: false).last.cpf rescue nil
+        %td.collapsing
+          = link_to "Abrir", cpl_competition.competition_user_credential_path(@competition, comp_user.user_id, comp_user), remote: true, data: {disable_with: "Carregando..."}
+        %td.collapsing
+          - if comp_user.competition_user_participations.where(partipation_type: 1).present?
+            = link_to "Abrir", cpl_competition.competition_user_document_path(@competition, comp_user.user_id, comp_user), remote: true, data: {disable_with: "Carregando..."}
           - else
-            %b= link_to "Adicionar valor", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
-        - else
-          - if comp_user.value.present?
-            = Money.new comp_user.value
+            %span{style: 'color: red'} Não enviou
+        %td.collapsing
+          - if comp_user.competition_user_participations.where(partipation_type: 1).present?
+            = link_to "Abrir", cpl_competition.competition_user_proposal_path(@competition, comp_user.user_id, comp_user), remote: true, data: {disable_with: "Carregando..."}
           - else
-            %i Sem valor definido
+            %span{style: 'color: red'} Não enviou
+        %td.collapsing
+          - if comp_user.competition_user_participations.present?
+            - if current_user.administrator?
+              - if comp_user.value.present? 
+                %b= link_to "R$ #{Money.new(comp_user.value)}", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
+              - else
+                %b= link_to "Adicionar valor", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
+            - else
+              - if comp_user.value.present?
+                = Money.new comp_user.value
+              - else
+                %i Sem valor definido
+          - else
+            %span{style: 'color: red'} Não realizou participação
+    - else
+      %tr{style: "background-color: #cccccc; opacity: 0.5;"}
+        %td 
+        %td 
+          %i #{comp_user.user.name.to_s.upcase.mb_chars}
+        %td{colspan: 7} 
+          %i Não realizou credenciamento
+- else
+  %tr
+    %td{colspan: 7}
+      %i Nenhum participante encontrado.
+
+
+
+- if @competition.competition_users.present?
+  - @competition.competition_users.where(value: 0).order(value: :asc).each_with_index do |comp_user, index|
+
+    - if comp_user.competition_user_credentials.where(deleted: false).present?
+      %tr
+        %td
+        %td #{comp_user.user.name.to_s.upcase.mb_chars}(#{comp_user.competition_user_credentials.where(deleted: false).last.regime_type rescue nil} ) 
+        %td= comp_user.user.cnpj
+        %td= comp_user.competition_user_credentials.where(deleted: false).last.name.to_s.upcase.mb_chars rescue nil
+        %td= comp_user.competition_user_credentials.where(deleted: false).last.cpf rescue nil
+        %td.collapsing
+          = link_to "Abrir", cpl_competition.competition_user_credential_path(@competition, comp_user.user_id, comp_user), remote: true, data: {disable_with: "Carregando..."}
+        %td.collapsing
+          - if comp_user.competition_user_participations.where(partipation_type: 1).present?
+            = link_to "Abrir", cpl_competition.competition_user_document_path(@competition, comp_user.user_id, comp_user), remote: true, data: {disable_with: "Carregando..."}
+          - else
+            %span{style: 'color: red'} Não enviou
+        %td.collapsing
+          - if comp_user.competition_user_participations.where(partipation_type: 1).present?
+            = link_to "Abrir", cpl_competition.competition_user_proposal_path(@competition, comp_user.user_id, comp_user), remote: true, data: {disable_with: "Carregando..."}
+          - else
+            %span{style: 'color: red'} Não enviou
+        %td.collapsing
+          - if comp_user.competition_user_participations.present?
+            - if current_user.administrator?
+              - if comp_user.value.present? 
+                %b= link_to "R$ #{Money.new(comp_user.value)}", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
+              - else
+                %b= link_to "Adicionar valor", cpl_competition.edit_competition_user_path(@competition, comp_user), remote: true
+            - else
+              - if comp_user.value.present?
+                = Money.new comp_user.value
+              - else
+                %i Sem valor definido
+          - else
+            %span{style: 'color: red'} Não realizou participação
+    - else
+      %tr{style: "background-color: #cccccc; opacity: 0.5;"}
+        %td 
+        %td 
+          %i #{comp_user.user.name.to_s.upcase.mb_chars}
+        %td{colspan: 7} 
+          %i Não realizou credenciamento
 - else
   %tr
     %td{colspan: 7}
