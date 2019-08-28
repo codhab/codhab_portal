@@ -30,7 +30,7 @@
               %td= link_to comp.title, cpl_competition.competition_path(comp)
               %td.collapsing= comp.publish_at.strftime("%d/%m/%Y") rescue "Sem informação"
               %td.collapsing
-                - if (!current_user.nil? && current_user.administrator?) && !comp.session_opened?
+                - if (!current_user.nil? && current_user.administrator?) #&& !comp.session_opened?
                   = link_to "Editar", cpl_competition.edit_competition_path(comp), class: 'btn btn-primary btn-sm'
                   = link_to "Documentação", cpl_competition.competition_documents_path(comp), class: 'btn btn-primary btn-sm'
                 = link_to "Detalhar", cpl_competition.competition_path(comp), class: 'btn btn-secondary btn-sm'
