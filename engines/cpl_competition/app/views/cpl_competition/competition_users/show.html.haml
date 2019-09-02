@@ -9,6 +9,37 @@
     .card
       .card-body
         = @competition.document_introduce.html_safe
+- if current_user.id == 32    
+  .mt-4
+  .row
+    .col-md-12
+      .card
+        .card-body
+          .row
+            .col-md-12
+              %h5.text-center
+                %b DOCUMENTAÇÃO ADICIONAL
+              %h6.text-center
+                COMPANHIA DE DESENVOLVIMENTO HABITACIONAL DO DF - CODHAB
+                %br/
+                = @competition.title
+                %br/
+                %br/
+                = current_user.name.mb_chars.upcase
+                %br/
+                = current_user.cnpj.format_cnpj
+                %br/
+                %br/
+          
+        .row
+          .col-md-12              
+            .card
+              .card-body
+                = render 'cpl_competition/competition_user_additionals/form'
+        .mt-4
+        .row
+          .col-md-12  
+            = render 'cpl_competition/competition_user_additionals/index'    
 
 .mt-4
 .row
@@ -36,12 +67,12 @@
               .col-md-12              
                 .card
                   .card-body
-                    = render 'cpl_competition/competition_user_credentials/form'
+                    = render 'cpl_competition/competition_user_additionals/form'
         - else
           .mt-4
           .row
             .col-md-12  
-              = render 'cpl_competition/competition_user_credentials/index'    
+              = render 'cpl_competition/competition_user_additionals/index'    
 
        
 

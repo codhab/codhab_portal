@@ -4,7 +4,7 @@ module CplCompetition
 
     belongs_to :competition_document
     
-    enum partipation_type: ['documento', 'proposta']
+    enum partipation_type: ['documento', 'proposta', 'adicional']
     
     mount_uploader :document, ::CplCompetition::DocumentUploader
 

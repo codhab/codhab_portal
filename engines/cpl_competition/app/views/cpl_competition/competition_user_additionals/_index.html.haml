@@ -1,0 +1,18 @@
+%table.table.table-striped.table-bordered.table-celled
+  %thead
+    %tr
+      %th Nº
+      %th Data/Hora
+      %th Arquivo
+      %th
+  %tbody 
+    - @user_competition.competition_user_participations.where(partipation_type: 2).order(created_at: :desc).each do |part|
+      %tr{style: part.deleted ? 'opacity: 0.5' : nil}
+        %td.collapsing{style: part.deleted ? 'text-decoration: line-through;' : nil}= part.id
+        %td{style: part.deleted ? 'text-decoration: line-through;' : nil}= part.created_at.strftime("%d/%m/%Y %H:%M")
+        %td{style: part.deleted ? 'text-decoration: line-through;' : nil}= link_to "Visualizar", part.document_url, target: '_blank'
+        %td.collapsing
+          - if part.deleted
+            %i Arquivo removido em #{part.deleted_at.strftime('%d/%m/%Y %H:%M')}
+          - else
+            = link_to "Remover", cpl_competition.competition_user_additional_path(@competition, @user_competition, part), method: :delete, data: { confirm: "Tem certeza que deseja remover este arquivo?"}, class: 'btn btn-danger btn-sm'
