@@ -4,9 +4,9 @@
       %b Quadro Técnico
       %br/
       %br/
-      - @date_finish = Time.now
-      -if @date_finish < Date.parse('2018-06-22')
-        = link_to '+Adicionar Quadro Técnico', new_cadastre_cadastre_member_path(@cadastre), remote: true, class: 'btn btn-primary btn-sm '# if policy(:control_notice_situation, namespace: Cpl).create?
+      -# - @date_finish = Time.now
+      -# -if @date_finish < Date.parse('2018-06-22')
+      = link_to '+Adicionar Quadro Técnico', new_cadastre_cadastre_member_path(@cadastre), remote: true, class: 'btn btn-primary btn-sm '# if policy(:control_notice_situation, namespace: Cpl).create?
     %table.table.table-striped.table-condensed.table-bordered
       %thead
         %tr
@@ -31,11 +31,11 @@
               %td= member.celphone
               %td= member.activite
               %td= member.registration_crea
-              -if @date_finish < Date.parse('2018-06-22')
-                %td
-                  .menu
-                    = link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_cadastre_member_path(member.cadastre_id,member), title: 'Editar', class: 'btn btn-warning btn-sm',  remote: true
-                    = link_to "<i class='glyphicon glyphicon-remove'></i>".html_safe, cadastre_cadastre_member_path(member.cadastre_id,member), title: "Excluir", class: 'btn btn-warning btn-sm', method: :delete, data: {confirm: "#{t(:confirm_delete)}"}
+              -# -if @date_finish < Date.parse('2018-06-22')
+              %td
+                .menu
+                  = link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_cadastre_member_path(member.cadastre_id,member), title: 'Editar', class: 'btn btn-warning btn-sm',  remote: true
+                  = link_to "<i class='glyphicon glyphicon-remove'></i>".html_safe, cadastre_cadastre_member_path(member.cadastre_id,member), title: "Excluir", class: 'btn btn-warning btn-sm', method: :delete, data: {confirm: "#{t(:confirm_delete)}"}
 
         - else
           %tr

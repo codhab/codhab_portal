@@ -12,7 +12,6 @@ module SocialWorkCadastre
     end
 
     def new
-      redirect_to new_session_path
       @cadastre = Core::SocialWorkCadastre::Cadastre.new
     end
 
@@ -50,6 +49,7 @@ module SocialWorkCadastre
       @cadastre.confirm = false
       @cadastre.situation = 0
       @cadastre.sicaf = false
+      @cadastre.assignment = 2019
 
       if @cadastre.save
         begin
@@ -115,7 +115,7 @@ module SocialWorkCadastre
     private
 
     def set_params
-      params.require(:social_work_cadastre_cadastre).permit(:social_reason, :crea, :cnpj, :address,
+      params.require(:social_work_cadastre_cadastre).permit(:assignment, :social_reason, :crea, :cnpj, :address,
                                        :cep, :uf, :telephone, :celphone, :email,
                                        :city_id, :district, :sicaf,
                                        :technological_resources, :password,

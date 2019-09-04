@@ -1,11 +1,11 @@
 %br
-.row
-  .col-md-12
-    %b Possui cadastro no Sistema de Cadastramento Unificado de fornecedores (SICAF)?
-    #sicaf
-    - unless @cadastre.steps.where(step: 2).present?
-      = link_to 'Sim', update_sicaf_path(id: @cadastre.id, sicaf: true), class: 'btn btn-success btn-xs', disabled: @cadastre.sicaf == true ? 'disabled' : nil
-      = link_to 'Não', update_sicaf_path(id: @cadastre.id, sicaf: false), class: 'btn btn-danger btn-xs', disabled: @cadastre.sicaf == false ? 'disabled' : nil
+-# .row
+-#   .col-md-12
+-#     %b Possui cadastro no Sistema de Cadastramento Unificado de fornecedores (SICAF)?
+-#     #sicaf
+-#     - unless @cadastre.steps.where(step: 2).present?
+-#       = link_to 'Sim', update_sicaf_path(id: @cadastre.id, sicaf: true), class: 'btn btn-success btn-xs', disabled: @cadastre.sicaf == true ? 'disabled' : nil
+-#       = link_to 'Não', update_sicaf_path(id: @cadastre.id, sicaf: false), class: 'btn btn-danger btn-xs', disabled: @cadastre.sicaf == false ? 'disabled' : nil
 %br
 -if @compar == true || (@cadastre.sicaf == true && @compar_sicaf == true)
   - unless @cadastre.steps.where(step: 2).present?
@@ -42,3 +42,6 @@
           = render 'document_c'
         #tab4.tab-pane
           = render 'form_declaration'
+      %b
+        = '*Campos obrigatório.'
+      

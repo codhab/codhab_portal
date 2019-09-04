@@ -12,10 +12,10 @@
         - unless @cadastre.steps.where(step: 2).present?
           .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
             Etapa de Documentos não concluída.
-        - unless @cadastre.steps.where(step: 3).present?
-          .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
-            Etapa de Localidades não concluída.
-        - if @cadastre.steps.where(step: 1).present? && @cadastre.steps.where(step: 2).present? && @cadastre.steps.where(step: 3).present?
+        -# - unless @cadastre.steps.where(step: 3).present?
+        -#   .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
+        -#     Etapa de Localidades não concluída.
+        - if @cadastre.steps.where(step: 1).present? && @cadastre.steps.where(step: 2).present?
           .alert.alert-success{style: 'background-color: #a4eda6 !important; border-color: #a4eda6 !important; color: black !important'}
             Todas as etapas do cadastro foram finalizadas.
     .row
@@ -37,20 +37,18 @@
               - else
                 %i.glyphicon.glyphicon-warning-sign{style: 'color: orange', title: 'Nenhum documento incluído.'}
               2 - Documentos
-          %li{:class => (params[:q] == 'l') ? 'active' : ''}
-            %a{ :href => "/credenciamento/cadastro/#{@cadastre.id}?q=l"}
-              - if @cadastre.steps.where(step: 3).present?
-                %i.glyphicon.glyphicon-ok{style: 'color: green'}
-              - else
-                %i.glyphicon.glyphicon-warning-sign{style: 'color: orange', title: 'Nenhuma localização incluído.'}
-              3 - Localidades
+          -# %li{:class => (params[:q] == 'l') ? 'active' : ''}
+          -#   %a{ :href => "/credenciamento/cadastro/#{@cadastre.id}?q=l"}
+          -#     - if @cadastre.steps.where(step: 3).present?
+          -#       %i.glyphicon.glyphicon-ok{style: 'color: green'}
+          -#     - else
+          -#       %i.glyphicon.glyphicon-warning-sign{style: 'color: orange', title: 'Nenhuma localização incluído.'}
+          -#     3 - Localidades
         .tab-content
           - case params[:q]
           - when 'e'
             = render 'enterprise'
           - when 'd'
             = render 'document'
-          - when 'l'
-            = render 'locales'
           -else
             = render 'enterprise'

@@ -8,19 +8,18 @@
     %p
       À CODHAB/DF,
     %p
-      Ref. Credenciamento no 01/2018
-    %p
+      Ref. Credenciamento no 01/2019
+    %p{style: 'text-align: justify'} 
       %b
         Objeto:
-      credenciar Pessoa Jurídica, devidamente registrada no Conselho Regional de Engenharia e Agronomia (CREA) ou no Conselho de Arquitetura e Urbanismo do Brasil (CAU), para a prestação de serviços técnicos profissionais de pequenas reformas, adiante descritos, em caráter temporário, em residências localizadas em Áreas de Regularização de Interesse Social (ARIS), estabelecidas pela lei complementar nº 854, de 15 de outubro de 2012, e posteriormente definidas pela CODHAB/DF, de acordo   com os       critérios, termos e condições estabelecidas no Projeto Básico e seus Anexos, que o integram e complementam.
+      Credenciamento de Pessoa Jurídica, devidamente registrada no Conselho Regional de Engenharia e Agronomia (CREA) e/ou no Conselho de Arquitetura e Urbanismo do Brasil (CAU), com vistas à posterior contratação, para a construção de até 109 módulos estruturais de interesse social - conforme descrito no item 4 - , denominados de "Módulos Embriões", na Região Administrativa de Samambaia RA - XII, de acordo com os projetos técnicos, especificações, serviços e orçamento, contidos no Anexo II e Anexo III, em atendimento à Política de Desenvolvimento Habitacional do Distrito Federal, de modo a disponibilizar, às famílias beneficiadas, uma estrutura inicial básica, que a elas possibilite a auto-construção assistida das posteriores etapas de suas moradias.
     %p
       %b
         Do Responsável Técnico:
     %p
-      1. Abaixo, informe quem será o responsável técnico pelas execuções dos projetos de melhorias habitacionais durante todo período de vigência do contrato:
+      1. Abaixo, informe quem será o responsável técnico pelas execução do objeto deste Credenciamento 01/2019. 
     %p
-      Caso o profissional não tenha sido incluido em quadro técnico, favor incluir
-      , caso o profissional já tenha sido incluido, clique em:
+      Caso o profissional não tenha sido incluído na opção acima QUADRO TÉCNICO, favor incluir;  caso o profissional já tenha sido incluído, clique em:
       = link_to 'Escolher Responsável', new_cadastre_responsible_path(@cadastre), remote: true, class: 'btn btn-info btn-sm'
     -if @cadastre.responsibles.where(responsible: true).present?
       - responsible = @cadastre.responsibles.where(responsible: true).last
