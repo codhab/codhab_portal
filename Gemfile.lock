@@ -493,6 +493,7 @@ DEPENDENCIES
   poltergeist
   protocol!
   rails (= 5.0.2)
+  rake
   recaptcha
   regularization!
   remotipart
@@ -500,6 +501,7 @@ DEPENDENCIES
   rqrcode_png
   rspec-rails
   rubyzip (>= 1.2.1)
+  sassc (~> 2.2.0)
   schedule!
   select2-rails
   shareable
