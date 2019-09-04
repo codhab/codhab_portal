@@ -23,7 +23,7 @@
     .col-md-6
       = f.input :uf, label: "UF", as: :select, collection: Address::State.all, label_method: :acronym,  include_blank: "Selecione..."
     .col-md-6
-      = f.input :city_id, label: "Cidade", as: :select, collection: [], include_blank: false, include_blank: "Selecione..."
+      = f.input :city_id, label: "Cidade", as: :select, collection: f.object.uf.present? ? Address::City.where(state_id: f.object.uf) : {}, include_blank: false, include_blank: "Selecione..."
   .row
     .col-md-6
       = f.input :district, label: "Bairro", input_html: { placeholder: 'Bairro'}

@@ -6,7 +6,7 @@
       %br/
       -# - @date_finish = Time.now
       -# -if @date_finish < Date.parse('2018-06-22')
-      = link_to '+Adicionar Quadro Técnico', new_cadastre_cadastre_member_path(@cadastre), remote: true, class: 'btn btn-primary btn-sm '# if policy(:control_notice_situation, namespace: Cpl).create?
+      = link_to '+Adicionar Quadro Técnico', new_cadastre_cadastre_member_path(@cadastre), remote: true, class: 'btn btn-success btn-sm'# if policy(:control_notice_situation, namespace: Cpl).create?
     %table.table.table-striped.table-condensed.table-bordered
       %thead
         %tr

@@ -7,11 +7,17 @@
     .row
       .col-md-12
         - unless @cadastre.steps.where(step: 1).present?
-          .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
+          .alert.alert-warning{style: 'background-color: red !important; border-color: #f9ece0 !important; color: #ffff !important'}
             Etapa de Identificação da Empresa não concluída.
+        -else
+          .alert.alert-warning{style: 'background-color: green !important; border-color: #f9ece0 !important; color: #ffff !important'}
+            Etapa de Identificação da Empresa concluída.
         - unless @cadastre.steps.where(step: 2).present?
-          .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
+          .alert.alert-warning{style: 'background-color: red !important; border-color: #f9ece0 !important; color: #ffff !important'}
             Etapa de Documentos não concluída.
+        - else
+          .alert.alert-warning{style: 'background-color: green !important; border-color: #f9ece0 !important; color: #ffff !important'}
+            Etapa de Documentos concluída.
         -# - unless @cadastre.steps.where(step: 3).present?
         -#   .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
         -#     Etapa de Localidades não concluída.
