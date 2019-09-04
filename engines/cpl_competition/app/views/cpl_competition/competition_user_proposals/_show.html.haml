@@ -1,6 +1,6 @@
 .modal-header
   %h5.modal-title 
-    %b ENVELOPE 2
+    %b ENVELOPE 1 - Proposta
   %button.close{"aria-label" => "Fechar", "data-dismiss" => "modal", :type => "button"}
     %span{"aria-hidden" => "true"} ×
 .modal-body
@@ -11,7 +11,12 @@
         %th Data/Hora
         %th Arquivo
     %tbody
-      - @proposals.where(deleted: false).each do |pro|
+      - if @proposals.where(deleted: false).present?
+        - @proposals.where(deleted: false).each do |pro|
+          %tr
+            %td= pro.created_at.strftime("%d/%m/%Y %H:%M")
+            %td.collapsing= link_to "Visualizar", pro.document_url, target: "_blank"
+      - else
         %tr
-          %td= pro.created_at.strftime("%d/%m/%Y %H:%M")
-          %td.collapsing= link_to "Visualizar proposta", pro.document_url, target: "_blank"
+          %td{colspan: 2}
+            %i Nenhum arquivo enviado.

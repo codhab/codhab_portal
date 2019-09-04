@@ -1,10 +1,10 @@
 module CplCompetition
-  class CompetitionUserDocumentsController < ApplicationController
+  class CompetitionUserResourcesController < ApplicationController
     skip_before_filter :verify_authenticity_token  
     before_action :set_competition_user
 
     def create
-      @document = @user_competition.competition_user_participations.where(partipation_type: 0).new(set_params)
+      @document = @user_competition.competition_user_participations.where(partipation_type: 3).new(set_params)
 
       if @document.save
         redirect_to cpl_competition.competition_user_path(@competition, @user_competition)
@@ -17,30 +17,21 @@ module CplCompetition
     end
     
     def destroy
-      @document = @user_competition.competition_user_participations.where(partipation_type: 0).find(params[:id])
+      @document = @user_competition.competition_user_participations.where(partipation_type: 3).find(params[:id])
       @document.update(deleted: true, deleted_at: Time.now) 
       
       redirect_to cpl_competition.competition_user_path(@competition, @user_competition)
     end
 
     def show
-      if !current_user.nil? && current_user.administrator
-        event = @competition.competition_events.new(
-          description: "Usuário #{current_user.name} abriu envelope 2 do participante #{@user_competition.user.name}",
-          user_id: current_user.id,
-          event_type: 'histórico'
-        )
-        event.save
-      end
-
-      @documents = @user_competition.competition_user_participations.where(partipation_type: 0, deleted: false)
+      @documents = @user_competition.competition_user_participations.where(partipation_type: 3, deleted: false)
     end
 
     private
 
     def set_competition_user
       @competition      = CplCompetition::Competition.find(params[:competition_id])
-      @user_competition = @competition.competition_users.find_by(user_id: params[:user_id])
+      @user_competition = @competition.competition_users.find_by(user_id: current_user.id)
     end
 
     def set_params

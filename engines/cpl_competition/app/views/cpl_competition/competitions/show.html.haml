@@ -14,6 +14,99 @@
         %tr
           %td= @competition.content.html_safe
 
+.row
+  .col-md-12
+    %h5 Participantes 
+.row
+  .col-md-12 
+    %table.table.table-celled.table-bordered
+      %thead 
+        %tr
+          %th Posição   
+          %th Empresa   
+          %th CNPJ   
+          %th Representante   
+          %th CPF   
+          %th Cred   
+          %th Env 2   
+          %th Env 1   
+          %th Valor   
+      %tbody       
+        - if @competition.competition_users.present?
+          - @competition.competition_users.where.not(value: 0).order(value: :asc).each_with_index do |comp_user, index|
+            - if comp_user.competition_user_credentials.where(deleted: false).present?
+              %tr
+                %td.collapsing #{index + 1} º
+                %td #{comp_user.user.name.to_s.upcase.mb_chars}(#{comp_user.competition_user_credentials.where(deleted: false).last.regime_type rescue nil} ) 
+                %td= comp_user.user.cnpj
+                %td= comp_user.competition_user_credentials.where(deleted: false).last.name.to_s.upcase.mb_chars rescue nil
+                %td= comp_user.competition_user_credentials.where(deleted: false).last.cpf rescue nil
+                %td.collapsing
+                  = link_to "Credenciamento", cpl_competition.competition_user_credential_path(@competition, comp_user.user_id, comp_user), remote: true, data: {disable_with: "Carregando..."}
+                %td.collapsing
+                  - if comp_user.competition_user_participations.where(partipation_type: 1).present?
+                    = link_to "Documentação", cpl_competition.competition_user_document_path(@competition, comp_user.user_id, comp_user), remote: true, data: {disable_with: "Carregando..."}
+                  - else
+                    %span{style: 'color: red'} Não enviou
+                %td.collapsing
+                  - if comp_user.competition_user_participations.where(partipation_type: 1).present?
+                    = link_to "Proposta", cpl_competition.competition_user_proposal_path(@competition, comp_user.user_id, comp_user), remote: true, data: {disable_with: "Carregando..."}
+                  - else
+                    %span{style: 'color: red'} Não enviou
+                %td.collapsing
+                  - if comp_user.value.present?
+                    = Money.new comp_user.value
+                  - else
+                    %i Sem valor definido
+            - else
+              %tr{style: "background-color: #cccccc; opacity: 0.5;"}
+                %td 
+                %td 
+                  %i #{comp_user.user.name.to_s.upcase.mb_chars}
+                %td{colspan: 7} 
+                  %i Não realizou credenciamento
+        - else
+          %tr
+            %td{colspan: 7}
+              %i Nenhum participante encontrado.
+
+.row
+  .col-md-12
+    %h5 Ata
+.row
+  .col-md-12
+    %table.table.table-celled.table-bordered
+      %tbody 
+        %tr
+          %td= @competition.document_introduce.html_safe
+.row
+  .col-md-12
+    %h5 Eventos 
+.row
+  .col-md-12 
+    %table.table.table-celled.table-bordered
+      %thead 
+        %tr
+          %th Data/Hora
+          %th Autor
+          %th Mensagem
+      %tbody 
+        - if @competition.competition_chats.present?
+          - @competition.competition_chats.order(created_at: :asc).each do |chat|
+            %tr
+              %td.collapsing= chat.created_at.strftime("%d/%m/%Y %H:%M")
+              %td.collapsing= chat.user.name rescue nil
+              %td= chat.content
+        - else
+          %tr
+            %td{colspan: 3}
+              %i Nenhum histórico encontrado.
+
+.row
+  .col-md-12
+    %h5 Histórico
+.row
+  .col-md-12
     - if !current_user.nil? && current_user.administrator?
       %table.table.table-celled.table-bordered
         %thead
@@ -23,7 +116,6 @@
             %th.collapsing Data/Hora
             %th.collapsing Usuário
             %th Descrição
-            %th.collapsing Detalhe
         %tbody
           - if @competition.competition_events.present?
             - @competition.competition_events.order(created_at: :desc).each do |event|
@@ -31,8 +123,6 @@
                 %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
                 %td.collapsing= event.user.name rescue "Sem informação"
                 %td= event.description
-                %td.collapsing
-                  = link_to "Passe o mouse", "javascript:void(0)", title: event.content
           - else
             %tr
               %td{colspan: 4}

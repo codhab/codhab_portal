@@ -23,13 +23,15 @@ module CplCompetition
     end
     
     def show
-      event = @competition.competition_events.new(
-        description: "Usuário #{current_user.name} abriu informações de credenciamentodo participante #{@user_competition.user.name}",
-        user_id: current_user.id,
-        event_type: 'histórico'
-      )
-
-      event.save
+      if !current_user.nil? && current_user.administrator
+        event = @competition.competition_events.new(
+          description: "Usuário #{current_user.name} abriu informações de credenciamentodo participante #{@user_competition.user.name}",
+          user_id: current_user.id,
+          event_type: 'histórico'
+        )
+      
+        event.save
+      end
 
       @credential = @user_competition.competition_user_credential
     end
@@ -42,7 +44,7 @@ module CplCompetition
 
     def set_competition_user
       @competition      = CplCompetition::Competition.find(params[:competition_id])
-      @user_competition = @competition.competition_users.find_by(user_id: current_user.id)      
+      @user_competition = @competition.competition_users.find_by(user_id: params[:user_id])      
     end
 
   end
