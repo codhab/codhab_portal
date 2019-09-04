@@ -20,7 +20,7 @@
       1. Abaixo, informe quem será o responsável técnico pelas execução do objeto deste Credenciamento 01/2019. 
     %p
       Caso o profissional não tenha sido incluído na opção acima QUADRO TÉCNICO, favor incluir;  caso o profissional já tenha sido incluído, clique em:
-      = link_to 'Escolher Responsável', new_cadastre_responsible_path(@cadastre), remote: true, class: 'btn btn-info btn-sm'
+      = link_to 'Escolher Responsável', new_cadastre_responsible_path(@cadastre), remote: true, class: 'btn btn-success btn-sm'
     -if @cadastre.responsibles.where(responsible: true).present?
       - responsible = @cadastre.responsibles.where(responsible: true).last
       %table.table.table-bordered

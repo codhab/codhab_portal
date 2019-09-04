@@ -5,7 +5,7 @@
     - unless @cadastre.steps.where(step: 1).present?
       = simple_form_for [@cadastre, @step], url: cadastre_cadastre_steps_path(@cadastre), remote: true do |f|
         = f.input :step, as: :hidden, input_html: {value: 1}
-        = f.button :submit, "Finalizar Etapa", class: 'btn btn-info btn-sm'
+        = f.button :submit, "Finalizar Etapa", class: 'btn btn-success btn-sm'
     %br/
     %br/
     - begin
@@ -47,10 +47,10 @@
               = 'Sim'
             - else
               = 'Não'
-          - @date_finish = Time.now
-          -if @date_finish < Date.parse('2018-06-22')
-            - if @cadastre.situation != "Habilitado"
-              %td= link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_path(@cadastre),title: "Editar", class: 'btn btn-warning btn-sm', remote: true
+          -# - @date_finish = Time.now
+          -# -if @date_finish < Date.parse('2018-06-22')
+          - if @cadastre.situation != "Habilitado"
+            %td= link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_path(@cadastre),title: "Editar", class: 'btn btn-warning btn-sm', remote: true
   .col-md-12
     %h4
       %b Contato
