@@ -38,7 +38,7 @@ gem 'file_validators'
 gem 'rubyzip', '>= 1.2.1'
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
-gem 'sassc', '~>2.2.0'
+gem 'sassc-rails'
 
 gem 'faraday'
 gem 'faraday_middleware'
