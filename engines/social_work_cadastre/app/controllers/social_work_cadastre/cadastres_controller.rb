@@ -51,6 +51,9 @@ module SocialWorkCadastre
       @cadastre.sicaf = false
       @cadastre.assignment = 2019
 
+      @number = Core::SocialWorkCadastre::Cadastre.where(assignment: 2019).count
+      @cadastre.number = @number + 1
+
       if @cadastre.save
         begin
           SocialWorkCadastre::ConfirmationCadastreMailer.completed_data(@cadastre).deliver_now!
