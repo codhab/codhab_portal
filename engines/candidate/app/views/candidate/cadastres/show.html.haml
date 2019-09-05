@@ -132,7 +132,7 @@
 
         %h4
           %b Indicado ao empreendimento
-        - if Candidate::EntityCadastreEvaluation.where(cadastre_id: @cadastre.id).present?
+        - if Candidate::EntityCadastreEvaluation.where(cadastre_id: @cadastre.id, status: true).present?
           .row
             .col-md-12
               %table#data-table-command.table.table-striped.table-vmiddle.datatable
