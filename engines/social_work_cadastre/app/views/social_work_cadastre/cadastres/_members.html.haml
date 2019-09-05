@@ -20,7 +20,7 @@
           - @cadastre_titulars.each do |titular|
             %tr
               %td= titular.name
-              %td= titular.formation
+              %td= "#{titular.crea_cau? ? "CREA" : "CAU" rescue nil} - #{titular.formation}"
               %td= titular.rg
               %td= titular.cpf
               -# -if @date_finish < Date.parse('2018-06-22')

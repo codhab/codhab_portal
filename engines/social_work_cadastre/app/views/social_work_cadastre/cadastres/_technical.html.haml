@@ -24,7 +24,7 @@
           - @cadastre_members.each do |member|
             %tr
               %td= member.name
-              %td= member.formation
+              %td= "#{member.crea_cau? ? "CREA" : "CAU" rescue nil} - #{member.formation}"
               %td= member.rg
               %td= member.cpf
               %td= member.telephone

@@ -5,9 +5,9 @@
         = f.input :social_reason, label: "Razão social", input_html: { placeholder: 'Razão social'}
     .row
       .col-md-6
-        = f.input :crea_cau,as: :select, collection: [['CAU',false], ['CREA', true]], label: "Entidade de classe",include_blank: "Selecione..."
+        = f.input :crea_cau,as: :select, collection: [['CREA',true],['CAU',false]], label: "Conselho  de classe",include_blank: "Selecione..."
       .col-md-6
-        = f.input :crea, label: "Número da entidade", input_html: { placeholder: 'CAU/CREA' }
+        = f.input :crea, label: "N° de registro no conselho", input_html: { placeholder: 'CAU/CREA' }
     .row
       .col-md-6
         = f.input :cnpj, label: "Cnpj", input_html: { class: 'cnpj', placeholder: 'Cnpj'}
