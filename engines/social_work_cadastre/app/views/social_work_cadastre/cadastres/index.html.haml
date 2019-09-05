@@ -10,6 +10,6 @@
                 %br/
                 %small  Listagem de Empresas
                 %br/
-                = link_to 'Cadastrar Empresa', new_cadastre_path, class: 'btn btn-success '# if policy(:control_notice_situation, namespace: Cpl).create?
+                = link_to 'Cadastrar Empresa', "#", class: 'btn btn-success '# if policy(:control_notice_situation, namespace: Cpl).create?
                 = link_to 'Login da Empresa', new_session_path, class: 'btn btn-success ' # if policy(:control_notice_situation, namespace: Cpl).create?
       
