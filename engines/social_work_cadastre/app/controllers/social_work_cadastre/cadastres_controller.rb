@@ -115,7 +115,7 @@ module SocialWorkCadastre
     private
 
     def set_params
-      params.require(:social_work_cadastre_cadastre).permit(:assignment, :social_reason, :crea, :cnpj, :address,
+      params.require(:social_work_cadastre_cadastre).permit(:crea_cau, :assignment, :social_reason, :crea, :cnpj, :address,
                                        :cep, :uf, :telephone, :celphone, :email,
                                        :city_id, :district, :sicaf,
                                        :technological_resources, :password,

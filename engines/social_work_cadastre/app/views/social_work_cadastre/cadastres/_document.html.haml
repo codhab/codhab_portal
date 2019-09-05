@@ -11,7 +11,7 @@
   - unless @cadastre.steps.where(step: 2).present?
     = simple_form_for [@cadastre, @step], url: cadastre_cadastre_steps_path(@cadastre), remote: true do |f|
       = f.input :step, as: :hidden, input_html: {value: 2}
-      = f.button :submit, "Finalizar Etapa", class: 'btn btn-success btn-sm'
+      = f.button :submit, "Finalizar Etapa", class: 'piscapisca'
   -else
     -if @cadastre.sicaf == true
       %td Sim, Possuo cadastro no Sistema de Cadastramento Unificado de fornecedores (SICAF).
@@ -44,4 +44,10 @@
           = render 'form_declaration'
       %b
         = '*Campos obrigatório.'
-      
+
+// ISSO NÃO FOI ESCOLHA MINHA
+:javascript
+  setInterval(function() {
+    $('.piscapisca').animate( { backgroundColor: '#2FB62D' }, 300)
+    .animate( { backgroundColor: '#BDFEBD' }, 300);
+  }, 1000);
