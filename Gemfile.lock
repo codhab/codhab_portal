@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: ecd6aa867329a2cc2b19044fdd4c6adb0124cf3a
+  revision: 5d485a97ed7eae87b84629def36e581b3ee4552b
   branch: master
   specs:
     core (0.1.0)
@@ -260,9 +260,9 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     method_source (0.9.2)
-    mime-types (3.2.2)
+    mime-types (3.3)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2019.0331)
+    mime-types-data (3.2019.0904)
     mimemagic (0.3.3)
     mina (1.2.3)
       open4 (~> 1.3.4)
@@ -359,7 +359,7 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
-    ruby-vips (2.0.14)
+    ruby-vips (2.0.15)
       ffi (~> 1.9)
     ruby_dep (1.5.0)
     ruby_parser (3.13.1)
