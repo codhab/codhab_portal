@@ -1,9 +1,12 @@
 .col-md-8.col-md-offset-2
   .row
-    .col-md-6
+    .col-md-12
       = f.input :name, label: "Nome", input_html: { placeholder: 'Razão social'}
+  .row
     .col-md-6
-      = f.input :formation, label: "CAU/CREA", input_html: { placeholder: 'CAU/CREA' }
+      = f.input :crea_cau ,as: :select, collection: [['CREA',true],['CAU',false]], label: "Conselho  de classe", include_blank: 'Selecione...'
+    .col-md-6
+      = f.input :formation, label: "N° de registro no conselho", input_html: { placeholder: 'CAU/CREA' }
   .row
     .col-md-6
       = f.input :rg, label: "Rg", input_html: { placeholder: 'Rg' }

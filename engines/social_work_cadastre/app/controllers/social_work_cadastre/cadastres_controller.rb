@@ -51,6 +51,9 @@ module SocialWorkCadastre
       @cadastre.sicaf = false
       @cadastre.assignment = 2019
 
+      @number = Core::SocialWorkCadastre::Cadastre.where(assignment: 2019).count
+      @cadastre.number = @number + 1
+
       if @cadastre.save
         begin
           SocialWorkCadastre::ConfirmationCadastreMailer.completed_data(@cadastre).deliver_now!
@@ -115,7 +118,7 @@ module SocialWorkCadastre
     private
 
     def set_params
-      params.require(:social_work_cadastre_cadastre).permit(:assignment, :social_reason, :crea, :cnpj, :address,
+      params.require(:social_work_cadastre_cadastre).permit(:crea_cau, :assignment, :social_reason, :crea, :cnpj, :address,
                                        :cep, :uf, :telephone, :celphone, :email,
                                        :city_id, :district, :sicaf,
                                        :technological_resources, :password,

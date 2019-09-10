@@ -2,10 +2,11 @@
 .row
   .col-md-12
     %br/
+    
     - unless @cadastre.steps.where(step: 1).present?
       = simple_form_for [@cadastre, @step], url: cadastre_cadastre_steps_path(@cadastre), remote: true do |f|
         = f.input :step, as: :hidden, input_html: {value: 1}
-        = f.button :submit, "Finalizar Etapa", class: 'btn btn-success btn-sm'
+        = f.button :submit, "Finalizar Etapa", class: 'piscapisca'
     %br/
     %br/
     - begin
@@ -16,8 +17,8 @@
       %table.table.table-striped.table-condensed.table-bordered
         %thead
           %tr
-            %th{style: 'background-color: #00FF00'} Observação da Comissão de Credenciamento:
-            %th.collapsing{style: 'background-color: #00FF00'} Tipo:
+            %th{style: 'background-color: #ff433f; color: #ffff'} Observação da Comissão de Credenciamento:
+            %th.collapsing{style: 'background-color: #ff433f; color: #ffff'} Tipo:
         %tbody
           %tr
             %td= @cadastre.observations.last.observation
@@ -33,7 +34,7 @@
       %thead
         %tr
           %th Razão social
-          %th CAU/CREA
+          %th=@cadastre.crea_cau? ? "CREA" : "CAU" rescue nil
           %th Cnpj
           %th Recursos tecnológicos
           %th
@@ -82,3 +83,10 @@
 = render 'members'
 = render 'technical'
 = render 'declaration'
+
+
+:javascript
+  setInterval(function() {
+    $('.piscapisca').animate( { backgroundColor: '#2FB62D' }, 300)
+    .animate( { backgroundColor: '#BDFEBD' }, 300);
+  }, 1000);

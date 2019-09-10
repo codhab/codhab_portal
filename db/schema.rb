@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190903144051) do
+ActiveRecord::Schema.define(version: 20190905180927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -596,6 +596,7 @@ ActiveRecord::Schema.define(version: 20190903144051) do
     t.integer  "cadastre_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.boolean  "crea_cau"
   end
 
   create_table "social_work_cadastre_cadastre_steps", force: :cascade do |t|
@@ -614,6 +615,7 @@ ActiveRecord::Schema.define(version: 20190903144051) do
     t.integer  "cadastre_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "crea_cau"
   end
 
   create_table "social_work_cadastre_cadastres", force: :cascade do |t|
@@ -636,8 +638,8 @@ ActiveRecord::Schema.define(version: 20190903144051) do
     t.boolean  "declaration_4"
     t.boolean  "sicaf"
     t.integer  "situation"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.string   "activation_digest"
@@ -646,6 +648,8 @@ ActiveRecord::Schema.define(version: 20190903144051) do
     t.integer  "order"
     t.boolean  "confirm"
     t.integer  "assignment"
+    t.boolean  "crea_cau",                default: true
+    t.integer  "number"
   end
 
   create_table "social_work_cadastre_document_types", force: :cascade do |t|
