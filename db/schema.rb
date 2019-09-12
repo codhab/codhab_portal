@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190905180927) do
+ActiveRecord::Schema.define(version: 20190911170339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -660,6 +660,7 @@ ActiveRecord::Schema.define(version: 20190905180927) do
     t.datetime "updated_at",  null: false
     t.boolean  "sicaf"
     t.integer  "order"
+    t.boolean  "required"
   end
 
   create_table "social_work_cadastre_location_selects", force: :cascade do |t|
@@ -698,9 +699,10 @@ ActiveRecord::Schema.define(version: 20190905180927) do
     t.integer  "cadastre_id"
     t.text     "observation"
     t.string   "file_path"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.boolean  "status",           default: true
+    t.boolean  "confirmation",     default: false
   end
 
 end

@@ -38,7 +38,7 @@ module SocialWorkCadastre
     private
 
     def set_params
-      params.require(:social_work_cadastre_upload_document).permit(:ststus, :document_type_id, :file_path, :observation, :cadastre_id)
+      params.require(:social_work_cadastre_upload_document).permit(:confirmation, :ststus, :document_type_id, :file_path, :observation, :cadastre_id)
     end
 
     def set_cadastre

@@ -22,7 +22,7 @@ module SocialWorkCadastre
       @upload_documents = @cadastre.upload_documents
       @step = @cadastre.steps.new
 
-      @doc = Core::SocialWorkCadastre::DocumentType.where(status: true)
+      @doc = Core::SocialWorkCadastre::DocumentType.where(status: true, required: true)
       @doc_sicaf = Core::SocialWorkCadastre::DocumentType.where(sicaf: false, status: true)
       @up_doc = @cadastre.upload_documents.map(&:document_type_id).sort
       @up_doc << 20 if @cadastre.uf != "7"
