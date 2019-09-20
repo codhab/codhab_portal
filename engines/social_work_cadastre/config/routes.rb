@@ -14,7 +14,7 @@ SocialWorkCadastre::Engine.routes.draw do
   resources :document_types, path: 'tipo_documento'
   resources :locations, path: 'localidades'
 
-  resources :cadastres, path: 'cadastro' do
+  resources :cadastres, path: 'cadastro', only: %i[index edit update] do
     resources :upload_documents, path: 'envio_documento'
     resources :cadastre_locations, path: 'cadastre_locales'
     resources :cadastre_members, path: 'quadro_tecnico'
