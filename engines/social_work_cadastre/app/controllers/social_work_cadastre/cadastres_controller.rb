@@ -11,9 +11,9 @@ module SocialWorkCadastre
 
     end
 
-    def new
-      @cadastre = Core::SocialWorkCadastre::Cadastre.new
-    end
+    # def new
+    #   @cadastre = Core::SocialWorkCadastre::Cadastre.new
+    # end
 
     def show
       @cadastre = Core::SocialWorkCadastre::Cadastre.find(session[:current_external_company_id])
