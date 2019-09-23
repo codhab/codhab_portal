@@ -106,8 +106,8 @@ module SocialWorkCadastre
       render json: @cities = Address::City.where(state_id: state).order(:name)
     end
 
-    def edit
-    end
+    # def edit
+    # end
 
     def destroy
       if @cadastre.destroy
