@@ -6,7 +6,7 @@
       %br/
       -# - @date_finish = Time.now
       -# -if @date_finish < Date.parse('2018-06-22')
-      = link_to '+Adicionar Titulares', new_cadastre_cadastre_titular_path(@cadastre), remote: true, class: 'btn btn-success btn-sm'
+      -# = link_to '+Adicionar Titulares', new_cadastre_cadastre_titular_path(@cadastre), remote: true, class: 'btn btn-success btn-sm'
     %table.table.table-striped.table-condensed.table-bordered
       %thead
         %tr
@@ -26,8 +26,8 @@
               -# -if @date_finish < Date.parse('2018-06-22')
               %td
                 .menu
-                  = link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_cadastre_titular_path(titular.cadastre_id,titular),title: "Editar", class: 'btn btn-warning btn-sm',  remote: true # if policy(:type_control, namespace: Cpl).update?
-                  = link_to "<i class='glyphicon glyphicon-remove'></i>".html_safe, cadastre_cadastre_titular_path(titular.cadastre_id,titular), title: "Excluir", class: 'btn btn-warning btn-sm', method: :delete, data: {confirm: "#{t(:confirm_delete)}"} #if policy(:type_control, namespace: Cpl).destroy?
+                  -# = link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_cadastre_cadastre_titular_path(titular.cadastre_id,titular),title: "Editar", class: 'btn btn-warning btn-sm',  remote: true # if policy(:type_control, namespace: Cpl).update?
+                  -# = link_to "<i class='glyphicon glyphicon-remove'></i>".html_safe, cadastre_cadastre_titular_path(titular.cadastre_id,titular), title: "Excluir", class: 'btn btn-warning btn-sm', method: :delete, data: {confirm: "#{t(:confirm_delete)}"} #if policy(:type_control, namespace: Cpl).destroy?
         - else
           %tr
             %td{colspan: 4}
