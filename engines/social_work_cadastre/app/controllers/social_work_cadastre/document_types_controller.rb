@@ -41,7 +41,7 @@ module SocialWorkCadastre
     private
 
     def set_params
-      params.require(:document_type).permit(:name, :status, :description, :order)
+      params.require(:document_type).permit(:required, :name, :status, :description, :order)
     end
 
     def set_document_type

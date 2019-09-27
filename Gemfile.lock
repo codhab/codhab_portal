@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 5d485a97ed7eae87b84629def36e581b3ee4552b
+  revision: 2fd224fa8c31b9466d26df8180a0918dd70966a3
   branch: master
   specs:
     core (0.1.0)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/carrierwaveuploader/carrierwave.git
-  revision: e1c3eea981ad3963bf5bf5af586286abd1252caa
+  revision: c4b6d91bd7ed759bb83a440800c450c79a987dd8
   specs:
     carrierwave (2.0.1)
       activemodel (>= 5.0.0)
