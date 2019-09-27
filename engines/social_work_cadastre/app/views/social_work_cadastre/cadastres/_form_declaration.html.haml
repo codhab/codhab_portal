@@ -2,14 +2,14 @@
   .row
     .col-md-12
       %br/
-      = f.input :declaration_1, label: "Declaramos que os documentos que compõem o Edital foram colocados à disposição e que tomamos conhecimento de todas a informações, condições, locais e grau de dificuldade dos serviços a serem executados.", include_blank: false, input_html: { disabled: @cadastre.declaration_1 ? true : false}
-      = f.input :declaration_2, label: "Declaramos que não a empresa não se encontra declarada inidônea para licitar ou contratar com órgãos da Administração Pública Federal, Estadual, Municipal e do Distrito Federal", include_blank: false, input_html: { disabled: @cadastre.declaration_2 ? true : false}
+      = f.input :declaration_1, label: "De que os documentos que compõem o Edital foram colocados à disposição e tomou conhecimento de todas as informações, condições locais e grau de dificuldade dos serviços a serem executados.", include_blank: false, input_html: { disabled: @cadastre.declaration_1 ? true : false}
+      = f.input :declaration_2, label: "De que não se encontra declarada inidônea para licitar ou contratar com órgãos da Administração Pública Federal, Estadual, Municipal e do Distrito Federal.", include_blank: false, input_html: { disabled: @cadastre.declaration_2 ? true : false}
   .row
     .col-md-12
-      = f.input :declaration_3, label: "Declaramos que inexiste fato superveniente impeditivo da habilitação da empresa.", include_blank: false, input_html: { disabled: @cadastre.declaration_3 ? true : false}
-      = f.input :declaration_4, label: "Declaramos que a empresa inscrita não possui em seu quadro menor de 18 anos de idade em trabalho noturno, perigoso ou insalubre, nem menor de 16 anos em qualquer trabalho, salvo na condição de aprendiz, a partir de 14 anos, em cumprimento do disposto no inciso V do Artigo 27 da Lei no 8.666/93", include_blank: false, input_html: { disabled: @cadastre.declaration_4 ? true : false}
+      = f.input :declaration_3, label: "De que inexiste fato superveniente impeditivo de sua habilitação.", include_blank: false, input_html: { disabled: @cadastre.declaration_3 ? true : false}
+      = f.input :declaration_4, label: "De que não possui em seu quadro menor de 18 anos de idade em trabalho noturno, perigoso ou insalubre, nem menor de 16 anos em qualquer trabalho, salvo na condição de aprendiz, a partir de 14 anos, em cumprimento ao Regulamento Interno de Licitações, Contratos e Convênios – RILC desta CODHAB/DF.", include_blank: false, input_html: { disabled: @cadastre.declaration_4 ? true : false}
   %br/
   %br/
   .row
     .col-md-6
-      = link_to 'Confirmo todas as Declarações', update_declaration_path(id: @cadastre.id), class: 'btn btn-success btn-xs', remote: true
+      -# = link_to 'Confirmo todas as Declarações', update_declaration_path(id: @cadastre.id), class: 'btn btn-success btn-xs', remote: true

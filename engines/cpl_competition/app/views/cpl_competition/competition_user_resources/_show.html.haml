@@ -1,0 +1,22 @@
+.modal-header
+  %h5.modal-title 
+    %b Documentação adicional
+  %button.close{"aria-label" => "Fechar", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+.modal-body
+  
+  %table.table.table-striped.table-celled.table-bordered
+    %thead
+      %tr
+        %th Data/Hora
+        %th Arquivo
+    %tbody
+      - if @documents.present?
+        - @documents.each do |pro|
+          %tr
+            %td= pro.created_at.strftime("%d/%m/%Y %H:%M")
+            %td.collapsing= link_to "Visualizar", pro.document_url, target: "_blank"
+      - else
+        %tr
+          %td{colspan: 3}
+            Nenhum documento enviado.

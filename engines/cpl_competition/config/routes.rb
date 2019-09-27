@@ -18,6 +18,8 @@ CplCompetition::Engine.routes.draw do
       resources :proposals, controller: :competition_user_proposals
       resources :documents, controller: :competition_user_documents
       resources :credentials, controller: :competition_user_credentials
+      resources :additionals, controller: :competition_user_additionals
+      resources :resources, controller: :competition_user_resources
     end
 
   end

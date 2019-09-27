@@ -1,24 +1,19 @@
 %br
-.row
-  .col-md-12
-    %b Possui cadastro no Sistema de Cadastramento Unificado de fornecedores (SICAF)?
-    #sicaf
-    - unless @cadastre.steps.where(step: 2).present?
-      = link_to 'Sim', update_sicaf_path(id: @cadastre.id, sicaf: true), class: 'btn btn-success btn-xs', disabled: @cadastre.sicaf == true ? 'disabled' : nil
-      = link_to 'Não', update_sicaf_path(id: @cadastre.id, sicaf: false), class: 'btn btn-danger btn-xs', disabled: @cadastre.sicaf == false ? 'disabled' : nil
+-# .row
+-#   .col-md-12
+-#     %b Possui cadastro no Sistema de Cadastramento Unificado de fornecedores (SICAF)?
+-#     #sicaf
+-#     - unless @cadastre.steps.where(step: 2).present?
+-#       = link_to 'Sim', update_sicaf_path(id: @cadastre.id, sicaf: true), class: 'btn btn-success btn-xs', disabled: @cadastre.sicaf == true ? 'disabled' : nil
+-#       = link_to 'Não', update_sicaf_path(id: @cadastre.id, sicaf: false), class: 'btn btn-danger btn-xs', disabled: @cadastre.sicaf == false ? 'disabled' : nil
 %br
 -if @compar == true || (@cadastre.sicaf == true && @compar_sicaf == true)
   - unless @cadastre.steps.where(step: 2).present?
     = simple_form_for [@cadastre, @step], url: cadastre_cadastre_steps_path(@cadastre), remote: true do |f|
       = f.input :step, as: :hidden, input_html: {value: 2}
-      = f.button :submit, "Finalizar Etapa", class: 'btn btn-info btn-sm'
-  -else
-    -if @cadastre.sicaf == true
-      %td Sim, Possuo cadastro no Sistema de Cadastramento Unificado de fornecedores (SICAF).
-    %br/
-    %br/
+      = f.button :submit, "Finalizar Etapa", class: 'piscapisca'
 - if @cadastre.situation != "Habilitado"
-  = link_to 'Editar Documentação', cadastre_cadastre_step_path(@cadastre, @cadastre.steps.where(step: 2).last.id), remote: true, method: :delete, class: 'btn btn-danger btn-sm' rescue nil
+  -# = link_to 'Editar Documentação', cadastre_cadastre_step_path(@cadastre, @cadastre.steps.where(step: 2).last.id), remote: true, method: :delete, class: 'btn btn-danger btn-sm' rescue nil
 %br/
 %br/
 .row
@@ -42,3 +37,12 @@
           = render 'document_c'
         #tab4.tab-pane
           = render 'form_declaration'
+      %b
+        = '*Campos obrigatório.'
+
+// ISSO NÃO FOI ESCOLHA MINHA
+:javascript
+  setInterval(function() {
+    $('.piscapisca').animate( { backgroundColor: '#2FB62D' }, 300)
+    .animate( { backgroundColor: '#BDFEBD' }, 300);
+  }, 1000);

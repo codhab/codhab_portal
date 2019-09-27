@@ -6,7 +6,7 @@ SocialWorkCadastre::Engine.routes.draw do
   end
 
   resources :dashboard
-  get '/presentation', to: 'dashboard#presentation', as: 'presentation', path: '01-2018'
+  get '/presentation', to: 'dashboard#presentation', as: 'presentation', path: '01-2019'
   get '/attach', to: 'dashboard#attach', as: 'attach'
   get '/inform', to: 'dashboard#inform', as: 'inform'
   get '/result', to: 'dashboard#result', as: 'result'

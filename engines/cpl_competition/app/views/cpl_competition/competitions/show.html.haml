@@ -69,29 +69,16 @@
           %tr
             %td{colspan: 7}
               %i Nenhum participante encontrado.
-    - if !current_user.nil? && current_user.administrator?
-      %table.table.table-celled.table-bordered
-        %thead
-          %tr 
-            %th{colspan: 4} Histórico de atividades
-          %tr 
-            %th.collapsing Data/Hora
-            %th.collapsing Usuário
-            %th Descrição
-            %th.collapsing Detalhe
-        %tbody
-          - if @competition.competition_events.present?
-            - @competition.competition_events.order(created_at: :desc).each do |event|
-              %tr
-                %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
-                %td.collapsing= event.user.name rescue "Sem informação"
-                %td= event.description
-                %td.collapsing
-                  = link_to "Passe o mouse", "javascript:void(0)", title: event.content
-          - else
-            %tr
-              %td{colspan: 4}
-                %i Nenhum evento registrado
+
+.row
+  .col-md-12
+    %h5 Ata
+.row
+  .col-md-12
+    %table.table.table-celled.table-bordered
+      %tbody 
+        %tr
+          %td= @competition.document_introduce.html_safe
 .row
   .col-md-12
     %h5 Eventos 
@@ -114,3 +101,29 @@
           %tr
             %td{colspan: 3}
               %i Nenhum histórico encontrado.
+
+.row
+  .col-md-12
+    %h5 Histórico
+.row
+  .col-md-12
+    - if !current_user.nil? && current_user.administrator?
+      %table.table.table-celled.table-bordered
+        %thead
+          %tr 
+            %th{colspan: 4} Histórico de atividades
+          %tr 
+            %th.collapsing Data/Hora
+            %th.collapsing Usuário
+            %th Descrição
+        %tbody
+          - if @competition.competition_events.present?
+            - @competition.competition_events.order(created_at: :desc).each do |event|
+              %tr
+                %td.collapsing= event.created_at.strftime("%d/%m/%Y %H:%M")
+                %td.collapsing= event.user.name rescue "Sem informação"
+                %td= event.description
+          - else
+            %tr
+              %td{colspan: 4}
+                %i Nenhum evento registrado

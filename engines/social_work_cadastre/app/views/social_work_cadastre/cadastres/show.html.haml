@@ -7,16 +7,22 @@
     .row
       .col-md-12
         - unless @cadastre.steps.where(step: 1).present?
-          .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
+          .alert.alert-warning{style: 'background-color: red !important; border-color: #f9ece0 !important; color: #ffff !important'}
             Etapa de Identificação da Empresa não concluída.
+        -else
+          .alert.alert-warning{style: 'background-color: green !important; border-color: #f9ece0 !important; color: #ffff !important'}
+            Etapa de Identificação da Empresa concluída.
         - unless @cadastre.steps.where(step: 2).present?
-          .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
+          .alert.alert-warning{style: 'background-color: red !important; border-color: #f9ece0 !important; color: #ffff !important'}
             Etapa de Documentos não concluída.
-        - unless @cadastre.steps.where(step: 3).present?
-          .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
-            Etapa de Localidades não concluída.
-        - if @cadastre.steps.where(step: 1).present? && @cadastre.steps.where(step: 2).present? && @cadastre.steps.where(step: 3).present?
-          .alert.alert-success{style: 'background-color: #a4eda6 !important; border-color: #a4eda6 !important; color: black !important'}
+        - else
+          .alert.alert-warning{style: 'background-color: green !important; border-color: #f9ece0 !important; color: #ffff !important'}
+            Etapa de Documentos concluída.
+        -# - unless @cadastre.steps.where(step: 3).present?
+        -#   .alert.alert-warning{style: 'background-color: #f9ece0 !important; border-color: #f9ece0 !important; color: black !important'}
+        -#     Etapa de Localidades não concluída.
+        - if @cadastre.steps.where(step: 1).present? && @cadastre.steps.where(step: 2).present?
+          .alert.alert-success{style: 'background-color: #1F8000 !important; border-color: #a4eda6 !important; color: #ffff !important'}
             Todas as etapas do cadastro foram finalizadas.
     .row
       .col-md-12
@@ -37,20 +43,18 @@
               - else
                 %i.glyphicon.glyphicon-warning-sign{style: 'color: orange', title: 'Nenhum documento incluído.'}
               2 - Documentos
-          %li{:class => (params[:q] == 'l') ? 'active' : ''}
-            %a{ :href => "/credenciamento/cadastro/#{@cadastre.id}?q=l"}
-              - if @cadastre.steps.where(step: 3).present?
-                %i.glyphicon.glyphicon-ok{style: 'color: green'}
-              - else
-                %i.glyphicon.glyphicon-warning-sign{style: 'color: orange', title: 'Nenhuma localização incluído.'}
-              3 - Localidades
+          -# %li{:class => (params[:q] == 'l') ? 'active' : ''}
+          -#   %a{ :href => "/credenciamento/cadastro/#{@cadastre.id}?q=l"}
+          -#     - if @cadastre.steps.where(step: 3).present?
+          -#       %i.glyphicon.glyphicon-ok{style: 'color: green'}
+          -#     - else
+          -#       %i.glyphicon.glyphicon-warning-sign{style: 'color: orange', title: 'Nenhuma localização incluído.'}
+          -#     3 - Localidades
         .tab-content
           - case params[:q]
           - when 'e'
             = render 'enterprise'
           - when 'd'
             = render 'document'
-          - when 'l'
-            = render 'locales'
           -else
             = render 'enterprise'

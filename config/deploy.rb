@@ -37,7 +37,7 @@ task :setup do
 end
 
 task :environment do
-  invoke :'rvm:use', '2.4.0'
+  invoke :'rvm:use', '2.6.0'
 end
 
 task :deploy do

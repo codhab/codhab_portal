@@ -1,0 +1,6 @@
+= simple_form_for @document, url: cpl_competition.competition_user_additionals_path(@competition, @user_competition) do |f|
+  .row 
+    .col-md-3
+      = f.input :document, as: :file
+    .col-md-2
+      = f.submit "Enviar arquivo", class: 'btn btn-success btn-sm', style: 'margin-top: 30px'

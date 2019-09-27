@@ -36,7 +36,7 @@ module SocialWorkCadastre
     private
 
     def set_params
-      params.require(:social_work_cadastre_cadastre_member).permit(:name, :formation, :rg, :cpf,
+      params.require(:social_work_cadastre_cadastre_member).permit(:crea_cau, :name, :formation, :rg, :cpf,
                                               :telephone, :celphone, :activite,
                                               :registration_crea, :cadastre_id)
     end

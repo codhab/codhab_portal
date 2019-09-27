@@ -11,10 +11,9 @@ module SocialWorkCadastre
 
     end
 
-    def new
-      redirect_to new_session_path
-      @cadastre = Core::SocialWorkCadastre::Cadastre.new
-    end
+    # def new
+    #   @cadastre = Core::SocialWorkCadastre::Cadastre.new
+    # end
 
     def show
       @cadastre = Core::SocialWorkCadastre::Cadastre.find(session[:current_external_company_id])
@@ -23,7 +22,7 @@ module SocialWorkCadastre
       @upload_documents = @cadastre.upload_documents
       @step = @cadastre.steps.new
 
-      @doc = Core::SocialWorkCadastre::DocumentType.where(status: true)
+      @doc = Core::SocialWorkCadastre::DocumentType.where(status: true, required: true)
       @doc_sicaf = Core::SocialWorkCadastre::DocumentType.where(sicaf: false, status: true)
       @up_doc = @cadastre.upload_documents.map(&:document_type_id).sort
       @up_doc << 20 if @cadastre.uf != "7"
@@ -50,6 +49,10 @@ module SocialWorkCadastre
       @cadastre.confirm = false
       @cadastre.situation = 0
       @cadastre.sicaf = false
+      @cadastre.assignment = 2019
+
+      @number = Core::SocialWorkCadastre::Cadastre.where(assignment: 2019).count
+      @cadastre.number = @number + 1
 
       if @cadastre.save
         begin
@@ -115,7 +118,7 @@ module SocialWorkCadastre
     private
 
     def set_params
-      params.require(:social_work_cadastre_cadastre).permit(:social_reason, :crea, :cnpj, :address,
+      params.require(:social_work_cadastre_cadastre).permit(:crea_cau, :assignment, :social_reason, :crea, :cnpj, :address,
                                        :cep, :uf, :telephone, :celphone, :email,
                                        :city_id, :district, :sicaf,
                                        :technological_resources, :password,
