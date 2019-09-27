@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   # get "/assistencia_tecnica" => redirect("http://www.codhab.df.gov.br/pagina/31")
   get "previsao-oferta-unidades-habitacionais-2017", to: 'custom_pages#sheet_2017'
 
+  get 'entidade/credenciamento', to: 'main/home#accreditation'
+
   mount Main::Engine                => '/'
   mount Firm::Engine                => '/empresa'
   mount SocialWorkCadastre::Engine  => '/credenciamento'
