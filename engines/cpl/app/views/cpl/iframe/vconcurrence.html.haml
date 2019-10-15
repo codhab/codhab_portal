@@ -1,6 +1,17 @@
-%iframe{src: @url, style: 'width: 100%; height: 180vh; border: none;', frameborder:"0", scrolling:"no",onload:"resizeIframe(this)" }
+:css
 
-:javascript
-  function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  .iframe-responsive {
+    padding-bottom: 20%;
+    height: auto;
   }
+  .iframe-responsive iframe {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150vh;
+    
+  }
+
+.iframe-responsive
+  %iframe{src: @url,  id: "iframe", frameborder:"0"}
+
