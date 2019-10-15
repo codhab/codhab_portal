@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'main/home#index'
 
   get '/cpl/concorrencia', to: 'cpl/iframe#concurrence'
+  get '/cpl/concorrencia-virtual', to: 'cpl/iframe#vconcurrence'
 
   get '/d', to: 'main/home#d' # => direg
   get '/a', to: 'main/home#a' # => pamila

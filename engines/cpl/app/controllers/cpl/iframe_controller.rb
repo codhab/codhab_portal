@@ -13,6 +13,15 @@ module Cpl
     
     end
 
+    def vconcurrence
+      if Rails.env.production?
+        @url = "http://intranet.codhab.df.gov.br/externo/cpl"
+      else
+        @url = "http://localhost:3000/externo/cpl"
+      end
+          
+    end
+
     private
 
     def set_iframe
