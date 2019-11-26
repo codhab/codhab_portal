@@ -7,7 +7,7 @@ module Firm
       end
 
       def show
-        @unit  = current_company.units.where('control_number = ? or address_units.id = ?', params[:id], params[:id]).first
+        @unit  = current_company.units.where('address_units.id = ?', params[:id]).first
       end      
     end
   end

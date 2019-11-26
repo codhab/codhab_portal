@@ -23,5 +23,9 @@ module Firm
     def cadastre_address cadastre_id
       cadastre_addresses.where(cadastre_id: cadastre_id).order('id DESC').last
     end
+    
+    def cadastre_address_all
+      cadastre_addresses.order('id DESC').first
+    end
   end
 end
