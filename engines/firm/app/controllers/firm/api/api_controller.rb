@@ -14,7 +14,7 @@ module Firm
       end
 
       def authenticate_token!
-        if !current_company.present? || current_company.token_expires_in < Time.now
+        if current_company.nil?
           render nothing: true, status: :unauthorized 
         end
       end

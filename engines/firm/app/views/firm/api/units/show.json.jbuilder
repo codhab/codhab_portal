@@ -14,4 +14,11 @@ json.data do
   json.void @unit.unit_void? ? 'sim' : 'não'
   json.book @unit.unit_book? ? 'sim' : 'não'
   json.occupied @unit.unit_occupied? ? 'sim' : 'não'
+  json.cadastre_address do
+    json.situation        current_company.cadastre_address(@unit.current_candidate.id).situation_id rescue nil
+    json.date             current_company.cadastre_address(@unit.current_candidate.id).created_at.strftime("%d/%m/%Y")  rescue nil    
+    json.name             @unit.current_candidate.name  rescue nil    
+    json.cpf              @unit.current_candidate.cpf  rescue nil             
+    json.cadastre_id      @unit.current_candidate.id  rescue nil             
+  end
 end
