@@ -52,7 +52,7 @@ json.data do
   end
 
   json.address do
-    json.unit_id          current_company.cadastre_address(@candidate.id).id rescue nil
+    json.unit_id          current_company.cadastre_address(@candidate.id).unit.id rescue nil
     json.control_number   current_company.cadastre_address(@candidate.id).unit.control_number rescue nil
     json.complete_address current_company.cadastre_address(@candidate.id).unit.complete_address rescue nil
     json.city             current_company.cadastre_address(@candidate.id).unit.city.name rescue nil
