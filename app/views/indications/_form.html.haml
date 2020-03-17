@@ -1,0 +1,14 @@
+= simple_form_for @indication, url: main_app.indications_path, method: :post, remote: true do |f|
+  .row
+    .col-md-6
+      = f.input :cpf, label: "Informe seu CPF", placeholder: "Informe seu CPF", input_html: { class: 'cpf'}
+    .col-md-6
+      = f.input :password, label: "Informe sua senha", placeholder: "Informe a senha cadastrada na CODHAB"
+  = f.hint link_to "Clique aqui caso tenha esquecido sua senha"
+  %br/
+  %br/
+  .row
+    .col-md-6.text-center
+      = f.submit 'Manifesto interesse pelo empreendimento', class: 'btn btn-success btn-lg'
+    .col-md-6.text-center
+      = f.submit 'Não tenho interesse pelo empreendimento', class: 'btn btn-danger btn-lg'

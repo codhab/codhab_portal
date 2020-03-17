@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   get 'entidade/credenciamento', to: 'main/home#accreditation'
 
+  resources :indications, path: 'manifestacao'
+
   mount Main::Engine                => '/'
   mount Firm::Engine                => '/empresa'
   mount SocialWorkCadastre::Engine  => '/credenciamento'

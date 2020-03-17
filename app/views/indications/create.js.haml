@@ -1,0 +1,4 @@
+- if @indication.errors.any?
+  $(".form-content").html("#{escape_javascript(render 'success')}");
+- else
+  $(".form-content").html("#{escape_javascript(render 'form')}");

@@ -4,7 +4,7 @@ module Main
   class HomeController < ApplicationController
 
     def index
-
+      @indication = ::Indication.new
       if Date.current <= Date.parse('2017-07-03')
         if !params[:recadastre].present?
           redirect_to main_app.new_recadastre_path

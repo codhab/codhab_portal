@@ -37,17 +37,26 @@ module Schedule
       start_hour  = self.start_hour
       last_hour   = self.end_hour  - attendance_time.minutes
 
-      if lunch?
-        lunch_start = self.lunch_start
-        lunch_end   = self.lunch_end - attendance_time.minutes
+      lunch_ended_at  = lunch_end - attendance_time.minutes
+      
+      if lunch? && (self.lunch_attendants == 0)
+        
+        lunch_started_at_to_end = lunch_start - attendance_time.minutes
 
-        time_iterate(lunch_start, lunch_end, attendance_time.minutes)  { |t| lunch_array.push t.strftime('%H:%M') }
-      end
+        time_iterate(start_hour, lunch_started_at_to_end, attendance_time.minutes) { |t| hour_array.push t.strftime('%H:%M') }
+        time_iterate(lunch_end, last_hour, attendance_time.minutes) { |t| hour_array.push t.strftime('%H:%M') }
+      
+      elsif lunch? && (self.lunch_attendants > 0) 
+      
+        time_iterate(start_hour, last_hour, attendance_time.minutes) { |t| hour_array.push t.strftime('%H:%M') }
+        time_iterate(lunch_start, lunch_ended_at, attendance_time.minutes) { |t| lunch_array.push t.strftime('%H:%M') }
+      
+      else
 
-      time_iterate(start_hour, last_hour, attendance_time.minutes)      { |t| hour_array.push t.strftime('%H:%M') }
+        time_iterate(start_hour, last_hour, attendance_time.minutes) { |t| hour_array.push t.strftime('%H:%M') }
+      end 
 
       attendance_iterate(hour_array, lunch_array, self.attendants, self.lunch_attendants, date)
-    
     end
 
 

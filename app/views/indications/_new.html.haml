@@ -1,0 +1,19 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title
+    %h3 
+      %b Atenção!
+.modal-body
+  %h4
+    %b Manifestação de interesse no Parque dos Ipês - Crixá está aberta para candidatos da Faixa 1
+  
+  %p A Companhia de Desenvolvimento Habitacional do Distrito Federal (Codhab-DF) convoca os candidatos habilitados na faixa de renda 1 (até 1.800,00), que tenham interesse no empreendimento Parque dos Ipês - Crixá, para manifestar seu interesse.
+
+  %p A manifestação será recebida pelo aplicativo CODHAB ou informando o CPF e senha abaixo. 
+  
+  %br/
+  %br/
+  %br/
+  .form-content
+    = render 'indications/form'
