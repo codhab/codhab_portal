@@ -1,5 +1,8 @@
 Candidate::Engine.routes.draw do
 
+  resources :subscribes, only: [:index, :new, :create], path: 'inscricao'
+  resources :subscribe_consults, only: [:index, :new, :create], path: 'inscricao-comprovante'
+
   get   'pesquisa-cpf', to: 'cadastres#find_new'
   post  'pesquisa-cpf', to: 'cadastres#find_show'
 

@@ -1,0 +1,20 @@
+.row
+  .col-md-12
+    .text-center
+      %h3 
+        %b Parabéns. Sua inscrição foi realizada com sucesso!
+      %h4 
+        Para emissão ou consultar seu comprovante de inscrição
+        %b= link_to "Clique aqui.", candidate.subscribe_consults_path 
+    %br/
+    %table.table.table-striped.table-borded.table-celled
+      %thead
+        %tr
+          %th Nome
+          %th CPF
+          %th Inscrito em
+      %tbody
+        %tr
+          %td João da Silva
+          %td 000.000.000-00
+          %td 01/01/2020 12:00

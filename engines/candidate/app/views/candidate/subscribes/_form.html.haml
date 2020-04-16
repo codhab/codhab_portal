@@ -1,0 +1,109 @@
+= simple_form_for @cadastre do |f|
+  .row
+    .col-md-12
+      %h4 
+        %b Dados básicos
+      %hr/
+  .row
+    .col-md-2
+      = f.input :cpf,  label: "CPF *", as: :string, input_html: { class: 'cpf' }
+    .col-md-6
+      = f.input :name, label: "Nome *", placeholder: "Informe seu nome completo"
+    .col-md-2
+      = f.input :gender_id, label: "Gênero *", as: :select, include_blank: 'selecione...'
+    .col-md-2
+      = f.input :born, label: "Data de nascimento *", as: :string, input_html: { class: 'date', value: nil}
+  
+  .row
+    .col-md-2
+      = f.input :rg, label: "RG *", placeholder: 'Número do RG'
+    .col-md-2
+      = f.input :rg_org, label: "Emissor RG *", placeholder: "Órgão emissor"
+    .col-md-2
+      = f.input :rg_state_id, label: "UF Emissor RG *", as: :select, collection: (::Core::Address::State.all.order(:acron).map {|k,v| [k.upcase, v]} rescue nil), include_blank: 'selecione...'
+    .col-md-2
+      = f.input :rg_emission_date, label: "Data de emissão RG *", as: :string, input_html: { class: 'date', value: nil}
+    .col-md-2
+      = f.input :born_state_id, label: "Naturalidade UF *", as: :select, collection: (::Core::Address::State.all.order(:acron).map {|k,v| [k.upcase, v]} rescue nil), include_blank: 'selecione...'
+    .col-md-2
+      /= f.input :nacionality
+  .row
+    .col-md-6
+      = f.input :mother_name, label: "Nome da mãe (opcional)", placeholder: "Informe o nome completo da mãe"
+    .col-md-2
+      = f.input :arrival_df, as: :string, label: "Data de chegada ao DF *", input_html: { class: 'date', value: nil}
+    .col-md-2
+      = f.input :civil_state_id, as: :select, label: "Estado civil *", include_blank: 'selecione...'
+    .col-md-2
+      = f.input :income, as: :string, label: "Renda individual *", input_html: { class: 'coin' }   
+  .row
+    .col-md-3
+      = f.input :special_condition, label: "Possui condição especial? *", as: :select, include_blank: false
+    .col-md-3
+      = f.input :special_condition_type_id, label: "Tipo de condição especial *", as: :select, include_blank: false
+    .col-md-2
+      = f.input :cid, label: "CID"
+    .col-md-2
+      = f.input :nis, label: "NIS"
+  
+  %div{style: 'margin-top: 50px'}
+  .row
+    .col-md-12
+      %h4 
+        %b Dados de contato
+        %hr/
+
+  .row
+    .col-md-2    
+      = f.input :celphone, label: "Celular *", as: :integer, hint: 'Somente números'
+    .col-md-2    
+      = f.input :telephone, label: "Telefone (opcional)", as: :integer, hint: 'Somente números'
+    .col-md-4   
+      = f.input :email, label: "E-mail *", placeholder: "Informe um e-mail válido"
+
+  .row
+    .col-md-2     
+      = f.input :cep, label: "CEP *", input_html: { class: 'cep'}
+    .col-md-2     
+      = f.input :state_id, label: "UF *", as: :select, include_blank: 'selecione...'
+    .col-md-6     
+      = f.input :city_id, label: "Cidade *", as: :select, include_blank: 'selecione...'
+    .col-md-2     
+      = f.input :burgh, label: "Bairro *"
+  .row
+    .col-md-6     
+      = f.input :address, label: "Endereço *"
+    .col-md-2     
+      = f.input :address_number, label: "Número *"
+    .col-md-4     
+      = f.input :address_complement, label: "Complemento (opcional)"
+  
+  %div{style: 'margin-top: 50px'}
+  .row
+    .col-md-12
+      %h4
+        %b Dados de profissionais
+      %hr/  
+  .row
+    .col-md-2      
+      = f.input :work_cep
+    .col-md-2      
+      /= f.input :work_state_id
+    .col-md-4      
+      = f.input :work_city_id
+    .col-md-4      
+      = f.input :work_address
+  %div{style: 'margin-top: 50px'}
+  .row
+    .col-md-12
+      %h4
+        %b Dependentes
+      %hr/
+      = f.simple_fields_for :subscribe_dependents do |builder|
+        = render 'subscribe_dependent_fields', f: builder
+      %h5= link_to_add_fields "Clique para adicionar dependente", f, :subscribe_dependents
+  %div{style: 'margin-top: 50px'}
+  %hr/
+  .row
+    .col-md-12
+      = f.submit 'Realizar minha inscrição', class: 'btn btn-success', data: { confirm: 'Todos os dados estão corretos?'}      

@@ -1,0 +1,43 @@
+%fieldset
+  .row
+    .col-md-2
+      = f.hidden_field :_destroy
+      %b= link_to "Remover dependente", "#", class: 'remove_fields', style: 'color: red'
+      
+  .row{style: 'margin-top: 20px'}
+    .col-md-4
+      = f.input :name
+    .col-md-2
+      = f.input :cpf
+    .col-md-2
+      = f.input :born, as: :string
+    .col-md-2
+      = f.input :born_state_id, as: :select
+    .col-md-2
+      = f.input :gender_id, as: :select
+  .row
+    .col-md-2
+      = f.input :rg
+    .col-md-2
+      = f.input :rg_org
+    .col-md-2
+      = f.input :rg_state_id, as: :select
+    .col-md-2
+      = f.input :rg_emission_date, as: :string
+    .col-md-2
+      = f.input :naturality
+    .col-md-2
+      = f.input :civil_state_id
+  .row
+    .col-md-2
+      = f.input :income
+    .col-md-3
+      = f.input :kinship_id
+    .col-md-3
+      = f.input :special_condition, as: :select
+    .col-md-3
+      = f.input :special_condition_type_id, as: :select
+    .col-md-3
+      = f.input :cid
+    .col-md-3
+      = f.input :nis

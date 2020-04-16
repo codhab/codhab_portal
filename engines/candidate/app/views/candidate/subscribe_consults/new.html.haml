@@ -1,0 +1,14 @@
+.row
+  .col-md-12
+    .panel
+      .panel-heading
+        %h2
+          %b Consulta comprovante de inscrição 2020
+      .panel-body
+        = simple_form_for url_for do |f|
+          .row
+            .col-md-4
+              = f.input :cpf, hint: "Informe o CPF utilizado para realizar a inscrição", input_html: { class: 'cpf' }
+          .row
+            .col-md-4
+              = f.submit 'Consultar comprovante', class: 'btn btn-success'
