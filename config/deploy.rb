@@ -12,6 +12,7 @@ set :user, 'sedhab'
 if ENV['SERVER'] == 'B'
   set :user, 'root'
   set :domain, '10.233.38.19'
+  invoke :'rvm:use', '2.5.0'
 end
 
 if ENV["STAGE"] == "dev"

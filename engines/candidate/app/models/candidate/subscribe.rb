@@ -7,7 +7,7 @@ module Candidate
     accepts_nested_attributes_for :subscribe_dependents, allow_destroy: true
     
     enum gender_id: ['masculino', 'feminino']
-    
+
     validates :name,
               :gender_id,
               :rg,
@@ -56,12 +56,12 @@ module Candidate
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Habilitado')
           end
           
-          if 3 == situation_cadastre.situation_status_id)
+          if (3 == situation_cadastre.situation_status_id)
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Convocado')
           end
 
 
-          if 2 == situation_cadastre.situation_status_id)
+          if (2 == situation_cadastre.situation_status_id)
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já Inscrito')
           end
 
