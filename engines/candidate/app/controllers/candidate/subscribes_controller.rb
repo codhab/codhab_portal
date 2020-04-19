@@ -3,6 +3,10 @@ require_dependency 'candidate/application_controller'
 module Candidate
   class SubscribesController < ApplicationController
     
+    def cities
+      render json: @cities.where(state_id: params[:state_id])
+    end
+
     def index
       redirect_to action: :new
     end 
@@ -29,8 +33,9 @@ module Candidate
     def set_params
       params.require(:subscribe)
         .permit(
-          :name,
-          subscribe_dependents_attributes: [:name]
+          :name, :cpf, :name, :gender_id, :born, :rg, :rg_org, :rg_state_id, :rg_emission_date, :born_state_id, :nacionality, :mother_name, :arrival_df, :civil_state_id, :income, :special_conditionfalse, :special_condition_type_idtrue, :cid, :nis, :celphone, :telephone, :email, :cep, :state_id, :city_id, :burgh, :address, :address_number, :address_complement, :work_cep, :work_state_id, :work_city_id, :work_address, :special_condition, :special_condition_type_id,
+          subscribe_dependents_attributes: [:name,:_destroy, :cpf, :born, :born_state_id, :gender_id, :rg, 
+          :rg_org, :rg_state_id, :rg_emission_date, :naturality, :civil_state_id, :income, :kinship_id, :special_condition, :special_condition_type_id, :cid, :nis, :id]
         )
     end
   end

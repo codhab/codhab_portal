@@ -6,38 +6,39 @@
       
   .row{style: 'margin-top: 20px'}
     .col-md-4
-      = f.input :name
+      = f.input :name, label: "Nome *", placeholder: "Nome do dependente"
     .col-md-2
-      = f.input :cpf
+      = f.input :cpf, label: "CPF *", hint: 'obrigatório aos maiores de 14 anos', input_html: { class: 'cpf' }
     .col-md-2
-      = f.input :born, as: :string
+      = f.input :born, as: :string, label: "Data de nascimento", input_html: { class: 'date', value: (f.object.born.srtftime("%d/%m/%Y") rescue nil) }
     .col-md-2
-      = f.input :born_state_id, as: :select
+      = f.input :born_state_id, as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
-      = f.input :gender_id, as: :select
+      = f.input :gender_id, as: :select, collection: ::Candidate::SubscribeDependent.gender_ids.map { |k,v| [k.humanize, k]}, include_blank: false
   .row
     .col-md-2
-      = f.input :rg
+      = f.input :rg, label: "RG"
     .col-md-2
-      = f.input :rg_org
+      = f.input :rg_org, label: "Emissor RG"
     .col-md-2
-      = f.input :rg_state_id, as: :select
+      = f.input :rg_state_id, label: "RG UF", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
-      = f.input :rg_emission_date, as: :string
+      = f.input :rg_emission_date, as: :string, label: "Data emissão RG", input_html: { class: 'date', value: (f.object.rg_emission_date.strftime("%d/%m/%Y") rescue nil)}
     .col-md-2
-      = f.input :naturality
+      = f.input :nacionality, label: "Nacionalidade *", as: :string
     .col-md-2
-      = f.input :civil_state_id
+      = f.input :civil_state_id, label: "Estado civil *", as: :select, collection: ::Core::Candidate::CivilState.all, include_blank: 'selecione...'
   .row
     .col-md-2
-      = f.input :income
+      = f.input :income, label: "Renda", as: :string, input_html: { class: 'money'}
     .col-md-3
-      = f.input :kinship_id
+      = f.input :kinship_id, label: "Parentesco *", collection: ::Core::Candidate::Kinship.all, include_blank: 'selecione...'
     .col-md-3
-      = f.input :special_condition, as: :select
+      = f.input :special_condition, as: :select, include_blank: false
     .col-md-3
-      = f.input :special_condition_type_id, as: :select
+      = f.input :special_condition_type_id, as: :select, collection: ::Core::Candidate::SpecialConditionType.all, include_blank: 'nenhuma', hint: 'selecione quando houver condição especial'
     .col-md-3
-      = f.input :cid
+      = f.input :cid, label: "CID"
     .col-md-3
-      = f.input :nis
+      = f.input :nis, label: "NIS", hint: 'selecione quando houver condição especial'
+

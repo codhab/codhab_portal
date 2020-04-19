@@ -10,7 +10,7 @@
     .col-md-6
       = f.input :name, label: "Nome *", placeholder: "Informe seu nome completo"
     .col-md-2
-      = f.input :gender_id, label: "Gênero *", as: :select, include_blank: 'selecione...'
+      = f.input :gender_id, label: "Gênero *", as: :select,collection: ::Candidate::Subscribe.gender_ids.map { |k,v| [k.humanize, k]}, include_blank: false
     .col-md-2
       = f.input :born, label: "Data de nascimento *", as: :string, input_html: { class: 'date', value: nil}
   
@@ -20,27 +20,27 @@
     .col-md-2
       = f.input :rg_org, label: "Emissor RG *", placeholder: "Órgão emissor"
     .col-md-2
-      = f.input :rg_state_id, label: "UF Emissor RG *", as: :select, collection: (::Core::Address::State.all.order(:acron).map {|k,v| [k.upcase, v]} rescue nil), include_blank: 'selecione...'
+      = f.input :rg_state_id, label: "UF Emissor RG *", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
       = f.input :rg_emission_date, label: "Data de emissão RG *", as: :string, input_html: { class: 'date', value: nil}
     .col-md-2
-      = f.input :born_state_id, label: "Naturalidade UF *", as: :select, collection: (::Core::Address::State.all.order(:acron).map {|k,v| [k.upcase, v]} rescue nil), include_blank: 'selecione...'
+      = f.input :born_state_id, label: "Naturalidade UF *", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
-      /= f.input :nacionality
+      = f.input :nacionality, label: "Nacionalidade"
   .row
     .col-md-6
       = f.input :mother_name, label: "Nome da mãe (opcional)", placeholder: "Informe o nome completo da mãe"
     .col-md-2
       = f.input :arrival_df, as: :string, label: "Data de chegada ao DF *", input_html: { class: 'date', value: nil}
     .col-md-2
-      = f.input :civil_state_id, as: :select, label: "Estado civil *", include_blank: 'selecione...'
+      = f.input :civil_state_id, as: :select, label: "Estado civil *", collection: ::Core::Candidate::CivilState.all.order(:name), include_blank: 'selecione...'
     .col-md-2
-      = f.input :income, as: :string, label: "Renda individual *", input_html: { class: 'coin' }   
+      = f.input :income, as: :string, label: "Renda individual *", input_html: { class: 'money' }   
   .row
     .col-md-3
       = f.input :special_condition, label: "Possui condição especial? *", as: :select, include_blank: false
     .col-md-3
-      = f.input :special_condition_type_id, label: "Tipo de condição especial *", as: :select, include_blank: false
+      = f.input :special_condition_type_id, label: "Tipo de condição especial *", collection: ::Core::Candidate::SpecialConditionType.all, as: :select, include_blank: 'nenhuma'
     .col-md-2
       = f.input :cid, label: "CID"
     .col-md-2
@@ -65,7 +65,7 @@
     .col-md-2     
       = f.input :cep, label: "CEP *", input_html: { class: 'cep'}
     .col-md-2     
-      = f.input :state_id, label: "UF *", as: :select, include_blank: 'selecione...'
+      = f.input :state_id, label: "UF *", collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, as: :select, include_blank: 'selecione...'
     .col-md-6     
       = f.input :city_id, label: "Cidade *", as: :select, include_blank: 'selecione...'
     .col-md-2     
@@ -88,9 +88,9 @@
     .col-md-2      
       = f.input :work_cep
     .col-md-2      
-      /= f.input :work_state_id
+      = f.input :work_state_id, as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-4      
-      = f.input :work_city_id
+      = f.input :work_city_id, as: :select, include_blank: 'selecione...'
     .col-md-4      
       = f.input :work_address
   %div{style: 'margin-top: 50px'}
@@ -107,3 +107,10 @@
   .row
     .col-md-12
       = f.submit 'Realizar minha inscrição', class: 'btn btn-success', data: { confirm: 'Todos os dados estão corretos?'}      
+
+:javascript
+  $("#state_id").on('change', function() {
+    state_id = $(this).val();
+
+    
+  })

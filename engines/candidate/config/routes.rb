@@ -1,5 +1,7 @@
 Candidate::Engine.routes.draw do
 
+  get 'cities', to: 'subscribes#cities'
+  
   resources :subscribes, only: [:index, :new, :create], path: 'inscricao'
   resources :subscribe_consults, only: [:index, :new, :create], path: 'inscricao-comprovante'
 
