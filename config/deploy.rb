@@ -9,13 +9,10 @@ set :rvm_use_path, '/usr/local/rvm/scripts/rvm'
 set :domain, '10.233.38.15'
 set :user, 'sedhab'
 
-=begin
- if ENV['SERVER'] == 'B'
-   set :domain, '10.233.38.19'
- else:
-   set :domain, '10.233.38.23'
- end
-=end
+if ENV['SERVER'] == 'B'
+  set :user, 'root'
+  set :domain, '10.233.38.19'
+end
 
 if ENV["STAGE"] == "dev"
   set :deploy_to, '/var/www/development/apps/portal'
