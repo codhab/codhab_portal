@@ -1,20 +1,24 @@
 .row
   .col-md-12
-    .text-center
-      %h3 
-        %b Parabéns. Sua inscrição foi realizada com sucesso!
-      %h4 
-        Para emissão ou consultar seu comprovante de inscrição
-        %b= link_to "Clique aqui.", candidate.subscribe_consults_path 
-    %br/
-    %table.table.table-striped.table-borded.table-celled
-      %thead
-        %tr
-          %th Nome
-          %th CPF
-          %th Inscrito em
-      %tbody
-        %tr
-          %td= @cadastre.name
-          %td= @cadastre.cpf
-          %td= @cadastre.created_at.strftime("%d/%m/%Y")
+    .panel
+      .panel-body
+        .row
+          .col-md-12
+            .text-center
+              %h3 
+                %b Parabéns. Sua inscrição foi realizada com sucesso!
+              %h4 
+                Para emissão ou consultar seu comprovante de inscrição
+                %b= link_to "Clique aqui.", candidate.subscribe_consults_path 
+            %br/
+            %table.table.table-striped.table-borded.table-celled
+              %thead
+                %tr
+                  %th Nome
+                  %th CPF
+                  %th Inscrito em
+              %tbody
+                %tr
+                  %td= @cadastre.name
+                  %td= @cadastre.cpf
+                  %td= @cadastre.created_at.strftime("%d/%m/%Y")
