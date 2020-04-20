@@ -1,0 +1,194 @@
+.row{style: 'margin-top: 10px'}
+  .col-md-12
+    .panel
+      .panel-heading
+        .row
+          .col-md-12
+            .text-center
+              %h3 
+                %b Comprovante de inscrição      
+      .panel-body
+        .row
+          .col-md-12
+            %h3
+              %b Dados básico         
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th Inscrito em
+              %tbody
+                %tr
+                  %td= @subscribe.created_at.strftime("%d/%m/%Y %H:%M")
+
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th Nome
+                  %th CPF
+                  %th Gênero
+                  %th Data de nascimento
+              %tbody
+                %tr
+                  %td= @subscribe.name
+                  %td= @subscribe.cpf
+                  %td= @subscribe.gender_id                  
+                  %td= @subscribe.born.strftime("%d/%m/%Y") rescue nil                  
+
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th RG
+                  %th Emissor RG
+                  %th UF Emissor RG
+                  %th Data de emissão RG
+                  %th Naturalidade UF
+                  %th Nacionalidade
+              %tbody
+                %tr
+                  %td= @subscribe.rg
+                  %td= @subscribe.rg_org
+                  %td= @subscribe.rg_state.acronym rescue nil                  
+                  %td= @subscribe.rg_emission_date.strftime("%d/%m/%Y") rescue nil                  
+                  %td= @subscribe.born_state.acronym rescue nil                     
+                  %td= @subscribe.nacionality                     
+
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th Nome da mãe
+                  %th Data de chegada ao DF
+                  %th Estado civil
+                  %th Renda individual
+              %tbody
+                %tr
+                  %td= @subscribe.mother_name
+                  %td= @subscribe.arrival_df.strftime("%d/%m/%Y") rescue nil
+                  %td= @subscribe.civil_state.name rescue nil
+                  %td= @subscribe.income rescue nil               
+
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th Possui condição especial?
+                  %th Tipo de condiçãoo especial
+                  %th CID
+                  %th NIS
+              %tbody
+                %tr
+                  %td= @subscribe.special_condition ? 'Sim' : 'Não'
+                  %td= @subscribe.special_condition_type.name rescue nil
+                  %td= @subscribe.cid
+                  %td= @subscribe.nis   
+
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th Celular
+                  %th Telefone
+                  %th E-mail
+              %tbody
+                %tr
+                  %td= @subscribe.celphone
+                  %td= @subscribe.telephone
+                  %td= @subscribe.email
+
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th CEP
+                  %th UF
+                  %th Cidade
+                  %th Bairro
+              %tbody
+                %tr
+                  %td= @subscribe.cep
+                  %td= @subscribe.state.acronym rescue nil
+                  %td= @subscribe.city.name rescue nil
+                  %td= @subscribe.burgh
+
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th Endereço
+                  %th Número
+                  %th Complemento
+              %tbody
+                %tr
+                  %td= @subscribe.address
+                  %td= @subscribe.address_number
+                  %td= @subscribe.address_complement
+
+        .row
+          .col-md-12
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th CEP (trabalho)
+                  %th UF (trabalho)
+                  %th Cidade (trabalho)
+                  %th Endereço (trabalho)
+              %tbody
+                %tr
+                  %td= @subscribe.work_cep
+                  %td= @subscribe.work_state.name rescue nil
+                  %td= @subscribe.work_city.name rescue nil         
+                  %td= @subscribe.work_address rescue nil         
+        .row
+          .col-md-12
+            %h3
+              %b Dependentes (#{@subscribe.subscribe_dependents.count})              
+        .row
+          .col-md-12
+            - @subscribe.subscribe_dependents.each do |dependent|
+              %table.table.table-striped.table-bordered.table-celled
+                %thead
+                  %tr
+                    %th Parentesco              
+                    %th Nome              
+                    %th CPF              
+                    %th Data de nascimento
+                %tbody
+                  %tr
+                    %td= dependent.kinship.name rescue nil
+                    %td= dependent.name
+                    %td= dependent.cpf
+                    %td= dependent.born.strftime("%d/%m/%Y")
+              %table.table.table-striped.table-bordered.table-celled
+                %thead
+                  %tr
+                    %th Naturalidade UF              
+                    %th Gênero   
+                    %th RG           
+                    %th Emissor RG 
+                    %th RG UF 
+                    %th Data de emissão RG 
+                    %th Nacionalidade
+                %tbody
+                  %tr
+                    %td= dependent.born_state.name rescue nil
+                    %td= dependent.gender_id
+                    %td= dependent.rg
+                    %td= dependent.rg_org
+                    %td= dependent.rg_state.acronym rescue nil
+                    %td= dependent.rg_emission_date.strftime("%d/%m/%Y")
+                    %td= dependent.nacionality
+              %table.table.table-striped.table-bordered.table-celled
+                %thead
+                  %tr
+                    %th Estado civil              
+                    %th Renda
+                    %th Possui condição especial?           
+                    %th Tipo de condição especial
+                    %th CID
+                    %th NIS 
+                %tbody
+                  %tr
+                    %td= dependent.civil_state.name rescue nil
+                    %td= dependent.income
+                    %td= dependent.special_condition ? 'Sim' : 'Não'
+                    %td= dependent.special_condition_type.name rescue nil
+                    %td= dependent.cid
+                    %td= dependent.nis
+              %hr/                            

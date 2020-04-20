@@ -2,7 +2,16 @@ module Candidate
   class Subscribe < ActiveRecord::Base
     self.table_name = 'sihab.candidate_subscribes'
     
-    has_many :subscribe_dependents
+    belongs_to :state, class_name: 'Core::Address::State'
+    belongs_to :city, class_name: 'Core::Address::City'
+    belongs_to :work_city, class_name: 'Core::Address::City', foreign_key: :work_city_id
+    belongs_to :work_state, class_name: 'Core::Address::State', foreign_key: :work_state_id
+    belongs_to :rg_state, class_name: 'Core::Address::State', foreign_key: :rg_state_id
+    belongs_to :born_state, class_name: 'Core::Address::State', foreign_key: :born_state_id
+    belongs_to :civil_state, class_name: 'Core::Candidate::CivilState'
+    belongs_to :special_condition_type, class_name: 'Core::Candidate::SpecialConditionType'
+
+    has_many :subscribe_dependents, before_add: :set_nest
 
     accepts_nested_attributes_for :subscribe_dependents, allow_destroy: true
     
@@ -29,7 +38,8 @@ module Candidate
               presence: true
 
     validates :cpf, cpf: true, presence: true, uniqueness: true
-  
+    validates_numericality_of :cep, :celphone
+    validates :telephone, numericality: true, allow_blank: true
     validates_date :born, before: :today, presence: true
     validates_date :rg_emission_date, before: :today, presence: true
     validates_date :arrival_df, before: :today, presence: true
@@ -37,6 +47,10 @@ module Candidate
     validates :special_condition_type_id, :cid, presence: true, if: -> { self.special_condition? }
 
     validate  :cpf_allow?
+
+    def set_nest(item)
+      item.subscribe ||= self
+    end
 
     private
 
@@ -52,7 +66,7 @@ module Candidate
         if !cadastre.nil?
           situation_cadastre = Core::Candidate::CadastreSituation.where(cadastre_id: cadastre.id).order(id: :asc).last
 
-          if [4,54,67].include?(situation_cadastre.situation_status_id)
+          if [4,54,67,68,70].include?(situation_cadastre.situation_status_id)
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Habilitado')
           end
           
@@ -68,6 +82,7 @@ module Candidate
         end
 
       end
+
 
     end
 

@@ -14,6 +14,8 @@ module Candidate
 
       if !@cadastre.save
         render action: :new
+      else
+        @subscribe = @cadastre.cadastre
       end
     end
 

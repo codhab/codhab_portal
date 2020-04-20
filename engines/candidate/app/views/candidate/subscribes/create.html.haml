@@ -15,6 +15,6 @@
           %th Inscrito em
       %tbody
         %tr
-          %td João da Silva
-          %td 000.000.000-00
-          %td 01/01/2020 12:00
+          %td= @cadastre.name
+          %td= @cadastre.cpf
+          %td= @cadastre.created_at.strftime("%d/%m/%Y")

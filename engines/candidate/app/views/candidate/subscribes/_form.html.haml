@@ -12,7 +12,7 @@
     .col-md-2
       = f.input :gender_id, label: "Gênero *", as: :select,collection: ::Candidate::Subscribe.gender_ids.map { |k,v| [k.humanize, k]}, include_blank: false
     .col-md-2
-      = f.input :born, label: "Data de nascimento *", as: :string, input_html: { class: 'date', value: nil}
+      = f.input :born, label: "Data de nascimento *", as: :string, input_html: { class: 'date', value: (f.object.born.strftime("%d/%m/%Y") rescue nil)}
   
   .row
     .col-md-2
@@ -22,7 +22,7 @@
     .col-md-2
       = f.input :rg_state_id, label: "UF Emissor RG *", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
-      = f.input :rg_emission_date, label: "Data de emissão RG *", as: :string, input_html: { class: 'date', value: nil}
+      = f.input :rg_emission_date, label: "Data de emissão RG *", as: :string, input_html: { class: 'date', value: (f.object.rg_emission_date.strftime("%d/%m/%Y") rescue nil)}
     .col-md-2
       = f.input :born_state_id, label: "Naturalidade UF *", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
@@ -31,7 +31,7 @@
     .col-md-6
       = f.input :mother_name, label: "Nome da mãe (opcional)", placeholder: "Informe o nome completo da mãe"
     .col-md-2
-      = f.input :arrival_df, as: :string, label: "Data de chegada ao DF *", input_html: { class: 'date', value: nil}
+      = f.input :arrival_df, as: :string, label: "Data de chegada ao DF *", input_html: { class: 'date', value: (f.object.arrival_df.strftime("%d/%m/%Y") rescue nil)}
     .col-md-2
       = f.input :civil_state_id, as: :select, label: "Estado civil *", collection: ::Core::Candidate::CivilState.all.order(:name), include_blank: 'selecione...'
     .col-md-2
@@ -42,9 +42,9 @@
     .col-md-3
       = f.input :special_condition_type_id, label: "Tipo de condição especial *", collection: ::Core::Candidate::SpecialConditionType.all, as: :select, include_blank: 'nenhuma'
     .col-md-2
-      = f.input :cid, label: "CID"
+      = f.input :cid, label: "CID", placeholder: "número do CID"
     .col-md-2
-      = f.input :nis, label: "NIS"
+      = f.input :nis, label: "NIS", placeholder: "número do NIS"
   
   %div{style: 'margin-top: 50px'}
   .row
@@ -55,9 +55,9 @@
 
   .row
     .col-md-2    
-      = f.input :celphone, label: "Celular *", as: :integer, hint: 'Somente números'
+      = f.input :celphone, label: "Celular *", as: :integer, hint: 'Somente números', placeholder: "DDD+NÚMERO"
     .col-md-2    
-      = f.input :telephone, label: "Telefone (opcional)", as: :integer, hint: 'Somente números'
+      = f.input :telephone, label: "Telefone (opcional)", as: :integer, hint: 'Somente números', placeholder: "DDD+NÚMERO"
     .col-md-4   
       = f.input :email, label: "E-mail *", placeholder: "Informe um e-mail válido"
 
@@ -65,9 +65,9 @@
     .col-md-2     
       = f.input :cep, label: "CEP *", input_html: { class: 'cep'}
     .col-md-2     
-      = f.input :state_id, label: "UF *", collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, as: :select, include_blank: 'selecione...'
+      = f.input :state_id, label: "UF *", collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, as: :select, include_blank: 'selecione...', input_html: { id: :state_id}
     .col-md-6     
-      = f.input :city_id, label: "Cidade *", as: :select, include_blank: 'selecione...'
+      = f.input :city_id, label: "Cidade *", as: :select, collection: (f.object.state_id.present? ? ::Core::Address::City.where(state_id: f.object.state_id).order(:name) : nil), include_blank: 'selecione...', input_html: { id: :city_id}
     .col-md-2     
       = f.input :burgh, label: "Bairro *"
   .row
@@ -86,19 +86,19 @@
       %hr/  
   .row
     .col-md-2      
-      = f.input :work_cep
+      = f.input :work_cep, label: "CEP Trabalho (opcional)", placeholder: 'Informe o CEP', hint: "Somente números"
     .col-md-2      
-      = f.input :work_state_id, as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
+      = f.input :work_state_id, label: "UF Trabalho (opcional)", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...', input_html: { id: :work_state_id }
     .col-md-4      
-      = f.input :work_city_id, as: :select, include_blank: 'selecione...'
+      = f.input :work_city_id, as: :select, include_blank: 'selecione...', label: "Cidade Trabalho (opcional)", input_html: { id: :work_city_id }
     .col-md-4      
-      = f.input :work_address
+      = f.input :work_address, label: "Endereço Trabalho (opcional)", placeholder: "Informe o endereço"
   %div{style: 'margin-top: 50px'}
   .row
     .col-md-12
       %h4
         %b Dependentes
-      %hr/
+      .hr
       = f.simple_fields_for :subscribe_dependents do |builder|
         = render 'subscribe_dependent_fields', f: builder
       %h5= link_to_add_fields "Clique para adicionar dependente", f, :subscribe_dependents
@@ -112,5 +112,23 @@
   $("#state_id").on('change', function() {
     state_id = $(this).val();
 
-    
+    $.get("#{candidate.cities_path}?state_id=" + state_id, function(data) {
+      html = "";
+      for(var i = 0; data.length > i; i++) {
+        html += "<option value='"+ data[i].id+"'>"+data[i].name+"</option>"
+      }
+      $("#city_id" ).html(html);
+    })
+  })
+
+  $("#work_state_id").on('change', function() {
+    state_id = $(this).val();
+
+    $.get("#{candidate.cities_path}?state_id=" + state_id, function(data) {
+      html = "";
+      for(var i = 0; data.length > i; i++) {
+        html += "<option value='"+ data[i].id+"'>"+data[i].name+"</option>"
+      }
+      $("#work_city_id" ).html(html);
+    })
   })

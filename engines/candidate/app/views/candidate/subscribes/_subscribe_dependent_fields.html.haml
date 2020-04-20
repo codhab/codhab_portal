@@ -10,16 +10,16 @@
     .col-md-2
       = f.input :cpf, label: "CPF *", hint: 'obrigatório aos maiores de 14 anos', input_html: { class: 'cpf' }
     .col-md-2
-      = f.input :born, as: :string, label: "Data de nascimento", input_html: { class: 'date', value: (f.object.born.srtftime("%d/%m/%Y") rescue nil) }
+      = f.input :born, as: :string, label: "Data de nascimento", input_html: { class: 'date', value: (f.object.born.strftime("%d/%m/%Y") rescue nil) }
     .col-md-2
-      = f.input :born_state_id, as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
+      = f.input :born_state_id, as: :select, label: "Naturalidade UF", collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
-      = f.input :gender_id, as: :select, collection: ::Candidate::SubscribeDependent.gender_ids.map { |k,v| [k.humanize, k]}, include_blank: false
+      = f.input :gender_id, label: "Gênero *", as: :select, collection: ::Candidate::SubscribeDependent.gender_ids.map { |k,v| [k.humanize, k]}, include_blank: false
   .row
     .col-md-2
-      = f.input :rg, label: "RG"
+      = f.input :rg, label: "RG", placeholder: "Informe o número do RG"
     .col-md-2
-      = f.input :rg_org, label: "Emissor RG"
+      = f.input :rg_org, label: "Emissor RG", placeholder: "Informe o emissor"
     .col-md-2
       = f.input :rg_state_id, label: "RG UF", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
@@ -32,11 +32,11 @@
     .col-md-2
       = f.input :income, label: "Renda", as: :string, input_html: { class: 'money'}
     .col-md-3
-      = f.input :kinship_id, label: "Parentesco *", collection: ::Core::Candidate::Kinship.all, include_blank: 'selecione...'
+      = f.input :kinship_id, label: "Parentesco *", collection: ::Core::Candidate::Kinship.all.order(id: :asc), include_blank: 'selecione...'
     .col-md-3
-      = f.input :special_condition, as: :select, include_blank: false
+      = f.input :special_condition, label: "Possui condição especial?", as: :select, include_blank: false
     .col-md-3
-      = f.input :special_condition_type_id, as: :select, collection: ::Core::Candidate::SpecialConditionType.all, include_blank: 'nenhuma', hint: 'selecione quando houver condição especial'
+      = f.input :special_condition_type_id, label: "Tipo de condição especial", as: :select, collection: ::Core::Candidate::SpecialConditionType.all, include_blank: 'nenhuma', hint: 'selecione quando houver condição especial'
     .col-md-3
       = f.input :cid, label: "CID"
     .col-md-3

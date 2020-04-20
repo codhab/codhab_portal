@@ -1,6 +1,14 @@
 .gy-big {
   font-size: 90px;
 }
+
+hr {
+  margin-top: 1px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #c5c4c4;
+}
+
 .filter {
   margin-top: 24px !important;
 }
