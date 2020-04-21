@@ -63,6 +63,10 @@ module Candidate
       sprintf('%.2f', self[:income])
     end
 
+    def total_income
+      (self.income.to_f + self.subscribe_dependents.sum(:income))
+    end
+
     private
 
     def password_confirmation_is_valid

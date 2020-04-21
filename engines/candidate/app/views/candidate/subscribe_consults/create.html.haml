@@ -92,7 +92,7 @@
                   %td= @subscribe.arrival_df.strftime("%d/%m/%Y") rescue nil
                   %td= @subscribe.civil_state.name rescue nil
                   %td= number_to_currency @subscribe.income rescue nil               
-                  %td= number_to_currency(@subscribe.subscribe_dependents.sum(:income) + @subscribe.income) rescue nil               
+                  %td= number_to_currency(@subscribe.total_income)              
 
             %table.table.table-striped.table-bordered.table-celled
               %thead
