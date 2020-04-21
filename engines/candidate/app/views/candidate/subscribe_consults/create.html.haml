@@ -15,7 +15,7 @@
               %b Informações do candidato
 
             = link_to "Desejo alterar meus dados", candidate.new_session_subscribes_path, class: 'btn btn-primary btn-sm no-print', data: { confirm: 'Tem certeza que deseja alterar os dados?'}
-            = link_to "Imprmir", "#", class: 'btn btn-success btn-sm no-print', input_html: { onclick="window.print()"}
+            = link_to "Imprimir", "#", class: 'btn btn-success btn-sm no-print', input_html: { onclick: "window.print()"}
         .row
           .col-md-12
             %table.table.table-striped.table-bordered.table-celled
