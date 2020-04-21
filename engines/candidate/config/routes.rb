@@ -2,8 +2,13 @@ Candidate::Engine.routes.draw do
 
   get 'cities', to: 'subscribes#cities'
   
-  resources :subscribes, only: [:index, :new, :create], path: 'inscricao'
+  resources :subscribes, except: :destroy, path: 'inscricao' do
+    get 'new_session', on: :collection
+    post 'create_session', on: :collection
+  end
+
   resources :subscribe_consults, only: [:index, :new, :create], path: 'inscricao-comprovante'
+  resources :subscribe_updates, only: [:index, :edit, :update], path: 'inscricao-editar'
 
   get   'pesquisa-cpf', to: 'cadastres#find_new'
   post  'pesquisa-cpf', to: 'cadastres#find_show'

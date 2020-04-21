@@ -1,0 +1,19 @@
+:css
+  fieldset {
+    border: 1px solid #d8d8d8;
+    padding: 20px;
+    border-radius: 11px;
+    margin-bottom: 16px;
+  }
+
+.row
+  .col-md-12
+    .panel
+      .panel-heading
+        %h2
+          %b Edição - Inscrição 2020
+      .panel-body
+        = link_to "Cancelar edição da inscrição", candidate.new_session_subscribes_path, data: { confirm: 'Tem certeza que deseja cancelar?'}, class: 'btn btn-danger btn-sm'
+        %br/
+        = render 'form'
+

@@ -2,6 +2,10 @@ module Candidate
   class Subscribe < ActiveRecord::Base
     self.table_name = 'sihab.candidate_subscribes'
     
+    audited 
+
+    attr_accessor :password_confirmation 
+
     belongs_to :state, class_name: 'Core::Address::State'
     belongs_to :city, class_name: 'Core::Address::City'
     belongs_to :work_city, class_name: 'Core::Address::City', foreign_key: :work_city_id
@@ -21,16 +25,16 @@ module Candidate
               :gender_id,
               :rg,
               :rg_org,
-              :rg_state_id,
-              :born_state_id,
+              #:rg_state_id,
+              #:born_state_id,
               :nacionality,
-              :civil_state_id,
+              #:civil_state_id,
               :income,
               :celphone,
               :email,
               :cep,
-              :state_id,
-              :city_id,
+              #:state_id,
+              #:city_id,
               :address,
               :burgh,
               :address_number,
@@ -43,16 +47,25 @@ module Candidate
     validates_date :born, before: :today, presence: true
     validates_date :rg_emission_date, before: :today, presence: true
     validates_date :arrival_df, before: :today, presence: true
-
+    validates :terms_one, :terms_two, presence:true
     validates :special_condition_type_id, :cid, presence: true, if: -> { self.special_condition? }
 
-    validate  :cpf_allow?
+    validates :password, :password_confirmation, presence: true, length: { minimum: 6, maximum: 24 }
+    validate  :password_confirmation_is_valid 
+
+    validate  :cpf_allow?, on: :create
 
     def set_nest(item)
       item.subscribe ||= self
     end
 
     private
+
+    def password_confirmation_is_valid
+      if self.password != self.password_confirmation
+        errors.add(:password_confirmation, 'Confirmação não pode ser diferente da senha informada')
+      end
+    end
 
     def cpf_allow?
       # habilitado, convocado, inscrito

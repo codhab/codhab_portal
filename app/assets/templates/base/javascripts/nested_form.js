@@ -3,7 +3,7 @@ $(document).on('ready', function() {
 
   $('form').on('click', '.remove_fields', function(event) {
     $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('fieldset').remove();
+    $(this).closest('fieldset').hide();
     //$('.add_fields').removeClass('disabled')
 
 

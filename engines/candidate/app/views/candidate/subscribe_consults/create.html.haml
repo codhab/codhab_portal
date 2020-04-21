@@ -5,22 +5,46 @@
         .row
           .col-md-12
             .text-center
+              = image_tag 'logo.png', width: 100
               %h3 
-                %b Comprovante de inscrição      
+                %b Comprovante de inscrição (2020)    
       .panel-body
         .row
           .col-md-12
             %h3
-              %b Dados básico         
+              %b Informações do candidato
+
+            = link_to "Desejo alterar meus dados", candidate.new_session_subscribes_path, class: 'btn btn-primary btn-sm no-print', data: { confirm: 'Tem certeza que deseja alterar os dados?'}
         .row
           .col-md-12
             %table.table.table-striped.table-bordered.table-celled
               %thead
                 %tr
+                  %th Data do comprovante
                   %th Inscrito em
+                  %th Ùltima atualização
               %tbody
                 %tr
+                  %td= Time.now.strftime("%d/%m/%Y %H:%M")
                   %td= @subscribe.created_at.strftime("%d/%m/%Y %H:%M")
+                  %td= @subscribe.updated_at.strftime("%d/%m/%Y %H:%M")
+
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th Declaro estar ciente de que, para participar dos programas habitacionais do Distrito Federal, em conformidade com os critérios estabelecidos na Lei nº 3.877/2006, resido no Distrito Federal há pelo menos 5 anos consecutivos, possuo renda inferior a 12 salários mínimos, não sou usufrutuário(a) de imóvel residencial do Distrito Federal e que não sou, nem nunca fui proprietário(a), promitente comprador(a) ou cessionário(a) de imóvel residencial no Distrito Federal.
+              %tbody
+                %tr
+                  %td= @subscribe.terms_one ? 'Sim' : 'Não'
+
+
+            %table.table.table-striped.table-bordered.table-celled
+              %thead
+                %tr
+                  %th Responsabilizo-me civil e criminalmente pela veracidade dessas declarações e tenho conhecimento das penalidades existentes por falsa declaração, conforme dispõe o artigo 299 do Código Penal.
+              %tbody
+                %tr
+                  %td= @subscribe.terms_one ? 'Sim' : 'Não'
 
             %table.table.table-striped.table-bordered.table-celled
               %thead
@@ -31,7 +55,7 @@
                   %th Data de nascimento
               %tbody
                 %tr
-                  %td= @subscribe.name
+                  %td= @subscribe.name.to_s.mb_chars.upcase
                   %td= @subscribe.cpf
                   %td= @subscribe.gender_id                  
                   %td= @subscribe.born.strftime("%d/%m/%Y") rescue nil                  
@@ -61,12 +85,14 @@
                   %th Data de chegada ao DF
                   %th Estado civil
                   %th Renda individual
+                  %th Renda Familiar
               %tbody
                 %tr
-                  %td= @subscribe.mother_name
+                  %td= @subscribe.mother_name.blank? ? 'Não informado'  : @subscribe.work_cep
                   %td= @subscribe.arrival_df.strftime("%d/%m/%Y") rescue nil
                   %td= @subscribe.civil_state.name rescue nil
-                  %td= @subscribe.income rescue nil               
+                  %td= number_to_currency @subscribe.income rescue nil               
+                  %td= number_to_currency(@subscribe.subscribe_dependents.sum(:income) + @subscribe.income) rescue nil               
 
             %table.table.table-striped.table-bordered.table-celled
               %thead
@@ -78,7 +104,7 @@
               %tbody
                 %tr
                   %td= @subscribe.special_condition ? 'Sim' : 'Não'
-                  %td= @subscribe.special_condition_type.name rescue nil
+                  %td= @subscribe.special_condition_type.name rescue 'Sem condição especial'
                   %td= @subscribe.cid
                   %td= @subscribe.nis   
 
@@ -131,64 +157,72 @@
                   %th Endereço (trabalho)
               %tbody
                 %tr
-                  %td= @subscribe.work_cep
-                  %td= @subscribe.work_state.name rescue nil
-                  %td= @subscribe.work_city.name rescue nil         
-                  %td= @subscribe.work_address rescue nil         
+                  %td= @subscribe.work_cep.blank? ? 'Não informado'  : @subscribe.work_cep
+                  %td= @subscribe.work_state.name rescue "Não informado"
+                  %td= @subscribe.work_city.name rescue "Não informado"         
+                  %td= @subscribe.work_address.blank? ? 'Não informado'  : @subscribe.work_address     
         .row
           .col-md-12
             %h3
               %b Dependentes (#{@subscribe.subscribe_dependents.count})              
         .row
           .col-md-12
-            - @subscribe.subscribe_dependents.each do |dependent|
-              %table.table.table-striped.table-bordered.table-celled
-                %thead
-                  %tr
-                    %th Parentesco              
-                    %th Nome              
-                    %th CPF              
-                    %th Data de nascimento
-                %tbody
-                  %tr
-                    %td= dependent.kinship.name rescue nil
-                    %td= dependent.name
-                    %td= dependent.cpf
-                    %td= dependent.born.strftime("%d/%m/%Y")
-              %table.table.table-striped.table-bordered.table-celled
-                %thead
-                  %tr
-                    %th Naturalidade UF              
-                    %th Gênero   
-                    %th RG           
-                    %th Emissor RG 
-                    %th RG UF 
-                    %th Data de emissão RG 
-                    %th Nacionalidade
-                %tbody
-                  %tr
-                    %td= dependent.born_state.name rescue nil
-                    %td= dependent.gender_id
-                    %td= dependent.rg
-                    %td= dependent.rg_org
-                    %td= dependent.rg_state.acronym rescue nil
-                    %td= dependent.rg_emission_date.strftime("%d/%m/%Y")
-                    %td= dependent.nacionality
-              %table.table.table-striped.table-bordered.table-celled
-                %thead
-                  %tr
-                    %th Estado civil              
-                    %th Renda
-                    %th Possui condição especial?           
-                    %th Tipo de condição especial
-                    %th CID
-                    %th NIS 
-                %tbody
-                  %tr
-                    %td= dependent.civil_state.name rescue nil
-                    %td= dependent.income
-                    %td= dependent.special_condition ? 'Sim' : 'Não'
-                    %td= dependent.special_condition_type.name rescue nil
-                    %td= dependent.cid
-                    %td= dependent.nis
-              %hr/                            
+            - if @subscribe.subscribe_dependents.present?
+
+              - @subscribe.subscribe_dependents.each do |dependent|
+                %table.table.table-striped.table-bordered.table-celled
+                  %thead
+                    %tr
+                      %th Parentesco              
+                      %th Nome              
+                      %th CPF              
+                      %th Data de nascimento
+                  %tbody
+                    %tr
+                      %td= dependent.kinship.name.to_s.mb_chars.upcase rescue nil
+                      %td= dependent.name.to_s.mb_chars.upcase
+                      %td= dependent.cpf
+                      %td= dependent.born.strftime("%d/%m/%Y")
+                %table.table.table-striped.table-bordered.table-celled
+                  %thead
+                    %tr
+                      %th Naturalidade UF              
+                      %th Gênero   
+                      %th RG           
+                      %th Emissor RG 
+                      %th RG UF 
+                      %th Data de emissão RG 
+                      %th Nacionalidade
+                  %tbody
+                    %tr
+                      %td= dependent.born_state.name rescue nil
+                      %td= dependent.gender_id
+                      %td= dependent.rg
+                      %td= dependent.rg_org
+                      %td= dependent.rg_state.acronym rescue nil
+                      %td= dependent.rg_emission_date.strftime("%d/%m/%Y")
+                      %td= dependent.nacionality
+                %table.table.table-striped.table-bordered.table-celled
+                  %thead
+                    %tr
+                      %th Estado civil              
+                      %th Renda
+                      %th Possui condição especial?           
+                      %th Tipo de condição especial
+                      %th CID
+                      %th NIS 
+                  %tbody
+                    %tr
+                      %td= dependent.civil_state.name rescue nil
+                      %td= number_to_currency dependent.income
+                      %td= dependent.special_condition ? 'Sim' : 'Não'
+                      %td= dependent.special_condition_type.name rescue 'Sem condição especial'
+                      %td= dependent.cid
+                      %td= dependent.nis
+            - else
+              Nenhum dependente cadastrado.
+            
+        .row{style: 'margin-top: 70px'}
+          .col-md-12
+            %p.text-center
+              Para validação da autenticidade dos dados, acesse: http://www.codhab.df.gov.br/candidato/inscricao-comprovante, e informe o CPF do inscrito.               

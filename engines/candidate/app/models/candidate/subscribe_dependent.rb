@@ -1,6 +1,8 @@
 module Candidate
   class SubscribeDependent < ActiveRecord::Base
     self.table_name = 'sihab.candidate_subscribe_dependents'
+
+    audited
     
     belongs_to :subscribe
     belongs_to :kinship, class_name: 'Core::Candidate::Kinship', foreign_key: :kinship_id
@@ -12,22 +14,21 @@ module Candidate
     enum gender_id: ['masculino', 'feminino']
     
     validates :name, :income, presence: true
-    validates :cpf, cpf: true
-    validates :cpf, presence: true, if: :is_major?
-    validates :born_state_id, 
+    validates :cpf, cpf: true, presence: true, if: :is_major?
+    validates :rg, 
               :gender_id, 
-              :rg, 
+              #:born_state_id,
               :rg_org, 
-              :rg_state_id, 
+              #:rg_state_id, 
               :nacionality, 
-              :civil_state_id, 
+              #:civil_state_id, 
               :income, 
-              :kinship_id, 
+              #:kinship_id, 
               presence: true
 
     validates_date :born, before: :today, presence: true
     validates_date :rg_emission_date, before: :today, presence: true
-    validates :special_condition_type_id, :cid, presence: true, if: -> { self.special_condition? }
+    #validates :special_condition_type_id, :cid, presence: true, if: -> { self.special_condition? }
     
     validate :cpf_valid?
 
