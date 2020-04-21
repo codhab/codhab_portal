@@ -32,6 +32,10 @@ module Candidate
     
     validate :cpf_valid?
 
+    def income
+      sprintf('%.2f', self[:income])
+    end
+
     private
 
     def cpf_valid?

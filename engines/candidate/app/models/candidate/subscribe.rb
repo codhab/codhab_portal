@@ -59,6 +59,10 @@ module Candidate
       item.subscribe ||= self
     end
 
+    def income
+      sprintf('%.2f', self[:income])
+    end
+
     private
 
     def password_confirmation_is_valid
