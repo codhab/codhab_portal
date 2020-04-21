@@ -15,11 +15,8 @@ module Candidate
     
     validates :name, :income, presence: true
     validates :cpf, cpf: true, presence: true, if: :is_major?
-    validates :rg, 
-              :gender_id, 
+    validates :gender_id, 
               :born_state_id,
-              :rg_org, 
-              :rg_state_id, 
               :nacionality, 
               :civil_state_id, 
               :income, 
@@ -27,7 +24,8 @@ module Candidate
               presence: true
 
     validates_date :born, before: :today, presence: true
-    validates_date :rg_emission_date, before: :today, presence: true
+    validates_date :rg_emission_date, before: :today, presence: true, if: :is_major?
+    validates :rg, :rg_org, :rg_state_id, presence: true, if: :is_major?
     validates :special_condition_type_id, :cid, presence: true, if: -> { self.special_condition? }
     
     validate :cpf_valid?
