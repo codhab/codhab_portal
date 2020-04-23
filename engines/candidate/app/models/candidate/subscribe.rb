@@ -92,6 +92,10 @@ module Candidate
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Habilitado')
           end
           
+          if [5,7,8,9,10,12].include?(situation_cadastre.situation_status_id)
+            errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Contemplado')
+          end
+
           if (3 == situation_cadastre.situation_status_id)
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Convocado')
           end
