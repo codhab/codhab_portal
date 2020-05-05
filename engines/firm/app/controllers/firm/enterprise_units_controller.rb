@@ -20,9 +20,10 @@ module Firm
       @enterprises.each do |ent|
         arr += ent.enterprise_typologies.ids if ent.enterprise_typologies.present?
       end
-       @enterprise_units = ::Address::Unit.where(enterprise_typology_id: arr)
-       @enterprise_units_excel = apply_scopes(@enterprise_units)
-       @enterprise_units =  @enterprise_units_excel.paginate(:page => params[:page], :per_page => 20)
+      
+      @enterprise_units = ::Address::Unit.where(enterprise_typology_id: arr)
+      @enterprise_units_excel = apply_scopes(@enterprise_units)
+      @enterprise_units =  @enterprise_units_excel.paginate(:page => params[:page], :per_page => 20)
     end
 
     def new

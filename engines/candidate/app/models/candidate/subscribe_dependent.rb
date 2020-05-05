@@ -24,8 +24,8 @@ module Candidate
               presence: true
 
     validates_date :born, before: :today, presence: true
-    validates_date :rg_emission_date, before: :today, presence: true, if: :is_major?
-    validates :rg, :rg_org, :rg_state_id, presence: true, if: :is_major?
+    validates_date :rg_emission_date, before: :today, presence: true, if: :is_adult?
+    validates :rg, :rg_org, :rg_state_id, presence: true, if: :is_adult?
     validates :special_condition_type_id, :cid, presence: true, if: -> { self.special_condition? }
     
     validate :cpf_valid?
@@ -53,6 +53,12 @@ module Candidate
     
     def is_major?
       (age >= 14) 
+    rescue
+      true
+    end
+
+    def is_adult?
+      (age >= 18) 
     rescue
       true
     end
