@@ -86,7 +86,7 @@ module Candidate
 
         if !cadastre.nil?
           situation_cadastre = Core::Candidate::CadastreSituation.where(cadastre_id: cadastre.id).order(id: :asc).last
-          convocation = Core::Candidate::CadastreConvocation.where(cadastre_id: cadastre.id, status: true, convocation_id: [1410,1411])
+          convocation = Core::Candidate::CadastreConvocation.where(cadastre_id: cadastre.id, status: true, convocation_id: [1410,1411,1516])
 
           if [4,54,67,68,70].include?(situation_cadastre.situation_status_id) && !convocation.present?
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Habilitado')
