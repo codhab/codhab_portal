@@ -13,7 +13,7 @@ module Candidate
     def show
       
       if @list.slug == 'convocados'
-        @list.view_target = "::Candidate::View::CandidatePontuation"
+        @list.view_target = "::Candidate::View::GeneralCandidate"
       else
         @list.view_target = "Core::View::GeneralPontuation"
       end
