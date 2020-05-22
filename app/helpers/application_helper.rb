@@ -3,7 +3,7 @@ module ApplicationHelper
   def link_each(category, order = 'ASC')
       @category = ::Main::NavCategory.find_by_name(category)
       if @category.present? && @category.navs.present?
-        @category.navs.active.order(:order).each do |n|
+        @category.navs.active.order(order: :asc).each do |n|
           yield n
         end
       end
