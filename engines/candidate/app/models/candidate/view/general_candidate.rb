@@ -3,7 +3,7 @@ module Candidate
     class GeneralCandidate < ActiveRecord::Base 
       self.table_name = 'extranet.general_candidates'
             
-      belongs_to :cadastre,         class_name: ::Core::Candidate::Cadastre, foreign_key: :id
+      belongs_to :cadastre,         class_name: ::Core::Candidate::Cadastre
       belongs_to :dependent,        class_name: ::Core::Candidate::Dependent, foreign_key: :cadastre_id
       belongs_to :situation_status, class_name: ::Core::Candidate::SituationStatus
 

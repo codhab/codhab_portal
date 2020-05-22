@@ -46,7 +46,10 @@
                   %th Pendências
               %tbody
                 - if @list.slug != 'habilitados-aluguel-legal'
-                  - order = 'total desc'
+                  - if @list.slug == 'convocados'
+                    - order = 'name asc'
+                  - else
+                    - order = 'total desc'
                 - else
                   - order = 'age desc'
 
