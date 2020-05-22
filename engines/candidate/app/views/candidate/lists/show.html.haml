@@ -68,7 +68,7 @@
                     - if @list.program_id.include? 2
                       %td= candidate.cadastre.olds.first.fantasy_name
                     - if @list.slug != 'habilitados-aluguel-legal'
-                      %td= candidate.total
+                      %td= candidate.total rescue nil
 
                     %td
                       - if candidate.situation_status.id == 4
