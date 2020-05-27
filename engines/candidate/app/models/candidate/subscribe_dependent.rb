@@ -52,7 +52,7 @@ module Candidate
     end
     
     def is_major?
-      (age >= 14) 
+      (age >= 8) 
     rescue
       true
     end
