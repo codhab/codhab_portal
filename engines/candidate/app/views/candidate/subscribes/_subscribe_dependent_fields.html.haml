@@ -8,7 +8,7 @@
     .col-md-4
       = f.input :name, label: "Nome *", placeholder: "Nome do dependente"
     .col-md-2
-      = f.input :cpf, label: "CPF *", hint: 'obrigatório aos maiores de 14 anos', input_html: { class: 'cpf' }
+      = f.input :cpf, label: "CPF *", hint: 'obrigatório aos maiores de 8 anos', input_html: { class: 'cpf' }
     .col-md-2
       = f.input :born, as: :string, label: "Data de nascimento", input_html: { class: 'date', value: (f.object.born.strftime("%d/%m/%Y") rescue nil) }
     .col-md-2
