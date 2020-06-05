@@ -11,7 +11,13 @@ module Candidate
     end
 
     def show
-      @list.view_target = "Core::View::GeneralPontuation"
+      
+      if @list.slug == 'convocados'
+        @list.view_target = "::Candidate::View::GeneralCandidate"
+      else
+        @list.view_target = "Core::View::GeneralPontuation"
+      end
+
       @general       = "#{@list.view_target}".constantize.includes([:cadastre, :situation_status]).where("#{@list.condition_sql}")
 
       @general_index = "#{@list.view_target}".constantize.select(:id).where("#{@list.condition_sql}").map(&:id)

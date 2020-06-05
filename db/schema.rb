@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190911170339) do
+ActiveRecord::Schema.define(version: 20200421100110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "dblink"
   enable_extension "unaccent"
+  enable_extension "uuid-ossp"
 
   create_table "action_atuation_areas", force: :cascade do |t|
     t.string   "name"
@@ -109,6 +110,28 @@ ActiveRecord::Schema.define(version: 20190911170339) do
     t.string   "file_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "audits", force: :cascade do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "associated_id"
+    t.string   "associated_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "audited_changes"
+    t.integer  "version",         default: 0
+    t.string   "comment"
+    t.string   "remote_address"
+    t.string   "request_uuid"
+    t.datetime "created_at"
+    t.index ["associated_type", "associated_id"], name: "associated_index", using: :btree
+    t.index ["auditable_type", "auditable_id"], name: "auditable_index", using: :btree
+    t.index ["created_at"], name: "index_audits_on_created_at", using: :btree
+    t.index ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
+    t.index ["user_id", "user_type"], name: "user_index", using: :btree
   end
 
   create_table "concourse_candidate_messages", force: :cascade do |t|
@@ -574,135 +597,3 @@ ActiveRecord::Schema.define(version: 20190911170339) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "social_work_cadastre_cadastre_locations", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.integer  "location_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "order"
-    t.index ["cadastre_id"], name: "index_social_work_cadastre_cadastre_locations_on_cadastre_id", using: :btree
-    t.index ["location_id"], name: "index_social_work_cadastre_cadastre_locations_on_location_id", using: :btree
-  end
-
-  create_table "social_work_cadastre_cadastre_members", force: :cascade do |t|
-    t.string   "name"
-    t.string   "formation"
-    t.string   "rg"
-    t.string   "cpf"
-    t.string   "telephone"
-    t.string   "celphone"
-    t.string   "activite"
-    t.string   "registration_crea"
-    t.integer  "cadastre_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.boolean  "crea_cau"
-  end
-
-  create_table "social_work_cadastre_cadastre_steps", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.integer  "step"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["cadastre_id"], name: "index_social_work_cadastre_cadastre_steps_on_cadastre_id", using: :btree
-  end
-
-  create_table "social_work_cadastre_cadastre_titulars", force: :cascade do |t|
-    t.string   "name"
-    t.string   "formation"
-    t.string   "rg"
-    t.string   "cpf"
-    t.integer  "cadastre_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "crea_cau"
-  end
-
-  create_table "social_work_cadastre_cadastres", force: :cascade do |t|
-    t.string   "social_reason"
-    t.string   "crea"
-    t.string   "cnpj"
-    t.string   "password"
-    t.string   "address"
-    t.string   "cep"
-    t.string   "uf"
-    t.string   "telephone"
-    t.string   "celphone"
-    t.string   "email"
-    t.integer  "city_id"
-    t.string   "district"
-    t.boolean  "technological_resources"
-    t.boolean  "declaration_1"
-    t.boolean  "declaration_2"
-    t.boolean  "declaration_3"
-    t.boolean  "declaration_4"
-    t.boolean  "sicaf"
-    t.integer  "situation"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "reset_digest"
-    t.datetime "reset_sent_at"
-    t.string   "activation_digest"
-    t.boolean  "activated"
-    t.datetime "activated_at"
-    t.integer  "order"
-    t.boolean  "confirm"
-    t.integer  "assignment"
-    t.boolean  "crea_cau",                default: true
-    t.integer  "number"
-  end
-
-  create_table "social_work_cadastre_document_types", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.boolean  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "sicaf"
-    t.integer  "order"
-    t.boolean  "required"
-  end
-
-  create_table "social_work_cadastre_location_selects", force: :cascade do |t|
-    t.integer  "location_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "social_work_cadastre_locations", force: :cascade do |t|
-    t.integer  "city_id"
-    t.string   "name"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "social_work_cadastre_observations", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.text     "observation"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "status"
-    t.boolean  "active"
-  end
-
-  create_table "social_work_cadastre_responsibles", force: :cascade do |t|
-    t.integer  "members_id"
-    t.integer  "cadastre_id"
-    t.boolean  "responsible"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "social_work_cadastre_upload_documents", force: :cascade do |t|
-    t.integer  "document_type_id"
-    t.integer  "cadastre_id"
-    t.text     "observation"
-    t.string   "file_path"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.boolean  "status",           default: true
-    t.boolean  "confirmation",     default: false
-  end
-
-end

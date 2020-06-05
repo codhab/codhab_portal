@@ -6,11 +6,11 @@
       %hr/
   .row
     .col-md-2
-      = f.input :cpf,  label: "CPF *", as: :string, input_html: { class: 'cpf' }
+      = f.input :cpf,  label: "CPF *", as: :string, input_html: { class: 'cpf', disabled: !f.object.new_record?}
     .col-md-6
       = f.input :name, label: "Nome *", placeholder: "Informe seu nome completo"
     .col-md-2
-      = f.input :gender_id, label: "Gênero *", as: :select,collection: ::Candidate::Subscribe.gender_ids.map { |k,v| [k.humanize, k]}, include_blank: false
+      = f.input :gender_id, label: "Gênero *", as: :select,collection: ::Candidate::Subscribe.gender_ids.map { |k,v| [k.humanize, k]}, include_blank: 'selecione...'
     .col-md-2
       = f.input :born, label: "Data de nascimento *", as: :string, input_html: { class: 'date', value: (f.object.born.strftime("%d/%m/%Y") rescue nil)}
   
@@ -38,10 +38,10 @@
       = f.input :income, as: :string, label: "Renda individual *", input_html: { class: 'money' }   
   .row
     .col-md-3
-      = f.input :special_condition, label: "Possui condição especial? *", as: :select, include_blank: false
-    .col-md-3
+      = f.input :special_condition, label: "Possui condição especial? *", as: :select, include_blank: false, input_html: { id: 'special_condition'}
+    .col-md-3.special_condition_fields{style: "display: #{f.object.special_condition ? 'block' : 'none'}"}
       = f.input :special_condition_type_id, label: "Tipo de condição especial *", collection: ::Core::Candidate::SpecialConditionType.all, as: :select, include_blank: 'nenhuma'
-    .col-md-2
+    .col-md-2.special_condition_fields{style: "display: #{f.object.special_condition ? 'block' : 'none'}"}
       = f.input :cid, label: "CID", placeholder: "número do CID"
     .col-md-2
       = f.input :nis, label: "NIS", placeholder: "número do NIS"
@@ -63,20 +63,20 @@
 
   .row
     .col-md-2     
-      = f.input :cep, label: "CEP *", input_html: { class: 'cep'}
+      = f.input :cep, label: "CEP *", input_html: { class: 'cep'}, placeholder: "Informe o cep"
     .col-md-2     
       = f.input :state_id, label: "UF *", collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, as: :select, include_blank: 'selecione...', input_html: { id: :state_id}
     .col-md-6     
-      = f.input :city_id, label: "Cidade *", as: :select, collection: (f.object.state_id.present? ? ::Core::Address::City.where(state_id: f.object.state_id).order(:name) : nil), include_blank: 'selecione...', input_html: { id: :city_id}
+      = f.input :city_id, label: "Cidade *", as: :select, collection: (f.object.state_id.present? ? ::Core::Address::City.where(state_id: f.object.state_id).order(:name) : {}), include_blank: 'selecione...', input_html: { id: :city_id}
     .col-md-2     
-      = f.input :burgh, label: "Bairro *"
+      = f.input :burgh, label: "Bairro *", placeholder: "Informe o bairro"
   .row
     .col-md-6     
-      = f.input :address, label: "Endereço *"
+      = f.input :address, label: "Endereço *", placeholder: "Informe o endereço"
     .col-md-2     
       = f.input :address_number, label: "Número *"
     .col-md-4     
-      = f.input :address_complement, label: "Complemento (opcional)"
+      = f.input :address_complement, label: "Complemento (opcional)", placeholder: "Informe o complemento, se houver"
   
   %div{style: 'margin-top: 50px'}
   .row
@@ -90,7 +90,7 @@
     .col-md-2      
       = f.input :work_state_id, label: "UF Trabalho (opcional)", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...', input_html: { id: :work_state_id }
     .col-md-4      
-      = f.input :work_city_id, as: :select, include_blank: 'selecione...', label: "Cidade Trabalho (opcional)", input_html: { id: :work_city_id }
+      = f.input :work_city_id, as: :select, collection: (f.object.work_state_id.present? ? ::Core::Address::City.where(state_id: f.object.state_id).order(:name) : {}), include_blank: 'selecione...', label: "Cidade Trabalho (opcional)", input_html: { id: :work_city_id }
     .col-md-4      
       = f.input :work_address, label: "Endereço Trabalho (opcional)", placeholder: "Informe o endereço"
   %div{style: 'margin-top: 50px'}
@@ -101,19 +101,48 @@
       .hr
       = f.simple_fields_for :subscribe_dependents do |builder|
         = render 'subscribe_dependent_fields', f: builder
-      %h5= link_to_add_fields "Clique para adicionar dependente", f, :subscribe_dependents
-  %div{style: 'margin-top: 50px'}
+      %h5= link_to_add_fields "Clique para adicionar um dependente", f, :subscribe_dependents, 'btn btn-primary btn-sm'
   %hr/
+  %div{style: 'margin-top: 50px'}
   .row
     .col-md-12
-      = f.submit 'Realizar minha inscrição', class: 'btn btn-success', data: { confirm: 'Todos os dados estão corretos?'}      
+      %p 
+        %b Declaro estar ciente de que, para participar dos programas habitacionais do Distrito Federal, em conformidade com os critérios estabelecidos na Lei nº 3.877/2006, resido no Distrito Federal há pelo menos 5 anos consecutivos, possuo renda inferior a 12 salários mínimos, não sou usufrutuário(a) de imóvel residencial do Distrito Federal e que não sou, nem nunca fui proprietário(a), promitente comprador(a) ou cessionário(a) de imóvel residencial no Distrito Federal.
+  .row
+    .col-md-2
+      = f.input :terms_one, as: :select, label: false, include_blank: false
+  .row
+    .col-md-12
+      %p 
+        %b Responsabilizo-me civil e criminalmente pela veracidade dessas declarações e tenho conhecimento das penalidades existentes por falsa declaração, conforme dispõe o artigo 299 do Código Penal.
+  .row
+    .col-md-2
+      = f.input :terms_two, as: :select, label: false, include_blank: false      
+  %hr/
+  .row
+    .col-md-3
+      = f.input :password, as: :password, hint: 'No mínimo 6 caracteres', label: 'Informe uma senha para acesso', placeholder: '*******'      
+    .col-md-3
+      = f.input :password_confirmation, as: :password, label: 'Confirme a senha' , placeholder: '*******'     
+  .row
+    .col-md-12
+      - if f.object.new_record?
+        = f.submit 'Realizar minha inscrição', class: 'btn btn-success', data: { confirm: 'Todos os dados estão corretos?'}      
+      - else
+        = f.submit 'Alterar minha inscrição', class: 'btn btn-success', data: { confirm: 'Todos os dados estão corretos?'}      
 
 :javascript
+
+  $("#special_condition").on('change', function() {
+    $(".special_condition_fields").toggle();
+  });
+
+
   $("#state_id").on('change', function() {
     state_id = $(this).val();
 
     $.get("#{candidate.cities_path}?state_id=" + state_id, function(data) {
-      html = "";
+      html = "<option value>selecione...</option>";
       for(var i = 0; data.length > i; i++) {
         html += "<option value='"+ data[i].id+"'>"+data[i].name+"</option>"
       }
@@ -125,7 +154,7 @@
     state_id = $(this).val();
 
     $.get("#{candidate.cities_path}?state_id=" + state_id, function(data) {
-      html = "";
+      html = "<option value>selecione...</option>";
       for(var i = 0; data.length > i; i++) {
         html += "<option value='"+ data[i].id+"'>"+data[i].name+"</option>"
       }

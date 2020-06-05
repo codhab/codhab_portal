@@ -2,28 +2,28 @@
   .row
     .col-md-2
       = f.hidden_field :_destroy
-      %b= link_to "Remover dependente", "#", class: 'remove_fields', style: 'color: red'
+      = link_to "Remover dependente", "#", class: 'remove_fields btn btn-danger btn-sm'
       
   .row{style: 'margin-top: 20px'}
     .col-md-4
       = f.input :name, label: "Nome *", placeholder: "Nome do dependente"
     .col-md-2
-      = f.input :cpf, label: "CPF *", hint: 'obrigatório aos maiores de 14 anos', input_html: { class: 'cpf' }
+      = f.input :cpf, label: "CPF *", hint: 'obrigatório aos maiores de 8 anos', input_html: { class: 'cpf' }
     .col-md-2
       = f.input :born, as: :string, label: "Data de nascimento", input_html: { class: 'date', value: (f.object.born.strftime("%d/%m/%Y") rescue nil) }
     .col-md-2
       = f.input :born_state_id, as: :select, label: "Naturalidade UF", collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
-      = f.input :gender_id, label: "Gênero *", as: :select, collection: ::Candidate::SubscribeDependent.gender_ids.map { |k,v| [k.humanize, k]}, include_blank: false
+      = f.input :gender_id, label: "Gênero *", as: :select, collection: ::Candidate::SubscribeDependent.gender_ids.map { |k,v| [k.humanize, k]}, include_blank: 'selecione...'
   .row
     .col-md-2
-      = f.input :rg, label: "RG", placeholder: "Informe o número do RG"
+      = f.input :rg, label: "RG", hint: "obrigatório aos maiores de 18 anos", placeholder: "Informe o número do RG"
     .col-md-2
-      = f.input :rg_org, label: "Emissor RG", placeholder: "Informe o emissor"
+      = f.input :rg_org, label: "Emissor RG", hint: "obrigatório aos maiores de 18 anos", placeholder: "Informe o emissor"
     .col-md-2
-      = f.input :rg_state_id, label: "RG UF", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
+      = f.input :rg_state_id, label: "RG UF", hint: "obrigatório aos maiores de 18 anos", as: :select, collection: ::Core::Address::State.all.order(:acronym).map {|k,v| [k.acronym.upcase, k.id]}, include_blank: 'selecione...'
     .col-md-2
-      = f.input :rg_emission_date, as: :string, label: "Data emissão RG", input_html: { class: 'date', value: (f.object.rg_emission_date.strftime("%d/%m/%Y") rescue nil)}
+      = f.input :rg_emission_date, as: :string, label: "Data emissão RG", hint: "obrigatório aos maiores de 18 anos", input_html: { class: 'date', value: (f.object.rg_emission_date.strftime("%d/%m/%Y") rescue nil)}
     .col-md-2
       = f.input :nacionality, label: "Nacionalidade *", as: :string
     .col-md-2
@@ -31,14 +31,18 @@
   .row
     .col-md-2
       = f.input :income, label: "Renda", as: :string, input_html: { class: 'money'}
-    .col-md-3
+    .col-md-2
       = f.input :kinship_id, label: "Parentesco *", collection: ::Core::Candidate::Kinship.all.order(id: :asc), include_blank: 'selecione...'
     .col-md-3
-      = f.input :special_condition, label: "Possui condição especial?", as: :select, include_blank: false
-    .col-md-3
+      = f.input :special_condition, label: "Possui condição especial?", as: :select, include_blank: false, input_html: { onchange: "toggle(#{f.object_id});"}
+    .col-md-3{class: "dependent_special_condition_fields_#{f.object_id}", style: "display: #{f.object.special_condition ? 'block' : 'none'}"}
       = f.input :special_condition_type_id, label: "Tipo de condição especial", as: :select, collection: ::Core::Candidate::SpecialConditionType.all, include_blank: 'nenhuma', hint: 'selecione quando houver condição especial'
-    .col-md-3
+    .col-md-2{class: "dependent_special_condition_fields_#{f.object_id}", style: "display: #{f.object.special_condition ? 'block' : 'none'}"}
       = f.input :cid, label: "CID"
     .col-md-3
       = f.input :nis, label: "NIS", hint: 'selecione quando houver condição especial'
 
+:javascript
+  function toggle(object_id) {
+    $(".dependent_special_condition_fields_" + object_id).toggle();
+  }

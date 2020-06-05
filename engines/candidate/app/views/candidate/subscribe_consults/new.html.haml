@@ -8,7 +8,7 @@
         = simple_form_for @cadastre, url: candidate.subscribe_consults_path  do |f|
           .row
             .col-md-4
-              = f.input :cpf, hint: "Informe o CPF utilizado para realizar a inscrição", input_html: { class: 'cpf' }
+              = f.input :cpf, label: 'CPF', hint: "Informe o CPF utilizado para realizar a inscrição", input_html: { class: 'cpf' }
           .row
             .col-md-4
               = f.submit 'Consultar comprovante', class: 'btn btn-success'

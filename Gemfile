@@ -18,6 +18,7 @@ gem 'shareable'
 gem 'chartkick'
 gem 'rqrcode'
 gem 'rake'
+gem 'audited', '~> 4.7.1'
 
 gem 'friendly_id'
 gem 'has_scope'

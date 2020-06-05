@@ -137,6 +137,8 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     arel (7.1.4)
+    audited (4.7.1)
+      activerecord (>= 4.0, < 5.3)
     axlsx_rails (0.6.1)
       actionpack (>= 3.1)
       caxlsx (>= 3.0)
@@ -445,6 +447,7 @@ DEPENDENCIES
   address!
   assistance!
   attendance!
+  audited (~> 4.7.1)
   axlsx!
   axlsx_rails
   barby

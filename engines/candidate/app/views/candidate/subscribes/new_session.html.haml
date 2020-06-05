@@ -1,0 +1,16 @@
+.row
+  .col-md-12
+    .panel
+      .panel-heading
+        %h2
+          %b Alterar Inscrição - 2020
+      .panel-body
+        = simple_form_for @session, url: candidate.create_session_subscribes_path, method: :post do |f|
+          .row
+            .col-md-3
+              = f.input :cpf, label: "CPF", placeholder: "Informe o CPF da inscrição"
+            .col-md-3
+              = f.input :password, label: "Senha de acesso cadastrada", placeholder: "*****"
+          .row
+            .col-md-12 
+              = f.submit "Acessar minha inscrição", class: 'btn btn-success '
