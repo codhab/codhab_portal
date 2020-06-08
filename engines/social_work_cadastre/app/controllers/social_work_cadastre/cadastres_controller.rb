@@ -11,9 +11,9 @@ module SocialWorkCadastre
 
     end
 
-    # def new
-    #   @cadastre = Core::SocialWorkCadastre::Cadastre.new
-    # end
+    def new
+      @cadastre = Core::SocialWorkCadastre::Cadastre.new
+    end
 
     def show
       @cadastre = Core::SocialWorkCadastre::Cadastre.find(session[:current_external_company_id])
@@ -49,7 +49,7 @@ module SocialWorkCadastre
       @cadastre.confirm = false
       @cadastre.situation = 0
       @cadastre.sicaf = false
-      @cadastre.assignment = 2019
+      @cadastre.assignment = 2020
 
       @number = Core::SocialWorkCadastre::Cadastre.where(assignment: 2019).count
       @cadastre.number = @number + 1
