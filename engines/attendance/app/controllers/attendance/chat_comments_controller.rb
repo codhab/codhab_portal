@@ -4,18 +4,18 @@ module Attendance
     before_action :set_chat
 
     def new
-      @chat_comment = @chat.chat_comments.new
+      # @chat_comment = @chat.chat_comments.new
     end
 
     def create
-      @chat_comment = @chat.chat_comments.new(set_params)
-      if @chat_comment.save
-        @service = Core::Attendance::ChatCommentService.new(@chat, @chat_comment, nil)
-        @service.candidate_notification!
-       redirect_to chats_path
-      else
-       render :new
-     end
+      #@chat_comment = @chat.chat_comments.new(set_params)
+      #if @chat_comment.save
+      #  @service = Core::Attendance::ChatCommentService.new(@chat, @chat_comment, nil)
+      #  @service.candidate_notification!
+      # redirect_to chats_path
+      #else
+      # render :new
+      # end
     end
 
     private
@@ -25,7 +25,7 @@ module Attendance
       end
 
       def set_chat
-        @chat = current_cadastre.attendance_chats.find(params[:chat_id])
+        #@chat = current_cadastre.attendance_chats.find(params[:chat_id])
       end
 
   end
