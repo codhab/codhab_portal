@@ -37,11 +37,11 @@
       = f.input :technological_resources, label: "Quanto aos recursos tecnológicos para a realização dos trabalhos, declaramos que possuímos condições de cumprir as exigências mínimas para realização dos serviços a serem prestados.", include_blank: false
   %br/
   %br/
-  .row
-    .col-md-3
-      = f.button :submit, "Realizar cadastro", class: 'btn btn-success', data: { disable_with: "Carregando..."}
-    .col-md-6
-      = link_to "Ir para tela de acesso", social_work_cadastre.new_session_path, class: 'btn btn-default', data: { disable_with: "Carregando..."}
+  -# .row
+  -#   .col-md-3
+  -#     = f.button :submit, "Realizar cadastro", class: 'btn btn-success', data: { disable_with: "Carregando..."}
+  -#   .col-md-6
+  -#     = link_to "Ir para tela de acesso", social_work_cadastre.new_session_path, class: 'btn btn-default', data: { disable_with: "Carregando..."}
 :javascript
   $(document).ready(function(){
     $("#social_work_cadastre_cadastre_uf").on('change', function(){
