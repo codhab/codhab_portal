@@ -52,7 +52,7 @@ module Candidate
 
     validates :password, :password_confirmation, presence: true, length: { minimum: 6, maximum: 24 }
     validate  :password_confirmation_is_valid 
-    validate  :unique_cpf
+    validate  :unique_cpf, on: :create
     validate  :cpf_allow?, on: :create
 
     def set_nest(item)
@@ -75,7 +75,7 @@ module Candidate
       if !cadastre_cpf.nil?
         errors.add(:cpf, "CPF já se encontra inscrito, para mais detalhes acesse o comprovante de inscrição")
       end
-      
+
     end
 
     def password_confirmation_is_valid
