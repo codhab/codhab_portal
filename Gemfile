@@ -61,7 +61,6 @@ gem 'core', github: 'codhab/core', branch: :master
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
-  gem 'spring'
   gem 'mina'
   gem 'mina-unicorn', :require => false
   gem 'guard'
