@@ -27,7 +27,7 @@ module Regularization
     private
 
     def set_params
-      params.require(:itapoa_regularization).permit(:name)
+      params.require(:form_itapoa_regularization).permit(:name)
     end
 
   end

@@ -23,7 +23,10 @@
       = f.input :income, input_html: { class: 'coin'}
     .col-md-3
       = f.input :habitation_type_id, as: :select, include_blank: 'Selecione...'
-  .spouse{style: "display: #{[1,2,3].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+    %br/
+    %h4 Dados de cônjuge
+    %hr/  
     .row
       .col-md-3
         = f.input :spouse_cpf, input_html: { class: 'cpf'}
@@ -60,7 +63,7 @@
   .row
     .col-md-12      
       = f.input :document_income, as: :file
-  .spouse{style: "display: #{[1,2,3].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
     .row
       .col-md-12      
         = f.input :document_spouse_income, as: :file
@@ -88,9 +91,6 @@
   .row
     .col-md-12      
       = f.input :document_iptu, as: :file
-  .row
-    .col-md-12      
-      = f.input :document_onus, as: :file
   %br/
   %h4 Declarações
   %hr/
@@ -154,7 +154,7 @@
     .col-md-2      
       = f.input :declaration_spouse_pacific, as: :select, include_blank: false, label: false
   %hr/
-  .spouse{style: "display: #{[1,2,3].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+  .spouse{style: "display: #{![2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
     .row
       .col-md-12
         %p
@@ -163,9 +163,10 @@
           Declaro expressamente, sob-responsabilidade civil e criminal, que não mantenho relação de vida comum ou união estável com outra pessoa, nas condições dos artigos 1.723 e seguintes do Código Civil Brasileiro, Título III – “Da União Estável”, permanecendo no estado civil de Solteiro (a).      
     .row
       .col-md-2   
-        = f.input :declaration_negative_stable_union, as: :select, include_blank: false, label: false
+        = f.input :declaration_negative_stable_union, as: :file, label: false
 
-  .spouse{style: "display: #{[1,2,3].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+    %hr/
+  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
     .row
       .col-md-12
         %p
@@ -174,7 +175,7 @@
   
     .row
       .col-md-2      
-        = f.input :declaration_stable_union, as: :select, include_blank: false, label: false
+        = f.input :declaration_stable_union, as: :file, label: false
     %hr/
   .row
     .col-md-12
@@ -185,14 +186,16 @@
       %p
         Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
    
+  
   .row
     .col-md-2      
-      = f.input :declaration_informal_activity, as: :select, include_blank: false, label: false
-  .row
-    .col-md-2      
-      = f.input :declaration_informal_activity_value, as: :string
+      = f.input :declaration_informal_activity, as: :select, include_blank: false, label: false, input_html: { id: "activity_income"}
+  .activity_income{style: "display: #{f.object.declaration_informal_activity ? 'block' : 'none'}"}
+    .row
+      .col-md-2      
+        = f.input :declaration_informal_activity_value, as: :string, label: false
   %hr/
-  .spouse{style: "display: #{[1,2,3].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
     .row
       .col-md-12
         %p
@@ -200,17 +203,37 @@
         
     .row
       .col-md-12      
-        = f.input :declaration_spouse_informal_activity, as: :select, include_blank: false, include_blank: false
-    .row
-      .col-md-12      
-        = f.input :declaration_spouse_informal_activity_value, as: :string
+        = f.input :declaration_spouse_informal_activity, as: :select, include_blank: false, include_blank: false, input_html: { id: "activity_spouse_income"}
+    .activity_spouse_income{style: "display: #{f.object.declaration_spouse_informal_activity ? 'block' : 'none'}"}
+      .row
+        .col-md-12      
+          = f.input :declaration_spouse_informal_activity_value, as: :string
     %hr/  
   .row
     .col-md-12
       %p
         %b Responsabilizo-me civil e criminalmente pela veracidade das declarações e tenho conhecimento das cominações legais existentes para falsa declaração. (Dispõe o art. 299 do Código Penal: “Omitir, em documento público ou particular, declaração que dele devia constar, ou nele inserir declaração falsa ou diversa da que devia ser escrita, com o fim de prejudicar direito, criar obrigação ou alterar a verdade sobre fato juridicamente relevante: Pena: reclusão, de 1 (um) a 5 (cinco) anos.....”). As declarações a cima não feram quaisquer direitos antecipados ao interessado, nem responsabilidade para a CODHAB.      
+  
   .row
-    .col-md-12      
-      = f.input :declaration_unit_area, as: :select, include_blank: false, include_blank: false
+    .col-md-2      
+      = f.input :terms_use, as: :select, include_blank: false, label: false
+  %hr/
+  = f.submit 'Desejo enviar minha solicitação', class: 'btn btn-success'
 
-  = f.submit 'Desejo enviar minha solicitação', class: 'btn btn-success'      
+
+:javascript
+  $("#civil_state").on("change", function() {
+    if($(this).val() == 2 || $(this).val() == 7) {
+      $(".spouse").show();
+    } else {
+      $(".spouse").hide();
+    }
+  })
+
+  $("#activity_income").on("change", function() {
+    $(".activity_income").toggle();
+  })
+  
+  $("#activity_spouse_income").on("change", function() {
+    $(".activity_spouse_income").toggle();
+  })  
