@@ -1,0 +1,2 @@
+class FormItapoaRegularization < ApplicationRecord
+end

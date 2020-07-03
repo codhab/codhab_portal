@@ -19,6 +19,7 @@ Regularization::Engine.routes.draw do
   end
 =end
 
+  resources :form_itapoa_regularizations, path: 'regularizacao-itapoa'
 
   namespace :candidate, path: 'candidato' do
 =begin

@@ -1,6 +1,10 @@
 = simple_form_for @cadastre do |f|
   .row
     .col-md-12
+      = link_to "Emitir comprovante de inscrição", candidate.subscribe_consults_path, target: '_blank' 
+  %br/
+  .row
+    .col-md-12
       %h4 
         %b Dados básicos
       %hr/

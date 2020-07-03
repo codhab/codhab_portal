@@ -54,9 +54,9 @@ Attendance::Engine.routes.draw do
 
   end
 
-  resources :chats do
-    resources :chat_comments
-  end
+  #resources :chats do
+  #  resources :chat_comments
+  #end
 
   resources :requeriments
   resources :schedules

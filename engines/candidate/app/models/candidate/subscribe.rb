@@ -41,7 +41,7 @@ module Candidate
               :address_complement,
               presence: true
 
-    validates :cpf, cpf: true, presence: true, uniqueness: true
+    validates :cpf, cpf: true, presence: true
     validates_numericality_of :cep, :celphone
     validates :telephone, numericality: true, allow_blank: true
     validates_date :born, before: :today, presence: true
@@ -52,7 +52,7 @@ module Candidate
 
     validates :password, :password_confirmation, presence: true, length: { minimum: 6, maximum: 24 }
     validate  :password_confirmation_is_valid 
-
+    validate  :unique_cpf, on: :create
     validate  :cpf_allow?, on: :create
 
     def set_nest(item)
@@ -68,6 +68,15 @@ module Candidate
     end
 
     private
+
+    def unique_cpf
+      cadastre_cpf = Candidate::Subscribe.find_by(cpf: self.cpf)
+
+      if !cadastre_cpf.nil?
+        errors.add(:cpf, "CPF já se encontra inscrito, para mais detalhes acesse o comprovante de inscrição")
+      end
+
+    end
 
     def password_confirmation_is_valid
       if self.password != self.password_confirmation
