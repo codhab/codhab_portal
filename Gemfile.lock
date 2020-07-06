@@ -381,6 +381,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     shellany (0.0.1)
+    similar_text (0.0.4)
     simple_captcha2 (0.5.0)
       rails (>= 4.1)
     simple_form (5.0.2)
@@ -512,6 +513,7 @@ DEPENDENCIES
   schedule!
   select2-rails
   shareable
+  similar_text
   simple_captcha2
   simple_form
   social_work!

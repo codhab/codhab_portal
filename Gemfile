@@ -54,6 +54,7 @@ gem 'tinymce-rails', '~> 4.3.8'
 gem 'tinymce-rails-langs', '~> 4.20180103'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem 'money-rails', '~>1.12'
+gem 'similar_text'
 
  # gem 'core', path: '../mobile/components/core'
 gem 'core', github: 'codhab/core', branch: :master
