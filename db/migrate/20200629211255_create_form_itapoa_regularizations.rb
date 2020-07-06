@@ -1,14 +1,17 @@
 class CreateFormItapoaRegularizations < ActiveRecord::Migration[5.0]
   def change
     create_table 'algox.form_itapoa_regularizations' do |t|
+      
+      t.string  :iptu_code
+      t.string  :cpf, null: false
+      t.date    :born, null: false
+      t.string  :name
 
       t.integer :category_id
       t.integer :city_id
       t.integer :unit_id
       t.string  :cep
       t.string  :complete_address
-      t.string  :cpf, null: false
-      t.string  :name
       t.string  :rg
       t.string  :naturality
       t.integer :civil_state_id
