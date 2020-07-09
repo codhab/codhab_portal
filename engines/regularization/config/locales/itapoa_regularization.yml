@@ -10,6 +10,8 @@ pt-BR:
       'regularization/itapoa_regularization': 'Solicitação'
     attributes:
       'regularization/itapoa_regularization':
+        born: 'Data de nascimento'
+        spouse_born: 'Data de nascimento'
         iptu_code: "Nº de registro do IPTU"
         no_iptu_code: "Endereço encontrado?"
         document_rg: "Anexar: carteira de identidade ou CNH vigente"
@@ -32,11 +34,11 @@ pt-BR:
         declaration_descriptive:
         declaration_pacific:
         declaration_informal_activity:
-        declaration_informal_activity_value: "Valor"
+        declaration_informal_activity_value: "Informe o valor"
         declaration_stable_union:
         declaration_spouse_pacific:
         declaration_spouse_informal_activity: "Valor"
-        declaration_spouse_informal_activity_value: 'Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
+        declaration_spouse_informal_activity_value: 'Informe o valor'
         declaration_unit_area:         
         category_id:
         city_id:

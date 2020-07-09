@@ -24,10 +24,10 @@
     .col-md-4
       = f.input :naturality, placeholder: "Informe sua naturalidade"
     .col-md-2
-      = f.input :civil_state_id, as: :select, collection: {}, include_blank: 'Selecione...', input_html: { id: 'civil_state'}
+      = f.input :civil_state_id, as: :select, collection: Core::Candidate::CivilState.all, include_blank: 'Selecione...', input_html: { id: 'civil_state'}
     .col-md-2
-      = f.input :income, input_html: { class: 'coin'}
-  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'none' : 'block'}"}
+      = f.input :income, as: :string, input_html: { class: 'money'}
+  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
     %br/
     %h4 2.1 Informe os dados do cônjuge
     %hr/  
@@ -44,7 +44,7 @@
       .col-md-3
         = f.input :spouse_job, placeholder: "Informe a profissão"
       .col-md-3
-        = f.input :spouse_income
+        = f.input :spouse_income, as: :string, input_html: { class: 'money'}
 
   %br/
   %h4 3. Informe dados de contato
@@ -219,7 +219,7 @@
   .activity_income{style: "display: #{f.object.declaration_informal_activity ? 'block' : 'none'}"}
     .row
       .col-md-2      
-        = f.input :declaration_informal_activity_value, as: :string, label: false
+        = f.input :declaration_informal_activity_value, as: :string, input_html: { class: 'money'}
   %hr/
   
   
@@ -229,12 +229,17 @@
         %p
           %b DECLARAÇÃO DE ATIVIDADE INFORMAL (CÔNJUGE/COMPANHEIRO)
     .row
-      .col-md-12      
-        = f.input :declaration_spouse_informal_activity, as: :select, include_blank: false, include_blank: false, input_html: { id: "activity_spouse_income"}
+      .col-md-12   
+        %p
+          Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
+
+    .row
+      .col-md-2      
+        = f.input :declaration_spouse_informal_activity, label: false, as: :select, include_blank: false, include_blank: false, input_html: { id: "activity_spouse_income"}
     .activity_spouse_income{style: "display: #{f.object.declaration_spouse_informal_activity ? 'block' : 'none'}"}
       .row
-        .col-md-12      
-          = f.input :declaration_spouse_informal_activity_value, as: :string
+        .col-md-2      
+          = f.input :declaration_spouse_informal_activity_value, as: :string, input_html: { class: 'money'}
     %hr/ 
 
 

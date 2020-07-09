@@ -23,7 +23,11 @@ Regularization::Engine.routes.draw do
     collection do
       resources :sessions, path: 'acesso', controller: :itapoa_regularization_sessions, as: :itapoa_regularization_sessions
       get 'get_iptu_code', as: :get_iptu_code
+      
+      post 'set_iptu'
     end
+
+    get 'update_situation'
 
   end
 

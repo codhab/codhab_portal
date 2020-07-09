@@ -3,4 +3,8 @@
     %h2 
       %b Formulário de solicitação - Regularização Itapoã
     %hr/ 
-    = render 'form'
+
+    - if @itapoa_regularization.unit.present?
+      = render 'form'
+    - else
+      = render 'form_address'

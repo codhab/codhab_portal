@@ -1,6 +1,10 @@
 module Regularization
   class ItapoaRegularization < ActiveRecord::Base
-    self.table_name = 'offboardx.form_itapoa_regularizations'
+    self.table_name = 'offboardx.form_itapoa_regularizations' 
+
+    belongs_to :unit, class_name: 'Address::Unit' 
+
+    enum situation_id: {'candidato' => 1, 'codhab' => 2, 'deferido' => 3, 'indeferido' => 4}
     
     enum unit_characterist: { "vazio" => 1, "construído" => 2, "em_construção" => 3}
 
@@ -28,19 +32,72 @@ module Regularization
               :terms_use,
               presence: true
 
-    validate :validate_iptu 
+    validates :unit_characterist,
+              :unit_characterist_occupation,
+              :unit_characterist_edification,
+              :unit_characterist_room,
+              :unit_characterist_dweller,
+              :unit_characterist_piped_water,
+              :unit_characterist_electricity,
+              presence: true
+
+    validates :spouse_name,
+              :spouse_rg,
+              :spouse_born,
+              :spouse_job,
+              :spouse_income,
+              presence: true,
+              if: -> { spouse_present? }
+    
+    validates :declaration_spouse_informal_activity_value, presence: true, if: -> { self.declaration_spouse_informal_activity }
+    validates :declaration_informal_activity_value, presence: true, if: -> { self.declaration_informal_activity }
+
+
+    validates :spouse_cpf, presence: true, cpf: true, if: -> { spouse_present? }
+
+   
+
+    mount_uploader :document_rg, Regularization::DocumentUploader
+    mount_uploader :document_cpf, Regularization::DocumentUploader
+    mount_uploader :document_civil_state, Regularization::DocumentUploader
+    mount_uploader :document_income, Regularization::DocumentUploader
+    mount_uploader :document_spouse_income, Regularization::DocumentUploader
+    mount_uploader :document_spouse_rg, Regularization::DocumentUploader
+    mount_uploader :document_spouse_cpf, Regularization::DocumentUploader
+    mount_uploader :document_occupation_time, Regularization::DocumentUploader
+    mount_uploader :photo_unit_front, Regularization::DocumentUploader
+    mount_uploader :photo_unit_inside_one, Regularization::DocumentUploader
+    mount_uploader :photo_unit_inside_two, Regularization::DocumentUploader
+    mount_uploader :document_address, Regularization::DocumentUploader
+    mount_uploader :document_iptu, Regularization::DocumentUploader
+    
+    def complete_address
+      if self.unit.present?
+        self.unit.complete_address
+      else
+        self[:complete_address]
+      end 
+    end
+    
+    def iptu_valid?(session)
+      unit_address = ::Address::Unit.where.not(registration_iptu: nil, registration_iptu: '').find_by(registration_iptu: self.iptu_code)
+
+      if !self.iptu_code.blank? && !unit_address.nil?
+        self.unit_id = unit_address.id
+        self.complete_address = unit_address.complete_address
+
+        session[:unit_id] = self.unit_id
+      else
+        errors.add(:iptu_code, 'não encontrado, corrija ou pesquise')
+      end
+
+      true
+    end
 
     private
 
-    def validate_iptu
-      unit = Address::Unit.find_by(iptu_registration: self.iptu_code)
-
-      if unit.nil?
-        errors.add(:unit, 'não encontrado; verifique ou pesquise abaixo o número correto')
-      else
-        self.unit_id = unit.id
-        self.complete_address = unit.complete_address
-      end
+    def spouse_present?
+      [2,7].include?(self.civil_state_id)
     end
 
   end

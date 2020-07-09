@@ -4,14 +4,14 @@ class CreateFormItapoaRegularizations < ActiveRecord::Migration[5.0]
       
       t.integer  :category_id, default: 1
       t.integer  :unit_id
+      t.string   :iptu_code, null: false
       t.integer  :situation_id, default: 1
       t.text     :staff_observation
       t.datetime :staff_observation_read_at
       
-      t.boolean :no_iptu_code, default: false
-      t.integer :complete_address
+      t.boolean  :no_iptu_code, default: false
+      t.integer  :complete_address
       
-      t.string  :iptu_code, null: false
       t.string  :cpf, null: false
       t.date    :born, null: false
       
@@ -80,7 +80,7 @@ class CreateFormItapoaRegularizations < ActiveRecord::Migration[5.0]
       t.boolean  :declaration_spouse_informal_activity, default: false
       t.decimal  :declaration_spouse_informal_activity_value, precision: 8, scale: 2
       
-      t.string   :declaration_unit_area, default: false
+      t.string   :declaration_unit_area
       t.boolean  :terms_use, default: false
       
 

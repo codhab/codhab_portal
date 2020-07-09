@@ -1,0 +1,12 @@
+= simple_form_for @itapoa_regularization, url: set_iptu_itapoa_regularizations_path do |f|
+
+  .row
+    .col-md-4
+      = f.input :iptu_code, placeholder: "Informe número do registro de IPTU"
+  .row
+    .col-md-12
+      %h4=  link_to "Não sabe qual seu número de registro do IPTU? (clique aqui)", regularization.get_iptu_code_itapoa_regularizations_path, remote: true
+  %br/
+  .row
+    .col-md-12
+  = f.submit 'Verificar IPTU', class: 'btn btn-success btn-block btn-lg'
