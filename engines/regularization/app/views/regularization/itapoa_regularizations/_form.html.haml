@@ -51,7 +51,9 @@
   %hr/
   .row
     .col-md-3
-      = f.input :phone, placeholder: "Informe um telefone"
+      = f.input :phone, placeholder: "Informe o número"
+    .col-md-3
+      = f.input :phone_secondary, placeholder: "Informe o número"
     .col-md-3
       = f.input :email, placeholder: "Informe um e-mail"
   
@@ -100,6 +102,11 @@
       = f.label :unit_characterist_electricity 
     .col-md-2
       = f.input :unit_characterist_electricity, label: false, as: :select, collection: Regularization::ItapoaRegularization.unit_characterist_electricities.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' 
+  .row
+    .col-md-12
+      = f.label :unit_characterist_sewer 
+    .col-md-2
+      = f.input :unit_characterist_sewer, label: false, as: :select, collection: Regularization::ItapoaRegularization.unit_characterist_sewers.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' 
 
   %br/
   %h4 5. Declarações
@@ -114,13 +121,14 @@
       %p Minha família é a única ocupante do imóvel que ora solicito a regularização.
   .row
     .col-md-2      
-      = f.input :declaration_occupation_one, as: :select, include_blank: false, label: false
-  .row
-    .col-md-12  
-      %p Existem outra(s) família(s) ocupando o imóvel que ora solicito a regularização.    
-  .row
-    .col-md-2      
-      = f.input :declaration_occupation_two, as: :select, include_blank: false, label: false
+      = f.input :declaration_occupation, as: :select, include_blank: false, label: false, input_html: { id: 'declaration_occupation'}
+  #declaration_occupation_quantity{style: "display: #{f.object.declaration_occupation ? 'none' : 'block'}"}
+    .row
+      .col-md-12  
+        %p Existem outra(s) família(s) ocupando o imóvel que ora solicito a regularização. Informe a quantidade:   
+    .row
+      .col-md-2      
+        = f.input :declaration_occupation_quantity, as: :string, label: false
   %hr/
   .row
     .col-md-12
@@ -264,6 +272,10 @@
       = link_to "Cancelar", regularization.itapoa_regularizations_path, class: 'btn btn-primary btn-lg btn-block', data: { disable_with: "Aguarde..."}
 
 :javascript
+  $("#declaration_occupation").on("change", function() {
+    $("#declaration_occupation_quantity").toggle();
+  });
+
   $("#no_iptu_code").on("change", function() {
     $("#iptu_code").toggle();
   });

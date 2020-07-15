@@ -12,8 +12,8 @@ class CreateFormItapoaRegularizations < ActiveRecord::Migration[5.0]
       t.boolean  :no_iptu_code, default: false
       t.integer  :complete_address
       
-      t.string  :cpf, null: false
-      t.date    :born, null: false
+      t.string   :cpf, null: false
+      t.date     :born, null: false
       
       t.string  :name
       t.string  :rg
@@ -28,6 +28,7 @@ class CreateFormItapoaRegularizations < ActiveRecord::Migration[5.0]
       t.string  :spouse_job
       t.decimal :spouse_income, precision: 8, scale: 2
       t.string  :phone
+      t.string  :phone_secondary
       t.string  :email
       
       # Vazio/Construído/Em construção;
@@ -51,6 +52,8 @@ class CreateFormItapoaRegularizations < ActiveRecord::Migration[5.0]
       # CEB/Gambiarra/Sem energia.  
       t.integer :unit_characterist_electricity
 
+      t.integer :unit_characterist_sewer
+
       t.string   :document_rg
       t.string   :document_cpf
       t.string   :document_civil_state
@@ -67,8 +70,7 @@ class CreateFormItapoaRegularizations < ActiveRecord::Migration[5.0]
       t.string   :document_onus
       
       t.boolean  :declaration_occupation, default: false
-      t.boolean  :declaration_occupation_one, default: false
-      t.boolean  :declaration_occupation_two, default: false
+      t.integer  :declaration_occupation_quantity
       t.boolean  :declaration_negative, default: false
       t.boolean  :declaration_descriptive, default: false
       t.boolean  :declaration_pacific, default: false

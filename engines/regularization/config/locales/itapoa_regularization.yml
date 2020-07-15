@@ -1,4 +1,12 @@
 pt-BR:
+  activemodel:
+    models:
+      'regularization/itapoa_regularization_session'
+    attributes:
+      'regularization/itapoa_regularization_session':
+        name: "Nome (completo)"
+        born: "Data de nascimento"
+        cpf: "CPF"
   activerecord:
     errors:
       models:
@@ -39,7 +47,8 @@ pt-BR:
         declaration_spouse_pacific:
         declaration_spouse_informal_activity: "Valor"
         declaration_spouse_informal_activity_value: 'Informe o valor'
-        declaration_unit_area:         
+        declaration_unit_area:  
+        unit_characterist_sewer: "Características de instação de esgoto"       
         category_id:
         city_id:
         unit_id:
@@ -57,7 +66,8 @@ pt-BR:
         spouse_cpf: "CPF (Cônjuge)"
         spouse_job: "Profissão (Cônjuge)"
         spouse_income: "Renda (Cônjuge)"
-        phone: "Telefone"
+        phone: "Telefone (fixo)"
+        phone_secondary: "Telefone (celular)"
         email: "E-mail"
         unit_characterist: "Características do Lote"
         unit_characterist_occupation: "Característica da Ocupação"

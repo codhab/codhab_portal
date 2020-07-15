@@ -19,6 +19,8 @@ module Regularization
     enum unit_characterist_piped_water: { "CAESB" => 1, "água_gambiarra" => 2, "sem_água" => 3}
     
     enum unit_characterist_electricity: { "CEB" => 1, "energia_gambiarra" => 2, "sem_energia" => 3}
+    
+    enum unit_characterist_sewer: { "Esgoto_CAESB" => 1, "fossa" => 2, "não_tem" => 3}
 
     validates :cpf, cpf: true, uniqueness: true, presence: true
     validates :iptu_code, presence: true
@@ -39,6 +41,7 @@ module Regularization
               :unit_characterist_dweller,
               :unit_characterist_piped_water,
               :unit_characterist_electricity,
+              :unit_characterist_sewer,
               presence: true
 
     validates :spouse_name,
@@ -48,7 +51,9 @@ module Regularization
               :spouse_income,
               presence: true,
               if: -> { spouse_present? }
-    
+
+    validates :declaration_occupation_quantity, presence: true, if: -> { !self.declaration_occupation? }
+
     validates :declaration_spouse_informal_activity_value, presence: true, if: -> { self.declaration_spouse_informal_activity }
     validates :declaration_informal_activity_value, presence: true, if: -> { self.declaration_informal_activity }
 

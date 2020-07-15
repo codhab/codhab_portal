@@ -76,8 +76,9 @@ module Regularization
                 :declaration_spouse_informal_activity_value, :terms_use,
                 :complete_address, :spouse_born, :unit_characterist, :unit_characterist_occupation, 
                 :unit_characterist_edification, :unit_characterist_room, :unit_characterist_dweller, 
-                :unit_characterist_piped_water, :unit_characterist_electricity,
+                :unit_characterist_piped_water, :unit_characterist_electricity, :unit_characterist_sewer,
                 :document_rg, 
+                :phone_secondary,
                 :document_cpf, 
                 :document_civil_state, 
                 :document_income, 
@@ -101,7 +102,7 @@ module Regularization
       params.require(:itapoa_regularization)
         .permit(:name, :iptu_code, :cpf, :rg, :naturality, 
                 :income, :habitation_type_id, :spouse_cpf, 
-                :spouse_rg, :spouse_name, :spouse_job, 
+                :spouse_rg, :spouse_name, :spouse_job, :phone_secondary,
                 :spouse_income, :phone, :email, :civil_state_id,
                 :no_iptu_code, :born, :declaration_occupation_one, :declaration_occupation_two, 
                 :declaration_negative, :declaration_descriptive, :declaration_pacific, 
@@ -110,7 +111,8 @@ module Regularization
                 :declaration_spouse_informal_activity_value, :terms_use,
                 :complete_address, :spouse_born, :unit_characterist, :unit_characterist_occupation, 
                 :unit_characterist_edification, :unit_characterist_room, :unit_characterist_dweller, 
-                :unit_characterist_piped_water, :unit_characterist_electricity)
+                :unit_characterist_piped_water, :unit_characterist_electricity,
+                :unit_characterist_sewer)
   
     end
 
