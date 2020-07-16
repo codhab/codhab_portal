@@ -77,19 +77,35 @@ module Regularization
     mount_uploader :document_iptu, Regularization::DocumentUploader
     
     def declaration_informal_activity_value
+      "%.2f" % self[:declaration_informal_activity_value]  
+    end
+
+    def declaration_informal_activity_value=(value)
       self[:declaration_informal_activity_value] = value.to_s.gsub('.', '').gsub(',','.').to_f rescue 0
     end
 
     def declaration_spouse_informal_activity_value
+      "%.2f" % self[:declaration_spouse_informal_activity_value]  
+    end
+
+    def declaration_spouse_informal_activity_value=(value)
       self[:declaration_spouse_informal_activity_value] = value.to_s.gsub('.', '').gsub(',','.').to_f rescue 0
     end
 
-    def spouse_income
+    def spouse_income=(value)
       self[:spouse_income] = value.to_s.gsub('.', '').gsub(',','.').to_f rescue 0
+    end
+
+    def spouse_income
+      "%.2f" % self[:spouse_income] 
     end
 
     def income=(value)
       self[:income] = value.to_s.gsub('.', '').gsub(',','.').to_f rescue 0
+    end
+    
+    def income
+      "%.2f" % self[:income] 
     end
 
     def complete_address
