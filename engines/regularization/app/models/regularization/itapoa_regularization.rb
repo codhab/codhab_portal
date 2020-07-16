@@ -34,7 +34,7 @@ module Regularization
               :terms_use,
               presence: true
 
-    validates :unit_characterist,
+    validates :unit_characterist, 
               :unit_characterist_occupation,
               :unit_characterist_edification,
               :unit_characterist_room,
@@ -76,6 +76,22 @@ module Regularization
     mount_uploader :document_address, Regularization::DocumentUploader
     mount_uploader :document_iptu, Regularization::DocumentUploader
     
+    def declaration_informal_activity_value
+      self[:declaration_informal_activity_value] = value.to_s.gsub('.', '').gsub(',','.').to_f rescue 0
+    end
+
+    def declaration_spouse_informal_activity_value
+      self[:declaration_spouse_informal_activity_value] = value.to_s.gsub('.', '').gsub(',','.').to_f rescue 0
+    end
+
+    def spouse_income
+      self[:spouse_income] = value.to_s.gsub('.', '').gsub(',','.').to_f rescue 0
+    end
+
+    def income=(value)
+      self[:income] = value.to_s.gsub('.', '').gsub(',','.').to_f rescue 0
+    end
+
     def complete_address
       if self.unit.present?
         self.unit.complete_address

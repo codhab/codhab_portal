@@ -26,7 +26,7 @@
     .col-md-2
       = f.input :civil_state_id, as: :select, collection: Core::Candidate::CivilState.all, include_blank: 'Selecione...', input_html: { id: 'civil_state'}
     .col-md-2
-      = f.input :income, as: :string, input_html: { class: 'money'}
+      = f.input :income, as: :string, input_html: { class: 'money-br'}
   .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
     %br/
     %h4 2.1 Informe os dados do cônjuge
@@ -44,7 +44,7 @@
       .col-md-3
         = f.input :spouse_job, placeholder: "Informe a profissão"
       .col-md-3
-        = f.input :spouse_income, as: :string, input_html: { class: 'money'}
+        = f.input :spouse_income, as: :string, input_html: { class: 'money-br'}
 
   %br/
   %h4 3. Informe dados de contato
@@ -227,7 +227,7 @@
   .activity_income{style: "display: #{f.object.declaration_informal_activity ? 'block' : 'none'}"}
     .row
       .col-md-2      
-        = f.input :declaration_informal_activity_value, as: :string, input_html: { class: 'money'}
+        = f.input :declaration_informal_activity_value, as: :string, input_html: { class: 'money-br'}
   %hr/
   
   
@@ -247,7 +247,7 @@
     .activity_spouse_income{style: "display: #{f.object.declaration_spouse_informal_activity ? 'block' : 'none'}"}
       .row
         .col-md-2      
-          = f.input :declaration_spouse_informal_activity_value, as: :string, input_html: { class: 'money'}
+          = f.input :declaration_spouse_informal_activity_value, as: :string, input_html: { class: 'money-br'}
     %hr/ 
 
 
@@ -283,8 +283,10 @@
   $("#civil_state").on("change", function() {
     if($(this).val() == 2 || $(this).val() == 7) {
       $(".spouse").show();
+      $(".no-spouse").hide();
     } else {
       $(".spouse").hide();
+      $(".no-spouse").show();
     }
   })
 
