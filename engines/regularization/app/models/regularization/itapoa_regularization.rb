@@ -77,7 +77,7 @@ module Regularization
     mount_uploader :document_iptu, Regularization::DocumentUploader
     
     def declaration_informal_activity_value
-      "%.2f" % self[:declaration_informal_activity_value]  
+      "%.2f" % self[:declaration_informal_activity_value] rescue 0  
     end
 
     def declaration_informal_activity_value=(value)
@@ -85,7 +85,7 @@ module Regularization
     end
 
     def declaration_spouse_informal_activity_value
-      "%.2f" % self[:declaration_spouse_informal_activity_value]  
+      "%.2f" % self[:declaration_spouse_informal_activity_value] rescue 0 
     end
 
     def declaration_spouse_informal_activity_value=(value)
