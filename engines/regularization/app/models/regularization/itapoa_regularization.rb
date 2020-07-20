@@ -97,7 +97,7 @@ module Regularization
     end
 
     def spouse_income
-      "%.2f" % self[:spouse_income] 
+      "%.2f" % self[:spouse_income] rescue 0 
     end
 
     def income=(value)
@@ -105,7 +105,7 @@ module Regularization
     end
     
     def income
-      "%.2f" % self[:income] 
+      "%.2f" % self[:income] rescue 0
     end
 
     def complete_address

@@ -57,8 +57,8 @@
     :javascript
       var URL = "#{request.host_with_port}"
   %body{style: (controller_path == "main/home")? "background-color:#fff!important;" : "background-color:#EBECF0!important;"}
-    = render 'layouts/portal/top_nav', cached: true
-    = render 'layouts/portal/header', cached: true
+    /= render 'layouts/portal/top_nav', cached: true
+    /= render 'layouts/portal/header', cached: true
     %div{class: (controller_path == "main/home" || controller_path == "main/habita_teste" || controller_path == "assistance/home") ? "" : "container portal-container box"}
       - flash.each do |key, value|
         .alert.mini-margin{class: "alert-#{key}"}= value
