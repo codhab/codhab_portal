@@ -18,6 +18,14 @@ Schedule::Engine.routes.draw do
       end
     end
   end
+  
+  namespace :internal, path: 'interno' do
+    resources :agenda_schedules, path: '/' do
+      collection do
+        get 'success', path: 'sucesso'
+      end
+    end
+  end  
 
   namespace :entity, path: 'entidade' do
     resources :agenda_schedules, path: '/' do

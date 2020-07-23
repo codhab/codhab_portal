@@ -11,6 +11,7 @@ module Schedule
 
     scope :regularization,  -> { where(program: 3)}
     scope :habitation,      -> { where(program: 1)}
+    scope :internal,        -> { where(program: 6)}
     scope :finance,         -> { where(program: 8)}
     scope :entity,          -> { where(program: 2)}
     scope :active,          -> { where(status: true).order(:title)}
