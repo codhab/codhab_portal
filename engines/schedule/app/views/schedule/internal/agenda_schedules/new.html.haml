@@ -1,0 +1,29 @@
+- if mobile_device?
+  :css
+    .container.portal-container.box, body{
+      background-color:#fff!important;
+    }
+
+    .navbar.navbar-default.navbar-codhab, footer{
+      display:none;
+    }
+
+  .row
+    .col-md-10.input-big
+      = render 'form'
+- else
+  .row.mini-margin
+    .col-md-12.box
+      .panel.panel-default
+        .panel-heading.green
+          .row
+            .col-md-12
+              %h1
+                %b.green Interno
+                %br/
+                %small Agendamento de atendimento
+        %hr/
+        .panel-body
+          .row
+            .col-md-12.input-big
+              = render 'form'

@@ -1,0 +1,520 @@
+= simple_form_for @itapoa_regularization do |f| 
+  
+  %br/
+  %h4#iptu-link 1. Informe o número de registro do IPTU (Clique para visualizar)
+  %hr/
+  #iptu{style: 'display: none'}
+    .row
+      #iptu_code.col-md-3{style: "display: #{f.object.no_iptu_code ? 'none' : 'block'}"}
+        = f.input :iptu_code, placeholder: "Informe o número", input_html: { disabled: true } 
+      .col-md-6
+        = f.input :complete_address, as: :string, input_html: { disabled: true, id: 'complete_address' }
+  %br/
+  %h4#identification-link 2. Informe os dados de identificação (Clique para visualizar)
+  %hr/
+  #identification{style: 'display: none'}
+    .row
+      .col-md-3
+        = f.input :cpf, input_html: { class: 'cpf', disabled: true }
+      .col-md-9
+        = f.input :name, placeholder: 'Informe seu nome completo', input_html: { disabled: !f.object.candidato? }
+    .row
+      .col-md-2
+        = f.input :rg, placeholder: "Informe seu RG", input_html: { disabled: !f.object.candidato? }
+      .col-md-2
+        = f.input :born, as: :string, input_html: { class: 'date', value: (f.object.born.present? ? f.object.born.strftime("%d/%m/%Y") : nil), disabled: !f.object.candidato? }
+      .col-md-4
+        = f.input :naturality, placeholder: "Informe sua naturalidade"
+      .col-md-2
+        = f.input :civil_state_id, as: :select, collection: Core::Candidate::CivilState.all, include_blank: 'Selecione...', input_html: { id: 'civil_state', disabled: !f.object.candidato?}
+      .col-md-2
+        = f.input :income, as: :string, input_html: { class: 'money'}
+    .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+      %br/
+      %h4 2.1 Informe os dados do cônjuge
+      %hr/  
+      .row
+        .col-md-3
+          = f.input :spouse_cpf, input_html: { class: 'cpf', disabled: !f.object.candidato?}
+        .col-md-9
+          = f.input :spouse_name, placeholder: "Informe o nome completo", input_html: { disabled: !f.object.candidato? }
+      .row
+        .col-md-2
+          = f.input :spouse_rg, placeholder: "Informe o RG", input_html: { disabled: !f.object.candidato? }
+        .col-md-2
+          = f.input :spouse_born, as: :string, input_html: { class: 'date', value: f.object.spouse_born.present? ? f.object.spouse_born.strftime("%d/%m/%Y") : nil }
+        .col-md-3
+          = f.input :spouse_job, placeholder: "Informe a profissão", input_html: { disabled: !f.object.candidato? }
+        .col-md-3
+          = f.input :spouse_income, as: :string, input_html: { class: 'money', disabled: !f.object.candidato? }
+      .row
+
+  %br/
+  %h4#contact-link 3. Informe dados de contato (Clique para visualizar)
+  %hr/
+  #contact{style: 'display: none'}
+    .row
+      .col-md-3
+        = f.input :phone, placeholder: "Informe um telefone", input_html: { disabled: !f.object.candidato? }
+      .row
+      .col-md-3
+        = f.input :email, placeholder: "Informe um e-mail", input_html: { disabled: !f.object.candidato? }
+      .row
+    
+  %br/
+  %h4#home-link 4. Características da moradia (Clique para visualizar)
+  %hr/
+  #home{style: 'display: none'}
+    .row
+      .col-md-12
+        = f.label :unit_characterist
+    .row
+      .col-md-2
+        = f.input :unit_characterist, label: false, as: :select, collection: Regularization::ItapoaRegularization.unit_characterists.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...', input_html: { disabled: !f.object.candidato? }
+      
+
+    .row
+      .col-md-12
+        = f.label :unit_characterist_occupation
+      .col-md-2
+        = f.input :unit_characterist_occupation, label: false, as: :select, collection: Regularization::ItapoaRegularization.unit_characterist_occupations.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' , input_html: { disabled: !f.object.candidato? }
+
+    .row
+      .col-md-12
+        = f.label :unit_characterist_edification 
+      .col-md-2
+        = f.input :unit_characterist_edification, label: false, as: :select, collection: Regularization::ItapoaRegularization.unit_characterist_edifications.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' , input_html: { disabled: !f.object.candidato? }
+        
+    .row
+      .col-md-12
+        = f.label :unit_characterist_room 
+      .col-md-2
+        = f.input :unit_characterist_room, label: false, as: :select, collection: Regularization::ItapoaRegularization.unit_characterist_rooms.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' , input_html: { disabled: !f.object.candidato? }
+        
+    .row
+      .col-md-12
+        = f.label :unit_characterist_dweller 
+      .col-md-2
+        = f.input :unit_characterist_dweller, label: false, as: :select, collection: Regularization::ItapoaRegularization.unit_characterist_dwellers.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' , input_html: { disabled: !f.object.candidato? }
+        
+    .row
+      .col-md-12
+        = f.label :unit_characterist_piped_water 
+      .col-md-2
+        = f.input :unit_characterist_piped_water, label: false, as: :select, collection: Regularization::ItapoaRegularization.unit_characterist_piped_waters.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' , input_html: { disabled: !f.object.candidato? }
+        
+    .row
+      .col-md-12
+        = f.label :unit_characterist_electricity 
+      .col-md-2
+        = f.input :unit_characterist_electricity, label: false, as: :select, collection: Regularization::ItapoaRegularization.unit_characterist_electricities.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' , input_html: { disabled: !f.object.candidato? }
+
+  %br/
+  %h4#declaration-link 5. Declarações (Clique para visualizar)
+  %hr/
+  #declaration{style: 'display: none'}
+    .row
+      .col-md-12      
+        %p
+          %b DECLARAÇÃO DE OCUPAÇÃO. 
+        %p Declaro para fins de regularização de lote urbano no Distrito Federal que:
+    .row
+      .col-md-12      
+        %p Minha família é a única ocupante do imóvel que ora solicito a regularização.
+    .row
+      .col-md-2      
+        = f.input :declaration_occupation_one, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
+    .row
+      .col-md-12  
+        %p Existem outra(s) família(s) ocupando o imóvel que ora solicito a regularização.    
+    .row
+      .col-md-2      
+        = f.input :declaration_occupation_two, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
+    %hr/
+    .row
+      .col-md-12
+        %p
+          %b DECLARAÇÃO NEGATIVA DE PROPRIEDADE DE IMÓVEL RESIDENCIAL 
+        %p
+          Declaro para fins de regularização de lote urbano no Distrito Federal, que não sou proprietário (a), comprador (a), cessionário( a), usufrutuário (a) e/ou titular de direitos de imóvel residencial urbano, construído ou em construção, em todo o território do Distrito Federal.
+    .row
+      .col-md-2      
+        = f.input :declaration_negative, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
+    %hr/
+    .row
+      .col-md-12
+        %p
+          %b DECLARAÇÃO PARA EMISSÃO DE FICHA DESCRITIVA
+        %p
+          Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do DF, estar ciente que os custos de emolumentos cartoriais, oriundos da lavratura e registro da escritura pública por mim solicitada, fazer-se-á sob minha total responsabilidade, razão pela qual renuncio os elencados nos dispositivos previstos no (art. 213, § 15, da Lei Federal n. 6.015/73; art 31, inciso I, do Provimento n. 44, da Corregedoria Nacional de Justiça e art. 216 do Provimento Geral da Corregedoria de Justiça).      
+    .row
+      .col-md-2      
+        = f.input :declaration_descriptive, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
+    %hr/
+    .row
+      .col-md-12
+        %p
+          %b DECLARAÇÃO DE POSSE MANSA E PACÍFICA
+        %p
+          Inciso I, art. 4º, Dec. 34.210, de 13 de março de 2013.      
+        %p
+          Declaro que ocupo mansa e pacificamente o imóvel e que não existe demanda judicial relacionada a posse.
+    .row
+      .col-md-2      
+        = f.input :declaration_pacific, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
+    %hr/
+    .row
+      .col-md-12
+        %p
+          %b DECLARAÇÃO DE METRAGEM DA ÁREA DO LOTE
+        %p
+          Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, que verifiquei na Inscrição do IPTU, na Área do Terreno, que meu lote possui a seguinte metragem:
+    .row
+      .col-md-2      
+        = f.input :declaration_unit_area, label: false, as: :string, placeholder: "Informe a metragem em m²", input_html: { disabled: !f.object.candidato? }
+    %hr/
+
+    .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+      .row
+        .col-md-12
+          %p
+            %b DECLARAÇÃO DE POSSE MANSA E PACÍFICA (CÔNJUGE/ COMPANHEIRO)
+          %p
+            Inciso I, art. 4º, Dec. 34.210, de 13 de março de 2013.      
+          %p
+            Declaro que ocupo mansa e pacificamente o imóvel e que não existe demanda judicial relacionada a posse. 
+      .row
+        .col-md-2      
+          = f.input :declaration_spouse_pacific, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
+      %hr/
+
+    .no-spouse{style: "display: #{![2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+      .row
+        .col-md-12
+          %p
+            %b DECLARAÇÃO NEGATIVA DE UNIÃO ESTÁVEL   
+      .row
+        .col-md-12   
+          %p
+            Declaro expressamente, sob-responsabilidade civil e criminal, que não mantenho relação de vida comum ou união estável com outra pessoa, nas condições dos artigos 1.723 e seguintes do Código Civil Brasileiro, Título III – “Da União Estável, permanecendo no estado civil de Solteiro (a).
+      .row
+        .col-md-2      
+          = f.input :declaration_spouse_pacific, as: :select, include_blank: false, label: false   , input_html: { disabled: !f.object.candidato? }       
+      %hr/
+
+    .spouse{style: "display: #{[7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+      .row
+        .col-md-12
+          %p
+            %b DECLARAÇÃO DE UNIÃO ESTÁVEL
+          %p
+            Declaro para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal – CODHAB/DF, que VIVO EM REGIME DE UNIÃO ESTÁVEL “more uxório” com (já qualificado anteriormente).
+      .row
+        .col-md-2      
+          = f.input :declaration_spouse_pacific, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
+      %hr/
+
+    .row
+      .col-md-12
+        %p
+          %b DECLARAÇÃO DE ATIVIDADE INFORMAL (REQUERENTE)      
+    .row
+      .col-md-12   
+        %p
+          Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
+    .row
+      .col-md-2      
+        = f.input :declaration_informal_activity, as: :select, include_blank: false, label: false, input_html: { id: "activity_income",disabled: !f.object.candidato? }
+    .activity_income{style: "display: #{f.object.declaration_informal_activity ? 'block' : 'none'}"}
+      .row
+        .col-md-2      
+          = f.input :declaration_informal_activity_value, as: :string, input_html: { class: 'money',disabled: !f.object.candidato? }
+    %hr/
+    
+    
+    .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+      .row
+        .col-md-12
+          %p
+            %b DECLARAÇÃO DE ATIVIDADE INFORMAL (CÔNJUGE/COMPANHEIRO)
+      .row
+        .col-md-12   
+          %p
+            Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
+
+      .row
+        .col-md-2      
+          = f.input :declaration_spouse_informal_activity, label: false, as: :select, include_blank: false, include_blank: false, input_html: { id: "activity_spouse_income", disabled: !f.object.candidato? }
+      .activity_spouse_income{style: "display: #{f.object.declaration_spouse_informal_activity ? 'block' : 'none'}"}
+        .row
+          .col-md-2      
+            = f.input :declaration_spouse_informal_activity_value, as: :string, input_html: { class: 'money', disabled: !f.object.candidato? }
+      %hr/ 
+
+
+    .row
+      .col-md-12
+        %p
+          %b Responsabilizo-me civil e criminalmente pela veracidade das declarações e tenho conhecimento das cominações legais existentes para falsa declaração. (Dispõe o art. 299 do Código Penal: 
+          %br/
+          %br/
+          %b 
+            %i “Omitir, em documento público ou particular, declaração que dele devia constar, ou nele inserir declaração falsa ou diversa da que devia ser escrita, com o fim de prejudicar direito, criar obrigação ou alterar a verdade sobre fato juridicamente relevante: Pena: reclusão, de 1 (um) a 5 (cinco) anos.....”). 
+          %br/
+          %br/
+          %b As declarações a cima não feram quaisquer direitos antecipados ao interessado, nem responsabilidade para a CODHAB.      
+    
+    .row
+      .col-md-2      
+        = f.input :terms_use, as: :select, include_blank: false, label: false , input_html: { disabled: !f.object.candidato? }
+
+
+  %br/
+  %h4#attach-link 4. Anexe sua documentação
+  %hr/
+  #attach{style: "display: #{@itapoa_regularization.candidato? ? 'block' : 'none'}"}
+    .row
+      .col-md-12 
+        .panel
+          .panel-body     
+            - if f.object.document_rg?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/
+            
+            = f.label :document_rg
+            - if @itapoa_regularization.candidato?
+              = f.input :document_rg, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_rg?
+                = f.hint "Para alterar o arquivo, reenvie"
+
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.document_cpf?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/
+            = f.label :document_cpf
+            - if @itapoa_regularization.candidato?
+              = f.input :document_cpf, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_rg?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12 
+        .panel
+          .panel-body     
+            - if f.object.document_civil_state?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+            = f.label :document_civil_state
+            - if @itapoa_regularization.candidato?
+              = f.input :document_civil_state, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_civil_state?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.document_income?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :document_income
+            - if @itapoa_regularization.candidato?
+              = f.input :document_income, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_income?
+                = f.hint "Para alterar o arquivo, reenvie"
+
+    .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+      .row
+        .col-md-12
+          .panel
+          .panel-body     
+            - if f.object.document_spouse_income?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :document_spouse_income
+            - if @itapoa_regularization.candidato?
+              = f.input :document_spouse_income, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_spouse_income?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.document_spouse_rg?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :document_spouse_rg
+            - if @itapoa_regularization.candidato?
+              = f.input :document_spouse_rg, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_spouse_rg?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.document_spouse_cpf?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :document_spouse_cpf
+            - if @itapoa_regularization.candidato?
+              = f.input :document_spouse_cpf, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_spouse_cpf?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.document_occupation_time?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :document_occupation_time
+            - if @itapoa_regularization.candidato?
+              = f.input :document_occupation_time, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_occupation_time?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.photo_unit_front?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :photo_unit_front
+            - if @itapoa_regularization.candidato?
+              = f.input :photo_unit_front, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.photo_unit_front?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.photo_unit_inside_one?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :photo_unit_inside_one
+            - if @itapoa_regularization.candidato?
+              = f.input :photo_unit_inside_one, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.photo_unit_inside_one?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.photo_unit_inside_two?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :photo_unit_inside_two
+            - if @itapoa_regularization.candidato?
+              = f.input :photo_unit_inside_two, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.photo_unit_inside_two?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.document_address?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :document_address
+            - if @itapoa_regularization.candidato?
+              = f.input :document_address, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_address?
+                = f.hint "Para alterar o arquivo, reenvie"
+    .row
+      .col-md-12
+        .panel
+          .panel-body     
+            - if f.object.document_iptu?
+              %h4
+                %b= link_to "Visualizar arquivo enviado", f.object.document_rg_url, style: 'color: green', target: '_blank'
+              %br/   
+                    
+            = f.label :document_iptu
+            - if @itapoa_regularization.candidato?
+              = f.input :document_iptu, label: false, as: :file, input_html: { onchange: 'this.form.submit();'}
+              - if f.object.document_iptu?
+                = f.hint "Para alterar o arquivo, reenvie"
+    %hr/
+    .row
+      .col-md-12      
+        = link_to 'Enviar minha solicitação', regularization.itapoa_regularization_update_situation_path(@itapoa_regularization), class: 'btn btn-success btn-lg btn-block'
+
+
+:javascript
+  $("#iptu-link").on('click', function(){
+    $("#iptu").toggle();
+  })
+  $("#identification-link").on('click', function(){
+    $("#identification").toggle();
+  })
+  $("#contact-link").on('click', function(){
+    $("#contact").toggle();
+  })
+  $("#home-link").on('click', function(){
+    $("#home").toggle();
+  })
+  $("#declaration-link").on('click', function(){
+    $("#declaration").toggle();
+  })
+  $("#attach-link").on('click', function(){
+    $("#attach").toggle();
+  }) 
+
+  $("#civil_state").on("change", function() {
+    if($(this).val() == 2 || $(this).val() == 7) {
+      $(".spouse").show();
+    } else {
+      $(".spouse").hide();
+    }
+  })
+
+  $("#activity_income").on("change", function() {
+    $(".activity_income").toggle();
+  })
+  
+  $("#activity_spouse_income").on("change", function() {
+    $(".activity_spouse_income").toggle();
+  })  
+
+:javascript
+  $("#no_iptu_code").on("change", function() {
+    $("#iptu_code").toggle();
+  });
+
+  $("#civil_state").on("change", function() {
+    if($(this).val() == 2 || $(this).val() == 7) {
+      $(".spouse").show();
+    } else {
+      $(".spouse").hide();
+    }
+  })
+
+  $("#activity_income").on("change", function() {
+    $(".activity_income").toggle();
+  })
+  
+  $("#activity_spouse_income").on("change", function() {
+    $(".activity_spouse_income").toggle();
+  })    

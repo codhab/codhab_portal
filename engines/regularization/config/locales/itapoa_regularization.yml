@@ -1,15 +1,27 @@
 pt-BR:
+  activemodel:
+    models:
+      'regularization/itapoa_regularization_session'
+    attributes:
+      'regularization/itapoa_regularization_session':
+        name: "Nome (completo)"
+        born: "Data de nascimento"
+        cpf: "CPF"
   activerecord:
     errors:
       models:
-        'regularization/form_itapoa_regularization':
+        'regularization/itapoa_regularization':
           attributes:
             born:
               invalid_date: 'data inválida'
     models:
-      'regularization/form_itapoa_regularization': 'Solicitaçaõ'
+      'regularization/itapoa_regularization': 'Solicitação'
     attributes:
-      'regularization/form_itapoa_regularization':
+      'regularization/itapoa_regularization':
+        born: 'Data de nascimento'
+        spouse_born: 'Data de nascimento'
+        iptu_code: "Nº de registro do IPTU"
+        no_iptu_code: "Endereço encontrado?"
         document_rg: "Anexar: carteira de identidade ou CNH vigente"
         document_cpf: "Anexar: CPF ou RG com nº de CPF, ou CNH vigente"
         document_civil_state: "Anexar: Certidão de casamento ou de nascimento (casal quando for o caso de união estável ou se for solteiro)"
@@ -30,12 +42,13 @@ pt-BR:
         declaration_descriptive:
         declaration_pacific:
         declaration_informal_activity:
-        declaration_informal_activity_value: "Valor"
+        declaration_informal_activity_value: "Informe o valor"
         declaration_stable_union:
         declaration_spouse_pacific:
         declaration_spouse_informal_activity: "Valor"
-        declaration_spouse_informal_activity_value: 'Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
-        declaration_unit_area:         
+        declaration_spouse_informal_activity_value: 'Informe o valor'
+        declaration_unit_area:  
+        unit_characterist_sewer: "Características de instalação de esgoto"       
         category_id:
         city_id:
         unit_id:
@@ -53,5 +66,13 @@ pt-BR:
         spouse_cpf: "CPF (Cônjuge)"
         spouse_job: "Profissão (Cônjuge)"
         spouse_income: "Renda (Cônjuge)"
-        phone: "Telefone"
+        phone: "Telefone (fixo)"
+        phone_secondary: "Telefone (celular)"
         email: "E-mail"
+        unit_characterist: "Características do Lote"
+        unit_characterist_occupation: "Característica da Ocupação"
+        unit_characterist_edification: "Características da Edificação"
+        unit_characterist_room: "Cômodos"
+        unit_characterist_dweller: "Número de Moradores"
+        unit_characterist_piped_water: "Instalação de água"
+        unit_characterist_electricity: "Instalação de Energia"

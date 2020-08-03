@@ -19,7 +19,17 @@ Regularization::Engine.routes.draw do
   end
 =end
 
-  resources :form_itapoa_regularizations, path: 'regularizacao-itapoa'
+  resources :itapoa_regularizations, path: 'regularizacao-itapoa' do
+    collection do
+      resources :sessions, path: 'acesso', controller: :itapoa_regularization_sessions, as: :itapoa_regularization_sessions
+      get 'get_iptu_code', as: :get_iptu_code
+      
+      post 'set_iptu'
+    end
+
+    get 'update_situation'
+
+  end
 
   namespace :candidate, path: 'candidato' do
 =begin
