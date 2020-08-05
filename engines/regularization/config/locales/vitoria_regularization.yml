@@ -77,3 +77,7 @@ pt-BR:
         unit_characterist_dweller: "Número de Moradores"
         unit_characterist_piped_water: "Instalação de água"
         unit_characterist_electricity: "Instalação de Energia"
+        mother_unknown: "Mãe desconhecida"
+        mother_name: "Nome da mãe"
+        father_name: "Nome do pai (opcional)"
+        job: "Profissão"        
