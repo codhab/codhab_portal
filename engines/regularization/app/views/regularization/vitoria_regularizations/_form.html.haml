@@ -4,7 +4,7 @@
   %hr/
   .row
     .col-md-12
-      = f.input :unit_id, as: :select, collection: Address::Unit.where("burgh ILIKE '%Condomínio%'").order(complete_address: :asc), label_method: :complete_address, include_blank: 'Selecione o endereço'
+      = f.input :unit_id, label: false, as: :select, collection: Address::Unit.where("burgh ILIKE '%Condomínio%'").order(complete_address: :asc), label_method: :complete_address, include_blank: 'Selecione o endereço'
   %h4 2. Informe os dados de identificação
   %hr/
   .row
