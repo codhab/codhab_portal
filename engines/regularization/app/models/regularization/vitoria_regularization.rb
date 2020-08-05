@@ -63,7 +63,7 @@ module Regularization
 
     validates :spouse_cpf, presence: true, cpf: true, if: -> { spouse_present? }
 
-    validates :mother_name, presence: true, if: -> { !self.mother_unkown? }
+    validates :mother_name, presence: true, if: -> { !self.mother_unknown? }
 
     mount_uploader :document_rg, Regularization::DocumentUploader
     mount_uploader :document_cpf, Regularization::DocumentUploader
