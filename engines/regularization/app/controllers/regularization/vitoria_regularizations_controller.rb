@@ -111,7 +111,7 @@ module Regularization
                 :complete_address, :spouse_born, :unit_characterist, :unit_characterist_occupation, 
                 :unit_characterist_edification, :unit_characterist_room, :unit_characterist_dweller, 
                 :unit_characterist_piped_water, :unit_characterist_electricity,
-                :unit_characterist_sewer)
+                :unit_characterist_sewer, :mother_unknown, :mother_name, :father_name, :job)
   
     end
 

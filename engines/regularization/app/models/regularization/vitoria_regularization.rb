@@ -24,7 +24,8 @@ module Regularization
     
     enum unit_characterist_sewer: { "Esgoto_CAESB" => 1, "fossa" => 2, "não_tem" => 3}
 
-    validates :cpf, cpf: true, uniqueness: true, presence: true
+    validates :cpf, cpf: true, presence: true
+    validates_uniqueness_of :cpf, scope: :category_id
     validates :unit_id, presence: true
 
     validates :name, :rg, :naturality, :civil_state_id, :born, :income, :phone, presence: true
@@ -62,7 +63,7 @@ module Regularization
 
     validates :spouse_cpf, presence: true, cpf: true, if: -> { spouse_present? }
 
-   
+    validates :mother_name, presence: true, if: -> { !self.mother_unkown? }
 
     mount_uploader :document_rg, Regularization::DocumentUploader
     mount_uploader :document_cpf, Regularization::DocumentUploader

@@ -23,6 +23,17 @@
       = f.input :civil_state_id, as: :select, collection: Core::Candidate::CivilState.all, include_blank: 'Selecione...', input_html: { id: 'civil_state'}
     .col-md-2
       = f.input :income, as: :string, input_html: { class: 'money-br'}
+  .row
+    .col-md-3
+      = f.input :mother_unknown, as: :select, include_blank: false
+    .col-md-4
+      = f.input :mother_name, placeholder: "Informe o nome da mãe"
+    .col-md-4
+      = f.input :father_name, placeholder: "Informe o nome do pai"
+  .row
+    .col-md-12
+      = f.input :job, placeholder: "Informe sua profissão"
+
   .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
     %br/
     %h4 2.1 Informe os dados do cônjuge
