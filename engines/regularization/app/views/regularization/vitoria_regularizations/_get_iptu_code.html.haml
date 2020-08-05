@@ -1,0 +1,20 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title
+    %h3 
+      %b Pesquisa
+.modal-body
+  = simple_form_for url_for do |f|
+    = f.input :search, label: false, input_html: { style: 'min-height: 60px'}, placeholder: "Informe paramêtros para realizar a busca"
+
+  = link_to "Não encontrei meu endereço", "#", class: 'btn btn-primary btn-lg btn-block', id: 'not-iptu-code'
+
+
+:javascript
+  $("#not-iptu-code").on('click', function() {
+    $('#iptu_code').hide();
+    $('#no_iptu_code').val(true);
+    $('#complete_address').attr("readonly", false);
+    $('#modal').modal('hide');
+  });

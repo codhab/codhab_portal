@@ -1,0 +1,17 @@
+.panel
+  .panel-body
+    %h3
+      %b Situação
+    %h4
+      - if @vitoria_regularization.candidato?
+        %span{style: "color: gray"} 
+          %b Pendente de envio
+      - if @vitoria_regularization.codhab?
+        %span{style: "color: blue"} 
+          %b Em análise pela CODHAB
+      - if @vitoria_regularization.deferido?
+        %span{style: "color: green"} 
+          %b Deferido pela CODHAB
+      - if @vitoria_regularization.indeferido?
+        %span{style: "color: red"} 
+          %b Indeferido pela pela CODHAB

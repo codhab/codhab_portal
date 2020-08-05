@@ -31,6 +31,18 @@ Regularization::Engine.routes.draw do
 
   end
 
+  resources :vitoria_regularizations, path: 'nova-vitoria' do
+    collection do
+      resources :sessions, path: 'acesso', controller: :vitoria_regularization_sessions, as: :vitoria_regularization_sessions
+      get 'get_iptu_code', as: :get_iptu_code
+      
+      post 'set_iptu'
+    end
+
+    get 'update_situation'
+
+  end  
+
   namespace :candidate, path: 'candidato' do
 =begin
     resources :requeriments,  path: 'requerimentos' do

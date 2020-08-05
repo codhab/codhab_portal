@@ -1,0 +1,12 @@
+= simple_form_for @session do |f|
+  .row
+    .col-md-2
+      = f.input :cpf, as: :string, input_html: { class: 'cpf' }
+    .col-md-2
+      = f.input :born, as: :string, input_html: { class: 'date' }
+  .row
+    .col-md-12
+      = f.input :name
+
+  = f.submit 'Validar meus dados', class: 'btn btn-success btn-lg btn-block', data: { disable_with: "Validando..."}
+  = link_to "Cancelar e retornar", regularization.itapoa_regularizations_path, class: 'btn btn-primary btn-block', data: { disable_with: "Aguarde..."}
