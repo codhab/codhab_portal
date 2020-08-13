@@ -61,6 +61,31 @@
         .row
           .col-md-12
             %h4
+              %b Pendências
+            - if @occurrences.present?
+              .row
+                .col-md-12
+                  %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                    %thead
+                      %tr
+                        %th Data/Hora
+                        %th Atividade
+                    %tbody
+                        - @occurrences.each do |activity|
+                          %tr
+                            %td.col-md-2= activity.created_at.strftime("%d/%m/%Y - %H:%M") rescue I18n.t(:no_information)
+                            %td= activity.activity_status.title rescue I18n.t(:no_information)
+                      - else
+                        %tr
+                          %td{colspan: 3}
+                            %i Nenhum registro encontrado.
+            - else
+              .row
+                .col-md-12
+                  %p Cadastro não possui pendências
+        .row
+          .col-md-12
+            %h4
               %b Situação do candidato
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
               %thead
