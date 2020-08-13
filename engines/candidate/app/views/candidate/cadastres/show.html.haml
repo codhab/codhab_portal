@@ -71,14 +71,12 @@
                         %th Data/Hora
                         %th Atividade
                     %tbody
-                        - @occurrences.each do |activity|
-                          %tr
-                            %td.col-md-2= activity.created_at.strftime("%d/%m/%Y - %H:%M") rescue I18n.t(:no_information)
-                            %td= activity.activity_status.title rescue I18n.t(:no_information)
-                      - else
+                      - @occurrences.each do |o|
                         %tr
-                          %td{colspan: 3}
-                            %i Nenhum registro encontrado.
+                          %td= o.validation.description rescue nil
+                          %td= o.created_at.strftime('%d/%m/%Y')
+                          %td= o.validation.occurrence_type.humanize rescue nil
+
             - else
               .row
                 .col-md-12
