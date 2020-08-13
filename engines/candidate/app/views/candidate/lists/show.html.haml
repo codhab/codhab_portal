@@ -14,8 +14,6 @@
               .row
                 .col-md-2
                   = f.input :by_cpf, label: "Por CPF", input_html: { class: 'cpf', name: 'by_cpf', value: params[:by_cpf]}
-                .col-md-4
-                  = f.input :by_name, label: "Por Nome", input_html: { placeholder: "Digite o nome completo ou parte do mesmo", name: 'by_name', value: params[:by_name]}
                 .col-md-6
                   = f.submit "Pesquisar", name: nil, class: 'btn btn-success filter-button', data: { disable_with: t(:disable_with)}
                   = link_to "Limpar pesquisa", url_for, class: 'btn btn-default filter-button', data: { disable_with: t(:disable_with_spin)}

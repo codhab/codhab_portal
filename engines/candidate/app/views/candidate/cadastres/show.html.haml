@@ -69,13 +69,13 @@
                     %thead
                       %tr
                         %th Data/Hora
-                        %th Atividade
-                        %th
+                        %th Descrição
+                        %th Tipo
                     %tbody
                       - @occurrences.each do |o|
                         %tr
-                          %td= o.validation.description rescue nil
                           %td= o.created_at.strftime('%d/%m/%Y')
+                          %td= o.validation.description rescue nil
                           %td= o.validation.occurrence_type.humanize rescue nil
 
             - else
