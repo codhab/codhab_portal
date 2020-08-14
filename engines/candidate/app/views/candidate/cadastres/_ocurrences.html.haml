@@ -12,8 +12,8 @@
             %th Data
             %th Tipo de pendência
         %tbody
-          - if @occurrences.present?
-            - @occurrences.order(:created_at).each do |o|
+          - if @occurrences.where(solved: false).present?
+            - @occurrences.where(solved: false).order(:created_at).each do |o|
               %tr
                 %td= o.validation.description rescue nil
                 %td= o.created_at.strftime('%d/%m/%Y')
