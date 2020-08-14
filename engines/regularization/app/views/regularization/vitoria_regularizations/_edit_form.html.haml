@@ -1,67 +1,71 @@
 = simple_form_for @vitoria_regularization do |f| 
   
   %br/
-  %h4#iptu-link 1. Informe o número de registro do IPTU (Clique para visualizar)
+  %h4#iptu-link 1. Informe seu endereço
   %hr/
   #iptu{style: 'display: none'}
     .row
-      #iptu_code.col-md-3{style: "display: #{f.object.no_iptu_code ? 'none' : 'block'}"}
-        = f.input :iptu_code, placeholder: "Informe o número", input_html: { disabled: true } 
-      .col-md-6
-        = f.input :complete_address, as: :string, input_html: { disabled: true, id: 'complete_address' }
-  %br/
+      .col-md-12
+        = f.input :unit_id, label: false, as: :select, collection: Address::Unit.where("burgh ILIKE '%Condomínio%'").order(complete_address: :asc), label_method: :complete_address, include_blank: 'Selecione o endereço'
   %h4#identification-link 2. Informe os dados de identificação (Clique para visualizar)
   %hr/
   #identification{style: 'display: none'}
     .row
       .col-md-3
-        = f.input :cpf, input_html: { class: 'cpf', disabled: true }
+        = f.input :cpf, input_html: { class: 'cpf' }
       .col-md-9
-        = f.input :name, placeholder: 'Informe seu nome completo', input_html: { disabled: !f.object.candidato? }
+        = f.input :name, placeholder: 'Informe seu nome completo'
     .row
       .col-md-2
-        = f.input :rg, placeholder: "Informe seu RG", input_html: { disabled: !f.object.candidato? }
+        = f.input :rg, placeholder: "Informe seu RG"
       .col-md-2
-        = f.input :born, as: :string, input_html: { class: 'date', value: (f.object.born.present? ? f.object.born.strftime("%d/%m/%Y") : nil), disabled: !f.object.candidato? }
+        = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? f.object.born.strftime("%d/%m/%Y") : nil }
       .col-md-4
         = f.input :naturality, placeholder: "Informe sua naturalidade"
       .col-md-2
-        = f.input :civil_state_id, as: :select, collection: Core::Candidate::CivilState.all, include_blank: 'Selecione...', input_html: { id: 'civil_state', disabled: !f.object.candidato?}
+        = f.input :civil_state_id, as: :select, collection: Core::Candidate::CivilState.all, include_blank: 'Selecione...', input_html: { id: 'civil_state'}
       .col-md-2
-        = f.input :income, as: :string, input_html: { class: 'money'}
+        = f.input :income, as: :string, input_html: { class: 'money-br'}
+    .row
+      .col-md-3
+        = f.input :mother_unknown, as: :select, include_blank: false
+      .col-md-4
+        = f.input :mother_name, placeholder: "Informe o nome da mãe"
+      .col-md-4
+        = f.input :father_name, placeholder: "Informe o nome do pai"
+    .row
+      .col-md-12
+        = f.input :job, placeholder: "Informe sua profissão"
+
     .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
       %br/
       %h4 2.1 Informe os dados do cônjuge
       %hr/  
       .row
         .col-md-3
-          = f.input :spouse_cpf, input_html: { class: 'cpf', disabled: !f.object.candidato?}
+          = f.input :spouse_cpf, input_html: { class: 'cpf'}
         .col-md-9
-          = f.input :spouse_name, placeholder: "Informe o nome completo", input_html: { disabled: !f.object.candidato? }
+          = f.input :spouse_name, placeholder: "Informe o nome completo"
       .row
         .col-md-2
-          = f.input :spouse_rg, placeholder: "Informe o RG", input_html: { disabled: !f.object.candidato? }
+          = f.input :spouse_rg, placeholder: "Informe o RG"
         .col-md-2
           = f.input :spouse_born, as: :string, input_html: { class: 'date', value: f.object.spouse_born.present? ? f.object.spouse_born.strftime("%d/%m/%Y") : nil }
         .col-md-3
-          = f.input :spouse_job, placeholder: "Informe a profissão", input_html: { disabled: !f.object.candidato? }
+          = f.input :spouse_job, placeholder: "Informe a profissão"
         .col-md-3
-          = f.input :spouse_income, as: :string, input_html: { class: 'money', disabled: !f.object.candidato? }
-      .row
-
-  %br/
+          = f.input :spouse_income, as: :string, input_html: { class: 'money-br'}
   %h4#contact-link 3. Informe dados de contato (Clique para visualizar)
   %hr/
   #contact{style: 'display: none'}
+
     .row
       .col-md-3
-        = f.input :phone, placeholder: "Informe um telefone", input_html: { disabled: !f.object.candidato? }
-      .row
+        = f.input :phone, placeholder: "Informe o número"
       .col-md-3
-        = f.input :email, placeholder: "Informe um e-mail", input_html: { disabled: !f.object.candidato? }
-      .row
-    
-  %br/
+        = f.input :phone_secondary, placeholder: "Informe o número"
+      .col-md-3
+        = f.input :email, placeholder: "Informe um e-mail"
   %h4#home-link 4. Características da moradia (Clique para visualizar)
   %hr/
   #home{style: 'display: none'}
@@ -108,8 +112,13 @@
         = f.label :unit_characterist_electricity 
       .col-md-2
         = f.input :unit_characterist_electricity, label: false, as: :select, collection: Regularization::VitoriaRegularization.unit_characterist_electricities.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' , input_html: { disabled: !f.object.candidato? }
+    
+    .row
+      .col-md-12
+        = f.label :unit_characterist_sewer 
+      .col-md-2
+        = f.input :unit_characterist_sewer, label: false, as: :select, collection: Regularization::VitoriaRegularization.unit_characterist_sewers.map {|k,v| [k.humanize, k]}, include_blank: 'Selecione...' 
 
-  %br/
   %h4#declaration-link 5. Declarações (Clique para visualizar)
   %hr/
   #declaration{style: 'display: none'}
@@ -123,13 +132,14 @@
         %p Minha família é a única ocupante do imóvel que ora solicito a regularização.
     .row
       .col-md-2      
-        = f.input :declaration_occupation_one, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
-    .row
-      .col-md-12  
-        %p Existem outra(s) família(s) ocupando o imóvel que ora solicito a regularização.    
-    .row
-      .col-md-2      
-        = f.input :declaration_occupation_two, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
+        = f.input :declaration_occupation, as: :select, include_blank: false, label: false, input_html: { id: 'declaration_occupation'}
+    #declaration_occupation_quantity{style: "display: #{f.object.declaration_occupation ? 'none' : 'block'}"}
+      .row
+        .col-md-12  
+          %p Existem outra(s) família(s) ocupando o imóvel que ora solicito a regularização. Informe a quantidade:   
+      .row
+        .col-md-2      
+          = f.input :declaration_occupation_quantity, as: :string, label: false
     %hr/
     .row
       .col-md-12
@@ -137,6 +147,9 @@
           %b DECLARAÇÃO NEGATIVA DE PROPRIEDADE DE IMÓVEL RESIDENCIAL 
         %p
           Declaro para fins de regularização de lote urbano no Distrito Federal, que não sou proprietário (a), comprador (a), cessionário( a), usufrutuário (a) e/ou titular de direitos de imóvel residencial urbano, construído ou em construção, em todo o território do Distrito Federal.
+        %p
+          Declaro ainda, que tenho conhecimento de que a presente declaração possui caráter preliminiar e não substitui as Certidões Negativas a serem emitidas pelos 09 Cartórios de Registro de Imóveis do Distrito Federal.
+
     .row
       .col-md-2      
         = f.input :declaration_negative, as: :select, include_blank: false, label: false, input_html: { disabled: !f.object.candidato? }
@@ -269,7 +282,7 @@
         = f.input :terms_use, as: :select, include_blank: false, label: false , input_html: { disabled: !f.object.candidato? }
 
 
-  %br/
+
   %h4#attach-link 4. Anexe sua documentação
   %hr/
   #attach{style: "display: #{@vitoria_regularization.candidato? ? 'block' : 'none'}"}
@@ -459,7 +472,7 @@
     %hr/
     .row
       .col-md-12      
-        = link_to 'Enviar minha solicitação', regularization.Vitoria_regularization_update_situation_path(@vitoria_regularization), class: 'btn btn-success btn-lg btn-block'
+        = link_to 'Enviar minha solicitação', regularization.vitoria_regularization_update_situation_path(@vitoria_regularization), class: 'btn btn-success btn-lg btn-block'
 
 
 :javascript

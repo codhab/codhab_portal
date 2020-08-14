@@ -1,30 +1,30 @@
 .panel{style: 'margin-top: 50px'}
   .panel-body
     %h2.text-center 
-      %b Formulário de solicitação (Itapoã) - Acompanhamento
+      %b Formulário de solicitação (Nova Vitória) - Acompanhamento
 
-    = link_to "Finalizar acesso", regularization.itapoa_regularizations_path, class: 'btn btn-info btn-lg btn-block'
+    = link_to "Finalizar acesso", regularization.vitoria_regularizations_path, class: 'btn btn-info btn-lg btn-block'
 
 .panel
   .panel-body
     %h3
       %b Situação
     %h4
-      - if @itapoa_regularization.candidato?
+      - if @vitoria_regularization.candidato?
         %span{style: "color: gray"} 
           %b Pendente de envio
-      - if @itapoa_regularization.codhab?
+      - if @vitoria_regularization.codhab?
         %span{style: "color: blue"} 
           %b Em análise pela CODHAB, aguarde retorno.
-      - if @itapoa_regularization.deferido?
+      - if @vitoria_regularization.deferido?
         %span{style: "color: green"} 
           %b Deferido pela CODHAB
-      - if @itapoa_regularization.indeferido?
+      - if @vitoria_regularization.indeferido?
         %span{style: "color: red"} 
           %b Indeferido pela pela CODHAB
 .panel
   .panel-body
-    - if @itapoa_regularization.candidato?
+    - if @vitoria_regularization.candidato?
       = render 'edit_form'
     - else
       = render 'edit_form'
