@@ -33,7 +33,7 @@ module Regularization
         name_upcase = self.name.to_s.mb_chars.upcase
         vitoria_regularization_name = vitoria_regularization.name.to_s.mb_chars.upcase
 
-        if name_upcase.similiar(vitoria_regularization_name) < 80
+        if name_upcase.similar(vitoria_regularization_name) < 80
           errors.add(:name, 'não é igual ao informado na solicitação')
         end
       end
