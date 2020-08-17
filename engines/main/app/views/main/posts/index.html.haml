@@ -25,3 +25,6 @@
                 %h4= link_to post.title, post, target: '_blank'
                 %small
                   %b= post.date.strftime('%d/%m/%Y')
+  .row
+    .col-md-12
+      = will_paginate @posts

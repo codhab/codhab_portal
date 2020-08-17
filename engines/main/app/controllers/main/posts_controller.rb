@@ -6,7 +6,7 @@ module Main
     has_scope :by_title
 
     def index
-      @posts = apply_scopes(Main::Post).where(publish:true).order(created_at: :desc)
+      @posts = apply_scopes(Main::Post).where(publish:true).order(created_at: :desc).paginate(page: params[:page], per_page: 30)
       respond_to do |format|
         format.html
         format.json {
