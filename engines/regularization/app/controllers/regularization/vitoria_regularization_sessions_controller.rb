@@ -4,6 +4,8 @@ module Regularization
   class VitoriaRegularizationSessionsController < ApplicationController
   
     def index
+      session[:vitoria_regularization_id] = nil
+
       redirect_to action: :new
     end 
 
@@ -15,7 +17,7 @@ module Regularization
       @session = Regularization::VitoriaRegularizationSession.new(set_params)
 
       if @session.authenticate(session)
-        redirect_to regularization.itapoa_regularization_path(@session.itapoa_regularization_id)
+        redirect_to regularization.edit_vitoria_regularization_path(@session.vitoria_regularization_id)
       else
         render action: :new
       end

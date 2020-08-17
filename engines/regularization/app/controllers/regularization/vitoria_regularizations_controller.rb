@@ -14,10 +14,11 @@ module Regularization
     
     def create
       @vitoria_regularization = Regularization::VitoriaRegularization.new(set_params)
-      
+      @vitoria_regularization.iptu_code = '123'
       if @vitoria_regularization.save
+      
         session[:vitoria_regularization_id] = @vitoria_regularization.id
-        redirect_to regularization.edit_vitoria_regularization_path(@vitoria_regularization)
+        redirect_to regularization.edit_vitoria_regularization_path(session[:vitoria_regularization_id])
       else
         render action: :new
       end
