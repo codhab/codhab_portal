@@ -6,6 +6,8 @@ module Candidate
       scope :by_cpf, -> (cpf) {
         where(cpf: cpf.to_s.unformat_cpf)
       }
+
+      
     end
   end
 end
