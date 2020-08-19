@@ -1,0 +1,43 @@
+.row
+  .col-md-12
+    .panel
+      .panel-body
+.row
+  .col-md-12
+    .panel
+      .panel-heading
+        %h3 
+          %b Listagem de pré-habilitados
+      .panel-body
+ 
+        = simple_form_for url_for, method: :get do |f|
+          .row
+            .col-md-4
+              = f.input :by_cpf, label: "Informe o CPF", as: :string, input_html: { class: 'cpf', name: :by_cpf, value: params[:by_cpf]}
+          = f.submit "Pesquisar", name: nil, class: 'btn btn-success', data: { disable_with: 'Pesquisando...'}
+          = link_to "Limpar pesquisa", candidate.external_attendance_candidates_path, class: 'btn btn-info', data: { disable_with: 'Limpando...'}
+        %table.table.table-bordered.table-striped.table-celled
+          %thead
+            %tr
+              %th Nome/CPF
+              %th Atendimento
+              %th Situação
+              %th App
+          %tbody
+            - if @candidates.present?
+              - @candidates.each do |cand|
+                %tr
+                  %td
+                    = cand.cpf.format_cpf
+                    %br/ 
+                    = cand.name 
+                  %td
+                    Atendimento iniciado
+                  %td
+                    Situação do atendimento
+                  %td
+                    = link_to "Visualizar APP", candidate.external_attendance_candidate_path(cand.cpf)
+            - else
+              %tr
+                %td{colspan: 5}
+                  Nenhum registro encontrado.

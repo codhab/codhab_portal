@@ -1,0 +1,2 @@
+class AttendanceExternalUser < ApplicationRecord
+end

@@ -37,6 +37,12 @@ Candidate::Engine.routes.draw do
     end
   end
 
+  namespace :external_attendance, path: 'atendimento-externo' do
+    get '/', to: 'external_attendance/session#new'
+
+    resources :candidates, path: 'candidatos'
+  end
+
   namespace :restrict_area, path: 'area_restrita' do
 
     root 'dashboard#index'
