@@ -28,6 +28,10 @@ module Candidate
       #@candidates = @http.get("/candidato/listas/#{params[:id]}.json", params)
     end
 
+    def pre_enable_cadastres
+      @pre_enable_cadastres = ::Candidate::PreEnable.all.order(total: :desc).limit(50_000).paginate(page: params[:page], per_page: 50)
+    end
+
     private
 
     def set_http_support
