@@ -8,7 +8,7 @@ module Candidate
     }
 
     def cadastre
-      Candidate::Cadastre.find_by(cpf: self.cpf)
+      ::Candidate::Cadastre.find_by(cpf: self.cpf)
     end
   end
 end
