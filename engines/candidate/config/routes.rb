@@ -1,7 +1,7 @@
 Candidate::Engine.routes.draw do
 
-  get 'convocados-pre-habilitacao', to: 'lists#pre_enable_cadastres'
-  
+  get 'convocados-pre-habilitacao', to: 'lists#pre_enable'
+
   get 'cities', to: 'subscribes#cities'
   
   resources :subscribes, except: :destroy, path: 'inscricao' do
