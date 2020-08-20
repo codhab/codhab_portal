@@ -24,7 +24,7 @@
                     %td= pre_enable.name rescue nil
                     %td= pre_enable.cpf.format_obfuscator_cpf rescue nil
                     %td= pre_enable.total rescue nil
-                    %td= link_to "Detalhar", candidate.cadastres_path(pre_enable.cadastre.id) rescue nil
+                    %td= link_to "Detalhar", candidate.cadastre_path(pre_enable.cadastre.id) rescue nil
               %tfoot
                 %tr
                   %td{colspan: 3}
