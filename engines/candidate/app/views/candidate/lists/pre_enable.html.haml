@@ -10,7 +10,7 @@
 
         .row
           .col-md-12
-            Total: #{@pre_enable_cadastres.total_entries}
+            Total: #{@pre_enable_cadastres.total_entries rescue nil}
             %br/
             %table.table
               %thead
@@ -28,4 +28,4 @@
               %tfoot
                 %tr
                   %td{colspan: 3}
-                    = will_paginate @pre_enable_cadastres, renderer: BootstrapPagination::Rails
+                    = will_paginate (@pre_enable_cadastres rescue nil), renderer: BootstrapPagination::Rails
