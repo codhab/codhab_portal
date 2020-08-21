@@ -41,7 +41,7 @@ Candidate::Engine.routes.draw do
 
   namespace :external_attendance, path: 'atendimento-externo' do
     get '/', to: 'external_attendance/session#new'
-
+    resources :sessions
     resources :candidates, path: 'candidatos'
   end
 

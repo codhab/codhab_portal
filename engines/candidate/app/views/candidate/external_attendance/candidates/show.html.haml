@@ -17,7 +17,7 @@
 
         #phone_frame
           #block
-            %iframe{src: "http://mobile.codhab.df.gov.br?cpf=#{@candidate.cpf}", samesite:'none', secure:true, sandbox:"allow-same-origin allow-scripts allow-popups allow-form", frameborder:'0', id: "iframea", name: "iframe_a", style: "overflow:hidden; overflow-x:hidden; overflow-y:hidden; height:100%; width:100%;z-index:5;  top:0px;left:0px;right:0px;bottom:0px; -ms-touch-action: none;"}
+            %iframe{src: "http://mobile.codhab.df.gov.br?token=#{@candidate.special_token}&external=true", samesite:'none', secure:true, sandbox:"allow-same-origin allow-scripts allow-popups allow-form", frameborder:'0', id: "iframea", name: "iframe_a", style: "overflow:hidden; overflow-x:hidden; overflow-y:hidden; height:100%; width:100%;z-index:5;  top:0px;left:0px;right:0px;bottom:0px; -ms-touch-action: none;"}
 
 :css
   #phone_frame {

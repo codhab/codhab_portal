@@ -10,9 +10,19 @@ module Candidate
     helper ::ApplicationHelper
 
     helper_method :mobile_device?
-    helper_method :authenticate_cadastre
+    helper_method :authenticate_cadastre, :external_attendant
 
     private
+
+    def authenticate_external_attendance!
+      if external_attendant.nil? && controller_name != 'sessions'
+        redirect_to candidate.new_external_attendance_session_path
+      end
+    end
+
+    def external_attendant
+      ::Candidate::ExternalAttendance::User.find_by(id: session[:external_attendance_user_id])
+    end
 
     def authenticate_cadastre
       if mobile_device?
