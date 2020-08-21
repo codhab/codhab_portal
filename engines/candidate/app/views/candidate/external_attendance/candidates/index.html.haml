@@ -53,7 +53,10 @@
                         - if cand.ticket.request
                           Devolvido ao candidato (pendência)
                         - else
-                          Em análise
+                          - if cand.ticket.complete?
+                            Em análise
+                          - else
+                            Pendente com candidato
                       - else
                         - if cand.ticket.supervisor
                           Deferido pela CODHAB
