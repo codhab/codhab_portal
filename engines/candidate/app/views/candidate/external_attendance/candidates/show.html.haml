@@ -2,16 +2,28 @@
   .col-md-12
     .panel
       .panel-body
+        %h3
+          %b Área restrita - Atendimento Externo
+        %br/
+        %h4 
+          #{external_attendant.name} 
+          %br/ 
+          CPF: (#{external_attendant.cpf})
+        %br/
+        = link_to "Finalizar sessão", candidate.external_attendance_session_path(external_attendant), method: :delete, class: 'btn btn-danger', data: { confirm: 'Deseja finalizar a sessão?'}
+
 .row
   .col-md-12
     .panel
       .panel-heading
-        Detalhamento
+        %h3
+          %b Detalhamento
         %br/
-        #{@candidate.name}
-        %br/
-        #{@candidate.cpf}
-        = link_to "Retornar a listagem", candidate.external_attendance_candidates_path
+        %h4 
+          %b #{@candidate.name}
+          %br/
+          #{@candidate.cpf}
+        = link_to "Retornar a listagem", candidate.external_attendance_candidates_path, class: 'btn btn-info', data: { disable_with: "Aguarde..."}
 
       .panel-body
 

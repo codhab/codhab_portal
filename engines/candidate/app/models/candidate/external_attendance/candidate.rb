@@ -7,6 +7,13 @@ module Candidate
         where(cpf: cpf.to_s.unformat_cpf)
       }
 
+      def cadastre
+        ::Candidate::Cadastre.find_by(cpf: self.cpf)
+      end
+
+      def ticket
+        ::Candidate::ExternalAttendance::Ticket.find_by(cadastre_id: self.cadastre.id)
+      end
       
     end
   end

@@ -11,8 +11,14 @@ module Candidate
       end
       
       def show
-        @candidate = ::Candidate::Cadastre.find_by(cpf: params[:id])
-        @candidate.update(special_token: Digest::SHA1.hexdigest([Time.now, rand].join))
+        @candidate = ::Candidate::ExternalAttendance::Candidate.find_by(cpf: params[:id])
+        
+        if @candidate.nil?
+          redirect_to action: :index
+        else
+          @candidate = @candidate.cadastre
+          @candidate.update(special_token: Digest::SHA1.hexdigest([Time.now, rand].join))
+        end
       end
 
     end
