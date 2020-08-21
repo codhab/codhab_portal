@@ -2,6 +2,10 @@ module Candidate
   module ExternalAttendance
     class SessionsController < ApplicationController
 
+      def index
+        redirect_to action: :new
+      end
+
       def new
         @session = ::Candidate::ExternalAttendance::Session.new
       end
