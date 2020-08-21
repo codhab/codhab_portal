@@ -22,7 +22,7 @@ module Candidate
       def cpf_is_allow?
         @attendant = Candidate::ExternalAttendance::User.find_by(cpf: self.cpf)
 
-        if @attendant.nil? || (@attendant.password_digest != self.password)
+        if @attendant.nil? || (BCrypt::Password.new(@attendant.password_digest) != self.password )
           errors.add(:cpf, "ou senha não conferem")
         end
       end
