@@ -1,5 +1,7 @@
 Candidate::Engine.routes.draw do
 
+  get 'convocados-pre-habilitacao', to: 'lists#pre_enable'
+
   get 'cities', to: 'subscribes#cities'
   
   resources :subscribes, except: :destroy, path: 'inscricao' do
@@ -35,6 +37,12 @@ Candidate::Engine.routes.draw do
       get 'ficha_checklist', to: 'attendances#print_checklist'
       get 'folha_rosto',     to: 'attendances#print_face'
     end
+  end
+
+  namespace :external_attendance, path: 'atendimento-externo' do
+    get '/', to: 'external_attendance/session#new'
+    resources :sessions
+    resources :candidates, path: 'candidatos'
   end
 
   namespace :restrict_area, path: 'area_restrita' do

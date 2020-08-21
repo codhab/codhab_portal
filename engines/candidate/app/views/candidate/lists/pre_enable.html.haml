@@ -1,0 +1,32 @@
+.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h2
+              %b Lista - Convocados (Pré-habilitação) Itapoã Parque
+            %br/
+
+        .row
+          .col-md-12
+            Total: #{@pre_enable_cadastres.total_entries rescue nil}
+            %br/
+            %table.table
+              %thead
+                %tr
+                  %td Nome
+                  %td CPF
+                  %td Pontuação
+                  %td 
+              %tbody
+                - @pre_enable_cadastres.each do |pre_enable|
+                  %tr
+                    %td= pre_enable.name rescue nil
+                    %td= pre_enable.cpf.format_obfuscator_cpf rescue nil
+                    %td= pre_enable.total rescue nil
+                    %td= link_to "Detalhar", candidate.cadastre_path(pre_enable.cadastre.id) rescue nil
+              %tfoot
+                %tr
+                  %td{colspan: 4}
+                    = will_paginate (@pre_enable_cadastres rescue nil), renderer: BootstrapPagination::Rails

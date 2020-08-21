@@ -30,7 +30,11 @@ class CreateFormItapoaRegularizations < ActiveRecord::Migration[5.0]
       t.string  :phone
       t.string  :phone_secondary
       t.string  :email
-      
+
+      t.boolean :mother_unknown, default: false
+      t.string  :mother_name
+      t.string  :father_name
+      t.string  :job
       # Vazio/Construído/Em construção;
       t.integer :unit_characterist
 

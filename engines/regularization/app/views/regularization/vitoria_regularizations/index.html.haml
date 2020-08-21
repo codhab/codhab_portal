@@ -1,0 +1,11 @@
+.panel{style: 'margin-top: 50px'}
+  .panel-body
+    %h2 
+      %b Regularização Nova Vitória
+    %hr/ 
+
+    .row
+      .col-md-6.text-center
+        %h3= link_to "Realizar solicitação", regularization.new_vitoria_regularization_path, class: 'btn btn-success btn-block btn-lg'
+      .col-md-6.text-center
+        %h3= link_to "Acompanhar minha solicitação", regularization.new_vitoria_regularization_session_path, class: 'btn btn-primary btn-lg btn-block'

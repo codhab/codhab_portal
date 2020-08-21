@@ -23,5 +23,9 @@
             .panel.panel-default{style:'border-width: 1px !important;'}
               .panel-body
                 %h4= link_to post.title, post, target: '_blank'
+                = raw post.resume
                 %small
                   %b= post.date.strftime('%d/%m/%Y')
+  .row
+    .col-md-12
+      = will_paginate @posts, renderer: BootstrapPagination::Rails

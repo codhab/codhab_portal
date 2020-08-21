@@ -61,6 +61,30 @@
         .row
           .col-md-12
             %h4
+              %b Pendências
+            - if @occurrences.present?
+              .row
+                .col-md-12
+                  %table#data-table-command.table.table-striped.table-vmiddle.datatable
+                    %thead
+                      %tr
+                        %th Data/Hora
+                        %th Descrição
+                        %th Tipo
+                    %tbody
+                      - @occurrences.each do |o|
+                        %tr
+                          %td= o.created_at.strftime('%d/%m/%Y')
+                          %td= o.validation.description rescue nil
+                          %td= o.validation.occurrence_type.humanize rescue nil
+
+            - else
+              .row
+                .col-md-12
+                  %p Cadastro não possui pendências
+        .row
+          .col-md-12
+            %h4
               %b Situação do candidato
             %table#data-table-command.table.table-striped.table-vmiddle.datatable
               %thead

@@ -1,23 +1,24 @@
 pt-BR:
   activemodel:
     models:
-      'regularization/itapoa_regularization_session'
+      'regularization/vitoria_regularization_session'
     attributes:
-      'regularization/itapoa_regularization_session':
+      'regularization/vitoria_regularization_session':
         name: "Nome (completo)"
         born: "Data de nascimento"
         cpf: "CPF"
   activerecord:
     errors:
       models:
-        'regularization/itapoa_regularization':
+        'regularization/vitoria_regularization':
           attributes:
             born:
               invalid_date: 'data inválida'
     models:
-      'regularization/itapoa_regularization': 'Solicitação'
+      'regularization/vitoria_regularization': 'Solicitação'
     attributes:
-      'regularization/itapoa_regularization':
+      'regularization/vitoria_regularization':
+        unit_id: "Endereço"
         born: 'Data de nascimento'
         spouse_born: 'Data de nascimento'
         iptu_code: "Nº de registro do IPTU"
@@ -79,4 +80,4 @@ pt-BR:
         mother_unknown: "Mãe desconhecida"
         mother_name: "Nome da mãe"
         father_name: "Nome do pai (opcional)"
-        job: "Profissão"
+        job: "Profissão"        
