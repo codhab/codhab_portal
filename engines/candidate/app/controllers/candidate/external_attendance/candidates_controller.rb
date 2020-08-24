@@ -7,12 +7,18 @@ module Candidate
       has_scope :by_cpf
       
       def index
-        @candidates = apply_scopes(::Candidate::ExternalAttendance::Candidate).all.limit(10)
+        @candidates = apply_scopes(::Candidate::ExternalAttendance::Candidate).all.paginate(page: params[:page], per_page: 50)
       end
       
       def show
-        @candidate = ::Candidate::ExternalAttendance::Candidate.find_by(id: params[:id])
-        @candidate.update(special_token: Digest::SHA1.hexdigest([Time.now, rand].join))
+        @candidate = ::Candidate::ExternalAttendance::Candidate.find_by(cpf: params[:id])
+        
+        if @candidate.nil?
+          redirect_to action: :index
+        else
+          @candidate = @candidate.cadastre
+          @candidate.update(special_token: Digest::SHA1.hexdigest([Time.now, rand].join))
+        end
       end
 
     end
