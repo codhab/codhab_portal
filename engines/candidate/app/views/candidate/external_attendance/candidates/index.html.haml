@@ -2,6 +2,15 @@
   .col-md-12
     .panel
       .panel-body
+        %h3
+          %b Área restrita - Atendimento Externo
+        %br/
+        %h4 
+          #{external_attendant.name} 
+          %br/ 
+          CPF: (#{external_attendant.cpf})
+        %br/
+        = link_to "Finalizar sessão", candidate.external_attendance_session_path(external_attendant), method: :delete, class: 'btn btn-danger', data: { confirm: 'Deseja finalizar a sessão?'}
 .row
   .col-md-12
     .panel
@@ -32,12 +41,34 @@
                     %br/ 
                     = cand.name 
                   %td
-                    Atendimento iniciado
+                    - if cand.ticket.nil?
+                      Atendimento não iniciado
+                    - else
+                      Atendimento iniciado
                   %td
-                    Situação do atendimento
+                    - if cand.ticket.nil?
+                      Sem situação
+                    - else
+                      - if cand.ticket.supervisor_date.nil?
+                        - if cand.ticket.request
+                          Devolvido ao candidato (pendência)
+                        - else
+                          - if cand.ticket.complete?
+                            Em análise
+                          - else
+                            Pendente com candidato
+                      - else
+                        - if cand.ticket.supervisor
+                          Deferido pela CODHAB
+                        - else
+                          Indeferido pela CODHAB
                   %td
                     = link_to "Visualizar APP", candidate.external_attendance_candidate_path(cand.cpf)
             - else
               %tr
                 %td{colspan: 5}
                   Nenhum registro encontrado.
+          %tfoot
+            %tr
+              %td{colspan: 4}
+                = will_paginate (@candidates rescue nil), renderer: BootstrapPagination::Rails                  

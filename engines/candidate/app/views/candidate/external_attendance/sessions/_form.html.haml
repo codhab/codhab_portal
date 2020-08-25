@@ -1,0 +1,10 @@
+= simple_form_for @session, url: candidate.external_attendance_sessions_path do |f|
+  .row
+    .col-md-6
+      = f.input :cpf, label: "CPF", input_html: { class: mobile_device? ? '' : 'cpf'}
+    .col-md-6
+      = f.input :password, label: "Senha", placeholder: "********"
+  .row
+    .col-md-6
+      = f.submit "Realizar acesso", class: 'btn btn-success', data: { disable_with: t(:disable_with)}
+   
