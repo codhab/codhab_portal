@@ -9,6 +9,13 @@ Candidate::Engine.routes.draw do
     post 'create_session', on: :collection
   end
 
+  get 'indicacao-crixa', to: 'crixa_indications#new'
+  post 'indicacao-crixa', to: 'crixa_indications#create'
+  get 'show-indicacao-crixa', to: 'crixa_indications#show'
+  
+  get 'negative-indicacao-crixa', to: 'crixa_indications#negative_new'
+  post 'negative-indicacao-crixa', to: 'crixa_indications#negative_create'
+
   resources :subscribe_consults, only: [:index, :new, :create], path: 'inscricao-comprovante'
   resources :subscribe_updates, only: [:index, :edit, :update], path: 'inscricao-editar'
 

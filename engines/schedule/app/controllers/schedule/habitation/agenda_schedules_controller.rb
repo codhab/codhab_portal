@@ -9,7 +9,7 @@ module Schedule
       end
 
       def new
-        @schedule = Schedule::AgendaSchedule.new
+        @schedule = Schedule::AgendaSchedule.new(agenda_id: params[:agenda_id], cpf: params[:cpf])
       end
 
       def create
