@@ -27,8 +27,22 @@ module Firm
     def ticket
       Firm::Ticket.find_by(cadastre_id: self.cadastre.id)
     end
+
     def ticket_supervisor
+      return false if ticket.nil?
+
       !ticket.supervisor_date.nil? && ticket.supervisor
+    end
+
+    def ticket_codhab
+      return false if ticket.nil?
+
+      ticket.action_one &&
+      ticket.action_two &&
+      ticket.action_three &&
+      ticket.action_four &&
+      ticket.action_five &&
+      ticket.supervisor_date.nil?
     end
 
     def ticket_close

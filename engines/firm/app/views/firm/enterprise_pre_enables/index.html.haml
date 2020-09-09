@@ -44,13 +44,19 @@
                       %td= pre_enable.name
                       %td= pre_enable.cpf
                       %td
-                        - if pre_enable.ticket_close
-                          - if pre_enable.ticket_supervisor
-                            DEFERIDO
+                        - if pre_enable.ticket
+                          - if pre_enable.ticket_close
+                            - if pre_enable.ticket_supervisor
+                              DEFERIDO
+                            - else
+                              INDEFERIDO
                           - else
-                            INDEFERIDO
+                            - if pre_enable.ticket_codhab
+                              EM ANÁLISE
+                            - else
+                              PENDENTE COM CANDIDATO
                         - else
-                          EM ANÁLISE
+                          NÃO INICIOU ATENDIMENTO
                       %td
                         = pre_enable.total
                       %td
