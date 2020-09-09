@@ -1,0 +1,18 @@
+.container
+  .text-center
+    %br/
+    = image_tag 'logo.png', width: '20%'
+  .text-center
+    %br/
+    %h4 Olá, #{@cadastre.name.split(' ')[0].to_s.mb_chars.upcase rescue nil}
+    
+    %br/
+    %h4 O empreendimento Crixá – Parque dos Ipês é vinculado ao Programa Minha Casa Minha Vida, localizado em São Sebastião, voltado exclusivamente para candidatos com renda familiar de até R$1.800,00.
+    %h4 
+      %b Selecione abaixo a realização do seu agendamento ou a opção de que não há interesse no empreendimento.
+  .row{style: 'margin-top: 50px'}
+    .col-md-12
+      = link_to "QUERO REALIZAR MEU AGENDAMENTO", "/agendamento/habitacao/new?agenda_id=68&cpf=#{@cadastre.cpf}", class: 'btn btn-success btn-lg btn-block', data: { disable_with: "AGUARDE..."}
+      
+      %br/
+      = link_to "NÃO TENHO INTERESSE", candidate.negative_indicacao_crixa_path, class: 'btn btn-danger btn-block btn-lg', data: { confirm: "Tem certeza que não tem interesse?"}

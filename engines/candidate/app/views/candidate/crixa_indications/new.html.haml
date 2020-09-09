@@ -1,0 +1,20 @@
+.container
+  .text-center
+    %br/
+    = image_tag 'logo.png', width: '20%'
+  .text-center
+    %br/
+    %h4 Última oportunidade aos indicados para o empreendimento Crixá – Parque dos Ipês para realizar Cadastro Único e dossiê a ser encaminhado ao agente financeiro CAIXA.
+    %br/
+    %h4 
+      %b Se identifique abaixo e realize seu agendamento.
+  .row{style: 'margin-top: 50px'}
+    .col-md-12
+
+      = simple_form_for @crixa_indication, url: candidate.indicacao_crixa_path, method: :post do |f|
+        = f.input :cpf, as: :integer, label: "INFORME SEU CPF (SOMENTE NÚMEROS)", placeholder: '000.000.000-00'
+        = f.input :born, label: "INFORME SUA DATA DE NASCIMENTO", as: :string, input_html: { class: 'date'}
+
+        %br/ 
+
+        = f.submit "AUTENTICAR", class: 'btn btn-success btn-block btn-lg', data: { disable_with: "AGUARDE..."}

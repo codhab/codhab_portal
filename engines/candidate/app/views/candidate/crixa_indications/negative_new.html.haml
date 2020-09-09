@@ -1,0 +1,18 @@
+.container
+  .text-center
+    %br/
+    = image_tag 'logo.png', width: '20%'
+  .text-center
+    %br/
+    %h4 
+      %b #{@cadastre.name.split(' ')[0].to_s.mb_chars.upcase rescue nil}, informe abaixo o motivo da sua desistência
+  .row{style: 'margin-top: 50px'}
+    .col-md-12
+
+      = simple_form_for @negative_crixa_indication, url: candidate.negative_indicacao_crixa_path, method: :post do |f|
+        = f.input :observation, as: :text, label: "DESCREVA O MOTIVO", placeholder: "Detalhe mais sobre sua desistência"
+        %br/ 
+
+        = f.submit "INFORMAR MOTIVO DA DESISTÊNCIA", class: 'btn btn-danger btn-block btn-lg', data: { disable_with: "AGUARDE..."}
+        %br/
+        = link_to "Cancelar desistência e voltar", candidate.show_indicacao_crixa_path, class: 'btn btn-default btn-lg btn-block'

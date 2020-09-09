@@ -57,9 +57,10 @@
               %tbody
                 %tr
                   %td= @subscribe.name.to_s.mb_chars.upcase
-                  %td= @subscribe.cpf
+                  %td= @subscribe.cpf.to_s.format_obfuscator_cpf
                   %td= @subscribe.gender_id                  
-                  %td= @subscribe.born.strftime("%d/%m/%Y") rescue nil                  
+                  %td
+                    %i Informação oculta                 
 
             %table.table.table-striped.table-bordered.table-celled
               %thead
@@ -72,8 +73,10 @@
                   %th Nacionalidade
               %tbody
                 %tr
-                  %td= @subscribe.rg
-                  %td= @subscribe.rg_org
+                  %td
+                    %i Informação oculta
+                  %td
+                    %i Informação oculta
                   %td= @subscribe.rg_state.acronym rescue nil                  
                   %td= @subscribe.rg_emission_date.strftime("%d/%m/%Y") rescue nil                  
                   %td= @subscribe.born_state.acronym rescue nil                     
@@ -92,8 +95,10 @@
                   %td= @subscribe.mother_name.blank? ? 'Não informado'  : @subscribe.mother_name
                   %td= @subscribe.arrival_df.strftime("%d/%m/%Y") rescue nil
                   %td= @subscribe.civil_state.name rescue nil
-                  %td= number_to_currency @subscribe.income rescue nil               
-                  %td= number_to_currency(@subscribe.total_income) rescue nil             
+                  %td
+                    %i Informação oculta               
+                  %td
+                    %i Informação oculta             
 
             %table.table.table-striped.table-bordered.table-celled
               %thead
@@ -106,8 +111,10 @@
                 %tr
                   %td= @subscribe.special_condition ? 'Sim' : 'Não'
                   %td= @subscribe.special_condition_type.name rescue 'Sem condição especial'
-                  %td= @subscribe.cid
-                  %td= @subscribe.nis   
+                  %td
+                    %i Informação oculta
+                  %td
+                    %i Informação oculta   
 
             %table.table.table-striped.table-bordered.table-celled
               %thead
@@ -117,9 +124,12 @@
                   %th E-mail
               %tbody
                 %tr
-                  %td= @subscribe.celphone
-                  %td= @subscribe.telephone
-                  %td= @subscribe.email
+                  %td
+                    %i Informação oculta
+                  %td
+                    %i Informação oculta
+                  %td
+                    %i Informação oculta
 
             %table.table.table-striped.table-bordered.table-celled
               %thead
@@ -143,9 +153,12 @@
                   %th Complemento
               %tbody
                 %tr
-                  %td= @subscribe.address
-                  %td= @subscribe.address_number
-                  %td= @subscribe.address_complement
+                  %td 
+                    %i Informação oculta
+                  %td 
+                    %i Informação oculta
+                  %td 
+                    %i Informação oculta 
 
         .row
           .col-md-12
@@ -158,10 +171,14 @@
                   %th Endereço (trabalho)
               %tbody
                 %tr
-                  %td= @subscribe.work_cep.blank? ? 'Não informado'  : @subscribe.work_cep
-                  %td= @subscribe.work_state.name rescue "Não informado"
-                  %td= @subscribe.work_city.name rescue "Não informado"         
-                  %td= @subscribe.work_address.blank? ? 'Não informado'  : @subscribe.work_address     
+                  %td
+                    %i Informação oculta
+                  %td
+                    %i Informação oculta
+                  %td
+                    %i Informação oculta         
+                  %td
+                    %i Informação oculta    
         .row
           .col-md-12
             %h3
@@ -182,8 +199,9 @@
                     %tr
                       %td= dependent.kinship.name.to_s.mb_chars.upcase rescue nil
                       %td= dependent.name.to_s.mb_chars.upcase
-                      %td= dependent.cpf
-                      %td= dependent.born.strftime("%d/%m/%Y")
+                      %td= dependent.cpf.to_s.format_obfuscator_cpf
+                      %td
+                        %i Informação oculta
                 %table.table.table-striped.table-bordered.table-celled
                   %thead
                     %tr
@@ -198,7 +216,8 @@
                     %tr
                       %td= dependent.born_state.name rescue nil
                       %td= dependent.gender_id
-                      %td= dependent.rg
+                      %td
+                        %i Informação oculta
                       %td= dependent.rg_org
                       %td= dependent.rg_state.acronym rescue nil
                       %td= dependent.rg_emission_date.strftime("%d/%m/%Y") rescue nil
@@ -218,8 +237,10 @@
                       %td= number_to_currency dependent.income
                       %td= dependent.special_condition ? 'Sim' : 'Não'
                       %td= dependent.special_condition_type.name rescue 'Sem condição especial'
-                      %td= dependent.cid
-                      %td= dependent.nis
+                      %td
+                        %i Informação oculta
+                      %td
+                        %i Informação oculta
             - else
               Nenhum dependente cadastrado.
             

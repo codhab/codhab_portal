@@ -1,0 +1,11 @@
+.container
+  .text-center
+    %br/
+    = image_tag 'logo.png', width: '20%'
+  .text-center
+    %br/
+    %h4 
+      %b Olá, #{@cadastre.name.split(' ')[0].to_s.mb_chars.upcase rescue nil}
+    
+    %br/
+    %h4 Sua desistência foi realizada com sucesso!
