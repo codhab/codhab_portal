@@ -1,0 +1,38 @@
+require_dependency 'firm/application_controller'
+
+module Firm
+  class EnterprisePreEnablesController < ApplicationController 
+    before_action :set_tab
+    before_action :validate_session!
+
+    has_scope :by_cpf
+    has_scope :by_manifestation
+    has_scope :by_ticket_situation_id
+
+    def index
+      session[:filter_params] = params
+      @pre_enables = apply_scopes(Firm::EnterprisePreEnable).all.paginate(:page => params[:page], :per_page => 20)
+    end
+
+    def manifestation
+      @pre_enable = Firm::EnterprisePreEnable.find_by(cpf: params[:enterprise_pre_enable_id])
+      @pre_enable.set_manifestation!
+      params = session[:filter_params]
+      redirect_to enterprise_pre_enables_path(params)
+    end
+
+    private
+
+    def set_tab
+      @tab = 'pre_habilitados'
+    end
+
+    def validate_session!
+      if session[:firm_auth_id].present? && session[:firm_expiration_id].present? && session[:firm_expiration_id] > Time.now
+        @firm = Firm::UserCompany.find(session[:firm_auth_id])
+      else
+        redirect_to firm.new_authorization_path
+      end
+    end
+  end
+end

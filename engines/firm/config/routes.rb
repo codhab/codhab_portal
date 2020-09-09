@@ -5,6 +5,10 @@ Firm::Engine.routes.draw do
   delete  'destroy_authorization',  path: 'acesso', to: 'authorization#destroy',  as: 'destroy_authorization'
 
   resources :enterprise_cadastres,           path: 'candidatos'
+  resources :enterprise_pre_enables,         path: 'pre-habilitados' do
+    get 'manifestation'
+  end
+
   resources :enterprise_cadastre_situations, path: 'situacao'
 
   resources :bookings,    path: 'reserva',    only: [:new, :create]
