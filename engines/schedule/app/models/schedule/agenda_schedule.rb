@@ -127,14 +127,9 @@ module Schedule
     end
 
     def unique_schedule
-      if agenda.agenda_schedules.where("cpf = ? AND status = 0 AND date >= ?", self.cpf, Date.today).present?
+      if agenda.agenda_schedules.where("cpf = ? AND status = 0 AND date > ?", self.cpf, Date.today).present?
         errors.add(:cpf, 'este CPF já se encontra agendado, favor verificar')
       end
-
-      if agenda.agenda_schedules.where("cpf = ? AND status = 3", self.cpf).present?
-        errors.add(:cpf, 'este CPF já foi atendido, em caso de dúvidas entre em contato com a Codhab')
-      end
-
     end
   end
 end
