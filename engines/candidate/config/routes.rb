@@ -1,6 +1,7 @@
 Candidate::Engine.routes.draw do
 
   get 'convocados-pre-habilitacao', to: 'lists#pre_enable'
+  get 'convocados-pre-habilitacao-complemento', to: 'lists#pre_enable_complete'
 
   get 'cities', to: 'subscribes#cities'
   

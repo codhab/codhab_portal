@@ -1,0 +1,46 @@
+ha.row.mini-margin
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12
+            %h2
+              %b Lista - Convocados (Pré-habilitação) Itapoã Parque
+            %br/
+
+        .row
+          .col-md-12
+            %b Total: #{@pre_enable_cadastres.total_entries rescue nil}
+            %br/
+            %br/
+            = simple_form_for url_for, method: :get do |f|
+              .row
+                .col-md-4
+                  = f.input :by_cpf, as: :string, label: "Informe o CPF", input_html: { class: 'cpf', name: :by_cpf, value: params[:by_cpf]}
+              .row
+                .col-md-4
+                  = f.submit "Pesquisar", name: :nil, class: 'btn btn-success', data: { disable_with: "Aguarde..."}
+                  = link_to "Limpar pesquisa", "/candidato/convocados-pre-habilitacao", class: 'btn btn-info' , data: { disable_with: "Aguarde..."}
+            %table.table
+              %thead
+                %tr
+                  %td Nome
+                  %td CPF
+                  %td Pontuação
+                  %td 
+              %tbody
+                - if @pre_enable_cadastres.present?
+                  - @pre_enable_cadastres.each do |pre_enable|
+                    %tr
+                      %td= pre_enable.name rescue nil
+                      %td= pre_enable.cpf.format_obfuscator_cpf rescue nil
+                      %td= pre_enable.total rescue nil
+                      %td= link_to "Detalhar", candidate.cadastre_path(pre_enable.cadastre.id) rescue nil
+                - else
+                  %tr
+                    %td{colspan: 4}
+                      Nenhum registro encontrado.
+              %tfoot
+                %tr
+                  %td{colspan: 4}
+                    = will_paginate (@pre_enable_cadastres rescue nil), renderer: BootstrapPagination::Rails
