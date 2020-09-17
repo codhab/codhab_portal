@@ -3,7 +3,7 @@
     .panel
       .panel-body
         %h3
-          %b Área restrita - Atendimento Externo
+          %b Área restrita - Atendimento Externo 
         %br/
         %h4 
           #{external_attendant.name} 
@@ -16,7 +16,7 @@
     .panel
       .panel-heading
         %h3 
-          %b Listagem de pré-habilitados
+          %b Listagem de pré-habilitados - Total: (#{@candidates.total_entries rescue 0})
       .panel-body
  
         = simple_form_for url_for, method: :get do |f|
