@@ -1,6 +1,6 @@
 module Firm
   class EnterprisePreEnable < ActiveRecord::Base
-    self.table_name = 'extranet.50_pre_habilitados'
+    self.table_name = 'extranet.todos_pre_habilitados'
 
     scope :by_cpf, -> (cpf) {
       where(cpf: cpf.to_s.unformat_cpf)
