@@ -7,6 +7,8 @@ Firm::Engine.routes.draw do
   resources :enterprise_cadastres,           path: 'candidatos'
   resources :enterprise_pre_enables,         path: 'pre-habilitados' do
     get 'manifestation'
+    get 'occurrence'
+    get 'ticket_request'
   end
 
   resources :enterprise_cadastre_situations, path: 'situacao'

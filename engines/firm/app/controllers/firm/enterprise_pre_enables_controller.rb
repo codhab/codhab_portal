@@ -7,6 +7,8 @@ module Firm
 
     has_scope :by_cpf
     has_scope :by_manifestation
+    has_scope :by_indication
+    has_scope :by_occurrence
     has_scope :by_ticket_situation_id
 
     def index
@@ -20,6 +22,15 @@ module Firm
       params = session[:filter_params]
       redirect_to enterprise_pre_enables_path(params)
     end
+
+    def occurrence
+      @candidate = ::Candidate::ExternalAttendance::Candidate.find_by(cpf: params[:enterprise_pre_enable_id])
+    end
+    
+    def ticket_request
+      @candidate = ::Candidate::ExternalAttendance::Candidate.find_by(cpf: params[:enterprise_pre_enable_id])
+    end
+
 
     private
 

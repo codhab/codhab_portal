@@ -17,10 +17,10 @@
                 = f.input :by_cpf, label: false, input_html: { name: 'by_cpf', class: 'cpf', value: params[:by_cpf]}
               .col-md-2
                 = f.label 'Liberado?'
-                = f.input :by_indication, label: false, as: :select, selected: params[:by_indication], include_blank: "Todos", input_html: { name: 'by_indication', class: '', value: params[:by_indication]}
+                = f.input :by_indication, label: false, input_html: { name: 'by_indication', class: '', value: params[:by_indication]}
               .col-md-2
                 = f.label 'Pendência cadastral?'
-                = f.input :by_occurrence, label: false, as: :select, selected: params[:by_occurrence], include_blank: "Todos", input_html: { name: 'by_occurrence', class: '', value: params[:by_occurrence]}
+                = f.input :by_occurrence, label: false, input_html: { name: 'by_occurrence', class: '', value: params[:by_occurrence]}
               .col-md-4
                 %br
                 = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary', data: {  disable_with: "Pesquisando aguarde..."}
@@ -42,9 +42,7 @@
                   %th CPF
                   %th Status
                   %th Pontuação
-                  %th Pendência (Atendimento)
-                  %th Pendência (Cadastral)
-                  %th Liberação
+                  %th
               %tbody.index-enterprise-cadastre
                 - if @pre_enables.present?
                   - @pre_enables.each do |pre_enable|
@@ -67,16 +65,6 @@
                           NÃO INICIOU ATENDIMENTO
                       %td
                         = pre_enable.total
-                      %td
-                        - if !pre_enable.ticket.nil? && pre_enable.ticket.request
-                          = link_to "Visualizar", enterprise_pre_enable_ticket_request_path(pre_enable.cpf), class: 'btn btn-warning btn-sm', remote: true, data: { disable_with: "Carregando..."}
-                        - else
-                          Sem pendência
-                      %td
-                        - if ::Candidate::CadastreOccurrence.where(cadastre_id: pre_enable.cadastre_id, solved: false).present? 
-                          = link_to "Visualizar pendência", enterprise_pre_enable_occurrence_path(pre_enable.cpf), class: 'btn btn-danger btn-sm', remote: true, data: { disable_with: "Carregando..."}
-                        - else
-                          Sem pendência
                       %td
 
                         - if pre_enable.indication

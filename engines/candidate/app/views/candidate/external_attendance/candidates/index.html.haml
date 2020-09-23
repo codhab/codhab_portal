@@ -24,8 +24,6 @@
             .col-md-3
               = f.input :by_cpf, label: "Informe o CPF", as: :string, input_html: { class: 'cpf', name: :by_cpf, value: params[:by_cpf]}
             .col-md-3
-              = f.input :by_ticket_situation, label: "Situação do atendimento", as: :select, include_blank: "Todos...", input_html: { name: :by_ticket_situation }, selected: params[:by_ticket_situation]
-            .col-md-3
               = f.input :by_indication, label: "Liberado?", as: :select, include_blank: "Todos...", input_html: { name: :by_indication }, selected: params[:by_indication]
             .col-md-3
               = f.input :by_occurrence, label: "Pendência Cadastral?", as: :select, include_blank: "Todos...", input_html: { name: :by_occurrence }, selected: params[:by_occurrence]
