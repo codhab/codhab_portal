@@ -50,7 +50,10 @@ Candidate::Engine.routes.draw do
   namespace :external_attendance, path: 'atendimento-externo' do
     get '/', to: 'sessions#new'
     resources :sessions
-    resources :candidates, path: 'candidatos'
+    resources :candidates, path: 'candidatos' do
+      get 'occurrence'
+      get 'ticket_request'
+    end
   end
 
   namespace :restrict_area, path: 'area_restrita' do
