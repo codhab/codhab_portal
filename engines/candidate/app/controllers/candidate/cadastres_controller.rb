@@ -5,7 +5,7 @@ module Candidate
       @cadastre = Core::Candidate::CadastrePresenter.new(@cadastre)
       @cadastre_position = Core::Candidate::Cadastre.find(params[:id])
       @document = Core::Document::DataPrint.where(cpf: @cadastre.cpf, status: true).last
-      @occurrences = Core::Candidate::CadastreOccurrence.where(cadastre_id: params[:id], solved: false)
+      @occurrences = Core::Candidate::CadastreOccurrence.where(cadastre_id: params[:id], solved: false, portal: true)
                                                         .distinct(:validation_id)
 
       @indication_exception = ['87416700191',

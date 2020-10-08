@@ -3,6 +3,8 @@ module Candidate
     class Ticket < ActiveRecord::Base
       self.table_name = 'extranet.attendance_custom_tickets'
 
+      has_many :ticket_requests
+      
       def complete?
         action_one &&
         action_two &&

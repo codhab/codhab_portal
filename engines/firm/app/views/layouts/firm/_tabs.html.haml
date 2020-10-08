@@ -17,6 +17,10 @@
         %a{:href => "#{enterprise_cadastres_path}"} Candidatos
       %li{:role => "enderecos", :class => "#{(@tab == 'enderecos') ? 'active' : ''}"}
         %a{:href => "#{enterprise_units_path}"} Endereços
+
+      - if [5].include?(@firm.company_id)
+        %li{:role => "pré-habilitação", :class => "#{(@tab == 'pre_habilitados') ? 'active' : ''}"}
+          %a{:href => "#{enterprise_pre_enables_path}"} Pré habilitados
       - if @firm.id != 92
         %li{:role => "user", :class => "#{(@tab == 'user') ? 'active' : ''}"}
           %a{:href => "#{user_companies_path}"} Usuários

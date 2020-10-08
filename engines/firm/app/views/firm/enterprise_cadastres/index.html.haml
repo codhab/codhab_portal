@@ -23,7 +23,7 @@
                 = f.input :by_situation, label: false,  collection: Firm::EnterpriseSituationStatus.all, selected: params[:by_situation], input_html: { name: 'by_situation'},include_blank: 'Todos'
               .col-md-2
                 = f.label 'Data de indicação'
-                = f.input :by_date, label: false, collection: Firm::EnterpriseCadastre.select('created_at::date').where(enterprise_id: @enterprises).group('created_at::date').order('created_at::date desc'), label_method: lambda {|d| "#{(d.created_at + 1.day).strftime('%d/%m/%Y')}" }, value_method: lambda {|d| "#{(d.created_at + 1.day).strftime('%d-%m-%Y')}" } ,selected: params[:by_date], input_html: { name: 'by_date' } ,include_blank: 'Todos'
+                = f.input :by_date, label: false, collection: Firm::EnterpriseCadastre.select('created_at::date').where.not(indication_type_id: 999).where(enterprise_id: @enterprises).group('created_at::date').order('created_at::date desc'), label_method: lambda {|d| "#{(d.created_at + 1.day).strftime('%d/%m/%Y')}" }, value_method: lambda {|d| "#{(d.created_at + 1.day).strftime('%d-%m-%Y')}" } ,selected: params[:by_date], input_html: { name: 'by_date' } ,include_blank: 'Todos'
             .row
               .col-md-3
                 = f.label 'Empreendimento'
