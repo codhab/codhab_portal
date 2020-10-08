@@ -1,5 +1,5 @@
 module Candidate
-  class PreEnableComplete < ActiveRecord::Base
+  class PreEnableSecond < ActiveRecord::Base
     self.table_name = 'extranet.pre_habilitados_2'
     
     
