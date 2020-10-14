@@ -54,6 +54,7 @@ Candidate::Engine.routes.draw do
     resources :candidates, path: 'candidatos' do
       get 'occurrence'
       get 'ticket_request'
+      get 'check'
     end
   end
 

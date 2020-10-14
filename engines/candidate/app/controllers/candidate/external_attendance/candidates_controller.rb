@@ -30,6 +30,21 @@ module Candidate
       def ticket_request
         @candidate = ::Candidate::ExternalAttendance::Candidate.find_by(cadastre_id: params[:candidate_id])
       end
+      
+      def check
+        @candidate = ::Candidate::ExternalAttendance::Candidate.find_by(cadastre_id: params[:candidate_id])
+        
+        @candidate_enterprise = ::Firm::EnterpriseCadastre.where(enterprise_id: 212, indication_type_id: 999).find_by(cadastre_id: @candidate.id) 
+        
+        if @candidate_enterprise.nil?
+          @candidate_enterprise = ::Firm::EnterpriseCadastre.where(indication_type_id: 999, enterprise_id: 212).new(cadastre_id: @candidate.id)
+          @candidate_enterprise.save(validate: false)
+        else
+          @candidate_enterprise.destroy
+        end
+
+        redirect_to candidate.external_attendance_candidates_path(by_cpf: @candidate.cpf, page: params[:page])
+      end
 
     end
   end
