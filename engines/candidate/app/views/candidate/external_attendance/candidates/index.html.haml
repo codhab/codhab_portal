@@ -76,7 +76,7 @@
                   %td
                     = link_to "Visualizar APP", candidate.external_attendance_candidate_path(cand.cpf)
                   %td
-                    - if ::Firm::EnterpriseCadastre.where(indication_type_id: 999, indication_type_id: 999, cadastre_id: cand.cadastre_id).present?
+                    - if ::Firm::EnterpriseCadastre.where(enterprise_id: 212, indication_type_id: 999, cadastre_id: cand.cadastre_id).present?
                       = link_to "Liberado", candidate.external_attendance_candidate_check_path(cand.cadastre_id, page: params[:page]), class: 'btn btn-success'
                     - else
                       = link_to "Não liberado", candidate.external_attendance_candidate_check_path(cand.cadastre_id, page: params[:page]), class: 'btn btn-danger btn-sm'

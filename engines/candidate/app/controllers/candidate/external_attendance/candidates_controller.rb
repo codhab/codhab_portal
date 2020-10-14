@@ -34,10 +34,10 @@ module Candidate
       def check
         @candidate = ::Candidate::ExternalAttendance::Candidate.find_by(cadastre_id: params[:candidate_id])
         
-        @candidate_enterprise = ::Firm::EnterpriseCadastre.where(enterprise_id: 212, indication_type_id: 999).find_by(cadastre_id: @candidate.id) 
+        @candidate_enterprise = ::Firm::EnterpriseCadastre.where(enterprise_id: 212, indication_type_id: 999).find_by(cadastre_id: @candidate.cadastre_id) 
         
         if @candidate_enterprise.nil?
-          @candidate_enterprise = ::Firm::EnterpriseCadastre.where(indication_type_id: 999, enterprise_id: 212).new(cadastre_id: @candidate.id)
+          @candidate_enterprise = ::Firm::EnterpriseCadastre.where(indication_type_id: 999, enterprise_id: 212).new(cadastre_id: @candidate.cadastre_id)
           @candidate_enterprise.save(validate: false)
         else
           @candidate_enterprise.destroy
