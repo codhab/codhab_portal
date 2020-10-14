@@ -25,6 +25,7 @@
                 %br
                 = f.submit 'Pesquisar', name: nil, class:  'btn btn-primary', data: {  disable_with: "Pesquisando aguarde..."}
                 = link_to 'Limpar Pesquisa', enterprise_pre_enables_path, class:  'btn btn-default', data: {  disable_with: "Pesquisando aguarde..."}
+                = link_to 'Extrair excel', enterprise_pre_enables_path(format: :xlsx, by_cpf: params[:by_cpf], by_indication: params[:by_indication], by_occurrence: params[:by_occurrence]), class:  'btn btn-default', data: {  disable_with: "Extraindo..."}
 
 
       - if @pre_enables.present?
