@@ -13,7 +13,16 @@ module Firm
 
     def index
       session[:filter_params] = params
-      @pre_enables = apply_scopes(Firm::EnterprisePreEnable).all.paginate(:page => params[:page], :per_page => 20)
+      
+      
+      respond_to do |format|
+        format.html {
+          @pre_enables = apply_scopes(Firm::EnterprisePreEnable).paginate(:page => params[:page], :per_page => 20)
+        }
+        format.xlsx {
+          @pre_enables = apply_scopes(Firm::EnterprisePreEnable).all
+        }
+      end
     end
 
     def manifestation
