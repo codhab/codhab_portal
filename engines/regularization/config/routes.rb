@@ -19,6 +19,7 @@ Regularization::Engine.routes.draw do
   end
 =end
 
+  resources :mestre_darmas_regularizations, path: 'mestre-darmas'
   resources :itapoa_regularizations, path: 'regularizacao-itapoa' do
     collection do
       resources :sessions, path: 'acesso', controller: :itapoa_regularization_sessions, as: :itapoa_regularization_sessions

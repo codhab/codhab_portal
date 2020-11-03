@@ -1,0 +1,212 @@
+= simple_form_for @regularization do |f|
+  
+  .h4
+    %b Endereço
+  %hr/
+  
+  .row
+    .col-md-12
+      = f.input :address, as: :string, placeholder: "Informe o endereço completo"
+  .h4
+    %b Dados pessoais
+  %hr/
+
+  .row
+    .col-md-12
+      = f.input :name, placeholder: "Informe o nome do requerente completo"
+  .row
+    .col-md-3
+      = f.input :cpf, input_html: { class: 'cpf'}
+    .col-md-2
+      = f.input :rg, placeholder: "Informe o RG"
+    .col-md-2
+      = f.input :rg_emission_date, as: :string, input_html: { class: 'date'}
+    .col-md-2
+      = f.input :rg_org, placeholder: "Informe o orgão emissor"
+    .col-md-3
+      = f.input :civil_state_id, as: :select, collection: ::Core::Candidate::CivilState.all.order(:name), include_blank: 'Selecione...', input_html: { id: :civil_state}
+  .row
+    .col-md-3
+      = f.input :income, as: :string, input_html: { class: 'money'}, placeholder: "Informe a renda bruta"
+    .col-md-4
+      = f.input :nationality, placeholder: "Informe a nacionalidade"
+    .col-md-2
+  .h4
+    %b Dados de contato
+  %hr/
+  .row
+    .col-md-3
+      = f.input :contact_phone, as: :string
+    .col-md-3
+      = f.input :contact_mobile, as: :string
+    .col-md-3
+      = f.input :contact_email, as: :string
+  
+  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+    .h4
+      %b Dados de cônjuge
+    %hr/
+    
+
+    .row
+      .col-md-12   
+        = f.input :spouse_name, placeholder: "Informe o nome completo do cônjuge"
+    .row
+      .col-md-3  
+        = f.input :spouse_cpf, input_html: { class: 'cpf'}
+      .col-md-2   
+        = f.input :spouse_rg, placeholder: "Informe o RG"
+      .col-md-3   
+        = f.input :spouse_rg_emission_date, as: :string, input_html: { class: 'date'}
+      .col-md-3   
+        = f.input :spouse_rg_org, placeholder: "Informe o órgão"
+
+  .h4
+    %b Documentação
+  %hr/
+  
+  = f.input :income_document, as: :file
+  
+  = f.input :cpf_document, as: :file
+  = f.input :rg_document, as: :file
+  = f.input :civil_state_document, as: :file
+
+  = f.input :document_address, as: :file
+  = f.input :document_iptu, as: :file
+  = f.input :document_onus, as: :file
+  %hr/
+  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+    = f.input :spouse_rg_document, as: :file
+    = f.input :spouse_cpf_document, as: :file
+  
+  .h4
+    %b Declarações
+  %hr/
+  
+  .row
+    .col-md-12
+      %p
+        %b DECLARAÇÃO PARA EMISSÃO DE FICHA DESCRITIVA
+      %p
+        Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do DF, estar ciente que os custos de emolumentos cartoriais, oriundos da lavratura e registro da escritura pública por mim solicitada, fazer-se-á sob minha total responsabilidade, razão pela qual renuncio os elencados nos dispositivos previstos no (art. 213, § 15, da Lei Federal n. 6.015/73; art 31, inciso I, do Provimento n. 44, da Corregedoria Nacional de Justiça e art. 216 do Provimento Geral da Corregedoria de Justiça).      
+  .row
+    .col-md-2
+      = f.input :declaration_descriptive, as: :select, include_blank: false, label: false
+
+  %hr/
+  .row
+    .col-md-12
+      %p
+        %b DECLARAÇÃO DE POSSE MANSA E PACÍFICA
+      %p
+        Inciso I, art. 4º, Dec. 34.210, de 13 de março de 2013.      
+      %p
+        Declaro que ocupo mansa e pacificamente o imóvel e que não existe demanda judicial relacionada a posse.
+  .row
+    .col-md-2      
+      = f.input :declaration_pacific, as: :select, include_blank: false, label: false
+  %hr/      
+  
+  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+    .row
+      .col-md-12
+        %p
+          %b DECLARAÇÃO DE POSSE MANSA E PACÍFICA (CÔNJUGE/ COMPANHEIRO)
+        %p
+          Inciso I, art. 4º, Dec. 34.210, de 13 de março de 2013.      
+        %p
+          Declaro que ocupo mansa e pacificamente o imóvel e que não existe demanda judicial relacionada a posse. 
+    .row
+      .col-md-2      
+        = f.input :declaration_spouse_pacific, as: :select, include_blank: false, label: false
+    %hr/
+  
+  .spouse{style: "display: #{[7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+    .row
+      .col-md-12
+        %p
+          %b DECLARAÇÃO DE UNIÃO ESTÁVEL
+        %p
+          Declaro para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal – CODHAB/DF, que VIVO EM REGIME DE UNIÃO ESTÁVEL “more uxório” com (já qualificado anteriormente).
+    .row
+      .col-md-2      
+        = f.input :declaration_stable_union, as: :select, include_blank: false, label: false
+    %hr/    
+  
+  .row
+    .col-md-12
+      %p
+        %b DECLARAÇÃO DE ATIVIDADE INFORMAL (REQUERENTE)      
+  .row
+    .col-md-12   
+      %p
+        Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
+  .row
+    .col-md-2      
+      = f.input :declaration_informal_activity, as: :select, include_blank: false, label: false, input_html: { id: "activity_income"}
+  .activity_income{style: "display: #{f.object.declaration_informal_activity ? 'block' : 'none'}"}
+    .row
+      .col-md-2      
+        = f.input :declaration_informal_activity_value, as: :string, input_html: { class: 'money-br'}
+  %hr/
+  
+  
+  .spouse{style: "display: #{[2,7].include?(f.object.civil_state_id) ? 'block' : 'none'}"}
+    .row
+      .col-md-12
+        %p
+          %b DECLARAÇÃO DE ATIVIDADE INFORMAL (CÔNJUGE/COMPANHEIRO)
+    .row
+      .col-md-12   
+        %p
+          Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
+
+    .row
+      .col-md-2      
+        = f.input :declaration_spouse_informal_activity, label: false, as: :select, include_blank: false, include_blank: false, input_html: { id: "activity_spouse_income"}
+    .activity_spouse_income{style: "display: #{f.object.declaration_spouse_informal_activity ? 'block' : 'none'}"}
+      .row
+        .col-md-2      
+          = f.input :declaration_spouse_informal_activity_value, as: :string, input_html: { class: 'money-br'}
+    %hr/ 
+
+  .row
+    .col-md-12
+      %p
+        %b Responsabilizo-me civil e criminalmente pela veracidade das declarações e tenho conhecimento das cominações legais existentes para falsa declaração. (Dispõe o art. 299 do Código Penal: 
+        %br/
+        %br/
+        %b 
+          %i “Omitir, em documento público ou particular, declaração que dele devia constar, ou nele inserir declaração falsa ou diversa da que devia ser escrita, com o fim de prejudicar direito, criar obrigação ou alterar a verdade sobre fato juridicamente relevante: Pena: reclusão, de 1 (um) a 5 (cinco) anos.....”). 
+        %br/
+        %br/
+        %b As declarações a cima não feram quaisquer direitos antecipados ao interessado, nem responsabilidade para a CODHAB.      
+  
+  .row
+    .col-md-2      
+      = f.input :terms_use, as: :select, include_blank: false, label: false  
+  %hr/
+  .row
+    .col-md-12
+      = f.submit 'Salvar informações e enviar', class: 'btn btn-success btn-lg btn-block'
+      = link_to "Cancelar", regularization.itapoa_regularizations_path, class: 'btn btn-primary btn-lg btn-block', data: { disable_with: "Aguarde..."}
+:javascript
+
+
+  $("#civil_state").on("change", function() {
+    if($(this).val() == 2 || $(this).val() == 7) {
+      $(".spouse").show();
+      $(".no-spouse").hide();
+    } else {
+      $(".spouse").hide();
+      $(".no-spouse").show();
+    }
+  })
+
+  $("#activity_income").on("change", function() {
+    $(".activity_income").toggle();
+  })
+  
+  $("#activity_spouse_income").on("change", function() {
+    $(".activity_spouse_income").toggle();
+  })  

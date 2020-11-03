@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200819131819) do
+ActiveRecord::Schema.define(version: 20201103140357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "action_atuation_areas", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "action_cadastres", force: :cascade do |t|
     t.string   "name"
     t.string   "cpf"
@@ -49,42 +42,9 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.integer  "formation_area_id"
     t.integer  "atuation_area_id"
     t.index ["atuation_area_id"], name: "index_action_cadastres_on_atuation_area_id", using: :btree
-    t.index ["atuation_area_id"], name: "index_action_cadastres_on_atuation_area_id", using: :btree
-    t.index ["city_id"], name: "index_action_cadastres_on_city_id", using: :btree
     t.index ["city_id"], name: "index_action_cadastres_on_city_id", using: :btree
     t.index ["formation_area_id"], name: "index_action_cadastres_on_formation_area_id", using: :btree
-    t.index ["formation_area_id"], name: "index_action_cadastres_on_formation_area_id", using: :btree
     t.index ["profession_id"], name: "index_action_cadastres_on_profession_id", using: :btree
-    t.index ["profession_id"], name: "index_action_cadastres_on_profession_id", using: :btree
-    t.index ["state_id"], name: "index_action_cadastres_on_state_id", using: :btree
-    t.index ["state_id"], name: "index_action_cadastres_on_state_id", using: :btree
-  end
-
-  create_table "action_cadastres", force: :cascade do |t|
-    t.string   "name"
-    t.string   "cpf"
-    t.string   "address"
-    t.string   "nationality"
-    t.string   "password"
-    t.string   "email"
-    t.string   "phone"
-    t.date     "born"
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "profession_id"
-    t.integer  "formation_area_id"
-    t.integer  "atuation_area_id"
-    t.index ["atuation_area_id"], name: "index_action_cadastres_on_atuation_area_id", using: :btree
-    t.index ["atuation_area_id"], name: "index_action_cadastres_on_atuation_area_id", using: :btree
-    t.index ["city_id"], name: "index_action_cadastres_on_city_id", using: :btree
-    t.index ["city_id"], name: "index_action_cadastres_on_city_id", using: :btree
-    t.index ["formation_area_id"], name: "index_action_cadastres_on_formation_area_id", using: :btree
-    t.index ["formation_area_id"], name: "index_action_cadastres_on_formation_area_id", using: :btree
-    t.index ["profession_id"], name: "index_action_cadastres_on_profession_id", using: :btree
-    t.index ["profession_id"], name: "index_action_cadastres_on_profession_id", using: :btree
-    t.index ["state_id"], name: "index_action_cadastres_on_state_id", using: :btree
     t.index ["state_id"], name: "index_action_cadastres_on_state_id", using: :btree
   end
 
@@ -95,47 +55,13 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "action_formation_areas", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "action_general_links", force: :cascade do |t|
-    t.string   "name"
-    t.string   "file_link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "action_inscriptions", force: :cascade do |t|
     t.integer  "social_event_id"
     t.integer  "cadastre_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["cadastre_id"], name: "index_action_inscriptions_on_cadastre_id", using: :btree
-    t.index ["cadastre_id"], name: "index_action_inscriptions_on_cadastre_id", using: :btree
     t.index ["social_event_id"], name: "index_action_inscriptions_on_social_event_id", using: :btree
-    t.index ["social_event_id"], name: "index_action_inscriptions_on_social_event_id", using: :btree
-  end
-
-  create_table "action_inscriptions", force: :cascade do |t|
-    t.integer  "social_event_id"
-    t.integer  "cadastre_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["cadastre_id"], name: "index_action_inscriptions_on_cadastre_id", using: :btree
-    t.index ["cadastre_id"], name: "index_action_inscriptions_on_cadastre_id", using: :btree
-    t.index ["social_event_id"], name: "index_action_inscriptions_on_social_event_id", using: :btree
-    t.index ["social_event_id"], name: "index_action_inscriptions_on_social_event_id", using: :btree
-  end
-
-  create_table "action_professions", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "action_professions", force: :cascade do |t|
@@ -162,45 +88,7 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.string   "report"
     t.string   "numacao"
     t.index ["city_id"], name: "index_action_social_events_on_city_id", using: :btree
-    t.index ["city_id"], name: "index_action_social_events_on_city_id", using: :btree
     t.index ["localization_id"], name: "index_action_social_events_on_localization_id", using: :btree
-    t.index ["localization_id"], name: "index_action_social_events_on_localization_id", using: :btree
-  end
-
-  create_table "action_social_events", force: :cascade do |t|
-    t.string   "name"
-    t.date     "date"
-    t.text     "description"
-    t.integer  "situation"
-    t.integer  "localization_id"
-    t.integer  "city_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.boolean  "status"
-    t.string   "photo"
-    t.string   "thumb"
-    t.string   "hour"
-    t.string   "district"
-    t.string   "report"
-    t.string   "numacao"
-    t.index ["city_id"], name: "index_action_social_events_on_city_id", using: :btree
-    t.index ["city_id"], name: "index_action_social_events_on_city_id", using: :btree
-    t.index ["localization_id"], name: "index_action_social_events_on_localization_id", using: :btree
-    t.index ["localization_id"], name: "index_action_social_events_on_localization_id", using: :btree
-  end
-
-  create_table "action_team_links", force: :cascade do |t|
-    t.string   "name"
-    t.string   "file_link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "action_yearly_links", force: :cascade do |t|
-    t.string   "name"
-    t.string   "file_link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "address_activities", force: :cascade do |t|
@@ -1302,41 +1190,9 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.string   "request_uuid"
     t.datetime "created_at"
     t.index ["associated_id", "associated_type"], name: "associated_index", using: :btree
-    t.index ["associated_type", "associated_id"], name: "associated_index", using: :btree
     t.index ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
-    t.index ["auditable_type", "auditable_id"], name: "auditable_index", using: :btree
-    t.index ["created_at"], name: "index_audits_on_created_at", using: :btree
     t.index ["created_at"], name: "index_audits_on_created_at", using: :btree
     t.index ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
-    t.index ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
-    t.index ["user_id", "user_type"], name: "user_index", using: :btree
-    t.index ["user_id", "user_type"], name: "user_index", using: :btree
-  end
-
-  create_table "audits", force: :cascade do |t|
-    t.integer  "auditable_id"
-    t.string   "auditable_type"
-    t.integer  "associated_id"
-    t.string   "associated_type"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.string   "username"
-    t.string   "action"
-    t.text     "audited_changes"
-    t.integer  "version",         default: 0
-    t.string   "comment"
-    t.string   "remote_address"
-    t.string   "request_uuid"
-    t.datetime "created_at"
-    t.index ["associated_id", "associated_type"], name: "associated_index", using: :btree
-    t.index ["associated_type", "associated_id"], name: "associated_index", using: :btree
-    t.index ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
-    t.index ["auditable_type", "auditable_id"], name: "auditable_index", using: :btree
-    t.index ["created_at"], name: "index_audits_on_created_at", using: :btree
-    t.index ["created_at"], name: "index_audits_on_created_at", using: :btree
-    t.index ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
-    t.index ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
-    t.index ["user_id", "user_type"], name: "user_index", using: :btree
     t.index ["user_id", "user_type"], name: "user_index", using: :btree
   end
 
@@ -1675,6 +1531,30 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.index ["validation_id"], name: "index_candidate_cadastre_occurrences_on_validation_id", using: :btree
   end
 
+  create_table "candidate_cadastre_pendencies", force: :cascade do |t|
+    t.integer  "cadastre_id"
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.boolean  "computer",          default: false
+    t.text     "description"
+    t.string   "code"
+    t.boolean  "resolved",          default: false
+    t.datetime "resolved_at"
+    t.integer  "resolved_user_id"
+    t.text     "resolved_feedback"
+    t.string   "resolved_document"
+    t.boolean  "impediment",        default: false
+    t.boolean  "public",            default: false
+    t.string   "public_label"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.datetime "deleted_at"
+    t.boolean  "deleted",           default: false
+    t.index ["cadastre_id"], name: "index_sihab.candidate_cadastre_pendencies_on_cadastre_id", using: :btree
+    t.index ["category_id"], name: "index_sihab.candidate_cadastre_pendencies_on_category_id", using: :btree
+    t.index ["code"], name: "index_sihab.candidate_cadastre_pendencies_on_code", unique: true, using: :btree
+  end
+
   create_table "candidate_cadastre_procedurals", force: :cascade do |t|
     t.integer  "cadastre_mirror_id"
     t.integer  "cadastre_id"
@@ -1795,6 +1675,7 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.boolean  "scoring",                   default: false
     t.integer  "sub_program_id"
     t.boolean  "defunct",                   default: false
+    t.string   "special_token"
     t.index ["city_id"], name: "index_candidate_cadastres_on_city_id", using: :btree
     t.index ["civil_state_id"], name: "index_candidate_cadastres_on_civil_state_id", using: :btree
     t.index ["cpf"], name: "index_candidate_cadastres_on_cpf", unique: true, using: :btree
@@ -2258,6 +2139,15 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "candidate_pendency_categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.datetime "deleted_at"
+    t.boolean  "deleted",     default: false
+  end
+
   create_table "candidate_pontuations", force: :cascade do |t|
     t.integer  "cadastre_id"
     t.integer  "cadastre_mirror_id"
@@ -2393,6 +2283,75 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "candidate_subscribe_dependents", force: :cascade do |t|
+    t.integer  "subscribe_id"
+    t.string   "name"
+    t.string   "cpf"
+    t.string   "rg"
+    t.string   "rg_org"
+    t.string   "rg_state_id"
+    t.date     "rg_emission_date"
+    t.date     "born"
+    t.integer  "born_state_id"
+    t.float    "income",                    default: 0.0
+    t.integer  "gender_id"
+    t.string   "nacionality"
+    t.integer  "civil_state_id"
+    t.integer  "kinship_id"
+    t.boolean  "special_condition",         default: false
+    t.integer  "special_condition_type_id"
+    t.string   "cid"
+    t.string   "nis"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  create_table "candidate_subscribes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "cpf",                                       null: false
+    t.integer  "gender_id"
+    t.date     "born"
+    t.integer  "born_state_id"
+    t.string   "nacionality"
+    t.string   "rg"
+    t.string   "rg_org"
+    t.integer  "rg_state_id"
+    t.date     "rg_emission_date"
+    t.date     "arrival_df"
+    t.string   "telephone"
+    t.string   "telephone_optional"
+    t.string   "celphone"
+    t.string   "email"
+    t.boolean  "special_condition",         default: false
+    t.integer  "special_condition_type_id"
+    t.string   "cep"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.string   "address"
+    t.string   "burgh"
+    t.string   "address_number"
+    t.string   "address_complement"
+    t.float    "income",                    default: 0.0
+    t.string   "work_cep"
+    t.integer  "work_state_id"
+    t.integer  "work_city_id"
+    t.string   "work_address"
+    t.string   "nis"
+    t.string   "cid"
+    t.string   "mother_name"
+    t.integer  "civil_state_id"
+    t.boolean  "terms_one",                 default: false
+    t.boolean  "terms_two",                 default: false
+    t.boolean  "terms_three",               default: false
+    t.boolean  "terms_four",                default: false
+    t.boolean  "terms_five",                default: false
+    t.string   "password"
+    t.string   "remember_token"
+    t.datetime "remember_token_expires_at"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   create_table "candidate_tickets", force: :cascade do |t|
@@ -2571,260 +2530,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.integer  "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "concourse_candidate_messages", force: :cascade do |t|
-    t.integer  "candidate_id"
-    t.text     "message"
-    t.integer  "message_type"
-    t.boolean  "status"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["candidate_id"], name: "index_concourse_candidate_messages_on_candidate_id", using: :btree
-  end
-
-  create_table "concourse_candidate_participations", force: :cascade do |t|
-    t.integer  "candidate_id"
-    t.text     "team_description"
-    t.string   "archive_one"
-    t.string   "archive_two"
-    t.string   "archive_three"
-    t.string   "archive_four"
-    t.string   "archive_five"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "group_participation"
-    t.index ["candidate_id"], name: "index_concourse_candidate_participations_on_candidate_id", using: :btree
-  end
-
-  create_table "concourse_candidate_refunds", force: :cascade do |t|
-    t.integer  "candidate_id"
-    t.string   "account"
-    t.string   "operation"
-    t.string   "agency"
-    t.string   "second_name"
-    t.string   "second_cpf"
-    t.boolean  "status",          default: false
-    t.date     "refund_date"
-    t.integer  "project_id"
-    t.integer  "state_id"
-    t.integer  "city_id"
-    t.string   "address"
-    t.integer  "account_type_id"
-    t.integer  "bank_number"
-    t.string   "bank_name"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "attachment"
-    t.integer  "staff_id"
-    t.string   "agency_name"
-  end
-
-  create_table "concourse_candidate_tokens", force: :cascade do |t|
-    t.integer  "candidate_id"
-    t.string   "secret_key"
-    t.boolean  "status",       default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.index ["candidate_id"], name: "index_concourse_candidate_tokens_on_candidate_id", using: :btree
-    t.index ["secret_key"], name: "index_concourse_candidate_tokens_on_secret_key", unique: true, using: :btree
-  end
-
-  create_table "concourse_candidates", force: :cascade do |t|
-    t.string   "name"
-    t.string   "rg"
-    t.integer  "gender"
-    t.date     "born"
-    t.string   "cpf"
-    t.string   "address"
-    t.string   "burgh"
-    t.string   "city"
-    t.string   "cep"
-    t.string   "telephone"
-    t.string   "celphone"
-    t.string   "email"
-    t.string   "fantasy_name"
-    t.string   "social_reason"
-    t.string   "cnpj"
-    t.string   "password"
-    t.boolean  "terms_use"
-    t.integer  "state_id"
-    t.integer  "subscribe_id"
-    t.text     "properties"
-    t.string   "protocol"
-    t.text     "observation"
-    t.integer  "status",            default: 0
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "professional_type"
-    t.text     "group",             default: [],              array: true
-    t.index ["state_id"], name: "index_concourse_candidates_on_state_id", using: :btree
-    t.index ["subscribe_id"], name: "index_concourse_candidates_on_subscribe_id", using: :btree
-  end
-
-  create_table "concourse_consults", force: :cascade do |t|
-    t.text     "content"
-    t.boolean  "status",     default: false
-    t.boolean  "terms_use",  default: false
-    t.integer  "project_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "responded"
-    t.index ["project_id"], name: "index_concourse_consults_on_project_id", using: :btree
-  end
-
-  create_table "concourse_fields", force: :cascade do |t|
-    t.integer  "subscribe_id"
-    t.integer  "participation_id"
-    t.string   "label"
-    t.integer  "field_type"
-    t.boolean  "required"
-    t.boolean  "unique"
-    t.integer  "max_size"
-    t.string   "file_white_list"
-    t.boolean  "only_number"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["participation_id"], name: "index_concourse_fields_on_participation_id", using: :btree
-    t.index ["subscribe_id"], name: "index_concourse_fields_on_subscribe_id", using: :btree
-  end
-
-  create_table "concourse_navs", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "page_id"
-    t.string   "label"
-    t.string   "url"
-    t.integer  "target"
-    t.integer  "action"
-    t.boolean  "publish"
-    t.integer  "order",      default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["page_id"], name: "index_concourse_navs_on_page_id", using: :btree
-    t.index ["project_id"], name: "index_concourse_navs_on_project_id", using: :btree
-  end
-
-  create_table "concourse_observations", force: :cascade do |t|
-    t.integer  "candidate_id"
-    t.text     "content"
-    t.integer  "message_type"
-    t.integer  "staff_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["candidate_id"], name: "index_concourse_observations_on_candidate_id", using: :btree
-    t.index ["staff_id"], name: "index_concourse_observations_on_staff_id", using: :btree
-  end
-
-  create_table "concourse_pages", force: :cascade do |t|
-    t.integer  "project_id"
-    t.string   "title"
-    t.text     "content"
-    t.boolean  "publish"
-    t.string   "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_concourse_pages_on_project_id", using: :btree
-    t.index ["slug"], name: "index_concourse_pages_on_slug", unique: true, using: :btree
-  end
-
-  create_table "concourse_projects", force: :cascade do |t|
-    t.string   "title"
-    t.text     "mini_description"
-    t.text     "apresentation"
-    t.date     "start"
-    t.date     "end"
-    t.boolean  "publish",                  default: false
-    t.boolean  "status",                   default: false
-    t.string   "image_header"
-    t.string   "image_logo"
-    t.string   "image_footer"
-    t.string   "image_slider"
-    t.boolean  "slider",                   default: false
-    t.boolean  "consultation",             default: false
-    t.date     "consultation_start"
-    t.date     "consultation_end"
-    t.text     "consultation_description"
-    t.string   "slug"
-    t.integer  "step",                     default: 0
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.text     "slider_html"
-    t.date     "start_participation"
-    t.date     "end_participation"
-    t.text     "text_participation"
-    t.string   "result_document"
-    t.text     "result_description"
-    t.string   "result_date"
-    t.boolean  "popup_publish"
-    t.string   "popup_title"
-    t.text     "popup_content"
-    t.date     "result_day"
-    t.time     "result_hour"
-  end
-
-  create_table "concourse_resources", force: :cascade do |t|
-    t.integer  "project_id"
-    t.text     "message"
-    t.integer  "candidate_id"
-    t.integer  "situation",    default: 0
-    t.text     "observation"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["candidate_id"], name: "index_concourse_resources_on_candidate_id", using: :btree
-    t.index ["project_id"], name: "index_concourse_resources_on_project_id", using: :btree
-  end
-
-  create_table "concourse_subscribes", force: :cascade do |t|
-    t.integer  "project_id"
-    t.string   "title"
-    t.boolean  "fee"
-    t.integer  "type_guide_id"
-    t.date     "start"
-    t.date     "end"
-    t.boolean  "publish"
-    t.text     "observation"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.date     "date_payment"
-    t.index ["project_id"], name: "index_concourse_subscribes_on_project_id", using: :btree
-    t.index ["type_guide_id"], name: "index_concourse_subscribes_on_type_guide_id", using: :btree
-  end
-
-  create_table "concourse_team_participations", force: :cascade do |t|
-    t.integer  "candidate_participation_id"
-    t.string   "name"
-    t.integer  "job"
-    t.string   "observation"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["candidate_participation_id"], name: "cand_part_id", using: :btree
-  end
-
-  create_table "concourse_user_projects", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password"
-    t.boolean  "status"
-    t.integer  "user_type"
-    t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_concourse_user_projects_on_project_id", using: :btree
-  end
-
-  create_table "concourse_winners", force: :cascade do |t|
-    t.integer  "participation_id"
-    t.integer  "candidate_id"
-    t.integer  "position"
-    t.integer  "project_id"
-    t.integer  "subscribe_id"
-    t.integer  "winner_type",         default: 0
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "group_participation"
-    t.index ["candidate_id"], name: "index_concourse_winners_on_candidate_id", using: :btree
-    t.index ["participation_id"], name: "index_concourse_winners_on_participation_id", using: :btree
-    t.index ["project_id"], name: "index_concourse_winners_on_project_id", using: :btree
-    t.index ["subscribe_id"], name: "index_concourse_winners_on_subscribe_id", using: :btree
   end
 
   create_table "contract_additives", force: :cascade do |t|
@@ -3402,21 +3107,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "entity_events", force: :cascade do |t|
-    t.string   "name"
-    t.date     "date"
-    t.text     "description"
-    t.text     "content"
-    t.integer  "situation"
-    t.string   "photo"
-    t.boolean  "status"
-    t.string   "district"
-    t.integer  "city_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["city_id"], name: "index_entity_events_on_city_id", using: :btree
-  end
-
   create_table "entity_indication_logs", force: :cascade do |t|
     t.integer  "entity_id"
     t.integer  "unit_id"
@@ -3675,14 +3365,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.index ["staff_id"], name: "index_entity_situations_on_staff_id", using: :btree
   end
 
-  create_table "entity_sliders", force: :cascade do |t|
-    t.string   "title"
-    t.string   "photo"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "entity_surveys", force: :cascade do |t|
     t.integer  "cadastre_id"
     t.integer  "situation"
@@ -3777,6 +3459,117 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.boolean  "status",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "form_itapoa_regularizations", force: :cascade do |t|
+    t.integer  "category_id",                                                        default: 1
+    t.integer  "unit_id"
+    t.string   "iptu_code",                                                                          null: false
+    t.integer  "situation_id",                                                       default: 1
+    t.text     "staff_observation"
+    t.datetime "staff_observation_read_at"
+    t.boolean  "no_iptu_code",                                                       default: false
+    t.integer  "complete_address"
+    t.string   "cpf",                                                                                null: false
+    t.date     "born",                                                                               null: false
+    t.string   "name"
+    t.string   "rg"
+    t.string   "naturality"
+    t.integer  "civil_state_id"
+    t.decimal  "income",                                     precision: 8, scale: 2
+    t.string   "habitation_type_id"
+    t.string   "spouse_name"
+    t.string   "spouse_rg"
+    t.string   "spouse_cpf"
+    t.date     "spouse_born"
+    t.string   "spouse_job"
+    t.decimal  "spouse_income",                              precision: 8, scale: 2
+    t.string   "phone"
+    t.string   "phone_secondary"
+    t.string   "email"
+    t.boolean  "mother_unknown",                                                     default: false
+    t.string   "mother_name"
+    t.string   "father_name"
+    t.string   "job"
+    t.integer  "unit_characterist"
+    t.integer  "unit_characterist_occupation"
+    t.integer  "unit_characterist_edification"
+    t.integer  "unit_characterist_room"
+    t.integer  "unit_characterist_dweller"
+    t.integer  "unit_characterist_piped_water"
+    t.integer  "unit_characterist_electricity"
+    t.integer  "unit_characterist_sewer"
+    t.string   "document_rg"
+    t.string   "document_cpf"
+    t.string   "document_civil_state"
+    t.string   "document_income"
+    t.string   "document_spouse_income"
+    t.string   "document_spouse_rg"
+    t.string   "document_spouse_cpf"
+    t.string   "document_occupation_time"
+    t.string   "photo_unit_front"
+    t.string   "photo_unit_inside_one"
+    t.string   "photo_unit_inside_two"
+    t.string   "document_address"
+    t.string   "document_iptu"
+    t.string   "document_onus"
+    t.boolean  "declaration_occupation",                                             default: false
+    t.integer  "declaration_occupation_quantity"
+    t.boolean  "declaration_negative",                                               default: false
+    t.boolean  "declaration_descriptive",                                            default: false
+    t.boolean  "declaration_pacific",                                                default: false
+    t.boolean  "declaration_informal_activity",                                      default: false
+    t.decimal  "declaration_informal_activity_value",        precision: 8, scale: 2
+    t.boolean  "declaration_negative_stable_union",                                  default: false
+    t.boolean  "declaration_stable_union",                                           default: false
+    t.boolean  "declaration_spouse_pacific",                                         default: false
+    t.boolean  "declaration_spouse_informal_activity",                               default: false
+    t.decimal  "declaration_spouse_informal_activity_value", precision: 8, scale: 2
+    t.string   "declaration_unit_area"
+    t.boolean  "terms_use",                                                          default: false
+    t.datetime "created_at",                                                                         null: false
+    t.datetime "updated_at",                                                                         null: false
+  end
+
+  create_table "form_mestre_darmas_regularizations", force: :cascade do |t|
+    t.integer  "unit_id"
+    t.string   "address"
+    t.string   "name"
+    t.string   "nationality"
+    t.integer  "civil_state_id"
+    t.string   "civil_state_document"
+    t.string   "rg"
+    t.date     "rg_emission_date"
+    t.string   "rg_org"
+    t.string   "rg_document"
+    t.string   "cpf"
+    t.string   "cpf_document"
+    t.decimal  "income",                                     precision: 8, scale: 2
+    t.string   "income_document"
+    t.string   "spouse_name"
+    t.string   "spouse_rg"
+    t.date     "spouse_rg_emission_date"
+    t.string   "spouse_rg_org"
+    t.string   "spouse_rg_document"
+    t.string   "spouse_cpf"
+    t.string   "spouse_cpf_document"
+    t.string   "contact_phone"
+    t.string   "contact_mobile"
+    t.string   "contact_email"
+    t.string   "document_address"
+    t.string   "document_iptu"
+    t.string   "document_onus"
+    t.string   "terms_use",                                                          default: "f"
+    t.decimal  "declaration_informal_activity_value",        precision: 8, scale: 2
+    t.boolean  "declaration_informal_activity",                                      default: false
+    t.boolean  "declaration_descriptive",                                            default: false
+    t.boolean  "declaration_pacific",                                                default: false
+    t.boolean  "declaration_spouse_pacific",                                         default: false
+    t.boolean  "declaration_stable_union",                                           default: false
+    t.boolean  "declaration_spouse_informal_activity",                               default: false
+    t.decimal  "declaration_spouse_informal_activity_value", precision: 8, scale: 2
+    t.datetime "created_at",                                                                         null: false
+    t.datetime "updated_at",                                                                         null: false
   end
 
   create_table "helpdesk_ticket_attendants", force: :cascade do |t|
@@ -4150,27 +3943,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.index ["system_id"], name: "index_main_action_permissions_on_system_id", using: :btree
   end
 
-  create_table "main_action_sliders", force: :cascade do |t|
-    t.string   "thumbnail"
-    t.string   "title"
-    t.boolean  "status"
-    t.integer  "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "main_bsb_habitations", force: :cascade do |t|
-    t.string   "title"
-    t.string   "result_1"
-    t.string   "result_2"
-    t.string   "result_3"
-    t.string   "result_4"
-    t.string   "result_5"
-    t.string   "result_6"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "main_configs", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -4191,81 +3963,17 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.string   "name"
   end
 
-  create_table "main_events", force: :cascade do |t|
-    t.text     "resume"
-    t.text     "content"
-    t.integer  "type_event_id"
-    t.date     "date_publish"
-    t.string   "title"
-    t.string   "file_path"
-    t.boolean  "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  create_table "main_galleries", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.boolean  "status"
-    t.string   "thumbnail"
-    t.string   "photo",        default: [],              array: true
-    t.date     "date_publish"
-    t.boolean  "private"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  create_table "main_nav_categories", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "status"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "main_navs", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "target"
+    t.string   "open"
     t.integer  "order"
-    t.string   "link_external"
-    t.integer  "type_nav"
-    t.integer  "link_page_id"
-    t.integer  "link_post_id"
-    t.boolean  "publish"
-    t.integer  "category_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["category_id"], name: "index_main_navs_on_category_id", using: :btree
+    t.string   "permissions"
+    t.string   "label"
+    t.string   "href"
+    t.integer  "father_id"
+    t.boolean  "publish",     default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["father_id"], name: "index_main_navs_on_father_id", using: :btree
-    t.index ["link_page_id"], name: "index_main_navs_on_link_page_id", using: :btree
-    t.index ["link_post_id"], name: "index_main_navs_on_link_post_id", using: :btree
-  end
-
-  create_table "main_navs", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "target"
-    t.integer  "order"
-    t.string   "link_external"
-    t.integer  "type_nav"
-    t.integer  "link_page_id"
-    t.integer  "link_post_id"
-    t.boolean  "publish"
-    t.integer  "category_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["category_id"], name: "index_main_navs_on_category_id", using: :btree
-    t.index ["father_id"], name: "index_main_navs_on_father_id", using: :btree
-    t.index ["link_page_id"], name: "index_main_navs_on_link_page_id", using: :btree
-    t.index ["link_post_id"], name: "index_main_navs_on_link_post_id", using: :btree
-  end
-
-  create_table "main_page_categories", force: :cascade do |t|
-    t.string   "title"
-    t.boolean  "status"
-    t.string   "code"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "main_page_categories", force: :cascade do |t|
@@ -4294,30 +4002,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.integer  "page_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.string   "report"
-    t.index ["page_category_id"], name: "index_main_pages_on_page_category_id", using: :btree
-    t.index ["page_category_id"], name: "index_main_pages_on_page_category_id", using: :btree
-  end
-
-  create_table "main_pages", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.date     "date_publish"
-    t.boolean  "publish"
-    t.string   "thumb"
-    t.string   "photo_author"
-    t.string   "photo_description"
-    t.boolean  "active_photo"
-    t.string   "author"
-    t.string   "link"
-    t.string   "thumbnail"
-    t.string   "label_link"
-    t.string   "slug"
-    t.integer  "page_category_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "report"
-    t.index ["page_category_id"], name: "index_main_pages_on_page_category_id", using: :btree
     t.index ["page_category_id"], name: "index_main_pages_on_page_category_id", using: :btree
   end
 
@@ -4336,14 +4020,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "main_post_categories", force: :cascade do |t|
-    t.string   "title"
-    t.boolean  "status"
-    t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "main_posts", force: :cascade do |t|
     t.string   "title"
     t.text     "resume"
@@ -4366,44 +4042,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["post_category_id"], name: "index_main_posts_on_post_category_id", using: :btree
-    t.index ["post_category_id"], name: "index_main_posts_on_post_category_id", using: :btree
-  end
-
-  create_table "main_posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "resume"
-    t.text     "content"
-    t.date     "date"
-    t.boolean  "publish"
-    t.boolean  "slider"
-    t.string   "thumb"
-    t.string   "photo_author"
-    t.string   "photo_description"
-    t.boolean  "active_photo"
-    t.string   "author"
-    t.string   "link"
-    t.integer  "post_category_id"
-    t.string   "thumbnail"
-    t.string   "label_link"
-    t.string   "flickr"
-    t.string   "color"
-    t.integer  "local_post"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.index ["post_category_id"], name: "index_main_posts_on_post_category_id", using: :btree
-    t.index ["post_category_id"], name: "index_main_posts_on_post_category_id", using: :btree
-  end
-
-  create_table "main_service_results", force: :cascade do |t|
-    t.integer  "program_morarbem"
-    t.integer  "regularization"
-    t.integer  "contract"
-    t.integer  "ombudsman"
-    t.integer  "protocol"
-    t.date     "date"
-    t.boolean  "status"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
   end
 
   create_table "main_systems", force: :cascade do |t|
@@ -4425,14 +4063,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "main_type_events", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "status"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "main_user_permission_groups", force: :cascade do |t|
     t.integer  "staff_id"
     t.integer  "permission_group_id"
@@ -4449,17 +4079,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.datetime "updated_at",           null: false
     t.index ["action_permission_id"], name: "index_main_user_permissions_on_action_permission_id", using: :btree
     t.index ["staff_id"], name: "index_main_user_permissions_on_staff_id", using: :btree
-  end
-
-  create_table "main_videos", force: :cascade do |t|
-    t.string   "title"
-    t.string   "url"
-    t.integer  "position"
-    t.boolean  "publish"
-    t.text     "description"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "post_category_id"
   end
 
   create_table "manager_activities", force: :cascade do |t|
@@ -4592,29 +4211,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.boolean  "status",      default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-  end
-
-  create_table "mobilization_events", force: :cascade do |t|
-    t.string   "name"
-    t.date     "date"
-    t.text     "description"
-    t.integer  "situation"
-    t.string   "photo"
-    t.boolean  "status"
-    t.string   "district"
-    t.integer  "city_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.text     "content"
-    t.index ["city_id"], name: "index_mobilization_events_on_city_id", using: :btree
-  end
-
-  create_table "mobilization_sliders", force: :cascade do |t|
-    t.string   "title"
-    t.string   "photo"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "patrimony_conservations", force: :cascade do |t|
@@ -5747,137 +5343,6 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.datetime "updated_at"
   end
 
-  create_table "social_work_cadastre_cadastre_locations", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.integer  "location_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "order"
-    t.index ["cadastre_id"], name: "index_social_work_cadastre_cadastre_locations_on_cadastre_id", using: :btree
-    t.index ["location_id"], name: "index_social_work_cadastre_cadastre_locations_on_location_id", using: :btree
-  end
-
-  create_table "social_work_cadastre_cadastre_members", force: :cascade do |t|
-    t.string   "name"
-    t.string   "formation"
-    t.string   "rg"
-    t.string   "cpf"
-    t.string   "telephone"
-    t.string   "celphone"
-    t.string   "activite"
-    t.string   "registration_crea"
-    t.integer  "cadastre_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.boolean  "crea_cau"
-  end
-
-  create_table "social_work_cadastre_cadastre_steps", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.integer  "step"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["cadastre_id"], name: "index_social_work_cadastre_cadastre_steps_on_cadastre_id", using: :btree
-  end
-
-  create_table "social_work_cadastre_cadastre_titulars", force: :cascade do |t|
-    t.string   "name"
-    t.string   "formation"
-    t.string   "rg"
-    t.string   "cpf"
-    t.integer  "cadastre_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "crea_cau"
-  end
-
-  create_table "social_work_cadastre_cadastres", force: :cascade do |t|
-    t.string   "social_reason"
-    t.string   "crea"
-    t.string   "cnpj"
-    t.string   "password"
-    t.string   "address"
-    t.string   "cep"
-    t.string   "uf"
-    t.string   "telephone"
-    t.string   "celphone"
-    t.string   "email"
-    t.integer  "city_id"
-    t.string   "district"
-    t.boolean  "technological_resources"
-    t.boolean  "declaration_1"
-    t.boolean  "declaration_2"
-    t.boolean  "declaration_3"
-    t.boolean  "declaration_4"
-    t.boolean  "sicaf"
-    t.integer  "situation"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "reset_digest"
-    t.datetime "reset_sent_at"
-    t.string   "activation_digest"
-    t.boolean  "activated"
-    t.datetime "activated_at"
-    t.integer  "order"
-    t.boolean  "confirm"
-    t.integer  "assignment"
-    t.boolean  "crea_cau",                default: true
-    t.integer  "number"
-  end
-
-  create_table "social_work_cadastre_document_types", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.boolean  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "sicaf"
-    t.integer  "order"
-    t.boolean  "required"
-  end
-
-  create_table "social_work_cadastre_location_selects", force: :cascade do |t|
-    t.integer  "location_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "social_work_cadastre_locations", force: :cascade do |t|
-    t.integer  "city_id"
-    t.string   "name"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "social_work_cadastre_observations", force: :cascade do |t|
-    t.integer  "cadastre_id"
-    t.text     "observation"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "status"
-    t.boolean  "active"
-  end
-
-  create_table "social_work_cadastre_responsibles", force: :cascade do |t|
-    t.integer  "members_id"
-    t.integer  "cadastre_id"
-    t.boolean  "responsible"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "social_work_cadastre_upload_documents", force: :cascade do |t|
-    t.integer  "document_type_id"
-    t.integer  "cadastre_id"
-    t.text     "observation"
-    t.string   "file_path"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.boolean  "status",           default: true
-    t.boolean  "confirmation",     default: false
-  end
-
   create_table "social_work_questions", force: :cascade do |t|
     t.string   "name"
     t.boolean  "required"
@@ -6046,8 +5511,10 @@ ActiveRecord::Schema.define(version: 20200819131819) do
     t.integer  "city_id"
     t.string   "latitude"
     t.string   "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.text     "special_condition"
+    t.string   "phone"
   end
 
   create_table "technical_assistance_responsibles", force: :cascade do |t|
