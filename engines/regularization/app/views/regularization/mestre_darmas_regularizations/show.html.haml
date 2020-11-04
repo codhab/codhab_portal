@@ -1,0 +1,278 @@
+.panel{style: 'margin-top: 10px'}
+  .panel-heading
+    .h2
+      %b FORMULÁRIO DE REGULARIZAÇÃO
+      %br/
+      MESTRE D'ARMAS I – ESTÂNCIA I,II,III,IV e V – RECANTO SOSSEGO
+  .panel-body
+    .text-center
+      .h4{style: "color: green"} 
+        %b As informações foram recebidas com sucesso! Você pode visualizar as informações enviadas abaixo.
+    
+    %br/
+    .row
+      .col-md-12
+        %table.table.table-striped 
+          %thead
+            %tr 
+              %th Protocolo gerado
+              %th Enviado em
+          %tbody
+            %tr 
+              %td= "#{@regularization.id}#{@regularization.created_at.year}"
+              %td= @regularization.created_at.strftime("%d/%m/%Y %H:%M")
+        
+    .row
+      .col-md-12
+        %table.table.table-striped 
+          %thead
+            %tr 
+              %th Endereço
+          %tbody
+            %tr 
+              %td= @regularization.address.to_s.upcase
+        %br/
+        .h4 
+          %b Informações do requerente        
+        %table.table.table-striped 
+          %thead
+            %tr 
+              %th Nome
+              %th CPF
+              %th RG
+              %th RG (Emissão)
+              %th RG (Órgão)
+          %tbody
+            %tr 
+              %td= @regularization.name.to_s.mb_chars.upcase
+              %td= @regularization.cpf.format_cpf
+              %td= @regularization.rg.to_s.mb_chars.upcase
+              %td= @regularization.rg_emission_date.strftime("%d/%m/%Y") rescue nil
+              %td= @regularization.rg_org.to_s.mb_chars.upcase
+        
+        %table.table.table-striped 
+          %thead
+            %tr 
+              %th Estado civil
+              %th Nacionalidade
+              %th Renda
+              %th Telefone (fixo)
+              %th Celular
+              %th E-mail
+          %tbody
+            %tr 
+              %td= @regularization.civil_state.name.upcase rescue 'Sem informação'
+              %td= @regularization.nationality.to_s.mb_chars.upcase
+              %td= number_to_currency @regularization.income rescue 'Sem informação'
+              %td= @regularization.contact_phone
+              %td= @regularization.contact_mobile
+              %td= @regularization.contact_email
+        %br/
+        .h4 
+          %b Informações do Cônjuge
+        %table.table.table-striped 
+          %thead
+            %tr 
+              %th Nome
+              %th CPF
+              %th RG
+              %th RG (Emissão)
+              %th RG (Órgão)
+          %tbody
+            %tr 
+              %td= @regularization.spouse_name.to_s.mb_chars.upcase
+              %td= @regularization.spouse_cpf.to_s.mb_chars.upcase
+              %td= @regularization.spouse_rg.to_s.mb_chars.upcase
+              %td= @regularization.spouse_rg_emission_date.strftime("%d/%m/%Y") rescue 'Sem informação'
+              %td= @regularization.spouse_rg_org
+
+        %br/
+        .h4 
+          %b Documentação
+        %table.table.table-striped 
+          %thead 
+            %tr 
+              %th Descrição
+              %th Arquivo
+          %tbody
+            %tr 
+              %td Comprovante de renda (requerente)    
+              %td.collapsing    
+                - if @regularization.income_document?
+                  = link_to "Visualizar arquivo", @regularization.income_document_url, target: '_blank'
+                - else
+                  Não enviado
+            %tr 
+              %td Comprovante de CPF (requerente)    
+              %td.collapsing      
+                - if @regularization.cpf_document?
+                  = link_to "Visualizar arquivo", @regularization.cpf_document_url, target: '_blank'
+                - else
+                  Não enviado
+            %tr
+              %td Comprovante de RG (requerente)  
+              %td.collapsing     
+                - if @regularization.rg_document?
+                  = link_to "Visualizar arquivo", @regularization.rg_document_url, target: '_blank'
+                - else
+                  Não enviado
+            %tr
+              %td Comprovante de estado civil (requerente)  
+              %td.collapsing     
+                - if @regularization.civil_state_document?
+                  = link_to "Visualizar arquivo", @regularization.civil_state_document_url, target: '_blank'
+                - else
+                  Não enviado
+            %tr
+              %td Decisão judicial, certidão de trânsito em julgado, petição inicial, certidão de casamento averbada, certidão de óbito e formal de partilha (nos casos de divórcio e inventário envolvendo o imóvel a ser regularizado).  
+              %td.collapsing     
+                - if @regularization.document_address?
+                  = link_to "Visualizar arquivo", @regularization.document_address_url, target: '_blank'
+                - else
+                  Não enviado
+            %tr
+              %td Inscrição do IPTU do imóvel a ser regularizado (quando houver)
+              %td.collapsing   
+                - if @regularization.document_iptu?
+                  = link_to "Visualizar arquivo", @regularization.document_iptu_url, target: '_blank'
+                - else
+                  Não enviado
+            %tr
+              %td Cessão de Direito ou Procuração (quando for o caso);  
+              %td.collapsing   
+                - if @regularization.document_onus?
+                  = link_to "Visualizar arquivo", @regularization.document_onus_url, target: '_blank'
+                - else
+                  Não enviado
+            %tr
+              %td Comprovante de CPF (cônjuge)  
+              %td.collapsing   
+                - if @regularization.spouse_cpf_document?
+                  = link_to "Visualizar arquivo", @regularization.spouse_cpf_document_url, target: '_blank'
+                - else
+                  Não enviado
+            %tr
+              %td Comprovante de RG (cônjuge)    
+              %td.collapsing   
+                - if @regularization.spouse_rg_document?
+                  = link_to "Visualizar arquivo", @regularization.spouse_rg_document_url, target: '_blank'
+                - else
+                  Não enviado                                    
+        %br/
+        .h4 
+          %b Declarações
+        %br/
+        .row
+          .col-md-12
+            %p
+              %b DECLARAÇÃO PARA EMISSÃO DE FICHA DESCRITIVA
+            %p
+              Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do DF, estar ciente que os custos de emolumentos cartoriais, oriundos da lavratura e registro da escritura pública por mim solicitada, fazer-se-á sob minha total responsabilidade, razão pela qual renuncio os elencados nos dispositivos previstos no (art. 213, § 15, da Lei Federal n. 6.015/73; art 31, inciso I, do Provimento n. 44, da Corregedoria Nacional de Justiça e art. 216 do Provimento Geral da Corregedoria de Justiça).      
+        .row
+          .col-md-2
+            - if @regularization.declaration_descriptive
+              %b SIM
+            - else
+              %b NÃO
+        %hr/
+        .row
+          .col-md-12
+            %p
+              %b DECLARAÇÃO DE POSSE MANSA E PACÍFICA
+            %p
+              Inciso I, art. 4º, Dec. 34.210, de 13 de março de 2013.      
+            %p
+              Declaro que ocupo mansa e pacificamente o imóvel e que não existe demanda judicial relacionada a posse.
+        .row
+          .col-md-2      
+            - if @regularization.declaration_pacific
+              %b SIM
+            - else
+              %b NÃO
+        %hr/      
+          
+        .spouse{style: "display: #{[2,7].include?(@regularization.civil_state_id) ? 'block' : 'none'}"}
+          .row
+            .col-md-12
+              %p
+                %b DECLARAÇÃO DE POSSE MANSA E PACÍFICA (CÔNJUGE/ COMPANHEIRO)
+              %p
+                Inciso I, art. 4º, Dec. 34.210, de 13 de março de 2013.      
+              %p
+                Declaro que ocupo mansa e pacificamente o imóvel e que não existe demanda judicial relacionada a posse. 
+          .row
+            .col-md-2      
+              - if @regularization.declaration_spouse_pacific
+                %b SIM
+              - else
+                %b NÃO
+          %hr/
+        
+        .spouse{style: "display: #{[7].include?(@regularization.civil_state_id) ? 'block' : 'none'}"}
+          .row
+            .col-md-12
+              %p
+                %b DECLARAÇÃO DE UNIÃO ESTÁVEL
+              %p
+                Declaro para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal – CODHAB/DF, que VIVO EM REGIME DE UNIÃO ESTÁVEL “more uxório” com (já qualificado anteriormente).
+          .row
+            .col-md-2      
+              - if @regularization.declaration_stable_union
+                %b SIM
+              - else
+                %b NÃO
+          %hr/    
+        
+        .row
+          .col-md-12
+            %p
+              %b DECLARAÇÃO DE ATIVIDADE INFORMAL (REQUERENTE)      
+        .row
+          .col-md-12   
+            %p
+              Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
+        .row
+          .col-md-2      
+            - if @regularization.declaration_informal_activity
+              %b SIM, #{number_to_currency @regularization.declaration_informal_activity_value}
+            - else
+              %b NÃO
+        %hr/
+        
+        
+        .spouse{style: "display: #{[2,7].include?(@regularization.civil_state_id) ? 'block' : 'none'}"}
+          .row
+            .col-md-12
+              %p
+                %b DECLARAÇÃO DE ATIVIDADE INFORMAL (CÔNJUGE/COMPANHEIRO)
+          .row
+            .col-md-12   
+              %p
+                Declaro, para fazer prova junto à Companhia de Desenvolvimento Habitacional do Distrito Federal - CODHAB/DF, AUFIRO COM ATIVIDADE INFORMAL, em média, a importância de'
+
+          .row
+            .col-md-2      
+              - if @regularization.declaration_spouse_informal_activity
+                %b SIM, #{number_to_currency @regularization.declaration_spouse_informal_activity_value}
+              - else
+                %b NÃO              
+        
+
+        .row
+          .col-md-12
+            %p
+              %b Responsabilizo-me civil e criminalmente pela veracidade das declarações e tenho conhecimento das cominações legais existentes para falsa declaração. (Dispõe o art. 299 do Código Penal: 
+              %br/
+              %br/
+              %b 
+                %i “Omitir, em documento público ou particular, declaração que dele devia constar, ou nele inserir declaração falsa ou diversa da que devia ser escrita, com o fim de prejudicar direito, criar obrigação ou alterar a verdade sobre fato juridicamente relevante: Pena: reclusão, de 1 (um) a 5 (cinco) anos.....”). 
+              %br/
+              %br/
+              %b As declarações a cima não feram quaisquer direitos antecipados ao interessado, nem responsabilidade para a CODHAB.      
+
+        .row
+          .col-md-2      
+            - if @regularization.terms_use
+              %b SIM
+            - else
+              %b NÃO                             

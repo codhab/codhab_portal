@@ -84,3 +84,28 @@ pt-BR:
         phone_secondary: "Telefone (celular)"
         email: "E-mail"
       
+
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'regularization/mestre_darmas_regularization':
+          attributes:
+            document_address:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            civil_state_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            rg_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            cpf_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            income_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            spouse_rg_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            spouse_cpf_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            document_iptu:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            document_onus:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
