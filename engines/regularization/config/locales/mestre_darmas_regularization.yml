@@ -1,12 +1,4 @@
 pt-BR:
-  activemodel:
-    models:
-      'regularization/mestre_darmas_regularization_session'
-    attributes:
-      'regularization/mestre_darmas_regularization_session':
-        name: "Nome (completo)"
-        born: "Data de nascimento"
-        cpf: "CPF"
   activerecord:
     errors:
       models:
@@ -14,6 +6,24 @@ pt-BR:
           attributes:
             born:
               invalid_date: 'data inválida'
+            document_address:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            civil_state_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            rg_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            cpf_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            income_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            spouse_rg_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            spouse_cpf_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            document_iptu:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            document_onus:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'                      
     models:
       'regularization/mestre_darmas_regularization': 'Solicitação'
     attributes:
@@ -41,7 +51,7 @@ pt-BR:
         photo_unit_inside_two:  "Foto do interior do imóvel"
         document_address: "Anexar: Decisão judicial, certidão de trânsito em julgado, petição inicial, certidão de casamento averbada, certidão de óbito e formal de partilha (nos casos de divórcio e inventário envolvendo o imóvel a ser regularizado)."
         document_iptu: "Anexar: Inscrição do IPTU do imóvel a ser regularizado (se houver);"
-        document_juridical: "Anexar: Decisão judicial, certidão de trânsito em julgado, petição inicial, certidão de casamento averbada, certidão de óbito e formal de partilha (nos casos de divórcio e inventário envolvendo o imóvel a ser regularizado)"
+        document_juridiincome_documentcal: "Anexar: Decisão judicial, certidão de trânsito em julgado, petição inicial, certidão de casamento averbada, certidão de óbito e formal de partilha (nos casos de divórcio e inventário envolvendo o imóvel a ser regularizado)"
         declaration_occupation_one:
         declaration_occupation_two: ""
         declaration_negative:
@@ -83,29 +93,3 @@ pt-BR:
         phone: "Telefone (fixo)"
         phone_secondary: "Telefone (celular)"
         email: "E-mail"
-      
-
-pt-BR:
-  activerecord:
-    errors:
-      models:
-        'regularization/mestre_darmas_regularization':
-          attributes:
-            document_address:
-              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
-            civil_state_document:
-              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
-            rg_document:
-              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
-            cpf_document:
-              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
-            income_document:
-              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
-            spouse_rg_document:
-              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
-            spouse_cpf_document:
-              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
-            document_iptu:
-              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
-            document_onus:
-              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
