@@ -94,23 +94,23 @@ module Candidate
         cadastre = Core::Candidate::Cadastre.find_by(cpf: self.cpf)
 
         if !cadastre.nil?
-          situation_cadastre = Core::Candidate::CadastreSituation.where(cadastre_id: cadastre.id).order(id: :asc).last
+          situation_cadastre = Core::Candidate::CadastreSituation.where(cadastre_id: cadastre.id).order(id: :asc).last rescue nil
           convocation = Core::Candidate::CadastreConvocation.where(cadastre_id: cadastre.id, status: true, convocation_id: [1410,1411,1516])
 
-          if [4,54,67,68,70].include?(situation_cadastre.situation_status_id) && !convocation.present?
+          if !situation_cadastre.nil? && [4,54,67,68,70].include?(situation_cadastre.situation_status_id) && !convocation.present?
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Habilitado')
           end
           
-          if [5,7,8,9,10,12].include?(situation_cadastre.situation_status_id)
+          if !situation_cadastre.nil? && [5,7,8,9,10,12].include?(situation_cadastre.situation_status_id)
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Contemplado')
           end
 
-          if (3 == situation_cadastre.situation_status_id)
+          if !situation_cadastre.nil? && (3 == situation_cadastre.situation_status_id)
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já se encontra Convocado')
           end
 
 
-          if (2 == situation_cadastre.situation_status_id)
+          if !situation_cadastre.nil? && (2 == situation_cadastre.situation_status_id)
             errors.add(:cpf, 'não é possível realizar a inscrição do CPF, pois já Inscrito')
           end
 

@@ -1,0 +1,21 @@
+.modal-header
+  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+    %span{"aria-hidden" => "true"} ×
+  %h4#modal.modal-title Pendência (Cadastral)
+.modal-body
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th Data
+        %th Descrição
+
+    %tbody
+      - if @candidate.occurrences.present?
+        - @candidate.occurrences.each do |occ|
+          %tr
+            %td.collapsing= occ.created_at.strftime("%d/%m/%Y") rescue nil
+            %td= occ.description
+      - else
+        %tr
+          %td{colspan: 2}
+            Nenhuma ocorrência registrada.

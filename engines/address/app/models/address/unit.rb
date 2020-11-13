@@ -22,7 +22,7 @@ module Address
             .group(:unit_id))
     .where("candidate_cadastre_addresses.situation_id in (0,1,5) and candidate_cadastres.cpf = ?", cpf.unformat_cpf)
     }
-    scope :by_typology, -> (typology) {joins(:enterprise_typology).where('extranet.project_enterprise_typologies.typology_id = ?', typology)}
+    scope :by_typology, -> (typology) {joins(:enterprise_typology).where('extranet.project_enterprise_typologies.id = ?', typology)}
     scope :by_enterprise, -> (enterprise) {joins(:enterprise_typology).where('extranet.project_enterprise_typologies.enterprise_id = ?', enterprise)}
 
 

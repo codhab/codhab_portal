@@ -23,7 +23,7 @@
           %b #{@candidate.name}
           %br/
           #{@candidate.cpf}
-        = link_to "Retornar a listagem", candidate.external_attendance_candidates_path, class: 'btn btn-info', data: { disable_with: "Aguarde..."}
+        = link_to "Retornar a listagem", candidate.external_attendance_candidates_path(by_cpf: @candidate.cpf), class: 'btn btn-info', data: { disable_with: "Aguarde..."}
 
       .panel-body
 

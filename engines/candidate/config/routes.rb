@@ -1,6 +1,8 @@
 Candidate::Engine.routes.draw do
 
   get 'convocados-pre-habilitacao', to: 'lists#pre_enable'
+  get 'convocados-pre-habilitacao-complemento', to: 'lists#pre_enable_complete'
+  get 'convocados-pre-habilitacao-segunda-fase', to: 'lists#pre_enable_second'
 
   get 'cities', to: 'subscribes#cities'
   
@@ -49,7 +51,11 @@ Candidate::Engine.routes.draw do
   namespace :external_attendance, path: 'atendimento-externo' do
     get '/', to: 'sessions#new'
     resources :sessions
-    resources :candidates, path: 'candidatos'
+    resources :candidates, path: 'candidatos' do
+      get 'occurrence'
+      get 'ticket_request'
+      get 'check'
+    end
   end
 
   namespace :restrict_area, path: 'area_restrita' do

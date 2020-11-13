@@ -3,7 +3,7 @@ module Firm
     class CandidatesController < ApiController
       
       def index
-        @indications = current_company.enterprise_cadastres.includes(:cadastre)
+        @indications = current_company.enterprise_cadastres.where.not(indication_type_id: 999).includes(:cadastre)
       end    
         
       def show

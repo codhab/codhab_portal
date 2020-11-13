@@ -31,6 +31,14 @@ module Candidate
     def pre_enable
       @pre_enable_cadastres = apply_scopes(::Candidate::PreEnable).select(:name, :cpf, :total).order(total: :desc).paginate(page: params[:page], per_page: 50)
     end
+    
+    def pre_enable_complete
+      @pre_enable_cadastres = apply_scopes(::Candidate::PreEnableComplete).select(:name, :cpf, :total).order(total: :desc).paginate(page: params[:page], per_page: 50)
+    end
+    
+    def pre_enable_second
+      @pre_enable_cadastres = apply_scopes(::Candidate::PreEnableSecond).select(:name, :cpf, :total).order(total: :desc).paginate(page: params[:page], per_page: 50)
+    end
 
     private
 

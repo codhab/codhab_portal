@@ -3,7 +3,7 @@
     .panel
       .panel-body
         %h3
-          %b Área restrita - Atendimento Externo
+          %b Área restrita - Atendimento Externo 
         %br/
         %h4 
           #{external_attendant.name} 
@@ -16,22 +16,28 @@
     .panel
       .panel-heading
         %h3 
-          %b Listagem de pré-habilitados
+          %b Listagem de pré-habilitados - Total: (#{@candidates.total_entries rescue 0})
       .panel-body
  
         = simple_form_for url_for, method: :get do |f|
           .row
-            .col-md-4
+            .col-md-3
               = f.input :by_cpf, label: "Informe o CPF", as: :string, input_html: { class: 'cpf', name: :by_cpf, value: params[:by_cpf]}
+            .col-md-3
+              = f.input :by_indication, label: "Liberado?", as: :select, include_blank: "Todos...", input_html: { name: :by_indication }, selected: params[:by_indication]
+            .col-md-3
+              = f.input :by_occurrence, label: "Pendência Cadastral?", as: :select, include_blank: "Todos...", input_html: { name: :by_occurrence }, selected: params[:by_occurrence]
           = f.submit "Pesquisar", name: nil, class: 'btn btn-success', data: { disable_with: 'Pesquisando...'}
           = link_to "Limpar pesquisa", candidate.external_attendance_candidates_path, class: 'btn btn-info', data: { disable_with: 'Limpando...'}
         %table.table.table-bordered.table-striped.table-celled
           %thead
             %tr
               %th Nome/CPF
-              %th Atendimento
               %th Situação
+              %th Pendência (Atendimento)
+              %th Pendência (Cadastral)
               %th App
+              %th Liberação
           %tbody
             - if @candidates.present?
               - @candidates.each do |cand|
@@ -41,13 +47,8 @@
                     %br/ 
                     = cand.name 
                   %td
-                    - if cand.ticket.nil?
-                      Atendimento não iniciado
-                    - else
-                      Atendimento iniciado
-                  %td
-                    - if cand.ticket.nil?
-                      Sem situação
+                    - if !cand.tickets.present?
+                      Não iniciou
                     - else
                       - if cand.ticket.supervisor_date.nil?
                         - if cand.ticket.request
@@ -63,7 +64,22 @@
                         - else
                           Indeferido pela CODHAB
                   %td
+                    - if !cand.ticket.nil? && cand.ticket.request
+                      = link_to "Visualizar", candidate.external_attendance_candidate_ticket_request_path(cand.cadastre_id), class: 'btn btn-warning btn-sm', remote: true, data: { disable_with: "Carregando..."}
+                    - else
+                      Sem pendência
+                  %td
+                    - if ::Candidate::CadastreOccurrence.where(cadastre_id: cand.cadastre_id, solved: false).present? 
+                      = link_to "Visualizar pendência", candidate.external_attendance_candidate_occurrence_path(cand.cadastre_id), class: 'btn btn-danger btn-sm', remote: true, data: { disable_with: "Carregando..."}
+                    - else
+                      Sem pendência
+                  %td
                     = link_to "Visualizar APP", candidate.external_attendance_candidate_path(cand.cpf)
+                  %td
+                    - if ::Firm::EnterpriseCadastre.where(enterprise_id: 212, indication_type_id: 999, cadastre_id: cand.cadastre_id).present?
+                      = link_to "Liberado", candidate.external_attendance_candidate_check_path(cand.cadastre_id, page: params[:page]), class: 'btn btn-success'
+                    - else
+                      = link_to "Não liberado", candidate.external_attendance_candidate_check_path(cand.cadastre_id, page: params[:page]), class: 'btn btn-danger btn-sm'
             - else
               %tr
                 %td{colspan: 5}

@@ -12,7 +12,7 @@ module Firm
     def index
       respond_to do |format|
         format.json {
-          @enterprise_situation_statuses = apply_scopes(Core::Candidate::EnterpriseSituationStatus).all
+          @enterprise_situation_statuses = apply_scopes(::Firm::EnterpriseCadastreSituation).all
         }
       end
     end
@@ -22,7 +22,7 @@ module Firm
     end
 
     def create
-      @enterprise_situation = @enterprise_cadastre.enterprise_cadastre_situations.new(enterprise_status_params)
+      @enterprise_situation = ::Firm::EnterpriseCadastreSituation.where(enterprise_cadastre_id: @enterprise_cadastre.id).new(enterprise_status_params)
       @enterprise_situation.enterprise_cadastre_status_id = params[:enterprise_cadastre_status_id]
       @enterprise_situation.save
       if @enterprise_situation.type_action == 'devolução'

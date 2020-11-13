@@ -6,7 +6,7 @@
       .row
         .col-md-6
           = f.label "Ação"
-          = f.input :type_action, as: 'select', collection: Core::Candidate::EnterpriseCadastreSituation.type_actions.keys, label: false, prompt: "Selecione..."
+          = f.input :type_action, as: 'select', collection: ::Firm::EnterpriseCadastreSituation.type_actions.keys, label: false, prompt: "Selecione..."
         .col-md-6
           = f.label "Tipo de ação"
           = f.input :enterprise_situation_action_id, as: 'select', collection: Core::Candidate::EnterpriseSituationAction.where(status: true), label: false, prompt: "Selecione..."

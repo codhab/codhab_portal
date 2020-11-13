@@ -1,0 +1,95 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        'regularization/mestre_darmas_regularization':
+          attributes:
+            born:
+              invalid_date: 'data inválida'
+            document_address:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            civil_state_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            rg_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            cpf_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            income_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            spouse_rg_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            spouse_cpf_document:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            document_iptu:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'        
+            document_onus:
+              allowed_file_content_types: 'Enviar somente arquivos do tipo PDF ou JPG'                      
+    models:
+      'regularization/mestre_darmas_regularization': 'Solicitação'
+    attributes:
+      'regularization/mestre_darmas_regularization':
+        address: "Endereço completo"
+        born: 'Data de nascimento'
+        rg_emission_date: "RG (data de emissão)"
+        rg_org: "RG (Órgão emissor)"
+        spouse_born: 'Data de nascimento'
+        nationality: "Nacionalidade"
+        iptu_code: "Nº de registro do IPTU"
+        civil_state_document: "Anexar: Certidão de casamento ou de nascimento (casal quando for o caso de união estável ou se for solteiro);"
+        no_iptu_code: "Endereço encontrado?"
+        document_rg: "Anexar: carteira de identidade ou CNH vigente"
+        document_cpf: "Anexar: CPF ou RG com nº de CPF, ou CNH vigente"
+        document_civil_state: "Anexar: Certidão de casamento ou de nascimento (casal quando for o caso de união estável ou se for solteiro)"
+        document_onus: "Anexar: Cessão de Direito ou Procuração (quando for o caso);"
+        document_income: "Anexar: Ultimo contracheque e cópia da carteira de trabalho. (página da foto, qualificação civil, último contrato e página seguinte)"
+        document_spouse_income: "Anexar: Ultimo contracheque e cópia da carteira de trabalho. (página da foto, qualificação civil, último contrato e página seguinte) Obs: No caso de renda informal, preencher Declaração de Renda Informal."
+        document_spouse_rg: "Anexar: RG, ou CNH vigente"
+        document_spouse_cpf: "Anexar: CPF vigente"
+        document_occupation_time: "Anexar: Cópia da conta de água ou de luz do local a ser regularizado"
+        photo_unit_front: "Foto da fachada (frente do imóvel juntamente com o morador)"
+        photo_unit_inside_one: "Foto do interior do imóvel"
+        photo_unit_inside_two:  "Foto do interior do imóvel"
+        document_address: "Anexar: Decisão judicial, certidão de trânsito em julgado, petição inicial, certidão de casamento averbada, certidão de óbito e formal de partilha (nos casos de divórcio e inventário envolvendo o imóvel a ser regularizado)."
+        document_iptu: "Anexar: Inscrição do IPTU do imóvel a ser regularizado (se houver);"
+        document_juridiincome_documentcal: "Anexar: Decisão judicial, certidão de trânsito em julgado, petição inicial, certidão de casamento averbada, certidão de óbito e formal de partilha (nos casos de divórcio e inventário envolvendo o imóvel a ser regularizado)"
+        declaration_occupation_one:
+        declaration_occupation_two: ""
+        declaration_negative:
+        declaration_descriptive:
+        declaration_pacific:
+        contact_phone: "Telefone (fixo)"
+        contact_mobile: "Celular"
+        contact_email: "E-mail"
+        declaration_informal_activity:
+        declaration_informal_activity_value: "Informe o valor"
+        declaration_stable_union:
+        declaration_spouse_pacific:
+        declaration_spouse_informal_activity: "Valor"
+        declaration_spouse_informal_activity_value: 'Informe o valor'
+        declaration_unit_area:  
+        unit_characterist_sewer: "Características de instalação de esgoto"       
+        category_id:
+        city_id:
+        unit_id:
+        cep: "CEP"
+        complete_address: "Endereço completo"
+        cpf: "CPF (Titular)"
+        name: "Nome completo (Titular)"
+        rg: "RG (Titular)"
+        naturality: "Naturalidade (Titular)"
+        civil_state_id: "Estado civil"
+        income: "Renda (Titular)"
+        habitation_type_id: "Tipo de habitação"
+        spouse_name:  "Nome completo (Cônjuge)"
+        spouse_rg: "RG (Cônjuge)"
+        spouse_cpf: "CPF (Cônjuge)"
+        spouse_job: "Profissão (Cônjuge)"
+        spouse_income: "Renda (Cônjuge)"
+        spouse_cpf_document: "(Cônjuge) Anexar: Comprovante de CPF"
+        spouse_rg_document: "(Cônjuge) Anexar: Carteira de identidade ou CNH vigente"
+        income_document: "(Requerente) Anexar: Comprovante de renda"
+        cpf_document: "(Requerente) Anexar: Comprovante de CPF"
+        rg_document: "(Requerente) Anexar: Carteira de identidade ou CNH vigente"
+        phone: "Telefone (fixo)"
+        phone_secondary: "Telefone (celular)"
+        email: "E-mail"

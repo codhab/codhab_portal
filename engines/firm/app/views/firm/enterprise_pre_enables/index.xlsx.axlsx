@@ -1,0 +1,22 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Pre Habilitados") do |sheet|
+  sheet.add_row ["Nome", 
+                 "CPF",
+                 "Situacao",
+                 "Pontuacao",
+                 "Pendencia no atendimento?",
+                 "Pendencia cadastral?",
+                 "Liberado?"]
+
+
+  @pre_enables.each do |pre_enable|
+    sheet.add_row [ pre_enable.name,
+                    pre_enable.cpf,
+                    (pre_enable.ticket ? (pre_enable.ticket_close ? (pre_enable.ticket_supervisor ? "DEFERIDO" : "INDEFERIDO") : (pre_enable.ticket_codhab ? "EM ANALISE" : "PENDENTE COM CANDIDATO")) : "NAO INICIOU ATENDIMENTO"),
+                    pre_enable.total,
+                    ((!pre_enable.ticket.nil? && pre_enable.ticket.request) ? "SIM": "NAO"),
+                    (::Candidate::CadastreOccurrence.where(cadastre_id: pre_enable.cadastre_id, solved: false).present? ? "SIM" : "NAO"),
+                    pre_enable.indication ? "LIBERADO" : "NÃO LIBERADO"
+                  ]
+  end
+end
