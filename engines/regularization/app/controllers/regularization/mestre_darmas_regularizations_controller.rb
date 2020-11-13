@@ -3,6 +3,7 @@ require_dependency 'regularization/application_controller'
 module Regularization
   class MestreDarmasRegularizationsController < ApplicationController
     before_action :allow_iframe
+    layout 'schedule/application'
     
     def index
     end
