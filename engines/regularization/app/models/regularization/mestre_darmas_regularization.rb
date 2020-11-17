@@ -20,7 +20,7 @@ module Regularization
     validates :income, presence: true 
     validates :cpf, cpf: true, presence: true
 
-    validates_uniqueness_of :cpf, message: "CPF já realizou um requerimento"
+    #validates_uniqueness_of :cpf, message: "CPF já realizou um requerimento"
 
     validates :income_document,
               :cpf_document,
