@@ -114,4 +114,12 @@ Candidate::Engine.routes.draw do
       post  'update_password'
     end
   end
+
+  namespace :attendance_appraisal, path: 'atendimento-laudo' do
+    root 'sessions#index'
+    resources :sessions, path: 'accesso'
+    resources :appraisals, path: 'laudos' do
+      resources :documents
+    end
+  end
 end
