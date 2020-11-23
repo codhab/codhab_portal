@@ -57,6 +57,11 @@
     :javascript
       var URL = "#{request.host_with_port}"
   %body{style: (controller_path == "main/home")? "background-color:#fff!important;" : "background-color:#EBECF0!important;"}
+    .enabled.d-print-none{:vw => ""}
+      .active{"vw-access-button" => ""}
+      %div{"vw-plugin-wrapper" => ""}
+        .vw-plugin-top-wrapper
+        
     = render 'layouts/portal/top_nav', cached: true
     = render 'layouts/portal/header', cached: true
     %div{class: (controller_path == "main/home" || controller_path == "main/habita_teste" || controller_path == "assistance/home") ? "" : "container portal-container box"}
@@ -67,3 +72,7 @@
     #modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal", :role => "dialog", :tabindex => "-1"}
       .modal-dialog
         .modal-content
+
+    %script{src: 'https://vlibras.gov.br/app/vlibras-plugin.js'}
+    :javascript
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
