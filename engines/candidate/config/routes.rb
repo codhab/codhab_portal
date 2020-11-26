@@ -122,4 +122,5 @@ Candidate::Engine.routes.draw do
       resources :documents
     end
   end
+
 end

@@ -1,0 +1,29 @@
+
+.row{style: "padding-top: 10px"}
+  .col-md-12
+    .panel
+      .panel-heading
+        %h3 
+          %b Listagem de solicitações
+        %h4 Mestre D'armas
+        %br/
+        %h4
+          %b= mestre_darmas_current_user.name
+        = link_to "Finalizar acesso", regularization.mestre_darmas_regularization_session_path(mestre_darmas_current_user), method: :delete, data: { confirm: "Tem certeza que deseja sair?"}
+      .panel-body
+        Total listado: #{@solicitations.count}
+        %table.table.table-striped.table-bordered.table-celled
+          %thead
+            %tr
+              %th Endereço
+              %th CPF
+              %th Data de solicitação
+              %th 
+          %tbody
+            - @solicitations.each do |solicitation|
+              %tr 
+                %td= solicitation.address.to_s.upcase
+                %td= solicitation.cpf
+                %td= solicitation.created_at.strftime("%d/%m/%Y %H:%M")
+                %td
+                  = link_to "Visualizar dados", regularization.mestre_darmas_regularization_cadastre_path(solicitation), remote: true, data: { disable_with: "Carregando..."}
