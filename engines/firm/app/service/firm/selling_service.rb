@@ -10,8 +10,8 @@ module Firm
 
     def sell! (selling_observation, selling_file_path)
       return false unless @unit.unit_book?
-
-      #realiza a criação de um novo registro em unit
+      return false if ::Core::Candidate::CadastreOccurrence.where(cadastre_id: @cadastre.id, solved: false).present?
+      #realiza a criação de um novo registro em unit  
       cadastre_address = @unit.cadastre_address.new({
         cadastre_id: @cadastre.id,
         observation: selling_observation,

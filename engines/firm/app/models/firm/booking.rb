@@ -19,6 +19,8 @@ module Firm
 
       @cadastre = ::Candidate::Cadastre.find_by_cpf(self.cpf) rescue nil
       @unit = ::Address::Unit.find(self.unit_id) rescue nil
+
+      
       if @cadastre.nil?
         errors.add(:cpf, 'CPF não existe na base de dados')
         return false
