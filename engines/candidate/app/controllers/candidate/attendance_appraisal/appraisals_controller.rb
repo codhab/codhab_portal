@@ -8,7 +8,7 @@ module Candidate
       helper_method :current_medical
       
       def index
-        @apprailsas = apply_scopes(Candidate::AttendanceAppraisal::Appraisal).all.order(id: :asc).paginate(page: params[:page], per_page: 50)
+        @apprailsas = apply_scopes(::Candidate::AttendanceAppraisal::Appraisal).all.order(id: :asc).paginate(page: params[:page], per_page: 50)
       end
 
       private
