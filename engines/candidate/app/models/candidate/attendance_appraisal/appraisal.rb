@@ -19,22 +19,23 @@ module Candidate
             attendance_custom_tickets.created_at::date as candidate_date
           '
         )
-        .joins('INNER JOIN candidate_cadastre_mirrors ON candidate_cadastre_mirrors.id = attendance_custom_tickets.cadastre_mirror_id')
-        .where('candidate_cadastre_mirrors.special_condition_id = 2 OR ((
+        .joins('INNER JOIN extranet.candidate_cadastre_mirrors 
+          ON extranet.candidate_cadastre_mirrors.id = extranet.attendance_custom_tickets.cadastre_mirror_id')
+        .where('extranet.candidate_cadastre_mirrors.special_condition_id = 2 OR ((
           select count(*) 
-            from candidate_dependent_mirrors 
-            where candidate_dependent_mirrors.cadastre_mirror_id = candidate_cadastre_mirrors.id
-            and candidate_dependent_mirrors.special_condition_id = 2
+            from extranet.candidate_dependent_mirrors 
+            where extranet.candidate_dependent_mirrors.cadastre_mirror_id = extranet.candidate_cadastre_mirrors.id
+            and extranet.candidate_dependent_mirrors.special_condition_id = 2
           ) > 0)')
-        .where('attendance_custom_tickets.attendant_date is null 
-               and attendance_custom_tickets.supervisor_date is null
+        .where('extranet.attendance_custom_tickets.attendant_date is null 
+               and extranet.attendance_custom_tickets.supervisor_date is null
                and (
-                    attendance_custom_tickets.action_one is true
-                    and attendance_custom_tickets.action_two is true
-                    and attendance_custom_tickets.action_three is true
-                    and attendance_custom_tickets.action_four is true
-                    and attendance_custom_tickets.action_five is true
-                    and attendance_custom_tickets.request is false
+                    extranet.attendance_custom_tickets.action_one is true
+                    and extranet.attendance_custom_tickets.action_two is true
+                    and extranet.attendance_custom_tickets.action_three is true
+                    and extranet.attendance_custom_tickets.action_four is true
+                    and extranet.attendance_custom_tickets.action_five is true
+                    and extranet.attendance_custom_tickets.request is false
                    ) is true'
               )
       
