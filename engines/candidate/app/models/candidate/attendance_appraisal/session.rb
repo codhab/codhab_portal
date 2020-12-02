@@ -3,27 +3,27 @@ module Candidate
     class Session
       include ActiveModel::Model 
 
-      attr_accessor :cpf, :password, :attendant
-
-      validates :cpf, cpf: true, presence: true 
+      attr_accessor :username, :password, :attendant
+      
+      validates :username, presence: true 
       validates :password, presence: true, length: { minimum: 6}
-      validate  :cpf_is_allow?
+      validate  :username_is_allow?
 
       def authenticate(session)
         return false if invalid?
 
-        session[:external_attendance_user_id] = @attendant.id
+        session[:external_medical_attendance_user_id] = @attendant.id
 
         true
       end
 
       private
 
-      def cpf_is_allow?
-        #@attendant = ::Candidate::ExternalAttendance::User.find_by(cpf: self.cpf)
+      def username_is_allow?
+        @attendant = ::Candidate::ExternalAttendance::User.find_by(cpf: self.username)
 
         if @attendant.nil? || (::BCrypt::Password.new(@attendant.password_digest) != self.password )
-          errors.add(:cpf, "ou senha não conferem")
+          errors.add(:username, "ou senha não conferem")
         end
       end
 

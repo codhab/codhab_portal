@@ -2,5 +2,55 @@
   %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
     %span{"aria-hidden" => "true"} ×
   %h4#modal.modal-title Documentação
+
 .modal-body
 
+  %h4 Titular
+  %table.table.table-striped.table-bordered 
+    %thead
+      %tr
+        %th Nome
+        %th Idade
+        %th CID
+    %tbody
+      %tr
+        %td= @ticket.cadastre.name.upcase
+        %td= @ticket.cadastre.age
+        %td= @ticket.cadastre.cid.blank? ? "Não informado" :  @ticket.cadastre.cid
+  %h4 Dependentes
+  %table.table.table-striped.table-bordered 
+    %thead
+      %tr
+        %th Nome 
+        %th Idade 
+        %th CID 
+    %tbody
+      - if @ticket.cadastre.dependents.where(special_condition_id: 2).present?
+        - @ticket.cadastre.dependents.where(special_condition_id: 2).each do |dependent|
+          %tr
+            %td= dependent.name.upcase
+            %td= dependent.age
+            %td= dependent.cid.blank? ? "Não informado" : dependent.cid
+      - else
+        %tr
+          %td{colspan: 3}
+            Nenhum dependente cadastrado
+  
+  %h4 Documentos
+  %table.table.table-striped.table-bordered 
+    %thead
+      %tr
+        %th Descrição
+        %th Arquivo
+        %th Ação
+    %tbody
+      - if @ticket.appraisal_documents.where(document_type_id: [17,5]).present?
+        - @ticket.appraisal_documents.where(document_type_id: [17,5]).each do |document|
+          %tr
+            %td= document.document_type.name rescue nil
+            %td.collapsing= link_to "Visualizar", "http://www.codhab.df.gov.br/uploads/attendance/document/#{document.attachment}", target: '_blank'
+            %td.collapsing= link_to "Check", "#{document.attachment}", target: '_blank'
+      - else
+        %tr
+          %td{colspan: 3}
+            Nenhum laudo enviado

@@ -1,7 +1,7 @@
 = simple_form_for @session, url: candidate.attendance_appraisal_sessions_path do |f|
   .row
     .col-md-6
-      = f.input :cpf, label: "CPF", input_html: { class: mobile_device? ? '' : 'cpf'}
+      = f.input :username, label: "Usuário", placeholder: "Informe o usuário"
     .col-md-6
       = f.input :password, label: "Senha", placeholder: "********"
   .row

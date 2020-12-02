@@ -116,8 +116,8 @@ Candidate::Engine.routes.draw do
   end
 
   namespace :attendance_appraisal, path: 'atendimento-laudo' do
-    root 'sessions#index'
-    resources :sessions, path: 'accesso'
+    get '/', to: 'sessions#index'
+    resources :sessions, path: 'acesso', only: [:index, :new, :create, :destroy]
     resources :appraisals, path: 'laudos' do
       resources :documents
     end

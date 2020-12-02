@@ -5,7 +5,7 @@ module Candidate
     class DocumentsController < ApplicationController
       
       def index
-        @ticket = ::Candidate::AttendanceAppraisal::Appraisal.find(params[:id])
+        @ticket = ::Candidate::AttendanceAppraisal::Appraisal.find_by(id: params[:appraisal_id])
       end
 
     end
