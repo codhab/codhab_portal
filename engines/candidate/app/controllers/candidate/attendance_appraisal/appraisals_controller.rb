@@ -8,7 +8,7 @@ module Candidate
       helper_method :current_medical
       
       def index
-        @apprailsas = apply_scopes(::Candidate::AttendanceAppraisal::Appraisal).all.order(id: :asc).paginate(page: params[:page], per_page: 50)
+        @apprailsas = ::Candidate::AttendanceAppraisal::Appraisal.all.order(id: :asc).paginate(page: params[:page], per_page: 50)
       end
 
       private
@@ -19,7 +19,7 @@ module Candidate
 
       def authenticate!
         if current_medical.nil?
-          redirect_to candidate.new_attendance_appraisal_session_path if controller_name != 'attendance_appraisal_session'
+          redirect_to candidate.new_attendance_appraisal_session_path if controller_name != 'attendance_appraisal_sessions'
         end
       end
 
