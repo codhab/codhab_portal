@@ -60,6 +60,27 @@ module Candidate
       end
     end
 
+    def new_remember
+      @remember = Candidate::SubscribeRemember.new
+    end
+    
+    def create_remember
+      @remember = Candidate::SubscribeRemember.new(set_remember_params)
+      if @remember.valid?
+        session[:candidate_subscribe_remember_id] = @remember.subscribe_id
+        redirect_to candidate.edit_password_subscribes_path
+      else
+        render action: :new_remember
+      end
+    end
+
+    def edit_password
+    end
+
+    def update_password
+    end
+
+
 
     private
 
@@ -70,6 +91,11 @@ module Candidate
           subscribe_dependents_attributes: [:name, :nacionality, :_destroy, :cpf, :born, :born_state_id, :gender_id, :rg, 
           :rg_org, :rg_state_id, :rg_emission_date, :naturality, :civil_state_id, :income, :kinship_id, :special_condition, :special_condition_type_id, :cid, :nis, :id]
         )
+    end
+
+    def set_remember_params
+      params.require(:subscribe_remember)
+        .permit(:name, :rg, :born, :cpf)
     end
 
     def set_params_update

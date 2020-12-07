@@ -9,6 +9,13 @@ Candidate::Engine.routes.draw do
   resources :subscribes, except: :destroy, path: 'inscricao' do
     get 'new_session', on: :collection
     post 'create_session', on: :collection
+
+    get 'new_remember', on: :collection
+    post 'create_remember', on: :collection
+
+
+    get 'edit_password', on: :collection
+    post 'update_password', on: :collection
   end
 
   get 'indicacao-crixa', to: 'crixa_indications#new'
