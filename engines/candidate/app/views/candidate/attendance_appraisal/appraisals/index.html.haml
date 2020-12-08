@@ -15,21 +15,13 @@
               %thead
                 %tr
                   %th.collapsing Nº atendimento
-                  %th CPF (Candidato)
+                  %th Candidato
                   %th Data (Atendimento)
-                  %th
-              %tbody
-                - @apprailsas.each do |ticket|
-                  %tr
-                    %td.collapsing= ticket.id rescue nil
-                    %td
-                      %b= ticket.candidate_cpf rescue nil
-                      %br/
-                      = ticket.candidate_name rescue nil
-                    %td
-                      = ticket.candidate_date.strftime("%d/%m/%Y") rescue nil
-                    %td.collapsing
-                      = link_to "Visualizar laudos", candidate.attendance_appraisal_appraisal_documents_path(ticket), remote: true, data: { disable_with: "Carregando..."}
+                  %th Documentos
+                  %th Ação
+              %tbody.index-content
+                = render 'index'
+                
               %tfoot
                 %tr
                   %th{colspan: 4}

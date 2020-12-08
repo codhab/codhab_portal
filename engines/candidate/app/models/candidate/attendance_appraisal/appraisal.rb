@@ -12,7 +12,9 @@ module Candidate
 
         select(
           ' 
+            
             attendance_custom_tickets.id as id,
+            attendance_custom_tickets.medical_validate as medical_validate,
             candidate_cadastre_mirrors.cadastre_id as cadastre_id,
             candidate_cadastre_mirrors.name as candidate_name,
             candidate_cadastre_mirrors.cpf as candidate_cpf,

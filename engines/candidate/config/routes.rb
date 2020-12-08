@@ -126,7 +126,11 @@ Candidate::Engine.routes.draw do
     get '/', to: 'sessions#index'
     resources :sessions, path: 'acesso', only: [:index, :new, :create, :destroy]
     resources :appraisals, path: 'laudos' do
-      resources :documents
+      get 'check', as: :check
+      
+      resources :documents do
+        get 'check', as: :check
+      end
     end
   end
 

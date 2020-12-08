@@ -10,7 +10,12 @@ module Candidate
       def index
         @apprailsas = ::Candidate::AttendanceAppraisal::Appraisal.all.order(id: :asc).paginate(page: params[:page], per_page: 50)
       end
-
+      
+      def check
+        @apprailsal = ::Candidate::AttendanceAppraisal::Appraisal.find(params[:appraisal_id])
+        @apprailsal.update(medical_validate: !@apprailsal.medical_validate)
+        @apprailsas = ::Candidate::AttendanceAppraisal::Appraisal.all.order(id: :asc).paginate(page: params[:page], per_page: 50)
+      end
       private
       
       def current_medical

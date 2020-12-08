@@ -25,10 +25,10 @@
         %th Idade 
         %th CID 
     %tbody
-      - if @ticket.cadastre.dependents.where(special_condition_id: 2).present?
-        - @ticket.cadastre.dependents.where(special_condition_id: 2).each do |dependent|
+      - if @ticket.cadastre.dependents.present?
+        - @ticket.cadastre.dependents.each do |dependent|
           %tr
-            %td= dependent.name.upcase
+            %td= dependent.name.to_s.upcase
             %td= dependent.age
             %td= dependent.cid.blank? ? "Não informado" : dependent.cid
       - else
@@ -45,11 +45,15 @@
         %th Ação
     %tbody
       - if @ticket.appraisal_documents.where(document_type_id: [17,5]).present?
-        - @ticket.appraisal_documents.where(document_type_id: [17,5]).each do |document|
+        - @ticket.appraisal_documents.where(document_type_id: [17,5]).order(id: :asc).each do |document|
           %tr
             %td= document.document_type.name rescue nil
             %td.collapsing= link_to "Visualizar", "http://www.codhab.df.gov.br/uploads/attendance/document/#{document.attachment}", target: '_blank'
-            %td.collapsing= link_to "Check", "#{document.attachment}", target: '_blank'
+            %td.collapsing
+              - if document.medical_validate
+                = link_to "Válido", candidate.attendance_appraisal_appraisal_document_check_path(@ticket, document), remote: true, data: { disable_with: "processando..."}, class: 'btn btn-sm btn-success', title: "Alterar situação"
+              - else
+                = link_to "NÃO VÁLIDO", candidate.attendance_appraisal_appraisal_document_check_path(@ticket, document), remote: true, data: { disable_with: "processando..."}, class: 'btn btn-sm btn-default', title: "Alterar situação"
       - else
         %tr
           %td{colspan: 3}
