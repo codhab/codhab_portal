@@ -18,7 +18,7 @@
                 .col-md-4
                   = f.input :by_cpf, as: :string, label: "Informe o CPF", input_html: { class: 'cpf', name: :by_cpf, value: params[:by_cpf]}
                 .col-md-6
-                  = f.input :by_name, as: :string, label: "Informe o nome", input_html: { name: :by_name, value: params[:by_name]}                  
+                  = f.input :by_name, as: :string, label: "Informe o nome", input_html: { name: :by_name, value: params[:by_name], placeholder: "Informe um nome para pesquisar"}                  
               .row
                 .col-md-4
                   = f.submit "Pesquisar", name: :nil, class: 'btn btn-success', data: { disable_with: "Aguarde..."}
