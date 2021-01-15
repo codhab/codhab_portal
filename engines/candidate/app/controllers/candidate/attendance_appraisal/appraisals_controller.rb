@@ -16,7 +16,18 @@ module Candidate
         @apprailsal.update(medical_validate: !@apprailsal.medical_validate)
         @apprailsas = ::Candidate::AttendanceAppraisal::Appraisal.all.order(id: :asc).paginate(page: params[:page], per_page: 50)
       end
+      
+      def update
+        @apprailsal = ::Candidate::AttendanceAppraisal::Appraisal.find(params[:id])
+        @apprailsal.update(set_params)
+        @apprailsas = ::Candidate::AttendanceAppraisal::Appraisal.all.order(id: :asc).paginate(page: params[:page], per_page: 50)
+      end
+
       private
+
+      def set_params
+        params.require(:attendance_appraisal_appraisal).permit(:external_situation_id, :external_observation)
+      end
       
       def current_medical
         ::Candidate::ExternalAttendance::User.find_by(id: session[:external_medical_attendance_user_id])

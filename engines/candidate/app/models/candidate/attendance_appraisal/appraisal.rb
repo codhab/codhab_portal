@@ -8,17 +8,21 @@ module Candidate
 
       belongs_to :cadastre, class_name: "::Core::Candidate::Cadastre", foreign_key: :cadastre_id
 
+      enum external_situation_id: { "pendente" => 1, "recusado_com_pendencia" => 2 , "recusado" => 3, "deferido" => 4 }
+      
       default_scope -> {
 
         select(
           ' 
-            
             attendance_custom_tickets.id as id,
             attendance_custom_tickets.medical_validate as medical_validate,
             candidate_cadastre_mirrors.cadastre_id as cadastre_id,
             candidate_cadastre_mirrors.name as candidate_name,
             candidate_cadastre_mirrors.cpf as candidate_cpf,
-            attendance_custom_tickets.created_at::date as candidate_date
+            attendance_custom_tickets.created_at::date as candidate_date,
+            attendance_custom_tickets.external_situation_id,
+            attendance_custom_tickets.external_observation
+
           '
         )
         .joins('INNER JOIN extranet.candidate_cadastre_mirrors 
@@ -45,6 +49,22 @@ module Candidate
         
 
       }
+
+      def color 
+        
+        case self.external_situation_id
+        
+        when 'recusado'
+          "#ff9999"
+        when 'recusado_com_pendencia'
+          "yellow"
+        when 'deferido'
+          "#a3cea3"
+        when 'pendente?'
+          ""
+        end
+
+      end
     end
   end
 end

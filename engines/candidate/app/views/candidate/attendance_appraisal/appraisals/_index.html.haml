@@ -1,5 +1,5 @@
 - @apprailsas.each do |ticket|
-  %tr
+  %tr{style: "background-color: #{ticket.color}"} 
     %td.collapsing= ticket.id rescue nil
     %td
       %b= ticket.candidate_cpf rescue nil
@@ -8,9 +8,7 @@
     %td.collapsing
       = ticket.candidate_date.strftime("%d/%m/%Y") rescue nil
     %td.collapsing
-      = link_to "Visualizar laudos", candidate.attendance_appraisal_appraisal_documents_path(ticket), remote: true, data: { disable_with: "Carregando..."}
+      = ticket.external_situation_id.humanize
     %td.collapsing
-      - if ticket.medical_validate
-        = link_to "<i class='fa fa-thumbs-up'></i>".html_safe, candidate.attendance_appraisal_appraisal_check_path(ticket), remote: true, data: { disable_with: "Carregando..."}, class: 'btn btn-success btn-sm btn-icon'
-      - else
-        = link_to  "<i class='fa fa-thumbs-up'></i>".html_safe, candidate.attendance_appraisal_appraisal_check_path(ticket), remote: true, data: { disable_with: "Carregando..."}, class: 'btn btn-default btn-sm btn-icon'
+      = link_to "Analisar", candidate.attendance_appraisal_appraisal_documents_path(ticket), remote: true, data: { disable_with: "Carregando..."}
+  
