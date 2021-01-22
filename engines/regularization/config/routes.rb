@@ -20,6 +20,9 @@ Regularization::Engine.routes.draw do
 =end
 
   resources :mestre_darmas_regularizations, path: 'mestre-darmas'
+  resources :mestre_darmas_regularization_sessions, path: 'mestre-darmas-acesso'
+  resources :mestre_darmas_regularization_cadastres, path: 'mestre-darmas-cadastros'
+
   resources :itapoa_regularizations, path: 'regularizacao-itapoa' do
     collection do
       resources :sessions, path: 'acesso', controller: :itapoa_regularization_sessions, as: :itapoa_regularization_sessions
@@ -59,6 +62,10 @@ Regularization::Engine.routes.draw do
         get '/verification', path: 'verificacao', to: 'schedules#verification', as: 'verification'
       end
     end
+
+
   end
+
+
 
 end

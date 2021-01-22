@@ -9,6 +9,13 @@ Candidate::Engine.routes.draw do
   resources :subscribes, except: :destroy, path: 'inscricao' do
     get 'new_session', on: :collection
     post 'create_session', on: :collection
+
+    get 'new_remember', on: :collection
+    post 'create_remember', on: :collection
+
+
+    get 'edit_password', on: :collection
+    post 'update_password', on: :collection
   end
 
   get 'indicacao-crixa', to: 'crixa_indications#new'
@@ -114,4 +121,17 @@ Candidate::Engine.routes.draw do
       post  'update_password'
     end
   end
+
+  namespace :attendance_appraisal, path: 'atendimento-laudo' do
+    get '/', to: 'sessions#index'
+    resources :sessions, path: 'acesso', only: [:index, :new, :create, :destroy]
+    resources :appraisals, path: 'laudos' do
+      get 'check', as: :check
+      
+      resources :documents do
+        get 'check', as: :check
+      end
+    end
+  end
+
 end

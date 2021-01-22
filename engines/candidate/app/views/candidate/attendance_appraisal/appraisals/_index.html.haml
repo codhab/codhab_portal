@@ -1,0 +1,14 @@
+- @apprailsas.each do |ticket|
+  %tr{style: "background-color: #{ticket.color}"} 
+    %td.collapsing= ticket.id rescue nil
+    %td
+      %b= ticket.candidate_cpf rescue nil
+      %br/
+      = ticket.candidate_name rescue nil
+    %td.collapsing
+      = ticket.candidate_date.strftime("%d/%m/%Y") rescue nil
+    %td.collapsing
+      = ticket.external_situation_id.humanize
+    %td.collapsing
+      = link_to "Analisar", candidate.attendance_appraisal_appraisal_documents_path(ticket), remote: true, data: { disable_with: "Carregando..."}
+  

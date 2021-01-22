@@ -3,9 +3,11 @@
   = render 'layouts/portal/box_notices'
   = render 'layouts/portal/publicidade'
   -# = render 'layouts/portal/resultados'
-:javascript
-  $(document).ready(function() {
-    $('#modal .modal-dialog').addClass('modal-lg')
-    $('#modal .modal-content').html("#{escape_javascript(render 'post')}");
-    $('#modal').modal('show');
-  })
+
+- if Date.current < Date.parse('2021-01-01')
+  :javascript
+    $(document).ready(function() {
+      $('#modal .modal-dialog').addClass('modal-lg')
+      $('#modal .modal-content').html("#{escape_javascript(render 'post')}");
+      $('#modal').modal('show');
+    })

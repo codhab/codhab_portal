@@ -1,0 +1,5 @@
+
+= simple_form_for @ticket, url: candidate.attendance_appraisal_appraisal_path(@ticket), remote: true do |f|
+  = f.input :external_situation_id, label: "Situação", as: :select, collection: ::Candidate::AttendanceAppraisal::Appraisal.external_situation_ids.map { |k,v| [k.humanize, k]}, include_blank: false 
+  = f.input :external_observation, as: :text, label: "Observação"
+  = f.submit "Salvar situação (Geral)", class: 'btn btn-success btn-block'

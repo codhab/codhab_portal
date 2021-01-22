@@ -12,5 +12,7 @@
             .col-md-3
               = f.input :password, label: "Senha de acesso cadastrada", placeholder: "*****"
           .row
-            .col-md-12 
-              = f.submit "Acessar minha inscrição", class: 'btn btn-success '
+            .col-md-3
+              = f.submit "Acessar minha inscrição", class: 'btn btn-success btn-block'
+            .col-md-3
+              = link_to "Esqueci minha senha", candidate.new_remember_subscribes_path, class: 'btn btn-info btn-block'

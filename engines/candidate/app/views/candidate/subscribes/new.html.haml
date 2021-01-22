@@ -13,5 +13,8 @@
         %h2
           %b Inscrição 2020
       .panel-body
-        = render 'form'
-
+        - if Date.current < Date.parse('2021-01-01')
+          = render 'form'
+        - else
+          As inscrições 2020 encerram, mais informações 
+          %a{href: "http://www.codhab.df.gov.br/postagem/1414", target: '_blank'} (clique aqui)

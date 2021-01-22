@@ -7,6 +7,10 @@ module Candidate
       where(cpf: cpf.to_s.unformat_cpf)
     }
 
+    scope :by_name, -> (name) {
+      where("name ilike ?", "%#{name}%")
+    }
+    
     def cadastre
       ::Candidate::Cadastre.find_by(cpf: self.cpf)
     end

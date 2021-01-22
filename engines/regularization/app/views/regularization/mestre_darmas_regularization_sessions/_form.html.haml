@@ -1,0 +1,7 @@
+= simple_form_for @mestre_darmas_regularization_session do |f|
+  .row
+    .col-md-4
+      = f.input :username, label: "Usuário", placeholder: "Digite o usuário"
+    .col-md-4
+      = f.input :password, label: "Senha", placeholder: "Digite a senha"
+  = f.submit 'Autenticar', class: 'btn btn-success'
