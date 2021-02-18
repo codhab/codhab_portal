@@ -176,7 +176,7 @@
                   %th Devolução
               %tbody
                 - if @cadastre.enterprise_cadastres.present?
-                  - @cadastre.enterprise_cadastres.where.not(indication_type_id: 999).where(indication_situation_id: [1,4]).order('created_at desc').each do |enterprise_cadastre|
+                  - @cadastre.enterprise_cadastres.where.not(indication_type_id: [999,998,997,996]).where(indication_situation_id: [1,4]).order('created_at desc').each do |enterprise_cadastre|
                     %tr
                       %td{colspan: 2}= link_to enterprise_cadastre.enterprise.name, "#"
 
