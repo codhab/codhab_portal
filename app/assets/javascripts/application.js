@@ -13,8 +13,8 @@
 //= require base/javascripts/canvasjs.min
 //= require base/javascripts/raphael-min
 //= require base/javascripts/morris-0.4.1.min
-//= require chartkick
 //= require jquery.remotipart
+//= require chartkick
 //= require select2
 //= require select2-full
 //= require base/javascripts/file_validation
