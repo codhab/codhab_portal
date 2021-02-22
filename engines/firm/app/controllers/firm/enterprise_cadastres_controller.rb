@@ -19,7 +19,7 @@ module Firm
      has_scope :by_inactive_date
 
     def index
-      @enterprise_cadastres = Firm::EnterpriseCadastre.where.not(indication_type_id: 999)
+      @enterprise_cadastres = Firm::EnterpriseCadastre.where.not(indication_type_id: [999,998,997,996])
                                                       .where(enterprise_id: @enterprises)
                                                       .includes([:cadastre, :enterprise_cadastre_situations]).all
 
@@ -49,7 +49,7 @@ module Firm
 
     def show
       @enterprise_cadastre_situation = Firm::EnterpriseCadastreSituation.where(enterprise_cadastre_id: params[:id])
-      @enterprise_cadastre = Firm::EnterpriseCadastre.where.not(indication_type_id: 999).find(params[:id])
+      @enterprise_cadastre = Firm::EnterpriseCadastre.where.not(indication_type_id: [999,998,997,996]).find(params[:id])
     end
 
     private
